@@ -1,0 +1,18 @@
+Windows = "Windows"
+Linux = "Linux"
+Mac = "OSX"
+
+function Os()
+	if jit then
+		return jit.os
+	end
+
+	-- Unix, Linux variants
+	local osname = nil
+	local fh, err = assert(io.popen("uname -o 2>/dev/null", "r"))
+	if fh then
+		osname = fh:read()
+	end
+
+	return osname or Windows
+end

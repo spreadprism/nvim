@@ -1,0 +1,12 @@
+[config]
+plugins_dir = "configs/"
+[rocks]
+luafilesystem = "1.8.0"
+magick = "1.6.0"
+[plugins]
+# ------------------------------------------------------------
+# Core plugins
+# ------------------------------------------------------------
+"rocks.nvim" = "2.27.1"
+"rocks-config.nvim" = "1.6.0"
+"rocks-git.nvim" = "1.5.1"

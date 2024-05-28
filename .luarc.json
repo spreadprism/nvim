@@ -1,0 +1,9 @@
+{
+  "diagnostics.globals": ["vim", "MiniFiles",
+        "jit",
+        "plugin",
+        "keybind",
+        "keybind_group",
+        "make_hg_transparent",
+        "lsp"]
+}
