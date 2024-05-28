@@ -15,6 +15,10 @@ keybind_group = require("utils.keybinds").KeybindGroup
 plugin = require("utils.plugins_specs").Plugin
 lsp = require("utils.lsp").Lsp
 
+Symbols = {
+	modified = "󱇧",
+	readonly = "󰷊",
+}
 -- global colors
 Colors = {
 	bg = "#202328",

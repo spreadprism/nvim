@@ -86,48 +86,14 @@ cmp.setup({
 	},
 })
 cmp.setup.cmdline({ "/", "?" }, {
-	mapping = {
-		["<M-a>"] = cmp.mapping.confirm({ select = true }),
-		["<M-j>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item(select_opts)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-
-		["<M-k>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item(select_opts)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-	},
+	mapping = cmp.mapping.preset.cmdline(),
 	sources = {
 		{ name = "buffer" },
 	},
 })
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
-	mapping = {
-		["<M-a>"] = cmp.mapping.confirm({ select = true }),
-		["<M-j>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item(select_opts)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-
-		["<M-k>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item(select_opts)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-	},
+	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
 		{ name = "path" },
 	}, {

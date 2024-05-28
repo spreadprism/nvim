@@ -19,6 +19,31 @@ plugin("rcarriga/nvim-notify")
 	:event("VeryLazy")
 	:opts({ render = "compact", background_colour = "#000000", stage = "slide" })
 plugin("folke/which-key.nvim"):event("VeryLazy")
+plugin("echasnovski/mini.indentscope")
+	:event("VeryLazy")
+	:init(function()
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = {
+				"",
+				"help",
+				"leetcode.nvim",
+				"alpha",
+				"dashboard",
+				"neo-tree",
+				"Trouble",
+				"trouble",
+				"lazy",
+				"mason",
+				"notify",
+				"toggleterm",
+				"lazyterm",
+			},
+			callback = function()
+				vim.b.miniindentscope_disable = true
+			end,
+		})
+	end)
+	:opts({})
 plugin("folke/noice.nvim"):event("VeryLazy"):opts({
 	-- add any options here
 	presets = {

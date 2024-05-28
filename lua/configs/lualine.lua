@@ -1,7 +1,7 @@
 require("lualine").setup({
 	options = {
 		theme = "auto",
-		-- globalstatus = true,
+		globalstatus = true,
 		disabled_filetypes = { statusline = { "dashboard", "alpha" } },
 		-- prevent telescope from stealing focus
 		ignore_focus = { "TelescopePrompt", "Mason" },

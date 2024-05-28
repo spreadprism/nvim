@@ -1,4 +1,13 @@
-local buffer_blacklist = { "neo-tree filesystem [1]", "[dap-repl]", "DAP Console", "DAP Watches" }
+local buffer_blacklist = {
+	"neo-tree filesystem [1]",
+	"[dap-repl]",
+	"DAP Console",
+	"DAP Watches",
+	"NeogitStatus",
+	"NeogitDiffView",
+	"null",
+	"DiffviewFilePanel",
+}
 local buffer_extension_blacklist = {}
 local buffer_mode_blacklist = { "t" }
 

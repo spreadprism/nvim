@@ -16,7 +16,7 @@ return {
 		path = 0,
 		separator = "",
 		padding = { left = 0, right = 1 },
-		symbols = { modified = "󱇧", readonly = "󰷊", unnamed = "" },
+		symbols = { modified = Symbols.modified, readonly = Symbols.readonly, unnamed = "" },
 		cond = ll_utils.display_file,
 	},
 }

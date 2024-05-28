@@ -19,7 +19,7 @@ M.winbar = function()
 			-- remove leading slash
 			dir = dir:gsub("^/", "")
 			-- replace slash by arrow
-			dir = dir:gsub("/", "  ")
+			dir = dir:gsub("/", "  ")
 		end
 	end
 	return dir or ""

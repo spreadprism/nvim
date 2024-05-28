@@ -4,7 +4,6 @@
 
 Do the thing for git trees
 ### Plugins
-- Comment.nvim
 - Neogit
 - nvim-spectre
 
