@@ -16,8 +16,13 @@ plugin = require("utils.plugins_specs").Plugin
 lsp = require("utils.lsp").Lsp
 
 Symbols = {
-	modified = "󱇧",
-	readonly = "󰷊",
+	modified = "󱇧 ",
+	new_file = "󰝒 ",
+	added = "󰈖 ",
+	copied = " ",
+	updated = "󰚰 ",
+	deleted = "󰮘 ",
+	readonly = "󰷊 ",
 }
 -- global colors
 Colors = {
