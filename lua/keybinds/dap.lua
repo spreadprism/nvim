@@ -22,5 +22,5 @@ keybind_group("<leader>d", "DAP"):register({
 	keybind("n", "s", function()
 		require("dap").terminate()
 		require("dapui").close()
-	end, "DAP run last config"),
+	end, "DAP stop"),
 })
