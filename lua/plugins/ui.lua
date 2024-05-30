@@ -76,5 +76,12 @@ plugin("folke/noice.nvim"):event("VeryLazy"):opts({
 			},
 			opts = { skip = true },
 		},
+		{
+			filter = {
+				event = "msg_show",
+				find = "No diagnostics found",
+			},
+			opts = { skip = true },
+		},
 	},
 })

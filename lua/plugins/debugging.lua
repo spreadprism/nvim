@@ -1,0 +1,5 @@
+local dap = plugin("mfussenegger/nvim-dap"):event("VeryLazy")
+local dapui = plugin("rcarriga/nvim-dap-ui"):event("VeryLazy"):dependencies({ dap, "rcarriga/nvim-dap-ui" })
+plugin("mfussenegger/nvim-dap-python"):ft("python"):dependencies({ dap, dapui }):config(function()
+	require("dap-python").setup("~/miniconda3/bin/python")
+end)

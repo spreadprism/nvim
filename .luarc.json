@@ -5,5 +5,6 @@
         "keybind",
         "keybind_group",
         "make_hg_transparent",
-        "lsp"]
+        "lsp",
+        "keybind_func"]
 }

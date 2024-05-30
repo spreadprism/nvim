@@ -118,7 +118,7 @@ function Plugin:init(init)
 	self.specs.init = init
 	return self
 end
----@param opts table | fun(LazyPlugin, table): table
+---@param opts table | string | fun(LazyPlugin, table): table
 function Plugin:opts(opts)
 	self.specs.opts = opts
 	return self

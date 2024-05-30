@@ -71,11 +71,19 @@ end
 function KeybindGroup:register(keybinds)
 	keybinds = keybinds or {}
 	for _, keybind in ipairs(self.keybinds) do
-		keybind.key = self.prefix .. keybind.key
+		if keybind.key == nil then
+			keybind.prefix = self.prefix .. keybind.prefix
+		else
+			keybind.key = self.prefix .. keybind.key
+		end
 		keybind:register()
 	end
 	for _, keybind in ipairs(keybinds) do
-		keybind.key = self.prefix .. keybind.key
+		if keybind.key == nil then
+			keybind.prefix = self.prefix .. keybind.prefix
+		else
+			keybind.key = self.prefix .. keybind.key
+		end
 		keybind:register()
 	end
 	if self.prefix == "" then

@@ -32,6 +32,7 @@ local gototab = function(n)
 		pcall(vim.cmd, "tabn " .. n)
 	end
 end
+keybind("n", "<A-t>", "<cmd>tabnew<cr>", "New tab"):register()
 -- Go to tab #1
 keybind("n", "<A-1>", gototab(1), "Go to tab 1"):register()
 keybind("n", "<A-2>", gototab(2), "Go to tab 2"):register()

@@ -24,6 +24,14 @@ Symbols = {
 	deleted = "󰮘 ",
 	readonly = "󰷊 ",
 }
+vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "ErrorMsg", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "ErrorMsg", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpointCondition", { text = "󰯲", texthl = "ErrorMsg", linehl = "", numhl = "" })
+vim.fn.sign_define("DapLogPoint", { text = "", texthl = "DiagnosticSignInfo", linehl = "", numhl = "" })
+
+vim.cmd("highlight DapStoppedSign guifg=#87D285")
+vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStoppedSign", linehl = "DapStoppedSign", numhl = "" })
+
 -- global colors
 Colors = {
 	bg = "#202328",

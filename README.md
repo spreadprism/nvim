@@ -10,6 +10,7 @@ Do the thing for git trees
 ### Keybinds
 #### For each lowercase => buffer, uppercase => cwd
 - Add <leader>sr -> search and replace
+-------------------------------
 - Add <leader>sd -> search diagnostic
 - Add <leader>sda -> search diagnostic all
 - Add <leader>sde -> search diagnostic errors
