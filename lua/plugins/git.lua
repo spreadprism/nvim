@@ -14,6 +14,6 @@ plugin("NeogitOrg/neogit")
 		},
 		graph_style = "unicode",
 		commit_editor = {
-			staged_diff_split_kind = "vsplit_left",
+			-- staged_diff_split_kind = "vsplit_left",
 		},
 	})

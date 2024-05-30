@@ -22,6 +22,18 @@
       "Lua.window.progressBar": false, "Lua.window.statusBar": false,
       "Lua.diagnostics.globals": ["vim", "MiniFiles"]
     },
+    "pylance": {
+      "pyright.disableOrganizeImports": true,
+      "python.analysis.autoImportCompletions": true,
+      "python.analysis.indexing": true,
+      "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingModuleSource": "error",
+        "reportUnusedImport" : "none",
+        "reportUnusedClass" : "none",
+        "reportUnusedFunction" : "none",
+        "reportUnusedVariable" : "none"
+      }
+    },
     "pyright": {
       "pyright.disableOrganizeImports": true,
       "python.analysis.autoImportCompletions": true,
