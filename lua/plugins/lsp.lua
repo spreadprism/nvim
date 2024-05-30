@@ -11,23 +11,23 @@ plugin("linux-cultist/venv-selector.nvim")
 	})
 	:opts({
 		settings = {
+			options = {
+				on_telescope_result_callback = function(filename)
+					filename = filename:gsub("/bin/python", "") ---@type string
+					filename = vim.split(filename, "/")
+					filename = filename[#filename]
+					if filename == "miniconda3" then
+						filename = "base"
+					end
+					return filename
+				end,
+			},
 			search = {
-				anaconda_base = {
-					command = "fd /python$ ~/miniconda3/ --full-path --color never -E /proc",
+				conda = {
+					command = "fd bin/python$ ~/miniconda3/ --full-path --color never -E /proc -E /pkgs",
 					type = "anaconda",
 				},
-				miniconda = {
-					command = "fd bin/python$ ~/miniconda3/envs/ --full-path --color never -E /proc",
-					type = "anaconda",
-				},
+				pipx = false,
 			},
 		},
 	})
--- :config(function()
--- 	require("venv-selector").setup({
--- 		dap_enabled = true,
--- 		notify_user_on_activate = false,
--- 		anaconda_base_path = os.getenv("HOME") .. "/miniconda3",
--- 		anaconda_envs_path = os.getenv("HOME") .. "/miniconda3/envs",
--- 	})
--- end)
