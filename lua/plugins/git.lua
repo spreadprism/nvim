@@ -5,6 +5,7 @@ plugin("NeogitOrg/neogit")
 		diff,
 		"nvim-telescope/telescope.nvim",
 	})
+	:commit("9da4829") -- BUG: Unable to commit on latest
 	:cmd("Neogit")
 	:opts({
 		disable_hint = true,

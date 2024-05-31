@@ -8,6 +8,7 @@ vim.o.showtabline = 0
 vim.o.scl = "yes"
 vim.o.timeout = true
 vim.o.timeoutlen = 200
+vim.opt.splitright = true
 
 ---@diagnostic disable-next-line: duplicate-set-field
 vim.deprecate = function() end -- TODO: Remove this when v12 is more mature

@@ -15,12 +15,12 @@ keybind_group("<leader>d", "DAP"):register({
 	keybind("n", "cb", function()
 		local condition = vim.fn.input("Condition: ")
 		if condition ~= nil and condition ~= "" then
-			require("dap").set_breakpoint(condition)
+			dap.set_breakpoint(condition)
 		end
 	end, "DAP conditional breakpoint"),
 	keybind("n", "r", dap.run_last, "DAP run last config"),
 	keybind("n", "s", function()
-		require("dap").terminate()
+		dap.terminate()
 		require("dapui").close()
 	end, "DAP stop"),
 })

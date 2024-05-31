@@ -49,7 +49,7 @@ M.scan_dir = function(path, ...)
 			if child ~= "." and child ~= ".." then
 				local child_path = vim.fs.joinpath(path, child)
 				if M.is_dir(child_path) and (depth == "*" or type(depth) == "number" and depth > 1) then
-					table.insert(files, table.unpack(M.scan_dir(child_path, depth - 1, glob) or {}))
+					table.insert(files, table.unpack(M.scan_dir(child_path, depth - 1) or {}))
 				elseif M.is_file(child_path) then
 					table.insert(files, child_path)
 				end
