@@ -2,7 +2,7 @@ local neoconf = plugin("folke/neoconf.nvim"):opts({ plugins = { lua_ls = { enabl
 plugin("neovim/nvim-lspconfig"):dependencies({ neoconf, "lewis6991/hover.nvim" }):config("configs.lsp")
 plugin("linux-cultist/venv-selector.nvim")
 	:branch("regexp")
-	:lazy(false)
+	:event("VeryLazy")
 	:dependencies({
 		"neovim/nvim-lspconfig",
 		"nvim-telescope/telescope.nvim",

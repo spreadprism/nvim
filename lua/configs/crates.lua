@@ -8,6 +8,9 @@ require("crates").setup({
 		completion = true,
 		hover = true,
 	},
+	popup = {
+		border = "rounded",
+	},
 	completion = {
 		crates = {
 			enabled = true,

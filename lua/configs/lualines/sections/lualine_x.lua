@@ -11,6 +11,14 @@ local current_lsp = function()
 end
 return {
 	{
+		"overseer",
+		unique = true,
+		symbols = {
+			[require("overseer").STATUS.RUNNING] = "󰦖 ",
+		},
+	},
+
+	{
 		current_lsp,
 		cond = function()
 			return current_lsp() ~= nil
