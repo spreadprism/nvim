@@ -1,4 +1,6 @@
-local treesitter = plugin("nvim-treesitter/nvim-treesitter"):event("BufRead")
+local treesitter = plugin("nvim-treesitter/nvim-treesitter"):event("BufRead"):dependencies({
+	-- plugin("nvim-treesitter/nvim-treesitter-textobjects"):event("VeryLazy"):opts({}),
+})
 plugin("christoomey/vim-tmux-navigator"):event("VeryLazy")
 plugin("smoka7/hop.nvim"):event("VeryLazy"):opts({})
 plugin("altermo/ultimate-autopair.nvim"):event({ "InsertEnter", "CmdlineEnter" }):opts({})
@@ -32,12 +34,9 @@ plugin("echasnovski/mini.move"):event("VeryLazy"):opts({
 plugin("mrjones2014/smart-splits.nvim"):event("VeryLazy"):opts({
 	resize_mode = {
 		silent = true,
-		quit_key = "<M-r>",
+		quit_key = "<M-s>",
 	},
 })
 plugin("mfussenegger/nvim-lint"):event("VeryLazy"):config("configs.linting")
 plugin("mhartington/formatter.nvim"):event("VeryLazy"):config("configs.formatting")
 plugin("numToStr/Comment.nvim"):event("VeryLazy"):opts({})
--- plugin("klen/nvim-config-local"):event("VeryLazy"):opts({
--- 	autocommands_create = false,
--- })

@@ -8,7 +8,7 @@ local buffer_blacklist = {
 	"null",
 	"DiffviewFilePanel",
 }
-local buffer_extension_blacklist = {}
+local buffer_extension_blacklist = { "harpoon" }
 local buffer_mode_blacklist = { "t" }
 
 local M = {}

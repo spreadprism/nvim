@@ -1,5 +1,11 @@
 plugin("stevearc/dressing.nvim"):event("VeryLazy")
 plugin("MunifTanjim/nui.nvim"):event("VeryLazy")
+plugin("brenoprata10/nvim-highlight-colors"):event("VeryLazy"):opts({
+	render = "virtual",
+	virtual_symbol = "",
+	virtual_symbol_position = "eol",
+	virtual_symbol_prefix = "",
+})
 plugin("karb94/neoscroll.nvim"):event("VeryLazy"):opts({ stop_eof = false, hide_cursor = false }) -- BUG: Cursor is perm hidden
 plugin("nvim-lualine/lualine.nvim"):event("VeryLazy"):dependencies("ofseed/copilot-status.nvim")
 plugin("lewis6991/hover.nvim"):event("VeryLazy"):opts({
@@ -19,6 +25,7 @@ plugin("rcarriga/nvim-notify")
 	:event("VeryLazy")
 	:opts({ render = "compact", background_colour = "#000000", stage = "slide" })
 plugin("folke/which-key.nvim"):event("VeryLazy")
+plugin("echasnovski/mini.ai"):event("VeryLazy"):opts({})
 plugin("echasnovski/mini.indentscope")
 	:event("VeryLazy")
 	:init(function()

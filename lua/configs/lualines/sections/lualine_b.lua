@@ -19,4 +19,20 @@ return {
 		symbols = { modified = Symbols.modified, readonly = Symbols.readonly, unnamed = "" },
 		cond = ll_utils.display_file,
 	},
+	{
+		function()
+			local marks = require("harpoon"):list().items
+			local current_buffer = vim.fn.expand("%s"):gsub(vim.fn.getcwd() .. "/", "")
+
+			for _, mark in ipairs(marks) do
+				if current_buffer == mark.value then
+					return ""
+				end
+			end
+			return ""
+		end,
+		color = { fg = Colors.red },
+		separator = "",
+		padding = { left = 0, right = 1 },
+	},
 }

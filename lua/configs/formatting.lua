@@ -17,7 +17,7 @@ require("formatter").setup({
 			require("formatter.filetypes.typescript").prettier,
 		},
 		json = {
-			require("formatter.filetypes.json").prettier,
+			vim.lsp.buf.format, -- BUG: Formatting json that removes line causes error (PR is opened)
 		},
 		toml = {
 			require("formatter.filetypes.toml").taplo,

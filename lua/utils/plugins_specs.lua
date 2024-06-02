@@ -232,8 +232,20 @@ function Plugin:validate_config()
 				break
 			end
 		end
+	elseif type(self.specs.config) == "string" then
+		local config_name = self.specs.config
+		self.specs.config = function()
+			if self.specs.opts ~= nil then
+				---@diagnostic disable-next-line: param-type-mismatch
+				require(config_name).setup(self.specs.opts)
+			else
+				---@diagnostic disable-next-line: param-type-mismatch
+				require(config_name).setup()
+			end
+		end
 	end
 end
+
 function Plugin:validate_keys()
 	if self.specs.keys == nil then
 		local keybind_modules = mod_utils.submodules(vim.g.configs.keybinds_directory_name)

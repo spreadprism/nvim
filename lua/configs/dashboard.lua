@@ -42,7 +42,7 @@ vim.api.nvim_create_autocmd("DirChanged", {
 	callback = function()
 		dash_utils.refresh_header(vim.fn.fnamemodify(vim.fn.getcwd(), ":t"), preview_width, dashboard_id)
 		if vim.bo.filetype == "dashboard" then
-			dashboard_preview:close_preview_window()
+			close_preview_buffer()
 			dashboard_preview:open_preview({
 				width = vim.api.nvim_win_get_width(0) - 40,
 				height = preview_height,
@@ -54,7 +54,7 @@ vim.api.nvim_create_autocmd("DirChanged", {
 vim.api.nvim_create_autocmd("BufLeave", {
 	callback = function()
 		if vim.bo.filetype == "dashboard" then
-			dashboard_preview:close_preview_window()
+			close_preview_buffer()
 		end
 	end,
 })

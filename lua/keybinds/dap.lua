@@ -19,8 +19,19 @@ keybind_group("<leader>d", "DAP"):register({
 		end
 	end, "DAP conditional breakpoint"),
 	keybind("n", "r", dap.run_last, "DAP run last config"),
+	keybind("n", "e", function()
+		require("dapui").eval()
+	end, "DAP run last config"),
 	keybind("n", "s", function()
 		dap.terminate()
 		require("dapui").close()
 	end, "DAP stop"),
+	keybind("n", "t", function()
+		local filetype = vim.bo[vim.api.nvim_get_current_buf()].filetype
+		if filetype == "go" then
+			require("dap-go").debug_test()
+		else
+			require("neotest").run.run({ strategy = "dap" })
+		end
+	end, "Debug current test"),
 })
