@@ -12,6 +12,7 @@ vim.opt.splitright = true
 
 ---@diagnostic disable-next-line: duplicate-set-field
 vim.deprecate = function() end -- TODO: Remove this when v12 is more mature
+vim.cmd("silent !mkdir " .. vim.fs.joinpath(vim.fn.stdpath("data"), "dashboard"))
 
 vim.api.nvim_create_autocmd("User", {
 	pattern = "LazyVimStarted",

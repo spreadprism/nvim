@@ -53,6 +53,8 @@ if not pcall(require, "rocks") then
 	vim.cmd.source(vim.fs.joinpath(rocks_location, "bootstrap.lua"))
 
 	vim.fn.delete(rocks_location, "rf")
+
+	require("rocks.operations").sync()
 end
 
 vim.api.nvim_create_autocmd("User", {
