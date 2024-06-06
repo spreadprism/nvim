@@ -20,4 +20,11 @@ require("lazy").setup(LazyRockSpecs, {
 	ui = {
 		border = "rounded",
 	},
+	performance = {
+		rtp = {
+			paths = {
+				vim.g.rocks_nvim.rtp_path,
+			},
+		},
+	},
 })
