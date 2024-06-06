@@ -1,38 +1,53 @@
 local M = {}
 
-local lfs_available, lfs = pcall(require, "lfs")
 local rg_available = vim.fn.executable("rg") == 1
 
-if not lfs_available then
-	if Os == Windows then
-		print("Windows detected and lfs not available, buckle your seatbelts...")
-	else
-		-- TODO: Implement native os functions
-		print("Linux detected and lfs not available. I still haven't implemented native, buckle your seatbelts...")
+local exec_cmd = function(cmd)
+	local handle = io.popen(cmd)
+	if handle == nil then
+		return {}
 	end
+	local result = handle:read("*a")
+	handle:close()
+	local ans = {}
+	for line in result:gmatch("[^\r\n]+") do
+		table.insert(ans, line)
+	end
+	return ans
 end
-
 ---@param path string
 ---@return boolean | nil
 M.exists = function(path)
+	local lfs_available, lfs = pcall(require, "lfs")
 	if lfs_available then
 		return path ~= nil and lfs.attributes(path) ~= nil
+	else
+		local result = exec_cmd("[ -e " .. path .. " ] && echo 'exists'")
+		return #result == 1 and result[1] == "exists"
 	end
 end
 
 ---@param path string
 ---@return boolean | nil
 M.is_dir = function(path)
+	local lfs_available, lfs = pcall(require, "lfs")
 	if lfs_available then
 		return M.exists(path) and lfs.attributes(path).mode == "directory"
+	else
+		local result = exec_cmd("[ -d " .. path .. " ] && echo 'dir'")
+		return #result == 1 and result[1] == "dir"
 	end
 end
 
 ---@param path string
 ---@return boolean | nil
 M.is_file = function(path)
+	local lfs_available, lfs = pcall(require, "lfs")
 	if lfs_available then
 		return M.exists(path) and lfs.attributes(path).mode == "file"
+	else
+		local result = exec_cmd("[ -f " .. path .. " ] && echo 'file'")
+		return #result == 1 and result[1] == "file"
 	end
 end
 
@@ -43,8 +58,10 @@ M.scan_dir = function(path, ...)
 		return
 	end
 	local depth = arg[1] or 1
+	local files = {}
+
+	local lfs_available, lfs = pcall(require, "lfs")
 	if lfs_available then
-		local files = {}
 		for child in lfs.dir(path) do
 			if child ~= "." and child ~= ".." then
 				local child_path = vim.fs.joinpath(path, child)
@@ -55,8 +72,18 @@ M.scan_dir = function(path, ...)
 				end
 			end
 		end
-		return files
+	else
+		local tmp_files = exec_cmd("ls -1 " .. path)
+		for _, file in ipairs(tmp_files) do
+			local child_path = vim.fs.joinpath(path, file)
+			if M.is_dir(child_path) and (depth == "*" or type(depth) == "number" and depth > 1) then
+				table.insert(files, table.unpack(M.scan_dir(child_path, depth - 1) or {}))
+			elseif M.is_file(child_path) then
+				table.insert(files, child_path)
+			end
+		end
 	end
+	return files
 end
 
 ---@param path string

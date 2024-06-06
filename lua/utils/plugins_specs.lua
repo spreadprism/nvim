@@ -297,6 +297,7 @@ M.validate_lazy_rock_specs = function()
 	end
 
 	LazyRockSpecs = convert_plugins_to_lazy_spec(__plugin_specs)
+  -- print(LazyRockSpecs)
 end
 
 ---@param spec table
