@@ -1,4 +1,4 @@
-require("init_rocks") -- Must be first (Installs luarocks)
+require("init_rocks") -- Must be first (Installs required rocks)
 require("init_globals")
 require("init_nvim")
 require("init_lsp")
