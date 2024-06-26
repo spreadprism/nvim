@@ -123,7 +123,7 @@ function Plugin:opts(opts)
 	self.specs.opts = opts
 	return self
 end
----@param config fun(LazyPlugin, table) | true | string
+---@param config fun(LazyPlugin, table) | true | string | boolean
 function Plugin:config(config)
 	if type(config) == "string" then
 		local config_module = config
@@ -297,7 +297,7 @@ M.validate_lazy_rock_specs = function()
 	end
 
 	LazyRockSpecs = convert_plugins_to_lazy_spec(__plugin_specs)
-  -- print(LazyRockSpecs)
+	-- print(LazyRockSpecs)
 end
 
 ---@param spec table

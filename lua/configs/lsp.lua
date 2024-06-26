@@ -22,4 +22,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		keybind({ "n", "v" }, "gr", require("telescope.builtin").lsp_references, "Go to reference"):register()
 	end,
 })
+
+require("lspconfig.ui.windows").default_options.border = "rounded"
+
 require("utils.lsp").setup_all_lsp()

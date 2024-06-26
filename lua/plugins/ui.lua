@@ -25,7 +25,14 @@ plugin("rcarriga/nvim-notify")
 	:event("VeryLazy")
 	:opts({ render = "compact", background_colour = "#000000", stage = "slide" })
 plugin("folke/which-key.nvim"):event("VeryLazy")
-plugin("echasnovski/mini.ai"):event("VeryLazy"):opts({})
+plugin("echasnovski/mini.ai"):event("VeryLazy"):opts({
+	custom_textobjects = {
+		-- f = spec_treesitter({ a = "@function.outer", i = "@function.inner" }),
+		c = false,
+		p = false,
+		i = false,
+	},
+})
 plugin("echasnovski/mini.indentscope")
 	:event("VeryLazy")
 	:init(function()

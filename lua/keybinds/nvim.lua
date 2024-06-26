@@ -26,7 +26,7 @@ keybind("n", "<A-O>", "O<ESC>k", "Insert line over"):register()
 keybind("v", "<Tab>", ">gv", "Insert table"):register()
 keybind("v", "<S-Tab>", "<gv", "Remove tab"):register()
 
-keybind("i", "<S-Tab>", "<C-h>", "Remove tab"):register()
+-- keybind("i", "<S-Tab>", "<C-h>", "Remove tab"):register()
 
 ---@param n integer
 local gototab = function(n)

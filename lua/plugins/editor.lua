@@ -1,12 +1,14 @@
 local treesitter = plugin("nvim-treesitter/nvim-treesitter"):event("BufRead"):dependencies({
-	-- plugin("nvim-treesitter/nvim-treesitter-textobjects"):event("VeryLazy"):opts({}),
+	-- plugin("nvim-treesitter/nvim-treesitter-textobjects"):event("VeryLazy"):config(false),
 })
 plugin("christoomey/vim-tmux-navigator"):event("VeryLazy")
 plugin("smoka7/hop.nvim"):event("VeryLazy"):opts({})
 plugin("altermo/ultimate-autopair.nvim"):event({ "InsertEnter", "CmdlineEnter" }):opts({})
 plugin("RRethy/nvim-treesitter-endwise"):dependencies(treesitter):event("VeryLazy")
 plugin("kylechui/nvim-surround"):event("VeryLazy"):opts({})
-plugin("abecodes/tabout.nvim"):dependencies({ "hrsh7th/nvim-cmp", treesitter }):event("InsertCharPre"):opts({})
+plugin("abecodes/tabout.nvim"):dependencies({ "hrsh7th/nvim-cmp", treesitter }):event("InsertCharPre"):opts({
+	act_as_shift_tab = true,
+})
 plugin("echasnovski/mini.surround"):event("VeryLazy"):opts({
 	mappings = {
 		delete = "",

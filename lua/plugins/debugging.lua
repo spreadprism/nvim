@@ -12,11 +12,9 @@ plugin("theHamsta/nvim-dap-virtual-text"):event("VeryLazy"):dependencies({ dap }
 	virt_text_pos = "inline",
 })
 
-plugin("mfussenegger/nvim-dap-python")
-	:ft("python")
-	:dependencies({ dap, dapui })
-	:config("dap-python")
-	:opts("~/miniconda3/bin/python")
+plugin("mfussenegger/nvim-dap-python"):ft("python"):dependencies({ dap, dapui }):config(function()
+	require("dap-python").setup("~/miniconda3/bin/python")
+end)
 
 plugin("leoluz/nvim-dap-go"):ft("go"):dependencies({ dap, dapui }):config(function()
 	require("dap-go"):setup({

@@ -3,6 +3,8 @@ local dap = require("dap")
 
 local __base_configs = {}
 local dap_config_module = "dap.configurations"
+local dap_adapters_module = "dap.adapters"
+
 M.configs = function(ft)
 	if __base_configs[ft] == nil then
 		local ok, configs = pcall(require, dap_config_module .. "." .. ft)
@@ -14,8 +16,8 @@ M.configs = function(ft)
 end
 
 M.init_adapters = function()
-	for _, adapter in ipairs(require("utils.module").submodules(dap_config_module)) do
-		dap.adapters[adapter] = require(dap_config_module .. "." .. adapter)
+	for _, adapter in ipairs(require("utils.module").submodules(dap_adapters_module)) do
+		dap.adapters[adapter] = require(dap_adapters_module .. "." .. adapter)
 	end
 end
 
