@@ -18,40 +18,39 @@ local oil = plugin("stevearc/oil.nvim"):lazy(false):dependencies("nvim-tree/nvim
 	},
 	win_options = {
 		winbar = " %{v:lua.require('utils.oil').winbar()}",
+		signcolumn = "number",
 	},
 })
 -- TODO: Add symbols and hl groups for oil-vcs-status
-plugin("SirZenith/oil-vcs-status")
-	:dependencies(oil:plugin_key())
-	:event("VeryLazy")
-	:opts({
-		status_symbol = {
-			["added"] = "",
-			["copied"] = "󰆏",
-			["deleted"] = "",
-			["ignored"] = "",
-			["modified"] = "",
-			["renamed"] = "",
-			["typechanged"] = "󰉺",
-			["unmodified"] = " ",
-			["unmerged"] = "",
-			["untracked"] = "",
-			["external"] = "",
+plugin("SirZenith/oil-vcs-status"):dependencies(oil):lazy(false):config(function()
+	local status_const = require("oil-vcs-status.constant.status")
 
-			["upstream_added"] = "󰈞",
-			["upstream_copied"] = "󰈢",
-			["upstream_deleted"] = "",
-			["upstream_ignored"] = " ",
-			["upstream_modified"] = "󰏫",
-			["upstream_renamed"] = "",
-			["upstream_typechanged"] = "󱧶",
-			["upstream_unmodified"] = " ",
-			["upstream_unmerged"] = "",
-			["upstream_untracked"] = " ",
-			["upstream_external"] = "",
-		},
-		status_hl_group = {
-			["modified"] = "OilVcsStatusIgnored",
+	local StatusType = status_const.StatusType
+	require("oil-vcs-status").setup({
+		status_symbol = {
+			[StatusType.Added] = "",
+			[StatusType.Copied] = "󰆏",
+			[StatusType.Deleted] = "",
+			[StatusType.Ignored] = "",
+			[StatusType.Modified] = "",
+			[StatusType.Renamed] = "",
+			[StatusType.TypeChanged] = "󰉺",
+			[StatusType.Unmodified] = " ",
+			[StatusType.Unmerged] = "",
+			[StatusType.Untracked] = "",
+			[StatusType.External] = "",
+
+			[StatusType.UpstreamAdded] = "󰈞",
+			[StatusType.UpstreamCopied] = "󰈢",
+			[StatusType.UpstreamDeleted] = "",
+			[StatusType.UpstreamIgnored] = " ",
+			[StatusType.UpstreamModified] = "󰏫",
+			[StatusType.UpstreamRenamed] = "",
+			[StatusType.UpstreamTypeChanged] = "󱧶",
+			[StatusType.UpstreamUnmodified] = " ",
+			[StatusType.UpstreamUnmerged] = "",
+			[StatusType.UpstreamUntracked] = " ",
+			[StatusType.UpstreamExternal] = "",
 		},
 	})
-	:enabled(false)
+end)

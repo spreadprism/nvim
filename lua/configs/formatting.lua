@@ -31,6 +31,9 @@ require("formatter").setup({
 		rust = {
 			require("formatter.filetypes.rust").rustfmt,
 		},
+		css = {
+			require("formatter.filetypes.css").prettier,
+		},
 		lua = {
 			require("formatter.filetypes.lua").stylua,
 		},
