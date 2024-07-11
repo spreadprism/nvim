@@ -1,5 +1,6 @@
 require("init_rocks") -- Must be first (Installs required rocks)
 require("init_globals")
+require("init_python") -- Must be first (Installs required rocks)
 require("init_nvim")
 require("init_lsp")
 require("init_plugins_specs")
