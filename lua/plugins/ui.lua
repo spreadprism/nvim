@@ -43,6 +43,7 @@ plugin("echasnovski/mini.indentscope")
 				"leetcode.nvim",
 				"alpha",
 				"dashboard",
+				"molten_output",
 				"neo-tree",
 				"Trouble",
 				"trouble",

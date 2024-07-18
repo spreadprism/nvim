@@ -4,5 +4,5 @@ keybind_group("<leader>j", "notebook"):register({
 	keybind("v", "e", "<cmd>QuartoSendRange", "Run cell in range"),
 	keybind("n", "i", "<cmd>MoltenInit<cr>", "Init Kernel"),
 	keybind("n", "r", "<cmd>MoltenRestart<cr>", "Restart Kernel"),
-	keybind("n", "o", "<cmd>MoltenShowOutput<cr>", "Show Output"),
+	keybind("n", "o", ":noautocmd MoltenEnterOutput<cr>", "Show Output"),
 })
