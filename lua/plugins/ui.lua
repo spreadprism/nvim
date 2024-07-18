@@ -24,7 +24,7 @@ plugin("utilyre/barbecue.nvim"):event("BufRead"):dependencies({
 plugin("rcarriga/nvim-notify")
 	:event("VeryLazy")
 	:opts({ render = "compact", background_colour = "#000000", stage = "slide" })
-plugin("folke/which-key.nvim"):event("VeryLazy")
+plugin("folke/which-key.nvim"):event("VeryLazy"):version("v2.1.0")
 plugin("echasnovski/mini.ai"):event("VeryLazy"):opts({
 	custom_textobjects = {
 		-- f = spec_treesitter({ a = "@function.outer", i = "@function.inner" }),

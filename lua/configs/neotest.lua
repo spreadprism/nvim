@@ -16,4 +16,10 @@ require("neotest").setup({
 			end,
 		}),
 	},
+	summary = {
+		mappings = {
+			expand = { "<tab>" },
+			jumpto = "<CR>",
+		},
+	},
 })

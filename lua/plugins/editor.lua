@@ -36,7 +36,7 @@ plugin("echasnovski/mini.move"):event("VeryLazy"):opts({
 plugin("mrjones2014/smart-splits.nvim"):event("VeryLazy"):opts({
 	resize_mode = {
 		silent = true,
-		quit_key = "<M-s>",
+		quit_key = "<ESC>",
 	},
 })
 plugin("mfussenegger/nvim-lint"):event("VeryLazy"):config("configs.linting")

@@ -1,7 +1,6 @@
 local fs = require("utils.filesystem")
 
--- local conda_venv_python = vim.fs.joinpath(os.getenv("HOME"), "miniconda3", "envs", "nvim", "bin", "python")
-local conda_venv_python = vim.fs.joinpath(os.getenv("HOME"), "miniconda3", "bin", "python")
+local conda_venv_python = vim.fs.joinpath(os.getenv("HOME"), "miniconda3", "envs", "nvim", "bin", "python")
 
 if not fs.exists(conda_venv_python) then
 	print("We don't have a venv for python")

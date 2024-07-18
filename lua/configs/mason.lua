@@ -1,4 +1,10 @@
-require("mason").setup({ ui = { border = "rounded", height = 0.8 } })
+require("mason").setup({
+	registries = {
+		"github:nvim-java/mason-registry",
+		"github:mason-org/mason-registry",
+	},
+	ui = { border = "rounded", height = 0.8 },
+})
 require("mason-lspconfig").setup()
 require("mason-nvim-dap").setup()
 require("mason-tool-installer").setup({

@@ -1,3 +1,4 @@
+require("java").setup()
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)
 		-- Enable completion triggered by <c-x><c-o>
@@ -25,4 +26,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 require("lspconfig.ui.windows").default_options.border = "rounded"
 
+require("lspconfig").jdtls.setup({})
 require("utils.lsp").setup_all_lsp()

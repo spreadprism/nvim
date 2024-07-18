@@ -1,5 +1,6 @@
+local java = plugin("nvim-java/nvim-java")
 local neoconf = plugin("folke/neoconf.nvim"):opts({ plugins = { lua_ls = { enabled = true } } })
-plugin("neovim/nvim-lspconfig"):dependencies({ neoconf, "lewis6991/hover.nvim" }):config("configs.lsp")
+plugin("neovim/nvim-lspconfig"):dependencies({ java, neoconf, "lewis6991/hover.nvim" }):config("configs.lsp")
 plugin("linux-cultist/venv-selector.nvim")
 	:branch("regexp")
 	:event("VeryLazy")
@@ -31,3 +32,4 @@ plugin("linux-cultist/venv-selector.nvim")
 			},
 		},
 	})
+plugin("mfussenegger/nvim-jdtls")
