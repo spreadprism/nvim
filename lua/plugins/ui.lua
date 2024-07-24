@@ -17,7 +17,7 @@ plugin("lewis6991/hover.nvim"):event("VeryLazy"):opts({
 	},
 	title = false,
 })
-plugin("utilyre/barbecue.nvim"):event("BufRead"):dependencies({
+plugin("utilyre/barbecue.nvim"):event("VeryLazy"):dependencies({
 	"SmiteshP/nvim-navic",
 	"nvim-tree/nvim-web-devicons",
 })
