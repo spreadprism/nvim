@@ -1,8 +1,10 @@
 -- automatically import output chunks from a jupyter notebook
 -- tries to find a kernel that matches the kernel in the jupyter notebook
 -- falls back to a kernel that matches the name of the active venv (if any)
+
 local imb = function(e) -- init molten buffer
 	vim.schedule(function()
+		-- TODO: Add kernel change when venv-selector activates an env
 		local kernels = vim.fn.MoltenAvailableKernels()
 		local venv_name = require("venv-selector").venv()
 		if venv_name == nil then
@@ -20,7 +22,7 @@ local imb = function(e) -- init molten buffer
 				vim.cmd(("MoltenInit %s"):format(venv_name))
 				vim.cmd("MoltenImportOutput")
 			else
-				vim.Error("Failed to find kernel for " .. venv_name)
+				vim.notify("Failed to find kernel for " .. venv_name)
 				vim.notify("pip install ipykernel")
 				vim.notify("python -m ipykernel install --user --name {project_name}")
 			end
@@ -98,7 +100,7 @@ local function new_notebook(filename)
 		file:close()
 		vim.cmd("edit " .. path)
 	else
-		print("Error: Could not open new notebook file for writing.")
+		vim.notify("Error: Could not open new notebook file for writing.")
 	end
 end
 
