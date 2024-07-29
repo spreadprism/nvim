@@ -8,12 +8,26 @@ vim.g.configs = {
 	snippets_directory_name = "snippets",
 	templates_directory_name = "templates",
 }
+vim.g.format_ft = {}
+
 -- global funcs
 print = vim.print
 keybind = require("utils.keybinds").Keybind
 keybind_group = require("utils.keybinds").KeybindGroup
 plugin = require("utils.plugins_specs").Plugin
 lsp = require("utils.lsp").Lsp
+get_saved_val = require("utils.save_state").get_state
+set_saved_val = require("utils.save_state").set_state
+disable_formatting = function(ft)
+	local format_ft = vim.g.format_ft or {}
+	format_ft[ft] = false
+	vim.g.format_ft = format_ft
+end
+enable_formatting = function(ft)
+	local format_ft = vim.g.format_ft or {}
+	format_ft[ft] = true
+	vim.g.format_ft = format_ft
+end
 
 Symbols = {
 	modified = "󱇧 ",

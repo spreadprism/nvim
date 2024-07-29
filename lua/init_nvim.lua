@@ -19,5 +19,6 @@ vim.api.nvim_create_autocmd("User", {
 	once = true,
 	callback = function()
 		local ok, _ = pcall(require, "at_start")
+		require("init_local_project")
 	end,
 })

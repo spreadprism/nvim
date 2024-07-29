@@ -45,6 +45,11 @@ return {
 		color = "#729a1a",
 		name = "vitest",
 	},
+	[".nvim.lua"] = {
+		icon = "",
+		color = "#84bd64",
+		name = ".nvim.lua",
+	},
 	["pyproject.toml"] = {
 		icon = "",
 		color = "#407EB0",

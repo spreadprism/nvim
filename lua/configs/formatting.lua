@@ -1,5 +1,13 @@
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-	command = "FormatWriteLock",
+	callback = function()
+		if not vim.g.format_ft[vim.bo.filetype] then
+			return
+		end
+		if vim.g.format_ft["*"] then
+			return
+		end
+		vim.cmd("silent FormatWriteLock")
+	end,
 })
 
 require("formatter").setup({
