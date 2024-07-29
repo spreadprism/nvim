@@ -4,7 +4,20 @@ local current_lsp = function()
 	local displays = {}
 	for _, client in pairs(all_clients) do
 		local name = client.name
-		table.insert(displays, require("utils.lsp").get_display(name))
+		if string.match(name, "otter%-ls") then
+			name = "otter-ls"
+			local venv_name = require("venv-selector").venv()
+			if venv_name ~= nil then
+				venv_name = string.gsub(venv_name, ".*/pypoetry/virtualenvs/*", "")
+				venv_name = string.gsub(venv_name, ".*/miniconda3/envs/", "")
+				venv_name = string.gsub(venv_name, ".*/miniconda3", "base")
+			else
+				venv_name = "base"
+			end
+			table.insert(displays, "notebook(" .. venv_name .. ")")
+		else
+			table.insert(displays, require("utils.lsp").get_display(name))
+		end
 	end
 
 	return table.concat(displays, " | ")

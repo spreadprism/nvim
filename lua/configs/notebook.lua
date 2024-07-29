@@ -4,22 +4,27 @@
 local imb = function(e) -- init molten buffer
 	vim.schedule(function()
 		local kernels = vim.fn.MoltenAvailableKernels()
-		local try_kernel_name = function()
-			local metadata = vim.json.decode(io.open(e.file, "r"):read("a"))["metadata"]
-			return metadata.kernelspec.name
+		local venv_name = require("venv-selector").venv()
+		if venv_name == nil then
+			require("venv-selector.cached_venv").retrieve()
+			venv_name = require("venv-selector").venv()
 		end
-		local ok, kernel_name = pcall(try_kernel_name)
-		if not ok or not vim.tbl_contains(kernels, kernel_name) then
-			kernel_name = nil
-			local venv = os.getenv("VIRTUAL_ENV")
-			if venv ~= nil then
-				kernel_name = string.match(venv, "/.+/(.+)")
+
+		print(venv_name)
+		if venv_name ~= nil then
+			venv_name = string.gsub(venv_name, ".*/pypoetry/virtualenvs/*", "")
+			venv_name = string.gsub(venv_name, ".*/miniconda3/envs/", "")
+			venv_name = string.gsub(venv_name, ".*/miniconda3", "base")
+
+			if vim.tbl_contains(kernels, venv_name) then
+				vim.cmd(("MoltenInit %s"):format(venv_name))
+				vim.cmd("MoltenImportOutput")
+			else
+				vim.Error("Failed to find kernel for " .. venv_name)
+				vim.notify("pip install ipykernel")
+				vim.notify("python -m ipykernel install --user --name {project_name}")
 			end
 		end
-		if kernel_name ~= nil and vim.tbl_contains(kernels, kernel_name) then
-			vim.cmd(("MoltenInit %s"):format(kernel_name))
-		end
-		vim.cmd("MoltenImportOutput")
 	end)
 end
 

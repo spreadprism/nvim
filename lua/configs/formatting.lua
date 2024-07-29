@@ -1,9 +1,11 @@
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	callback = function()
-		if not vim.g.format_ft[vim.bo.filetype] then
+		local should_format = vim.g.format_ft[vim.bo.filetype]
+		if should_format ~= nil and not should_format then
 			return
 		end
-		if vim.g.format_ft["*"] then
+		should_format = vim.g.format_ft["*"]
+		if should_format ~= nil and not should_format then
 			return
 		end
 		vim.cmd("silent FormatWriteLock")
