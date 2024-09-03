@@ -1,5 +1,21 @@
 local default_capabilities = vim.lsp.protocol.make_client_capabilities()
-local default_on_attach = function(client, bufnr) end
+vim.o.updatetime = 250
+local default_on_attach = function(client, bufnr)
+	vim.api.nvim_create_autocmd("CursorHold", {
+		buffer = bufnr,
+		callback = function()
+			local opts = {
+				focusable = false,
+				close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+				border = "rounded",
+				source = "always",
+				prefix = " ",
+				scope = "cursor",
+			}
+			vim.diagnostic.open_float(nil, opts)
+		end,
+	})
+end
 local M = {}
 local all_lsp = {}
 local Lsp = {}

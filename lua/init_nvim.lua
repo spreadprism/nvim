@@ -11,7 +11,7 @@ vim.o.timeoutlen = 200
 vim.opt.splitright = true
 
 ---@diagnostic disable-next-line: duplicate-set-field
-vim.deprecate = function() end -- TODO: Remove this when v12 is more mature
+-- vim.deprecate = function() end -- INFO: removes deprecation messages
 vim.cmd("silent !mkdir " .. vim.fs.joinpath(vim.fn.stdpath("data"), "dashboard"))
 
 vim.api.nvim_create_autocmd("User", {
