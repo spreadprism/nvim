@@ -2,9 +2,7 @@
 
 ## TODO
 
-Do the thing for git trees
 ### Plugins
-- Neogit
 - nvim-spectre
 
 ### Keybinds
