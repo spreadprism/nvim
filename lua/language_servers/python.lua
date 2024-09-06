@@ -1,4 +1,21 @@
 lsp("ruff_lsp"):display(nil)
+
+local python_display = function(lsp_name)
+	return function()
+		local venv_name = require("venv-selector").venv()
+
+		if venv_name ~= nil then
+			venv_name = string.gsub(venv_name, ".*/pypoetry/virtualenvs/*", "")
+			venv_name = string.gsub(venv_name, ".*/miniconda3/envs/", "")
+			venv_name = string.gsub(venv_name, ".*/miniconda3", "base")
+			venv_name = string.gsub(venv_name, ".*/.venv", "workspace")
+		else
+			venv_name = "sys"
+		end
+		return lsp_name .. "(" .. venv_name .. ")"
+	end
+end
+
 lsp("pyright")
 	:on_attach(function()
 		keybind_group("<leader>l", "lsp"):register({
@@ -8,17 +25,7 @@ lsp("pyright")
 	:cond(function()
 		return vim.fn.executable("delance-langserver") == 0
 	end)
-	:display(function()
-		local venv_name = require("venv-selector").venv()
-		if venv_name ~= nil then
-			venv_name = string.gsub(venv_name, ".*/pypoetry/virtualenvs/*", "")
-			venv_name = string.gsub(venv_name, ".*/miniconda3/envs/", "")
-			venv_name = string.gsub(venv_name, ".*/miniconda3", "base")
-		else
-			venv_name = "sys"
-		end
-		return "pyright" .. "(" .. venv_name .. ")"
-	end)
+	:display(python_display("pyright"))
 lsp("pylance")
 	:auto_install(false)
 	:on_attach(function()
@@ -29,18 +36,7 @@ lsp("pylance")
 	:cond(function()
 		return vim.fn.executable("delance-langserver") == 1
 	end)
-	:display(function()
-		local venv_name = require("venv-selector").venv()
-
-		if venv_name ~= nil then
-			venv_name = string.gsub(venv_name, ".*/pypoetry/virtualenvs/*", "")
-			venv_name = string.gsub(venv_name, ".*/miniconda3/envs/", "")
-			venv_name = string.gsub(venv_name, ".*/miniconda3", "base")
-		else
-			venv_name = "sys"
-		end
-		return "pylance" .. "(" .. venv_name .. ")"
-	end)
+	:display(python_display("pylance"))
 	:register(function()
 		local configs = require("lspconfig.configs")
 		if not configs.pylance then

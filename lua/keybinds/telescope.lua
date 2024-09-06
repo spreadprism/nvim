@@ -7,6 +7,8 @@ keybind_group("<leader>s", "Search"):register({
 	keybind("n", "G", finders.live_grep(false), "Grep search cwd"),
 	keybind("n", "z", finders.fuzzy_live_grep(true), "Fuzzy find current buffer"),
 	keybind("n", "Z", finders.fuzzy_live_grep(false), "Fuzzy find cwd"),
+	keybind("n", "r", "<cmd>SearchReplaceSingleBufferOpen<cr>", "Replace"),
+	keybind("v", "r", "<cmd>SearchReplaceSingleBufferVisualSelection<cr>", "Replace visual selection"),
 	keybind_group("d", "diagnostics", {
 		keybind("n", "a", function()
 			builtin.diagnostics({ bufnr = 0 })

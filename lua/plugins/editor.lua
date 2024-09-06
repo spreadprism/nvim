@@ -42,3 +42,4 @@ plugin("mrjones2014/smart-splits.nvim"):event("VeryLazy"):opts({
 plugin("mfussenegger/nvim-lint"):event("VeryLazy"):config("configs.linting")
 plugin("mhartington/formatter.nvim"):event("VeryLazy"):config("configs.formatting")
 plugin("numToStr/Comment.nvim"):event("VeryLazy"):opts({})
+plugin("roobert/search-replace.nvim"):event("VeryLazy"):opts({})
