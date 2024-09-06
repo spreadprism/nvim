@@ -4,7 +4,7 @@ lint.linters_by_ft = {
 	javascript = { "eslint" },
 	typescript = { "eslint" },
 	typescriptreact = { "eslint" },
-	css = { "stylelint" },
+	-- css = { "stylelint" },
 }
 
 local events = { "TextChanged", "BufReadPost", "BufWritePost" }

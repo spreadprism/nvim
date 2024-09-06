@@ -2,6 +2,7 @@ local treesitter = plugin("nvim-treesitter/nvim-treesitter"):event("BufRead"):de
 	-- plugin("nvim-treesitter/nvim-treesitter-textobjects"):event("VeryLazy"):config(false),
 })
 plugin("christoomey/vim-tmux-navigator"):event("VeryLazy")
+plugin("windwp/nvim-ts-autotag"):event({ "BufReadPre", "BufNewFile" }):opts({})
 plugin("smoka7/hop.nvim"):event("VeryLazy"):opts({})
 plugin("altermo/ultimate-autopair.nvim"):event({ "InsertEnter", "CmdlineEnter" }):opts({})
 plugin("RRethy/nvim-treesitter-endwise"):dependencies(treesitter):event("VeryLazy")

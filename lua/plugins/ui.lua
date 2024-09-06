@@ -3,8 +3,9 @@ plugin("MunifTanjim/nui.nvim"):event("VeryLazy")
 plugin("brenoprata10/nvim-highlight-colors"):event("VeryLazy"):opts({
 	render = "virtual",
 	virtual_symbol = "",
-	virtual_symbol_position = "eol",
-	virtual_symbol_prefix = "",
+	virtual_symbol_position = "eow",
+	virtual_symbol_prefix = " ",
+	virtual_symbol_suffix = " ",
 })
 plugin("karb94/neoscroll.nvim"):event("VeryLazy"):opts({ stop_eof = false, hide_cursor = false }) -- BUG: Cursor is perm hidden
 plugin("nvim-lualine/lualine.nvim"):event("VeryLazy"):dependencies("ofseed/copilot-status.nvim")
