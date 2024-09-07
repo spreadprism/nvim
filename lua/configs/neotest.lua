@@ -2,7 +2,7 @@ require("neotest").setup({
 	adapters = {
 		require("neotest-python")({
 			python = function()
-				require("venv-selector").python()
+				return require("venv-selector").python()
 			end,
 		}),
 		require("neotest-go")({
