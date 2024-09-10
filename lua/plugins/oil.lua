@@ -2,6 +2,7 @@ local oil = plugin("stevearc/oil.nvim"):lazy(false):dependencies("nvim-tree/nvim
 	use_default_keymaps = false,
 	experimental_watch_for_changes = true,
 	skip_confirm_for_simple_edits = true,
+	watch_for_changes = true,
 	keymaps = {
 		["g?"] = "actions.show_help",
 		["<CR>"] = "actions.select",
