@@ -1,4 +1,5 @@
 # nvim
+![dashboard](./docs/dashboard.png)
 ## Quick start
 Install neovim with [bob](https://github.com/MordechaiHadad/bob)
 ```sh
