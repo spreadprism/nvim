@@ -68,7 +68,11 @@ function Lsp:settings(settings)
 	return self
 end
 
+---@param cmd string | table
 function Lsp:cmd(cmd)
+	if type(cmd) == "string" then
+		cmd = { cmd }
+	end
 	self.opts.cmd = cmd
 	return self
 end
