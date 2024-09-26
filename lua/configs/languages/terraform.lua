@@ -1,0 +1,1 @@
+lsp("terraformls", "terraform-ls")

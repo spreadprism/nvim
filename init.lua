@@ -1,7 +1,11 @@
-require("init_rocks") -- Must be first (Installs required rocks)
 require("init_globals")
-require("init_python") -- Must be first (Installs required rocks)
-require("init_nvim")
-require("init_lsp")
-require("init_plugins_specs")
 require("init_lazy")
+require("init_options")
+
+vim.api.nvim_create_autocmd("User", {
+	pattern = "LazyVimStarted",
+	once = true,
+	callback = function()
+		local ok, _ = pcall(require, "init_keybinds")
+	end,
+})

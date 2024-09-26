@@ -1,33 +1,24 @@
--- Configs
-vim.g.configs = {
-	lazy_init = false,
-	lua_directory_name = vim.fn.stdpath("config") .. "/lua",
-	plugins_directory_name = "plugins",
-	configs_directory_name = "configs",
-	keybinds_directory_name = "keybinds",
-	snippets_directory_name = "snippets",
-	templates_directory_name = "templates",
-}
+print = vim.print
+
+LUA_DIRECTORY_PATH = vim.fn.stdpath("config") .. "/lua"
+
+PLUGINS_PATH = vim.fs.joinpath(LUA_DIRECTORY_PATH, "plugins")
+CONFIGS_PATH = vim.fs.joinpath(LUA_DIRECTORY_PATH, "configs")
+KEYBINDS_PATH = vim.fs.joinpath(LUA_DIRECTORY_PATH, "keybinds")
+
 vim.g.format_ft = {}
 
--- global funcs
-print = vim.print
-keybind = require("utils.keybinds").Keybind
-keybind_group = require("utils.keybinds").KeybindGroup
-plugin = require("utils.plugins_specs").Plugin
-lsp = require("utils.lsp").Lsp
-get_saved_val = require("utils.save_state").get_state
-set_saved_val = require("utils.save_state").set_state
-disable_formatting = function(ft)
-	local format_ft = vim.g.format_ft or {}
-	format_ft[ft] = false
-	vim.g.format_ft = format_ft
-end
-enable_formatting = function(ft)
-	local format_ft = vim.g.format_ft or {}
-	format_ft[ft] = true
-	vim.g.format_ft = format_ft
-end
+plugin = require("internal.lazy_specs").plugin
+rock = require("internal.lazy_specs").rock
+keybind = require("internal.keybinds").keybind
+keybind_group = require("internal.keybinds").keybind_group
+lsp = require("internal.lsp").lsp
+dap = require("internal.dap").adapter
+launch_configs = require("internal.dap").launch_configs
+formatter = require("internal.formatting").formatter
+linter = require("internal.linting").linter
+
+state = require("internal.state")
 
 Symbols = {
 	modified = "󱇧 ",
@@ -38,14 +29,6 @@ Symbols = {
 	deleted = "󰮘 ",
 	readonly = "󰷊 ",
 }
-vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "ErrorMsg", linehl = "", numhl = "" })
-vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "ErrorMsg", linehl = "", numhl = "" })
-vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "ErrorMsg", linehl = "", numhl = "" })
-vim.fn.sign_define("DapLogPoint", { text = "", texthl = "DiagnosticSignInfo", linehl = "", numhl = "" })
-
-vim.cmd("highlight DapStoppedSign guifg=#87D285")
-vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStoppedSign", linehl = "DapStoppedSign", numhl = "" })
-
 -- global colors
 Colors = {
 	bg = "#202328",
@@ -60,27 +43,3 @@ Colors = {
 	blue = "#51afef",
 	red = "#ec5f67",
 }
--- Symbols
-vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
-vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
-vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
-vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
-
-vim.diagnostic.config({
-	signs = {
-		--support diagnostic severity / diagnostic type name
-		text = {
-			[vim.diagnostic.severity.ERROR] = " ",
-			[vim.diagnostic.severity.WARN] = " ",
-			[vim.diagnostic.severity.HINT] = "󰌵",
-			[vim.diagnostic.severity.INFO] = " ",
-		},
-	},
-})
-
-vim.cmd([[highlight DiagnosticUnderlineError guifg=#db4b4b]])
-vim.cmd([[highlight DiagnosticUnderlineWarn guifg=#e0af68]])
-vim.cmd([[highlight DiagnosticDeprecated guifg=#e0af68]])
-vim.cmd([[highlight DiagnosticUnderlineInfo guifg=#0db9d7]])
-vim.cmd([[highlight DiagnosticInfo guifg=#0db9d7]])
-vim.cmd([[highlight DiagnosticUnderlineInfo guifg=#1abc9c]])

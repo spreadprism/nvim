@@ -1,9 +1,3 @@
--- Set icon by filename
--- ["go.mod"] = {
---   icon = "󰟓",
---   color = "#EF3D7B",
---   name = "gomod"
--- },
 return {
 	["go.mod"] = {
 		icon = "󰟓",
@@ -59,5 +53,10 @@ return {
 		icon = "󰡨",
 		color = "#458EE6",
 		name = "dockercomposedev",
+	},
+	[".gitkeep"] = {
+		icon = "󰊢",
+		color = "#E94D32",
+		name = "gitkeep",
 	},
 }

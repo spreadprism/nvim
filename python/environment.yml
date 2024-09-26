@@ -1,9 +1,0 @@
-name: nvim
-dependencies:
-  - python=3.11
-  - jupyter
-  - ipykernel
-  - jupyter_client
-  - nb_conda_kernels
-  - pip:
-    - pynvim

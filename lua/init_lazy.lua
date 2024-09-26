@@ -10,7 +10,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup(LazyRockSpecs, {
+local lazy_specs = require("internal.lazy_specs")
+lazy_specs.init_specs()
+lazy_specs.read_configs()
+require("lazy").setup(lazy_specs.get_specs(), {
 	defaults = {
 		lazy = true,
 	},
@@ -20,11 +23,7 @@ require("lazy").setup(LazyRockSpecs, {
 	ui = {
 		border = "rounded",
 	},
-	performance = {
-		rtp = {
-			paths = {
-				vim.g.rocks_nvim.rtp_path,
-			},
-		},
+	rocks = {
+		hererocks = true,
 	},
 })

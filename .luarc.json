@@ -1,14 +1,16 @@
 {
-  "diagnostics.globals": ["vim", "MiniFiles",
-        "jit",
-        "plugin",
-        "keybind",
-        "keybind_group",
-        "make_hg_transparent",
-        "lsp",
-        "keybind_func",
-        "get_saved_val",
-        "set_saved_val",
-        "disable_formatting",
-        "enable_formatting"]
+  "diagnostics.globals": [
+    "vim",
+    "MiniFiles",
+    "plugin",
+    "rock",
+    "keybind",
+    "keybind_group",
+    "lsp",
+    "dap",
+    "formatter",
+    "launch_configs",
+    "linter",
+    "state"
+  ]
 }
