@@ -75,6 +75,7 @@ plugin("hrsh7th/nvim-cmp")
 			},
 			mapping = {
 				["<M-a>"] = cmp.mapping.confirm({ select = true }),
+				["<M-x>"] = cmp.mapping.abort(),
 				["<M-j>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item(select_opts)
