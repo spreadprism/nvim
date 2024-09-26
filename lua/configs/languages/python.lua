@@ -7,6 +7,7 @@ launch_configs("python", {
 		request = "launch",
 		name = "Launch file",
 		program = "${file}",
+		console = "integratedTerminal",
 	},
 })
 
