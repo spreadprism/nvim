@@ -1,6 +1,7 @@
 require("init_globals")
 require("init_lazy")
 require("init_options")
+require("init_filetypes")
 
 vim.api.nvim_create_autocmd("User", {
 	pattern = "LazyVimStarted",
