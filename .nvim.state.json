@@ -22,6 +22,9 @@
     "query",
     "regex",
     "vim",
-    "vimdoc"
+    "vimdoc",
+    "c_sharp",
+    "terraform",
+    "svelte"
   ]
 }
