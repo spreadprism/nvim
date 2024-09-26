@@ -29,6 +29,7 @@ local telescope = plugin("nvim-telescope/telescope.nvim")
 							".git/*",
 							"**/node_modules/*",
 							"**/target/*",
+							"**/.cache/*",
 							"/dist/*",
 							"/.nx/*",
 							".next/*",
