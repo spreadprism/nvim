@@ -3,7 +3,9 @@ vim.filetype.add({
 		tf = "terraform",
 	},
 	filename = {
-		[".env"] = "dotenv",
 		[".envrc"] = "dotenv",
+	},
+	pattern = {
+		[".?env.?.*"] = "dotenv",
 	},
 })

@@ -1,9 +1,25 @@
-local devicon = plugin("nvim-tree/nvim-web-devicons"):optional(true):opts({
-	default = true,
-	strict = false,
-	override_by_filename = require("icons.filename"),
-	override_by_extension = require("icons.extension"),
-})
+local devicon = plugin("nvim-tree/nvim-web-devicons"):optional(true):config(function()
+	local devicons = require("nvim-web-devicons")
+	local devicon_utils = require("internal.devicon")
+
+	local get_icon = devicons.get_icon
+	devicons.get_icon = function(name, ext, opts)
+		return get_icon(name, ext or devicon_utils.get_ext(name), opts)
+	end
+
+	local get_icon_colors = devicons.get_icon_colors
+	devicons.get_icon_colors = function(name, ext, opts)
+		return get_icon_colors(name, ext or devicon_utils.get_ext(name), opts)
+	end
+
+	devicons.setup({
+		default = true,
+		strict = false,
+		override_by_filename = require("icons.filename"),
+		override_by_extension = require("icons.extension"),
+	})
+	require("nvim-web-devicons").set_icon_by_filetype(require("icons.filetype"))
+end)
 plugin("karb94/neoscroll.nvim"):event("VeryLazy"):opts({ stop_eof = false })
 plugin("MunifTanjim/nui.nvim"):event("VeryLazy")
 plugin("stevearc/dressing.nvim"):event("VeryLazy")
