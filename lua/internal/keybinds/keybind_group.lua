@@ -38,10 +38,9 @@ function KeybindGroup:register(keybinds)
 	end
 	if pcall(require, "which-key") then
 		local wk = require("which-key")
-		wk.register({
-			[self.prefix] = {
-				name = self.description,
-			},
+		wk.add({
+			self.prefix,
+			group = self.description,
 		})
 	else
 		utils.insert_group(self)
