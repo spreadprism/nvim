@@ -6,6 +6,6 @@ vim.filetype.add({
 		[".envrc"] = "dotenv",
 	},
 	pattern = {
-		[".?env.?.*"] = "dotenv",
+		[".env.?.*"] = "dotenv", --> This also matched env_manager.py
 	},
 })
