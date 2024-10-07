@@ -1,3 +1,4 @@
+-- TODO: Should depend on the LazyLoad event to trigger keybinds when a certain module is loaded
 for _, keybind in ipairs(require("internal.module").list_submodules("keybinds", "*", true) or {}) do
 	local ok, _ = pcall(require, keybind)
 

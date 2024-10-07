@@ -23,7 +23,6 @@ plugin("benlubas/molten-nvim")
 					venv_name = require("venv-selector").venv()
 				end
 
-				print(venv_name)
 				if venv_name ~= nil then
 					venv_name = string.gsub(venv_name, ".*/pypoetry/virtualenvs/*", "")
 					venv_name = string.gsub(venv_name, ".*/miniconda3/envs/", "")
