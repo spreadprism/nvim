@@ -32,6 +32,9 @@ return {
 				return ""
 			end
 			table.remove(path, #path)
+			if #path > 3 then
+				path = { path[1], "...", path[#path - 2], path[#path - 1], path[#path] }
+			end
 			-- join table
 			path = table.concat(path, "  ")
 			if len > 1 then
