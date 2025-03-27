@@ -1,5 +1,5 @@
-plugin("nvim-treesitter-textobjects"):for_cat("core"):on_plugin("nvim-treesitter"):after(nil)
-plugin("nvim-treesitter"):for_cat("core"):triggerUI():after(function(plugin)
+plugin("nvim-treesitter-textobjects"):on_plugin("nvim-treesitter"):after(nil)
+plugin("nvim-treesitter"):triggerUI():after(function(_)
 	require("nvim-treesitter.configs").setup({
 		highlight = { enable = true },
 		indent = { enable = true },

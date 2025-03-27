@@ -6,4 +6,9 @@ require("lualine").setup({
 	ignore_focus = { "TelescopePrompt" },
 	sections = require("plugins.ui.lualine_configs.sections"),
 	winbar = require("plugins.ui.lualine_configs.winbar"),
+	options = {
+		refresh = {
+			winbar = 1,
+		},
+	},
 })
