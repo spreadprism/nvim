@@ -9,16 +9,16 @@ return {
 		color = "#EF3D7B",
 		name = "gosum",
 	},
+	["go.work"] = {
+		icon = "󰟓",
+		color = "#29BEB0",
+		name = "gosum",
+	},
 	[".env"] = {
 		icon = "",
 		color = "#F5BB33",
 		name = "env",
 	},
-	-- [".git"] = {
-	-- 	icon = "",
-	-- 	color = "#EB4D39",
-	-- 	name = "git",
-	-- },
 	[".gitignore"] = {
 		icon = "󰊢",
 		color = "#E94D32",
@@ -58,5 +58,10 @@ return {
 		icon = "󰊢",
 		color = "#E94D32",
 		name = "gitkeep",
+	},
+	["sqlc.yml"] = {
+		icon = "",
+		color = "#17DAE0",
+		name = "sqlc",
 	},
 }

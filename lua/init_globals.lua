@@ -1,28 +1,18 @@
 print = vim.print
+cwd = vim.fn.getcwd
+joinpath = vim.fs.joinpath
 
-LUA_DIRECTORY_PATH = vim.fn.stdpath("config") .. "/lua"
-NVIM_SHARE_DIRECTORY = vim.fn.stdpath("data")
+local function try_load_internal(name)
+	local ok, import = pcall(require, "internal." .. name)
+	if not ok then
+		print("Error loading internal module: " .. name .. " (cause=" .. import)
+	end
+	return import
+end
 
-MASON_DIR = vim.fs.joinpath(NVIM_SHARE_DIRECTORY, "mason")
-LAZY_DIR = vim.fs.joinpath(NVIM_SHARE_DIRECTORY, "lazy")
-
-PLUGINS_PATH = vim.fs.joinpath(LUA_DIRECTORY_PATH, "plugins")
-CONFIGS_PATH = vim.fs.joinpath(LUA_DIRECTORY_PATH, "configs")
-KEYBINDS_PATH = vim.fs.joinpath(LUA_DIRECTORY_PATH, "keybinds")
-
-vim.g.format_ft = {}
-
-plugin = require("internal.lazy_specs").plugin
-rock = require("internal.lazy_specs").rock
-keybind = require("internal.keybinds").keybind
-keybind_group = require("internal.keybinds").keybind_group
-lsp = require("internal.lsp").lsp
-dap = require("internal.dap").adapter
-launch_configs = require("internal.dap").launch_configs
-formatter = require("internal.formatting").formatter
-linter = require("internal.linting").linter
-
-state = require("internal.state")
+plugin = try_load_internal("plugin").plugin
+lsp = try_load_internal("lsp").lsp
+keymap = setmetatable({}, try_load_internal("keymap").Keymap)
 
 Symbols = {
 	modified = "󱇧 ",
@@ -33,6 +23,16 @@ Symbols = {
 	deleted = "󰮘 ",
 	readonly = "󰷊 ",
 }
+
+local ok, overseer = pcall(require, "overseer")
+if ok then
+	Symbols.overseer = overseer.STATUS
+else
+	Symbols.overseer = {
+		RUNNING = "?",
+	}
+end
+
 -- global colors
 Colors = {
 	bg = "#202328",

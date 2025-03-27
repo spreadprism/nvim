@@ -1,7 +1,0 @@
-plugin("nvim-java/nvim-java")
-	:event("VeryLazy")
-	:priority(51) -- INFO: priority is 51 because lspconfig is 50 (needs to start before)
-	:config(function()
-		require("java").setup()
-	end)
-plugin("mfussenegger/nvim-jdtls"):ft("java")

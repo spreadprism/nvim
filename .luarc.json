@@ -1,16 +1,9 @@
 {
-  "diagnostics.globals": [
-    "vim",
-    "MiniFiles",
-    "plugin",
-    "rock",
-    "keybind",
-    "keybind_group",
-    "lsp",
-    "dap",
-    "formatter",
-    "launch_configs",
-    "linter",
-    "state"
-  ]
+    "diagnostics.globals": [
+        "cwd",
+        "joinpath",
+        "lsp",
+        "plugin",
+        "keymap"
+    ]
 }
