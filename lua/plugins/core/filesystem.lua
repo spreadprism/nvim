@@ -22,12 +22,14 @@ require("oil").setup({
 	},
 })
 
-keymap:set("n", "-", function()
-	if vim.bo.filetype:match("^Neogit") then
-		vim.cmd("q")
-	end
-	vim.cmd("Oil")
-end, "Open filesystem")
-keymap:set("n", "_", function()
-	vim.cmd("Oil " .. vim.fn.getcwd())
-end, "Open current working directory")
+keymapLoad({
+	keymap("n", "-", function()
+		if vim.bo.filetype:match("^Neogit") then
+			vim.cmd("q")
+		end
+		vim.cmd("Oil")
+	end, "Open filesystem"),
+	keymap("n", "_", function()
+		vim.cmd("Oil " .. vim.fn.getcwd())
+	end, "Open current working directory"),
+})

@@ -12,7 +12,13 @@ end
 
 plugin = try_load_internal("plugin").plugin
 lsp = try_load_internal("lsp").lsp
-keymap = setmetatable({}, try_load_internal("keymap").Keymap)
+local k = try_load_internal("keymap")
+plugin = require("internal.plugin").plugin
+lsp = require("internal.lsp").lsp
+keymap = require("internal.keymap").keymap
+keymapGroup = require("internal.keymap").keymap_group
+keymapCmd = require("internal.keymap").keymapCmd
+keymapLoad = require("internal.keymap").load_all
 
 Symbols = {
 	modified = "󱇧 ",

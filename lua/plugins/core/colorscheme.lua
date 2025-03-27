@@ -1,9 +1,14 @@
 vim.cmd("colorscheme tokyonight-storm")
 local transparent = require("transparent")
 transparent.setup({
-	exclude_groups = { "TelescopeSelection", "TelescopePreviewLine" },
+	exclude_groups = {
+		"TelescopeSelection",
+		"TelescopePreviewLine",
+		"BlinkCmpMenuSelection",
+		"BlinkCmpScrollBarGutter",
+	},
 })
--- transparent.clear_prefix("BlinkCmp")
+transparent.clear_prefix("BlinkCmp")
 transparent.clear_prefix("Telescope")
 transparent.clear_prefix("Notify")
 transparent.clear_prefix("OilVcsStatus")

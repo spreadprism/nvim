@@ -16,12 +16,13 @@ let
   startupPluginsVim = with vimPlugins; [
     lze
     lzextras
+    plenary-nvim
     oil-nvim
     nvim-web-devicons
     tokyonight-nvim
     transparent-nvim
     lualine-nvim
-    noice-nvim # BUG: needs to be in startup even if lazy loaded
+    which-key-nvim
   ];
   # This is for plugins that will be loaded with packadd and autocmd
   lazyPlugins = with neovimPlugins; [
@@ -30,6 +31,7 @@ let
     nvim-osc52
     neoscroll-nvim
     nvim-treesitter-textobjects
+    nvim-treesitter-endwise
     (nvim-treesitter.withPlugins (
       plugins: with plugins; [
         nix
@@ -38,6 +40,19 @@ let
     ))
     vim-startuptime
     nvim-notify
+    noice-nvim
+    todo-comments-nvim
+    mini-indentscope
+    nvim-highlight-colors
+    smart-splits-nvim
+    nvim-ts-autotag
+    mini-pairs
+    mini-ai
+    mini-surround
+    mini-move
+    nvim-surround
+    comment-nvim
+    blink-cmp
   ];
   # shared libraries to be added to LD_LIBRARY_PATH
   sharedLibraries = {};

@@ -18,12 +18,16 @@ local load_w_after_plugin = require("lzextras").make_load_with_afters({ "plugin"
 ---@field name string
 ---@field require_name string
 ---@field opts_table table
+---@field keymaps_func table
 Plugin = {}
 Plugin.__index = Plugin
 
 function M.plugin(name)
-	local plugin =
-		specs.init(name, { name = name, require_name = name, opts_table = {}, load = load_w_after_plugin }, Plugin)
+	local plugin = specs.init(
+		name,
+		{ name = name, require_name = name, opts_table = {}, load = load_w_after_plugin, keymaps_table = {} },
+		Plugin
+	)
 	return plugin:on_require(name)
 end
 
@@ -106,11 +110,11 @@ function Plugin:event(event)
 	return self
 end
 
-function Plugin:triggerUI()
+function Plugin:triggerUIEnter()
 	return self:event("DeferredUIEnter")
 end
 
-function Plugin:triggerBuffer()
+function Plugin:triggerBufferEnter()
 	return self:event("BufEnter")
 end
 
@@ -128,9 +132,12 @@ function Plugin:ft(ft)
 	return self
 end
 
----@param keys string | string[] | table
+---@param keys  table
 ---@return Plugin
 function Plugin:keys(keys)
+	for i, key in ipairs(keys) do
+		keys[i] = setmetatable(key, nil)
+	end
 	specs.apply(self.name, { keys = keys })
 	return self
 end

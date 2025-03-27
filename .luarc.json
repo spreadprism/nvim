@@ -4,6 +4,9 @@
         "joinpath",
         "lsp",
         "plugin",
-        "keymap"
+        "keymap",
+        "keymapCmd",
+        "keymapLoad",
+        "keymapGroup"
     ]
 }
