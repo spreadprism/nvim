@@ -21,6 +21,7 @@ let
     tokyonight-nvim
     transparent-nvim
     lualine-nvim
+    noice-nvim # BUG: needs to be in startup even if lazy loaded
   ];
   # This is for plugins that will be loaded with packadd and autocmd
   lazyPlugins = with neovimPlugins; [
@@ -37,7 +38,6 @@ let
     ))
     vim-startuptime
     nvim-notify
-    noice-nvim
   ];
   # shared libraries to be added to LD_LIBRARY_PATH
   sharedLibraries = {};

@@ -24,6 +24,13 @@ function Keymap:set(mode, lhs, rhs, description)
 	end
 end
 
+---@param cmd string
+function Keymap:cmd(cmd)
+	return function()
+		vim.cmd(cmd)
+	end
+end
+
 M.Keymap = Keymap
 
 return M

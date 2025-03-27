@@ -47,3 +47,4 @@ Colors = {
 	blue = "#51afef",
 	red = "#ec5f67",
 }
+require("global_keymaps")

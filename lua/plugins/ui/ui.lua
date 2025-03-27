@@ -1,8 +1,10 @@
 plugin("nvim-notify")
 	:for_cat("core")
 	:triggerUI()
+	:on_plugin("noice-nvim")
 	:on_require("notify")
 	:opts({ render = "compact", background_colour = "#000000", stage = "slide" })
+plugin("nui-nvim"):on_plugin("noice-nvim"):after(nil)
 plugin("noice-nvim"):for_cat("core"):triggerUI():on_require("noice"):opts({
 	cmdline = {
 		view = "cmdline",
