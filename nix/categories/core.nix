@@ -36,6 +36,8 @@ let
       ]
     ))
     vim-startuptime
+    nvim-notify
+    noice-nvim
   ];
   # shared libraries to be added to LD_LIBRARY_PATH
   sharedLibraries = {};
