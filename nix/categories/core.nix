@@ -35,6 +35,7 @@ let
         lua
       ]
     ))
+    vim-startuptime
   ];
   # shared libraries to be added to LD_LIBRARY_PATH
   sharedLibraries = {};
