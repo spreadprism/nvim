@@ -1,5 +1,5 @@
 require("init_nixcats")
 require("init_lze")
 require("init_opts")
-require("init_globals")
+require("internal")
 require("init_plugins")

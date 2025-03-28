@@ -1,14 +1,14 @@
----@class Nxim
+---@class Internal
 local M = {}
 
-M.plugin = require("nxim.plugin").plugin
-M.lsp = require("nxim.lsp").lsp
-M.keymap = require("nxim.keymap").keymap
-M.keymapCmd = require("nxim.keymap").keymapCmd
-M.keymapLoad = require("nxim.keymap").load_all
-M.keymapGroup = require("nxim.keymap").keymap_group
-M.load_all = require("nxim.loader").load_all
-M.merge_specs = require("nxim.specs").merge
+M.plugin = require("internal.plugin").plugin
+M.lsp = require("internal.lsp").lsp
+M.keymap = require("internal.keymap").keymap
+M.keymapCmd = require("internal.keymap").keymapCmd
+M.keymapLoad = require("internal.keymap").load_all
+M.keymapGroup = require("internal.keymap").keymap_group
+M.load_all = require("internal.loader").load_all
+M.merge_specs = require("internal.specs").merge
 
 M.Symbols = {
 	modified = "󱇧 ",
@@ -117,4 +117,4 @@ function M.cond_buffer_blacklist()
 	return true
 end
 
-_G.nxim = M
+_G.internal = M

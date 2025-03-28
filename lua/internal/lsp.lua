@@ -1,5 +1,5 @@
 local M = {}
-local specs = require("nxim.specs")
+local specs = require("internal.specs")
 
 ---@class LspPlugin: Plugin
 ---@field name string

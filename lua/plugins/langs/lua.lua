@@ -17,7 +17,7 @@ plugin("lazydev.nvim"):on_require("lazydev"):cmd("LazyDev"):ft("lua"):opts({
 		{ words = { "nixCats" }, path = (nixCats.nixCatsPath or "") .. "/lua" },
 		{
 			words = {
-				"nxim",
+				"internal",
 				"plugin",
 				"lsp",
 				"keymap",
@@ -27,7 +27,7 @@ plugin("lazydev.nvim"):on_require("lazydev"):cmd("LazyDev"):ft("lua"):opts({
 				"load_all",
 				"merge_specs",
 			},
-			path = (nixCats.configDir or "") .. "/lua/nxim",
+			path = (nixCats.configDir or "") .. "/lua/internal",
 		},
 	},
 })

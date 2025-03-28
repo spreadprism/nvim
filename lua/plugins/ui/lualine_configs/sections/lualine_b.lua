@@ -1,11 +1,11 @@
 return {
-	{ "branch", on_click = nxim.cmd_on_click("Neogit") },
+	{ "branch", on_click = internal.cmd_on_click("Neogit") },
 	{
 		"filetype",
 		icon_only = true,
 		separator = "",
 		padding = { left = 1, right = 1 },
-		cond = nxim.cond_buffer_blacklist,
+		cond = internal.cond_buffer_blacklist,
 	},
 	{
 		"filename",
@@ -13,7 +13,7 @@ return {
 		separator = "",
 		padding = { left = 0, right = 1 },
 		symbols = { modified = Symbols.modified, readonly = Symbols.readonly, unnamed = "" },
-		cond = nxim.cond_buffer_blacklist,
+		cond = internal.cond_buffer_blacklist,
 	},
 	{
 		function()

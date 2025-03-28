@@ -1,1 +1,1 @@
-nxim.load_all({ "plugins", "langs" })
+internal.load_all({ "plugins", "langs" })
