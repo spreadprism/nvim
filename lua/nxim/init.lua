@@ -117,4 +117,4 @@ function M.cond_buffer_blacklist()
 	return true
 end
 
-return M
+_G.nxim = M
