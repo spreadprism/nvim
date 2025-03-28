@@ -20,7 +20,6 @@ plugin("mini.indentscope"):triggerUIEnter():for_cat("core"):before(function()
 		end,
 	})
 end)
-
 plugin("todo-comments.nvim"):on_require("todo-comments"):triggerBufferEnter():opts({
 	highlight = {
 		multiline = false,
@@ -35,16 +34,7 @@ plugin("nvim-highlight-colors"):triggerBufferEnter():opts({
 })
 plugin("nvim-ts-autotag"):event({ "BufReadPre", "BufNewFile" })
 plugin("mini.pairs"):event({ "InsertEnter", "CmdlineEnter" }):opts({
-	-- In which modes mappings from this `config` should be created
 	modes = { insert = true, command = true, terminal = false },
-
-	-- Global mappings. Each right hand side should be a pair information, a
-	-- table with at least these fields (see more in |MiniPairs.map|):
-	-- - <action> - one of 'open', 'close', 'closeopen'.
-	-- - <pair> - two character string for pair to be used.
-	-- By default pair is not inserted after `\`, quotes are not recognized by
-	-- `<CR>`, `'` does not insert pair after a letter.
-	-- Only parts of tables can be tweaked (others will use these defaults).
 	mappings = {
 		[")"] = { action = "close", pair = "()", neigh_pattern = "[^\\]." },
 		["]"] = { action = "close", pair = "[]", neigh_pattern = "[^\\]." },
