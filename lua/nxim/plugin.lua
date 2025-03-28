@@ -1,5 +1,5 @@
 local M = {}
-local specs = require("internal.specs")
+local specs = require("nxim.specs")
 
 local function faster_get_path(name)
 	local path = vim.tbl_get(package.loaded, "nixCats", "pawsible", "allPlugins", "opt", name)
@@ -168,7 +168,7 @@ end
 ---@param func fun(keymap: Keymap)
 ---@return Plugin
 function Plugin:keymap(func)
-	local keymap = setmetatable({}, require("internal.keymap").Keymap)
+	local keymap = setmetatable({}, require("nxim.keymap").Keymap)
 	keymap.plugin = self
 	func(keymap)
 	return self

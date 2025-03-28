@@ -1,7 +1,7 @@
 local M = {}
-local specs = require("internal.specs")
+local specs = require("nxim.specs")
 
----@class LspPlugin
+---@class LspPlugin: Plugin
 ---@field name string
 LspPlugin = {}
 LspPlugin.__index = LspPlugin
@@ -23,6 +23,11 @@ end
 ---@return LspPlugin
 function LspPlugin:settings(settings)
 	specs.apply(self.name, { lsp = { settings = settings } })
+	return self
+end
+
+function LspPlugin:enabled(enabled)
+	specs.apply(self.name, { enabled = enabled })
 	return self
 end
 

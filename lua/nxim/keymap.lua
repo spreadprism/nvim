@@ -7,12 +7,14 @@ local M = {}
 ---@field key string
 ---@field action string | function
 ---@field desc? string
+---@field opts? table
 Keymap = {}
 Keymap.__index = Keymap
 
 function Keymap:load()
-	local opts = { desc = self.desc }
-	local ok, msg = pcall(vim.keymap.set, self.mode, self[1], self[2], opts)
+	self.opts = self.opts or {}
+	self.opts.desc = self.desc
+	local ok, msg = pcall(vim.keymap.set, self.mode, self[1], self[2], self.opts)
 	if not ok then
 		print("failed to set keymap (" .. self.key .. ") => " .. msg)
 	end
@@ -23,8 +25,9 @@ end
 ---@param key string
 ---@param action string | function
 ---@param desc? string
-function M.keymap(mode, key, action, desc)
-	return setmetatable({ key, action, desc = desc, mode = mode }, Keymap)
+---@param opts? table
+function M.keymap(mode, key, action, desc, opts)
+	return setmetatable({ key, action, desc = desc, mode = mode, opts }, Keymap)
 end
 
 ---@param cmd string

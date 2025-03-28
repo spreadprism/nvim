@@ -1,2 +1,2 @@
-require("internal").load_all("plugins")
-require("internal.specs").merge()
+nxim.load_all("plugins")
+nxim.merge_specs()

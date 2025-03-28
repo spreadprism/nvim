@@ -1,38 +1,52 @@
+---@class Nxim
 local M = {}
 
----@param path string | string[]
----@param ignore? string | string[]
-function M.load_all(path, ignore)
-	if type(path) == "string" then
-		path = { path }
-	end
-	ignore = ignore or {}
-	if type(ignore) == "string" then
-		ignore = { ignore }
-	end
-	table.insert(ignore, "init")
+M.plugin = require("nxim.plugin").plugin
+M.lsp = require("nxim.lsp").lsp
+M.keymap = require("nxim.keymap").keymap
+M.keymapCmd = require("nxim.keymap").keymapCmd
+M.keymapLoad = require("nxim.keymap").load_all
+M.keymapGroup = require("nxim.keymap").keymap_group
+M.load_all = require("nxim.loader").load_all
+M.merge_specs = require("nxim.specs").merge
 
-	local parent_module = table.concat(path, ".")
-	local pattern = "*/" .. table.concat(path, "/") .. "/*"
+M.Symbols = {
+	modified = "󱇧 ",
+	new_file = "󰝒 ",
+	added = "󰈖 ",
+	copied = " ",
+	updated = "󰚰 ",
+	deleted = "󰮘 ",
+	readonly = "󰷊 ",
+}
 
-	for _, v in ipairs(vim.api.nvim_get_runtime_file(pattern, true)) do
-		local name = vim.fn.fnamemodify(v, ":t:r")
-		local add = true
-		for _, i in ipairs(ignore) do
-			if name == i then
-				add = false
-				break
-			end
-		end
-		if add then
-			local module_path = parent_module .. "." .. name
-			local ok, msg = pcall(require, module_path)
-			if not ok then
-				print("Error loading plugins: " .. module_path .. " (cause=" .. msg .. ")")
-			end
-		end
-	end
-end
+M.Colors = {
+	bg = "#202328",
+	fg = "#bbc2cf",
+	yellow = "#ECBE7B",
+	cyan = "#008080",
+	darkblue = "#081633",
+	green = "#98be65",
+	orange = "#FF8800",
+	violet = "#a9a1e1",
+	magenta = "#c678dd",
+	blue = "#51afef",
+	red = "#ec5f67",
+}
+
+_G.print = vim.print
+_G.cwd = vim.fn.getcwd
+_G.joinpath = vim.fs.joinpath
+
+_G.plugin = M.plugin
+_G.lsp = M.lsp
+_G.keymap = M.keymap
+_G.keymapCmd = M.keymapCmd
+_G.keymapLoad = M.keymapLoad
+_G.keymapGroup = M.keymapGroup
+
+_G.Symbols = M.Symbols
+_G.Colors = M.Colors
 
 ---@param cmd string
 function M.cmd_on_click(cmd)
