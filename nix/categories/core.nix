@@ -21,6 +21,7 @@ let
     lze
     lzextras
     plenary-nvim
+    promise-async
     oil-nvim
     nvim-web-devicons
     tokyonight-nvim
@@ -69,6 +70,8 @@ let
     hop-nvim
     conform-nvim
     tabout-nvim
+    nvim-ufo
+    luasnip
   ];
   # shared libraries to be added to LD_LIBRARY_PATH
   sharedLibraries = {};

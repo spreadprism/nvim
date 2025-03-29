@@ -43,13 +43,14 @@ local base_keymap = {
 	},
 }
 plugin("blink.cmp"):event({ "InsertEnter", "CmdlineEnter" }):opts({
+	snippets = { preset = "luasnip" },
 	sources = {
 		default = {
+			"snippets",
+			"buffer",
 			"lazydev",
 			"lsp",
 			"path",
-			"snippets",
-			"buffer",
 		},
 		providers = {
 			lazydev = {
