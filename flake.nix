@@ -7,6 +7,15 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    "plugins-oil-vcs-status" = {
+      url = "github:SirZenith/oil-vcs-status";
+      flake = false;
+    };
+    "plugins-harpoon" = {
+      url = "github:ThePrimeagen/harpoon?ref=harpoon2";
+      flake = false;
+    };
+
   };
   outputs = { self, nixpkgs, nixCats, neovim-nightly-overlay, ...}@inputs: let
     inherit (nixCats) utils;

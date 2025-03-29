@@ -77,6 +77,11 @@ plugin("blink.cmp"):event({ "InsertEnter", "CmdlineEnter" }):opts({
 		show_documentation = true,
 	} },
 	completion = {
+		accept = {
+			auto_brackets = {
+				enabled = false,
+			},
+		},
 		documentation = {
 			auto_show = true,
 			auto_show_delay_ms = 100,

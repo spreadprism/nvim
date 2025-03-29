@@ -14,7 +14,9 @@ let
     stylua
   ];
   # This is for plugins that will load at startup without using packadd:
-  startupPlugins = with neovimPlugins; [];
+  startupPlugins = with neovimPlugins; [
+    oil-vcs-status
+  ];
   startupPluginsVim = with vimPlugins; [
     lze
     lzextras
@@ -28,6 +30,7 @@ let
   ];
   # This is for plugins that will be loaded with packadd and autocmd
   lazyPlugins = with neovimPlugins; [
+    harpoon
   ];
   lazyPluginsVim = with vimPlugins; [
     nvim-osc52
@@ -65,6 +68,7 @@ let
     telescope-fzf-native-nvim
     hop-nvim
     conform-nvim
+    tabout-nvim
   ];
   # shared libraries to be added to LD_LIBRARY_PATH
   sharedLibraries = {};

@@ -119,3 +119,15 @@ plugin("nvim-surround"):triggerUIEnter()
 plugin("comment.nvim"):triggerUIEnter():after(function(_)
 	require("Comment").setup()
 end)
+plugin("tabout.nvim"):event("InsertCharPre"):on_require("tabout"):opts({
+	act_as_shift_tab = true,
+	tabouts = {
+		{ open = "'", close = "'" },
+		{ open = '"', close = '"' },
+		{ open = "`", close = "`" },
+		{ open = "(", close = ")" },
+		{ open = "[", close = "]" },
+		{ open = "{", close = "}" },
+		{ open = "<", close = ">" },
+	},
+})

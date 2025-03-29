@@ -20,3 +20,20 @@ plugin("hop.nvim")
 		vim.api.nvim_set_hl(0, "HopNextKey1", { fg = fg, bold = true, underline = true })
 		vim.api.nvim_set_hl(0, "HopNextKey2", { fg = fg, bold = true })
 	end)
+plugin("harpoon"):triggerUIEnter():after(nil):keys({
+	keymap("n", "<M-m>", function()
+		require("harpoon"):list():add()
+	end),
+	keymap("n", "<M-u>", function()
+		require("harpoon"):list():remove()
+	end),
+	keymap("n", "<M-e>", function()
+		require("harpoon").ui:toggle_quick_menu(require("harpoon"):list(), { border = "rounded" })
+	end),
+	keymap("n", "<M-<Right>>", function()
+		require("harpoon"):list():next({ ui_nav_wrap = true })
+	end),
+	keymap("n", "<M-<left>>", function()
+		require("harpoon"):list():prev({ ui_nav_wrap = true })
+	end),
+})
