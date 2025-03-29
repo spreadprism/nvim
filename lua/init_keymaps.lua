@@ -3,8 +3,8 @@ keymapLoad({
 	keymap("t", ";;", "<C-\\><C-n>", "Escape"),
 	keymap("n", "<C-q>", keymapCmd("q"), "quit"),
 	-- INFO: Code navigation
-	keymap({ "n", "v", "x", "s" }, "L", "g_", "Move cursor to last non-whitespace character"),
-	keymap({ "n", "v", "x", "s" }, "H", "^", "Move cursor to first non-whitespace character"),
+	keymap({ "n", "v", "x", "s", "o" }, "L", "g_", "Move cursor to last non-whitespace character"),
+	keymap({ "n", "v", "x", "s", "o" }, "H", "^", "Move cursor to first non-whitespace character"),
 	-- INFO: Code manipulation
 	keymap("v", "Y", '"+y', "Yank to clipboard"),
 	keymap("n", "<A-J>", "Vyp", "Duplicate line down"),

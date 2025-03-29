@@ -14,7 +14,12 @@ M.hop_char_global = function()
 	require("hop").hint_char1()
 end
 
+---@param after? boolean
+---@param offset? integer
 M.hop_char_line = function(after, offset)
+	if after == nil then
+		after = true
+	end
 	offset = offset or 0
 	return function()
 		local directions = require("hop.hint").HintDirection

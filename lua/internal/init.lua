@@ -4,9 +4,12 @@ local M = {}
 _G.print = vim.print
 _G.cwd = vim.fn.getcwd
 _G.joinpath = vim.fs.joinpath
+_G.HOME = os.getenv("HOME")
+_G.XDG_CONFIG = os.getenv("XDG_CONFIG_HOME") or joinpath(HOME, ".config")
 
 M.plugin = require("internal.plugin").plugin
 M.lsp = require("internal.lsp").lsp
+M.formatter = require("internal.format").formatter
 M.keymap = require("internal.keymap").keymap
 M.keymapCmd = require("internal.keymap").keymapCmd
 M.keymapLoad = require("internal.keymap").load_all
@@ -23,6 +26,10 @@ M.Symbols = {
 	updated = "󰚰 ",
 	deleted = "󰮘 ",
 	readonly = "󰷊 ",
+	error = " ",
+	warn = " ",
+	hint = "󰌵 ",
+	info = " ",
 }
 
 M.Colors = {
@@ -55,6 +62,7 @@ M.global_vars = {
 
 _G.plugin = M.plugin
 _G.lsp = M.lsp
+_G.formatter = M.formatter
 _G.keymap = M.keymap
 _G.keymapCmd = M.keymapCmd
 _G.keymapLoad = M.keymapLoad

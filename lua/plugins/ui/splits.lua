@@ -8,7 +8,7 @@ plugin("smart-splits.nvim")
 		},
 	})
 	:keys({
-		keymap("n", "<M-s>", function()
+		keymap("n", "<M-r>", function()
 			require("smart-splits").start_resize_mode()
 		end, "Start resize mode"),
 		keymap("n", "<M-v>", keymapCmd("vsplit"), "Vertical split"),

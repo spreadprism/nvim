@@ -195,7 +195,7 @@ end
 ---@param opts table
 ---@return Plugin
 function Plugin:opts(opts)
-	self.opts_table = opts
+	self.opts_table = vim.tbl_deep_extend("force", self.opts_table or {}, opts)
 	return self:after(function()
 		require(self.require_name).setup(opts)
 	end)

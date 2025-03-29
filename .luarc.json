@@ -8,5 +8,8 @@
         "keymapCmd",
         "keymapLoad",
         "keymapGroup"
+    ],
+    "diagnostics.disable": [
+        "different-requires"
     ]
 }

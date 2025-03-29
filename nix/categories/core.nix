@@ -11,6 +11,7 @@ let
     fd
     lua-language-server
     vscode-langservers-extracted
+    stylua
   ];
   # This is for plugins that will load at startup without using packadd:
   startupPlugins = with neovimPlugins; [];
@@ -63,6 +64,7 @@ let
     telescope-zf-native-nvim
     telescope-fzf-native-nvim
     hop-nvim
+    conform-nvim
   ];
   # shared libraries to be added to LD_LIBRARY_PATH
   sharedLibraries = {};
