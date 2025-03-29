@@ -13,13 +13,6 @@ lsp("lua_ls"):ft("lua"):settings({
 	},
 })
 formatter("lua", "stylua")
-
-local library = {
-	{ words = { "nixCats" }, path = (nixCats.nixCatsPath or "") .. "/lua" },
-}
-if cwd() ~= joinpath(XDG_CONFIG, "nxim") then
-	table.insert(library, (nixCats.configDir or "") .. "/lua/internal")
-end
 plugin("lazydev.nvim"):on_require("lazydev"):cmd("LazyDev"):ft("lua"):opts({
-	library = library,
+	library = require("internal.lazydev").paths,
 })
