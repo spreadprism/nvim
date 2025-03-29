@@ -37,7 +37,7 @@ plugin("neogit")
 	:keys(keymapGroup("<leader>g", "git", {
 		keymap("n", "g", keymapCmd("Neogit"), "open neogit"),
 	}))
-plugin("gitsigns.nvim"):for_cat("git"):triggerUIEnter():on_require("gitsigns"):opts({
+plugin("gitsigns.nvim"):triggerBufferEnter():on_require("gitsigns"):opts({
 	current_line_blame_opts = {
 		delay = 10,
 	},
