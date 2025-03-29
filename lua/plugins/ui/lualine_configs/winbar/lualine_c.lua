@@ -42,7 +42,7 @@ return {
 			end
 			return path
 		end,
-		color = "OilHidden",
+		color = { fg = "#737aa2", bg = "NONE" },
 		padding = { left = 1, right = 0 },
 	},
 	{
@@ -56,12 +56,11 @@ return {
 		color = { bg = "OilFile" },
 	},
 	{
-		function()
-			local path = get_path()
-			path = vim.split(path, "/")
-			return path[#path]
-		end,
+		"filename",
+		path = 0,
+		separator = "",
 		padding = { left = 0, right = 1 },
+		symbols = { modified = Symbols.modified, readonly = Symbols.readonly, unnamed = "" },
 		color = "OilFile",
 		cond = function()
 			return vim.bo.filetype ~= "oil"

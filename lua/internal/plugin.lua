@@ -31,6 +31,10 @@ function M.plugin(name)
 	return plugin:on_require(name)
 end
 
+---
+--- When false, or if the function returns nil or false,
+--- then this plugin will not be included in the spec.
+---
 ---@param enabled boolean | fun():boolean
 ---@return Plugin
 function Plugin:enabled(enabled)
@@ -38,6 +42,10 @@ function Plugin:enabled(enabled)
 	return self
 end
 
+---
+--- enable condtion based on the presence of the passed
+--- environment variables
+---
 ---@param env string | string[]
 ---@return Plugin
 function Plugin:envPresent(env)
@@ -58,6 +66,10 @@ function Plugin:envPresent(env)
 	return self
 end
 
+---
+---Always executed before any plugin specs
+---are triggered to be loaded
+---
 ---@param beforeAll fun(Plugin)
 ---@return Plugin
 function Plugin:beforeAll(beforeAll)
@@ -65,6 +77,9 @@ function Plugin:beforeAll(beforeAll)
 	return self
 end
 
+---
+---Executed before a plugin is loaded
+---
 ---@param before fun(Plugin)
 ---@return Plugin
 function Plugin:before(before)
@@ -72,6 +87,9 @@ function Plugin:before(before)
 	return self
 end
 
+---
+--- Executed after a plugin is loaded
+---
 ---@param after? fun(Plugin)
 ---@return Plugin
 function Plugin:after(after)
@@ -82,6 +100,8 @@ function Plugin:after(after)
 	return self
 end
 
+--- A nixCats specific lze handler that you can use to conditionally
+--- enable by category easier.
 ---@param for_cat string
 ---@return Plugin
 function Plugin:for_cat(for_cat)
@@ -118,7 +138,7 @@ function Plugin:triggerBufferEnter()
 	return self:event("BufEnter")
 end
 
----@param cmd string[]
+---@param cmd string | string[]
 ---@return Plugin
 function Plugin:cmd(cmd)
 	specs.apply(self.name, { cmd = cmd })
@@ -132,7 +152,7 @@ function Plugin:ft(ft)
 	return self
 end
 
----@param keys  table
+---@param keys table
 ---@return Plugin
 function Plugin:keys(keys)
 	for i, key in ipairs(keys) do
@@ -162,15 +182,6 @@ function Plugin:on_require(on_require)
 	self.require_name = on_require
 	self:opts(self.opts_table)
 	specs.apply(self.name, { on_require = on_require })
-	return self
-end
-
----@param func fun(keymap: Keymap)
----@return Plugin
-function Plugin:keymap(func)
-	local keymap = setmetatable({}, require("internal.keymap").Keymap)
-	keymap.plugin = self
-	func(keymap)
 	return self
 end
 

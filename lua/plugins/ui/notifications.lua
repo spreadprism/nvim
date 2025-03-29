@@ -1,0 +1,6 @@
+plugin("nvim-notify")
+	:for_cat("core")
+	:triggerUIEnter()
+	:on_plugin("noice-nvim")
+	:on_require("notify")
+	:opts({ render = "compact", background_colour = "#000000", stage = "slide" })

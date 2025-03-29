@@ -1,6 +1,10 @@
 ---@class Internal
 local M = {}
 
+_G.print = vim.print
+_G.cwd = vim.fn.getcwd
+_G.joinpath = vim.fs.joinpath
+
 M.plugin = require("internal.plugin").plugin
 M.lsp = require("internal.lsp").lsp
 M.keymap = require("internal.keymap").keymap
@@ -9,6 +13,7 @@ M.keymapLoad = require("internal.keymap").load_all
 M.keymapGroup = require("internal.keymap").keymap_group
 M.load_all = require("internal.loader").load_all
 M.merge_specs = require("internal.specs").merge
+M.telescope = require("internal.telescope")
 
 M.Symbols = {
 	modified = "󱇧 ",
@@ -34,9 +39,19 @@ M.Colors = {
 	red = "#ec5f67",
 }
 
-_G.print = vim.print
-_G.cwd = vim.fn.getcwd
-_G.joinpath = vim.fs.joinpath
+M.global_vars = {
+	"print",
+	"cwd",
+	"joinpath",
+	"plugin",
+	"lsp",
+	"keymap",
+	"keymapCmd",
+	"keymapLoad",
+	"keymapGroup",
+	"Symbols",
+	"Colors",
+}
 
 _G.plugin = M.plugin
 _G.lsp = M.lsp
@@ -55,66 +70,6 @@ function M.cmd_on_click(cmd)
 			vim.cmd(cmd)
 		end
 	end
-end
-
-local buffer_blacklist = {
-	"neo-tree filesystem [1]",
-	"[dap-repl]",
-	"DAP Console",
-	"DAP Watches",
-	"NeogitStatus",
-	"NeogitDiffView",
-	"null",
-	"DiffviewFilePanel",
-	"pods",
-}
-
-local buffer_blacklist_contains = {
-	"%[CodeCompanion%]",
-}
-
-local buffer_extension_blacklist = { "harpoon" }
-local buffer_mode_blacklist = { "t" }
-
-function M.cond_buffer_blacklist()
-	local current_buffer_mode = vim.api.nvim_get_mode().mode
-	local current_buffer_name = vim.fn.expand("%:t")
-	local current_buffer_filetype = vim.bo.filetype
-
-	-- INFO: Check if current buffer mode is in the blacklist
-	for _, mode in ipairs(buffer_mode_blacklist) do
-		if current_buffer_mode == mode then
-			return false
-		end
-	end
-
-	-- INFO: Don't need to check if buffer_name is empty
-	if current_buffer_name == "" then
-		return false
-	end
-
-	-- INFO: Check if current buffer name is in the blacklist
-	for _, buffer_name in ipairs(buffer_blacklist) do
-		if current_buffer_name == buffer_name then
-			return false
-		end
-	end
-
-	-- INFO: Check if current buffer name contains a blacklist
-	for _, buffer_name in ipairs(buffer_blacklist_contains) do
-		if string.find(current_buffer_name, buffer_name) then
-			return false
-		end
-	end
-
-	-- INFO: Check if current buffer extension is in the blacklist
-	for _, buffer_extension in ipairs(buffer_extension_blacklist) do
-		if current_buffer_filetype == buffer_extension then
-			return false
-		end
-	end
-
-	return true
 end
 
 _G.internal = M

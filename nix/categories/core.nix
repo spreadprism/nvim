@@ -58,6 +58,11 @@ let
     lazydev-nvim
     neoconf-nvim
     hover-nvim
+    fidget-nvim
+    telescope-nvim
+    telescope-zf-native-nvim
+    telescope-fzf-native-nvim
+    hop-nvim
   ];
   # shared libraries to be added to LD_LIBRARY_PATH
   sharedLibraries = {};

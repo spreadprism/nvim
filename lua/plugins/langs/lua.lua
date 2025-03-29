@@ -15,19 +15,6 @@ lsp("lua_ls"):ft("lua"):settings({
 plugin("lazydev.nvim"):on_require("lazydev"):cmd("LazyDev"):ft("lua"):opts({
 	library = {
 		{ words = { "nixCats" }, path = (nixCats.nixCatsPath or "") .. "/lua" },
-		{
-			words = {
-				"internal",
-				"plugin",
-				"lsp",
-				"keymap",
-				"keymapCmd",
-				"keymapLoad",
-				"keymapGroup",
-				"load_all",
-				"merge_specs",
-			},
-			path = (nixCats.configDir or "") .. "/lua/internal",
-		},
+		(nixCats.configDir or "") .. "/lua/internal",
 	},
 })

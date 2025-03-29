@@ -1,9 +1,3 @@
-plugin("nvim-notify")
-	:for_cat("core")
-	:triggerUIEnter()
-	:on_plugin("noice-nvim")
-	:on_require("notify")
-	:opts({ render = "compact", background_colour = "#000000", stage = "slide" })
 plugin("nui-nvim"):on_plugin("noice-nvim"):after(nil)
 plugin("noice.nvim")
 	:for_cat("core")
@@ -26,6 +20,9 @@ plugin("noice.nvim")
 			lsp_doc_border = false, -- add a border to hover docs and signature help
 		},
 		lsp = {
+			progress = {
+				enabled = true,
+			},
 			signature = {
 				auto_open = {
 					enabled = false,
@@ -59,6 +56,13 @@ plugin("noice.nvim")
 				filter = {
 					event = "msg_show",
 					find = "No diagnostics found",
+				},
+				opts = { skip = true },
+			},
+			{
+				filter = {
+					event = "msg_show",
+					find = "Hop",
 				},
 				opts = { skip = true },
 			},
