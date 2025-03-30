@@ -67,7 +67,7 @@ plugin("blink.cmp"):event({ "InsertEnter", "CmdlineEnter" }):opts({
 		["<M-l>"] = {
 			function(cmp)
 				if cmp.is_visible() then
-					cmp.close()
+					cmp.hide()
 				end
 				require("copilot.suggestion").next()
 			end,

@@ -15,6 +15,10 @@
       url = "github:ThePrimeagen/harpoon?ref=harpoon2";
       flake = false;
     };
+    "plugins-copilot" = {
+      url = "github:zbirenbaum/copilot.lua";
+      flake = false;
+    };
 
   };
   outputs = { self, nixpkgs, nixCats, neovim-nightly-overlay, ...}@inputs: let

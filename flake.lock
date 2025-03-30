@@ -214,6 +214,22 @@
         "type": "github"
       }
     },
+    "plugins-copilot": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1743264553,
+        "narHash": "sha256-OGursz/xVjG5xBrgQCqnazOpH39uojpbgJ9Tvhqpji8=",
+        "owner": "zbirenbaum",
+        "repo": "copilot.lua",
+        "rev": "0d56d43d2d2c0c8cf897a338be402bd639a906ae",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zbirenbaum",
+        "repo": "copilot.lua",
+        "type": "github"
+      }
+    },
     "plugins-harpoon": {
       "flake": false,
       "locked": {
@@ -252,6 +268,7 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs",
+        "plugins-copilot": "plugins-copilot",
         "plugins-harpoon": "plugins-harpoon",
         "plugins-oil-vcs-status": "plugins-oil-vcs-status"
       }

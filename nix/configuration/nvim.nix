@@ -6,6 +6,7 @@
   };
   categories = {
     tmux = true;
+    ai = true;
     git = true;
   };
 }

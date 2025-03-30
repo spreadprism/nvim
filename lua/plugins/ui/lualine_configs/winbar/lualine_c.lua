@@ -96,7 +96,7 @@ return {
 			end
 			return ""
 		end,
-		color = { fg = Colors.red },
+		color = { fg = Colors.red, bg = "none" },
 		cond = function()
 			local ok, _ = pcall(require, "harpoon")
 			return ok
