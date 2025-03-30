@@ -10,7 +10,5 @@
     git = true;
     debugging = true;
     testing = true;
-    # Langs
-    go = true;
   };
 }
