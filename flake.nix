@@ -35,7 +35,7 @@
     ];
     categoryDefinitions = import ./nix/mkCategoriesDefinitions.nix;
     packageDefinitions = import ./nix/mkConfiguration.nix { inherit nixpkgs; };
-    defaultPackageName = "dev";
+    defaultPackageName = "nvim";
   in forEachSystem( system: let
     nixCatsBuilder = utils.baseBuilder luaPath {
       inherit nixpkgs system dependencyOverlays extra_pkg_config;
