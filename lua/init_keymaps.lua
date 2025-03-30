@@ -1,7 +1,13 @@
 keymapLoad({
 	keymap({ "i", "v", "s" }, ";;", "<Esc>", "Escape"),
 	keymap("t", ";;", "<C-\\><C-n>", "Escape"),
-	keymap("n", "<C-q>", keymapCmd("q"), "quit"),
+	keymap("n", "<C-q>", function()
+		if vim.tbl_contains(require("internal.dap_ui").dap_ui_ft, vim.bo.filetype) then
+			require("internal.dap_ui").close()
+		else
+			vim.cmd("q")
+		end
+	end, "quit"),
 	-- INFO: Code navigation
 	keymap({ "n", "v", "x", "s", "o" }, "L", "g_", "Move cursor to last non-whitespace character"),
 	keymap({ "n", "v", "x", "s", "o" }, "H", "^", "Move cursor to first non-whitespace character"),

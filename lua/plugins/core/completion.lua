@@ -121,6 +121,20 @@ plugin("blink.cmp"):event({ "InsertEnter", "CmdlineEnter" }):opts({
 		},
 	},
 	cmdline = {
-		keymap = base_keymap,
+		keymap = vim.tbl_deep_extend("force", base_keymap, {
+			["<M-h>"] = {
+				function(cmp)
+					if cmp.is_ghost_text_visible() then
+						cmp.show()
+					else
+						if cmp.is_visible() then
+							cmp.hide()
+						else
+							cmp.show()
+						end
+					end
+				end,
+			},
+		}),
 	},
 })

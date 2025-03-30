@@ -13,7 +13,7 @@ return {
 		"req",
 		fmt([[local {} = require("{}")]], {
 			f(function(import_name)
-				local parts = vim.split(import_name[1][1], ".", true)
+				local parts = vim.split(import_name[1][1], ".", { trimempty = true })
 				return parts[#parts] or ""
 			end, { 1 }),
 			i(1),

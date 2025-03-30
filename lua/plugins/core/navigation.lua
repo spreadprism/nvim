@@ -23,17 +23,17 @@ plugin("hop.nvim")
 plugin("harpoon"):triggerUIEnter():after(nil):keys({
 	keymap("n", "<M-m>", function()
 		require("harpoon"):list():add()
-	end),
+	end, "mark"),
 	keymap("n", "<M-u>", function()
 		require("harpoon"):list():remove()
-	end),
-	keymap("n", "<M-e>", function()
+	end, "unmark"),
+	keymap("n", "<M-h>", function()
 		require("harpoon").ui:toggle_quick_menu(require("harpoon"):list(), { border = "rounded" })
-	end),
-	keymap("n", "<M-<Right>>", function()
+	end, "harpoon list"),
+	keymap("n", "<M-i>", function()
 		require("harpoon"):list():next({ ui_nav_wrap = true })
-	end),
-	keymap("n", "<M-<left>>", function()
+	end, "next mark"),
+	keymap("n", "<M-o>", function()
 		require("harpoon"):list():prev({ ui_nav_wrap = true })
-	end),
+	end, "previous mark"),
 })

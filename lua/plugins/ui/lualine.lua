@@ -11,4 +11,7 @@ require("lualine").setup({
 	sections = require("plugins.ui.lualine_configs.sections"),
 	winbar = require("plugins.ui.lualine_configs.winbar"),
 	inactive_winbar = require("plugins.ui.lualine_configs.winbar"),
+	extensions = {
+		require("internal.winbar_components.dapui"),
+	},
 })

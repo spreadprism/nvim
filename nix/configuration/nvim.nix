@@ -8,5 +8,6 @@
     tmux = true;
     ai = true;
     git = true;
+    debugging = true;
   };
 }

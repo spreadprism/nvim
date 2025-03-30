@@ -6,6 +6,6 @@ plugin("trouble.nvim")
 		focus = true,
 	})
 	:keys({
-		keymap("n", "<M-t>", keymapCmd("Trouble diagnostics toggle filter.buf=0")),
-		keymap("n", "<M-T>", keymapCmd("Trouble diagnostics toggle")),
+		keymap("n", "<M-t>", keymapCmd("Trouble diagnostics toggle")),
+		keymap("n", "<M-T>", keymapCmd("Trouble diagnostics toggle filter.buf=0")),
 	})

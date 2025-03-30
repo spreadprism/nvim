@@ -138,6 +138,7 @@ function Plugin:triggerBufferEnter()
 	return self:event("BufEnter")
 end
 
+---Lazy-load on command
 ---@param cmd string | string[]
 ---@return Plugin
 function Plugin:cmd(cmd)
@@ -145,6 +146,7 @@ function Plugin:cmd(cmd)
 	return self
 end
 
+---Lazy-load on filetype
 ---@param ft string | string[]
 ---@return Plugin
 function Plugin:ft(ft)
@@ -162,6 +164,8 @@ function Plugin:keys(keys)
 	return self
 end
 
+---Lazy-load before another plugin but after its before hook.
+---Accepts a plugin name or a list of plugin names
 ---@param dep_of string | string[]
 ---@return Plugin
 function Plugin:dep_of(dep_of)
@@ -169,6 +173,8 @@ function Plugin:dep_of(dep_of)
 	return self
 end
 
+---Lazy-load after another plugin but before its after hook. Accepts a plugin name or a list
+---of plugin names
 ---@param on_plugin string | string[]
 ---@return Plugin
 function Plugin:on_plugin(on_plugin)
@@ -176,6 +182,8 @@ function Plugin:on_plugin(on_plugin)
 	return self
 end
 
+--- Accepts a plugin name or a list of plugin names
+--- Will load when any submodule of thoE listed is required
 ---@param on_require string
 ---@return Plugin
 function Plugin:on_require(on_require)
