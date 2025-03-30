@@ -10,6 +10,8 @@ transparent.setup({
 })
 transparent.clear_prefix("BlinkCmp")
 transparent.clear_prefix("Telescope")
+transparent.clear_prefix("Trouble")
+transparent.clear_prefix("Diff")
 transparent.clear_prefix("Notify")
 transparent.clear_prefix("OilVcsStatus")
 transparent.clear_prefix("WhichKey")

@@ -17,7 +17,6 @@ require("oil").setup({
 		natural_order = false,
 	},
 	win_options = {
-		-- winbar = " %{v:lua.require('internal.oil').winbar()}",
 		signcolumn = "number",
 	},
 })

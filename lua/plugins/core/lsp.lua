@@ -18,6 +18,9 @@ local function on_attach(_, bufnr)
 		end, "go to reference"),
 		keymap("n", "<F2>", vim.lsp.buf.rename, "rename"),
 	})
+	keymapGroup("<leader>l", "lsp", {
+		keymap({ "n", "v" }, "a", vim.lsp.buf.code_action, "code actions"),
+	})
 end
 
 plugin("neoconf.nvim"):on_require("neoconf"):on_plugin("nvim-lspconfig"):opts({
@@ -50,7 +53,25 @@ require("lze").load({
 		}, plugin.lsp or {}))
 	end,
 	after = function()
+		-- Symbols
+		vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
+		vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
+		vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
+		vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
+
 		vim.diagnostic.config({
+			virtual_text = {
+				source = "if_many",
+				prefix = "● ",
+			},
+			update_in_insert = true,
+			underline = true,
+			severity_sort = true,
+			float = {
+				border = "rounded",
+				header = "",
+				prefix = "",
+			},
 			signs = {
 				--support diagnostic severity / diagnostic type name
 				text = {

@@ -13,4 +13,4 @@ vim.opt.splitright = true
 vim.o.updatetime = 250
 vim.o.cmdheight = 0
 
-vim.deprecate = function() end -- INFO: Disable deprecation messages
+vim.deprecate = function() end

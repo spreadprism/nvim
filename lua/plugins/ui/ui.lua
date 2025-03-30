@@ -1,4 +1,5 @@
 plugin("nui-nvim"):on_plugin("noice-nvim"):after(nil)
+plugin("dressing.nvim"):on_plugin("noice-nvim"):on_require("dressing")
 plugin("noice.nvim")
 	:for_cat("core")
 	:triggerUIEnter()
@@ -56,6 +57,13 @@ plugin("noice.nvim")
 				filter = {
 					event = "msg_show",
 					find = "No diagnostics found",
+				},
+				opts = { skip = true },
+			},
+			{
+				filter = {
+					event = "msg_show",
+					find = "No results for",
 				},
 				opts = { skip = true },
 			},

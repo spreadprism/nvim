@@ -48,6 +48,7 @@ let
     vim-startuptime
     nvim-notify
     noice-nvim
+    dressing-nvim
     todo-comments-nvim
     mini-indentscope
     nvim-highlight-colors
@@ -73,6 +74,7 @@ let
     nvim-ufo
     luasnip
     grug-far-nvim
+    trouble-nvim
   ];
   # shared libraries to be added to LD_LIBRARY_PATH
   sharedLibraries = {};

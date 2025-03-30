@@ -4,6 +4,7 @@ local function get_path()
 	if vim.bo.filetype == "oil" then
 		local ok, oil = pcall(require, "oil")
 		if ok then
+			---@diagnostic disable-next-line: cast-local-type
 			path = oil.get_current_dir()
 		else
 			return ""
@@ -13,6 +14,7 @@ local function get_path()
 		path = vim.fn.expand("%:p")
 	end
 
+	---@diagnostic disable-next-line: param-type-mismatch
 	path = string.gsub(path, cwd, vim.fn.fnamemodify(vim.fn.getcwd(), ":t"))
 	-- remove trailing /
 	path = string.gsub(path, "/$", "")
@@ -22,10 +24,35 @@ local function get_path()
 	-- path = joinpath(, path)
 	return path
 end
+
+local ft_blacklist = {
+	"trouble",
+	"NeogitStatus",
+}
+
+---@param cond? fun(): boolean
+local function winbar_cond(cond)
+	if cond == nil then
+		cond = function()
+			return true
+		end
+	end
+	local f = function()
+		if vim.tbl_contains(ft_blacklist, vim.bo.filetype) then
+			return false
+		end
+		return true
+	end
+	return function()
+		return f() and cond()
+	end
+end
+
 return {
 	{
 		function()
 			local path = get_path()
+			---@diagnostic disable-next-line: cast-local-type
 			path = vim.split(path, "/", { trimempty = true })
 			local len = #path
 			if #path == 0 then
@@ -33,6 +60,7 @@ return {
 			end
 			table.remove(path, #path)
 			if #path >= 4 then
+				---@diagnostic disable-next-line: cast-local-type
 				path = { path[1], "...", path[#path - 1], path[#path] }
 			end
 			-- join table
@@ -44,15 +72,16 @@ return {
 		end,
 		color = { fg = "#737aa2", bg = "NONE" },
 		padding = { left = 1, right = 0 },
+		cond = winbar_cond(),
 	},
 	{
 		"filetype",
 		icon_only = true,
 		separator = "",
 		padding = { left = 1, right = 0 },
-		cond = function()
+		cond = winbar_cond(function()
 			return vim.bo.filetype ~= "oil"
-		end,
+		end),
 		color = { bg = "OilFile" },
 	},
 	{
@@ -62,9 +91,9 @@ return {
 		padding = { left = 0, right = 1 },
 		symbols = { modified = Symbols.modified, readonly = Symbols.readonly, unnamed = "" },
 		color = "OilFile",
-		cond = function()
+		cond = winbar_cond(function()
 			return vim.bo.filetype ~= "oil"
-		end,
+		end),
 	},
 	{
 		function()
@@ -74,9 +103,9 @@ return {
 		end,
 		padding = { left = 1, right = 1 },
 		color = "OilFile",
-		cond = function()
+		cond = winbar_cond(function()
 			return vim.bo.filetype == "oil"
-		end,
+		end),
 	},
 	{
 		function()
@@ -97,10 +126,10 @@ return {
 			return ""
 		end,
 		color = { fg = Colors.red, bg = "none" },
-		cond = function()
+		cond = winbar_cond(function()
 			local ok, _ = pcall(require, "harpoon")
 			return ok
-		end,
+		end),
 		separator = "",
 		padding = { left = 0, right = 1 },
 	},

@@ -60,9 +60,9 @@ if nixCats("ai") then
 					vim.cmd("'<,'>CodeCompanion " .. input)
 				end)
 			end, "Prompt"),
-			keymap("n", "e", keymapCmd("CodeCompanion /explain"), "Explain"),
-			keymap("n", "f", keymapCmd("CodeCompanion @editor /fix"), "Fix"),
-			keymap("n", "t", keymapCmd("CodeCompanion @editor /tests"), "Generate tests"),
+			keymap("v", "e", keymapCmd("CodeCompanion /explain"), "Explain"),
+			keymap("v", "f", keymapCmd("CodeCompanion @editor /fix"), "Fix"),
+			keymap("v", "t", keymapCmd("CodeCompanion @editor /tests"), "Generate tests"),
 			keymap("n", "c", keymapCmd("CodeCompanionChat Toggle"), "Toggle chat"),
 			keymap("n", "a", keymapCmd("CodeCompanionActions"), "Actions"),
 		}))

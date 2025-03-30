@@ -1,3 +1,5 @@
+-- INFO: most of the warnings weren't needed
+---@diagnostic disable: missing-fields, missing-parameter
 local M = {}
 
 M.hop_word = function()
