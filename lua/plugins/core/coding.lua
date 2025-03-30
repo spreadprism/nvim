@@ -131,3 +131,11 @@ plugin("tabout.nvim"):event("InsertCharPre"):on_require("tabout"):opts({
 		{ open = "<", close = ">" },
 	},
 })
+plugin("grug-far.nvim"):triggerUIEnter():on_require("grug-far"):opts({}):keys({
+	keymap({ "n", "v" }, "<M-r>", function()
+		require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } })
+	end, "replace current buffer"),
+	keymap({ "n", "v" }, "<M-R>", function()
+		require("grug-far").open()
+	end, "replace global"),
+})

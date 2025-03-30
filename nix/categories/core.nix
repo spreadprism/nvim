@@ -72,6 +72,7 @@ let
     tabout-nvim
     nvim-ufo
     luasnip
+    grug-far-nvim
   ];
   # shared libraries to be added to LD_LIBRARY_PATH
   sharedLibraries = {};

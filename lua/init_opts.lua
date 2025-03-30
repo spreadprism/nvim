@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 vim.wo.number = true
 vim.o.expandtab = true
 vim.o.smartindent = true

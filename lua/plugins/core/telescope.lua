@@ -45,7 +45,34 @@ plugin("telescope.nvim")
 		unpack(keymapGroup("<leader>f", "find", {
 			keymap("n", "f", keymapCmd("Telescope find_files"), "files"),
 			keymap("n", "l", keymapCmd("Telescope resume"), "last"),
-			keymap("n", "b", keymapCmd("Telescope buffers"), "buffers"),
 			keymap("n", "s", keymapCmd("Telescope lsp_document_symbols"), "symbols"),
+			-- all
+			keymap("n", "a", function()
+				require("telescope.builtin").diagnostics({ bufnr = 0 })
+			end, "all diagnostics (current buffer)"),
+			keymap("n", "A", function()
+				require("telescope.builtin").diagnostics({ bufnr = nil })
+			end, "all diagnostics"),
+			-- errors
+			keymap("n", "e", function()
+				require("telescope.builtin").diagnostics({ bufnr = 0, severity = vim.diagnostic.severity.ERROR })
+			end, "errors diagnostics (current buffer)"),
+			keymap("n", "E", function()
+				require("telescope.builtin").diagnostics({ bufnr = nil, severity = vim.diagnostic.severity.ERROR })
+			end, "errors diagnostics"),
+			-- warnings
+			keymap("n", "w", function()
+				require("telescope.builtin").diagnostics({ bufnr = 0, severity = vim.diagnostic.severity.WARN })
+			end, "warnings diagnostics (current buffer)"),
+			keymap("n", "W", function()
+				require("telescope.builtin").diagnostics({ bufnr = nil, severity = vim.diagnostic.severity.WARN })
+			end, "warnings diagnostics"),
+			-- hints
+			keymap("n", "h", function()
+				require("telescope.builtin").diagnostics({ bufnr = 0, severity = vim.diagnostic.severity.HINT })
+			end, "hints diagnostics (current buffer)"),
+			keymap("n", "H", function()
+				require("telescope.builtin").diagnostics({ bufnr = nil, severity = vim.diagnostic.severity.HINT })
+			end, "hints diagnostics"),
 		})),
 	})
