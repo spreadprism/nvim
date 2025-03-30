@@ -1,5 +1,5 @@
 plugin("nui-nvim"):on_plugin("noice-nvim"):after(nil)
-plugin("dressing.nvim"):on_plugin("noice-nvim"):on_require("dressing")
+plugin("dressing.nvim"):on_plugin("noice-nvim"):on_require("dressing"):triggerUIEnter()
 plugin("noice.nvim")
 	:for_cat("core")
 	:triggerUIEnter()

@@ -27,11 +27,15 @@ function M.linter(filetypes, linters)
 	end
 
 	for _, ft in ipairs(filetypes) do
-		get_linter_plugin():opts({
-			linters_by_ft = {
-				[ft] = linters,
-			},
-		})
+		get_linter_plugin()
+			:opts({
+				linters_by_ft = {
+					[ft] = linters,
+				},
+			})
+			:after(function(_)
+				require("lint").linters_by_ft = get_linter_plugin().opts_table.linters_by_ft
+			end)
 	end
 end
 

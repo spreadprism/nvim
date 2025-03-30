@@ -69,6 +69,7 @@ let
     telescope-zf-native-nvim
     telescope-fzf-native-nvim
     hop-nvim
+    nvim-lint
     conform-nvim
     tabout-nvim
     nvim-ufo
