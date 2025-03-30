@@ -1,8 +1,8 @@
-{ nixpkgs, ...}:
+{...}:
 {
   settings = {
     wrapRc = true;
-    aliases = [];
+    aliases = [ "v" ];
   };
   categories = {
     tmux = true;
