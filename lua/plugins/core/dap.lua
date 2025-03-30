@@ -48,13 +48,25 @@ plugin("nvim-dap")
 			keymap("n", "e", dap_func("eval"), "evaluate expression"),
 		})),
 	})
-plugin("nvim-dap-ui"):on_require("dapui"):opts({
-	floating = {
-		border = "rounded",
-	},
-	layouts = require("internal.dap_ui").generate_layouts(),
-	mappings = {},
-})
+plugin("nvim-dap-ui")
+	:on_require("dapui")
+	:opts({
+		floating = {
+			border = "rounded",
+		},
+		layouts = require("internal.dap_ui").generate_layouts(),
+	})
+	:keys(keymapGroup("<leader>du", "dapui", {
+		keymap("n", "", function()
+			require("internal.dap_ui").set_overlay(1)
+		end, "dapui repl"),
+		keymap("n", "r", function()
+			require("internal.dap_ui").set_overlay(1)
+		end, "dapui repl"),
+		keymap("n", "c", function()
+			require("internal.dap_ui").set_overlay(2)
+		end, "dapui repl"),
+	}))
 local virtual_max_char = 15
 plugin("nvim-dap-virtual-text"):opts({
 	only_first_definition = false,
