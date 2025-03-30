@@ -16,6 +16,7 @@ local function on_attach(_, bufnr)
 		keymap({ "n", "v" }, "gr", function()
 			require("telescope.builtin").lsp_references()
 		end, "go to reference"),
+		keymap("n", "<F2>", vim.lsp.buf.rename, "rename"),
 	})
 end
 
@@ -69,6 +70,13 @@ require("lze").load({
 
 		require("lspconfig.ui.windows").default_options.border = "rounded"
 	end,
+})
+
+keymapGroup("<leader>l", "lsp", {
+	keymap("n", "i", keymapCmd("LspInfo"), "Info"),
+	keymap("n", "r", keymapCmd("LspRestart"), "Restart language server"),
+	keymap("n", "s", keymapCmd("NeoConf show"), "Show LSP settings"),
+	keymap("n", "e", keymapCmd("NeoConf"), "Edit LSP settings"),
 })
 
 plugin("hover.nvim")
