@@ -151,6 +151,7 @@
       git = true;
       debugging = true;
       testing = true;
+      tmux = true;
     };
 
     packageDefinitions = {
