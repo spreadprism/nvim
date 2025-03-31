@@ -19,7 +19,6 @@
       url = "github:zbirenbaum/copilot.lua";
       flake = false;
     };
-
   };
   outputs = { self, nixpkgs, nixCats, neovim-nightly-overlay, ...}@inputs: let
     inherit (nixCats) utils;
@@ -94,6 +93,8 @@
           (nvim-treesitter.withPlugins (
             plugins: with plugins; [
               go
+              gomod
+              gosum
             ]
           ))
         ];
@@ -110,6 +111,18 @@
             plugins: with plugins; [
               nix
               lua
+              luadoc
+              bash
+              make
+              json
+              toml
+              yaml
+              markdown
+              markdown_inline
+              regex
+              vim
+              vimdoc
+              proto
             ]
           ))
           vim-startuptime
@@ -187,9 +200,7 @@
           core = true;
         };
       };
-
     };
-
     defaultPackageName = "nvim";
   in forEachSystem( system: let
     nixCatsBuilder = utils.baseBuilder luaPath {
