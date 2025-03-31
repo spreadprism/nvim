@@ -64,4 +64,7 @@ return {
 		color = "#17DAE0",
 		name = "sqlc",
 	},
+	[".envrc"] = vim.tbl_extend("force", require("icons.extension")["env"], {
+		name = "envrc",
+	}),
 }
