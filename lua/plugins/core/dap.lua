@@ -29,7 +29,7 @@ if nixCats("debugging") then
 			-- INFO: Setup dap plugins startup
 			dap.listeners.before.attach.trigger_load = function()
 				require("nvim-dap-virtual-text")
-				require("nvim-dap-ui")
+				require("dapui")
 			end
 			dap.listeners.before.launch.trigger_load = dap.listeners.before.attach.trigger_load
 		end)
