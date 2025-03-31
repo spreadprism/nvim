@@ -172,6 +172,7 @@
         };
         categories = base_categories misc // {
           go = true;
+          remote = true; # TODO: nvim needs everything, since I can't create custom packag in main flake
         };
       };
       nvim_dev = { pkgs, ...}@misc: {
