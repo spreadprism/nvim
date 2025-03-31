@@ -28,12 +28,9 @@
     extra_pkg_config = {
       allowUnfree = true;
     };
-
     dependencyOverlays = [
       (utils.standardPluginOverlay inputs)
-      # neovim-nightly-overlay.overlays.default # BUG: Won't start
     ];
-
     categoryDefinitions = { pkgs, settings, categories, name, ... }@packageDef: {
       lspsAndRuntimeDeps = {
         core = with pkgs; [
@@ -42,6 +39,11 @@
           lua-language-server
           vscode-langservers-extracted
           stylua
+        ];
+        go = with pkgs; [
+          gopls
+          delve
+          golangci-lint
         ];
       };
       startupPlugins = rec {
@@ -85,6 +87,15 @@
           neogit
           diffview-nvim
           gitsigns-nvim
+        ];
+        go = with pkgs.vimPlugins; [
+          nvim-dap-go
+          neotest-golang
+          (nvim-treesitter.withPlugins (
+            plugins: with plugins; [
+              go
+            ]
+          ))
         ];
         remote = with pkgs.vimPlugins; [
           nvim-osc52
