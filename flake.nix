@@ -175,6 +175,7 @@
         categories = {
           core = true;
         };
+      };
 
     };
 
