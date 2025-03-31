@@ -109,7 +109,6 @@ function M.launch_configs(cfgs)
 		if cfg.type == "go" then
 			cfg.outputMode = cfg.outputMode or "remote"
 		end
-		cfg.env = vim.tbl_deep_extend("keep", cfg.env or {}, env.all())
 		table.insert(dap_configurations, cfg)
 	end
 end
