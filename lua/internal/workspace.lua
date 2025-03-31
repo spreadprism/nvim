@@ -1,8 +1,9 @@
 local M = {}
 
+---
 ---@type string[]
 local workspace_env_keys
----@type dap.Configuration[]
+---@type Configuration[]
 local dap_configurations
 ---@type integer
 local workspace_group_id
@@ -90,23 +91,28 @@ function M.on_write(pattern, action)
 	})
 end
 
----@param cfgs dap.Configuration | dap.Configuration[]
+---@class Configuration
+---@field name string
+---@field type? string
+---@field request? "launch"|"attach"
+---@field console? string
+---@field cwd? string
+
+---@param cfgs Configuration | Configuration[]
 function M.launch_configs(cfgs)
 	if #cfgs == 0 then
 		cfgs = { cfgs }
 	end
 	for _, cfg in ipairs(cfgs) do
 		cfg.request = cfg.request or "launch"
-		---@diagnostic disable-next-line: inject-field
 		cfg.console = cfg.console or "externalTerminal"
-		---@diagnostic disable-next-line: inject-field
 		cfg.cwd = cfg.cwd or cwd()
 		table.insert(dap_configurations, cfg)
 	end
 end
 
 ---@param ft string
----@param cfgs dap.Configuration | dap.Configuration[]
+---@param cfgs Configuration | Configuration[]
 function M.launch_configs_ft(ft, cfgs)
 	if #cfgs == 0 then
 		cfgs = { cfgs }

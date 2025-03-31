@@ -3,6 +3,7 @@ if nixCats("workspace") then
 		local workspace_file_name = ".nvim.lua"
 		require("exrc").setup({
 			on_vim_enter = false,
+			min_log_level = vim.log.levels.INFO,
 		})
 		vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 			pattern = { "*/" .. workspace_file_name },

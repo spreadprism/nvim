@@ -6,9 +6,13 @@ if nixCats("go") then
 	}):ft("go")
 	formatter("go", { "goimports", "gofmt" })
 	-- linter("go", "golangcilint") # BUG: its broken for some reason
-	plugin("nvim-dap-go"):on_require("dap-go"):ft("go"):after(function()
-		require("dap-go").setup({})
-		require("internal.dap").clear("go")
-	end)
+	plugin("nvim-dap-go")
+		:on_require("dap-go")
+		:ft("go")
+		:after(function()
+			require("dap-go").setup({})
+			require("internal.dap").clear("go")
+		end)
+		:on_plugin("nvim-dap")
 	plugin("neotest-golang"):after(nil):ft("go")
 end
