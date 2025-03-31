@@ -17,10 +17,11 @@ local function get_path()
 		path = vim.fn.expand("%:p")
 	end
 
-	-- remove trailing /
+	-- BUG: if root dir contains -, it breaks name-name2
 	---@diagnostic disable-next-line: param-type-mismatch
-	path = string.gsub(path, "/$", "")
 	path = string.gsub(path, cwd, vim.fn.fnamemodify(cwd, ":t"))
+	-- remove trailing /
+	path = string.gsub(path, "/$", "")
 	-- remove leading /
 	path = string.gsub(path, "^/", "")
 
