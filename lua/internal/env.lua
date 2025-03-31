@@ -12,6 +12,10 @@ function M.set(key, val)
 	vim.env[key] = val
 end
 
+function M.all()
+	return vim.env
+end
+
 ---@param keys string | string[]
 function M.clear(keys)
 	if type(keys) == "string" then

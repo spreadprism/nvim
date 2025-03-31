@@ -1,3 +1,4 @@
+---@diagnostic disable: inject-field
 local M = {}
 
 ---
@@ -95,7 +96,6 @@ end
 ---@field name string
 ---@field type? string
 ---@field request? "launch"|"attach"
----@field console? string
 ---@field cwd? string
 
 ---@param cfgs Configuration | Configuration[]
@@ -105,8 +105,11 @@ function M.launch_configs(cfgs)
 	end
 	for _, cfg in ipairs(cfgs) do
 		cfg.request = cfg.request or "launch"
-		cfg.console = cfg.console or "externalTerminal"
 		cfg.cwd = cfg.cwd or cwd()
+		if cfg.type == "go" then
+			cfg.outputMode = cfg.outputMode or "remote"
+		end
+		cfg.env = vim.tbl_deep_extend("keep", cfg.env or {}, env.all())
 		table.insert(dap_configurations, cfg)
 	end
 end
