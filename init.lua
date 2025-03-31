@@ -1,3 +1,4 @@
+vim.loader.enable()
 require("init_nixcats")
 require("init_lze")
 require("init_opts")
