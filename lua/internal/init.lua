@@ -10,8 +10,6 @@ _G.LUA_PATH = joinpath(nixCats.configDir, "lua")
 
 M.plugin = require("internal.plugin").plugin
 M.lsp = require("internal.lsp").lsp
-M.formatter = require("internal.format").formatter
-M.linter = require("internal.linter").linter
 M.keymap = require("internal.keymap").keymap
 M.keymapCmd = require("internal.keymap").keymapCmd
 M.keymapLoad = require("internal.keymap").load_all
@@ -66,8 +64,6 @@ M.global_vars = {
 
 _G.plugin = M.plugin
 _G.lsp = M.lsp
-_G.formatter = M.formatter
-_G.linter = M.linter
 _G.keymap = M.keymap
 _G.keymapCmd = M.keymapCmd
 _G.keymapLoad = M.keymapLoad

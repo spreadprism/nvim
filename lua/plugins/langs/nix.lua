@@ -10,13 +10,12 @@ lsp("nixd"):ft("nix"):settings({
 			expr = nixCats.extra("nixdExtras.home_manager_options"),
 		},
 	},
-  formatting = {
-    command = { "nixfmt" }
-  },
+	formatting = {
+		command = { "nixfmt" },
+	},
 	diagnostic = {
 		suppress = {
 			"sema-escaping-with",
 		},
 	},
 })
-formatter("nix", "alejandra")
