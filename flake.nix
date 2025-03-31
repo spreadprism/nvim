@@ -241,6 +241,5 @@
 
     inherit utils nixosModule homeModule;
     inherit (utils) templates;
-    inherit categoryDefinitions packageDefinitions;
   });
 }
