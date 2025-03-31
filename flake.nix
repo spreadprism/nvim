@@ -19,6 +19,10 @@
       url = "github:zbirenbaum/copilot.lua";
       flake = false;
     };
+    "plugins-workspace" = {
+      url = "github:jedrzejboczar/exrc.nvim";
+      flake = false;
+    };
   };
   outputs = { self, nixpkgs, nixCats, neovim-nightly-overlay, ...}@inputs: let
     inherit (nixCats) utils;
@@ -78,6 +82,9 @@
           nvim-dap
           nvim-dap-ui
           nvim-dap-virtual-text
+        ];
+        worspace = with pkgs.neovimPlugins; [
+          workspace
         ];
         testing = with pkgs.vimPlugins; [
           neotest
