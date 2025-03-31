@@ -38,6 +38,7 @@ require("lze").load({
 	"nvim-lspconfig",
 	for_cat = "core",
 	on_require = { "lspconfig" },
+	event = "BufEnter",
 	lsp = function(plugin)
 		local o_a = on_attach
 		if plugin.lsp.on_attach then
