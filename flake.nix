@@ -156,10 +156,26 @@
     packageDefinitions = {
       nvim = { pkgs, ...}@misc: {
         settings = base_settings misc // {
+          alias = [ "v" ];
         };
         categories = base_categories misc // {
+          go = true;
         };
       };
+      nvim_dev = { pkgs, ...}@misc: {
+        settings = base_settings misc // {
+        };
+        categories = base_categories misc // {
+          go = true;
+        };
+      };
+      nvim_minimal = { pkgs, ...}@misc: {
+        settings = base_settings misc // {
+        };
+        categories = {
+          core = true;
+        };
+
     };
 
     defaultPackageName = "nvim";
