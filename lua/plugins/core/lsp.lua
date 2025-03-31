@@ -106,7 +106,8 @@ require("lze").load({
 keymapGroup("<leader>l", "lsp", {
 	keymap("n", "i", keymapCmd("LspInfo"), "Info"),
 	keymap("n", "r", keymapCmd("LspRestart"), "Restart language server"),
-	keymap("n", "s", keymapCmd("NeoConf show"), "Show LSP settings"),
+	keymap("n", "s", keymapCmd("LspStart"), "Start language server"),
+	keymap("n", "S", keymapCmd("LspStop"), "Start language server"),
 	keymap("n", "e", keymapCmd("NeoConf"), "Edit LSP settings"),
 })
 
