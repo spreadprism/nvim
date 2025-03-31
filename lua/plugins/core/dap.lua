@@ -15,15 +15,10 @@ if nixCats("debugging") then
 				"DapStopped",
 				{ text = "", texthl = "DapStoppedSign", linehl = "DapStoppedSign", numhl = "" }
 			)
-			-- INFO: Setup dap plugins startup
-			dap.listeners.before.attach.trigger_load = function()
-				require("nvim-dap-virtual-text")
-				require("dapui")
-
-				local dap_ui = require("internal.dap_ui")
-				dap_ui.set_overlay(dap_ui.overlays.REPL)
-			end
-			dap.listeners.before.launch.trigger_load = dap.listeners.before.attach.trigger_load
+			-- -- INFO: Setup dap plugins startup
+			-- dap.listeners.before.attach.trigger_load = function()
+			-- end
+			-- dap.listeners.before.launch.trigger_load = dap.listeners.before.attach.trigger_load
 		end)
 		:keys({
 			keymap("n", "<F5>", dap_func("continue"), "DAP start / continue"),
@@ -43,6 +38,7 @@ if nixCats("debugging") then
 		})
 	plugin("nvim-dap-ui")
 		:on_require("dapui")
+		:on_plugin("nvim-dap")
 		:opts({
 			floating = {
 				border = "rounded",
@@ -61,24 +57,26 @@ if nixCats("debugging") then
 			end, "dapui repl"),
 		}))
 	local virtual_max_char = 15
-	plugin("nvim-dap-virtual-text"):opts({
-		only_first_definition = false,
-		virt_text_pos = "inline",
-		display_callback = function(variable, buf, stackframe, node, options)
-			local value = variable.value
-			if #value > virtual_max_char then
-				value = "*"
-			end
-			if options.virt_text_pos == "inline" then
-				return "(" .. value .. ")"
-			else
-				local name = variable.name
-				if #name > virtual_max_char - 3 then
-					-- grab the 7 first chars
-					name = string.sub(variable.name, 1, 7) .. "..."
+	plugin("nvim-dap-virtual-text")
+		:opts({
+			only_first_definition = false,
+			virt_text_pos = "inline",
+			display_callback = function(variable, buf, stackframe, node, options)
+				local value = variable.value
+				if #value > virtual_max_char then
+					value = "*"
 				end
-				return name .. " = " .. value
-			end
-		end,
-	})
+				if options.virt_text_pos == "inline" then
+					return "(" .. value .. ")"
+				else
+					local name = variable.name
+					if #name > virtual_max_char - 3 then
+						-- grab the 7 first chars
+						name = string.sub(variable.name, 1, 7) .. "..."
+					end
+					return name .. " = " .. value
+				end
+			end,
+		})
+		:on_plugin("nvim-dap")
 end
