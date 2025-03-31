@@ -30,6 +30,9 @@ if nixCats("debugging") then
 			dap.listeners.before.attach.trigger_load = function()
 				require("nvim-dap-virtual-text")
 				require("dapui")
+
+				local dap_ui = require("internal.dap_ui")
+				dap_ui.set_overlay(dap_ui.overlays.REPL)
 			end
 			dap.listeners.before.launch.trigger_load = dap.listeners.before.attach.trigger_load
 		end)

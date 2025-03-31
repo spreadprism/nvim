@@ -18,16 +18,16 @@ M.ui_layouts = {
 
 ---@enum ui_overlays
 M.overlays = {
-	repl = 1,
-	console = 2,
+	REPL = 1,
+	CONSOLE = 2,
 }
 
 local overlays_layout = {
-	[M.overlays.repl] = {
+	[M.overlays.REPL] = {
 		M.ui_layouts.sidebar,
 		M.ui_layouts.repl,
 	},
-	[M.overlays.console] = {
+	[M.overlays.CONSOLE] = {
 		M.ui_layouts.sidebar,
 		M.ui_layouts.console,
 	},
