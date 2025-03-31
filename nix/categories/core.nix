@@ -1,9 +1,7 @@
-{ pkgs, ...}:
-let
+{pkgs, ...}: let
   neovimPlugins = pkgs.neovimPlugins;
   vimPlugins = pkgs.vimPlugins;
-in
-let
+in let
   # this section is for dependencies that should be available
   # at RUN TIME for plugins. Will be available to PATH within neovim terminal
   runtime = with pkgs; [
@@ -40,10 +38,11 @@ let
     nvim-treesitter-textobjects
     nvim-treesitter-endwise
     (nvim-treesitter.withPlugins (
-      plugins: with plugins; [
-        nix
-        lua
-      ]
+      plugins:
+        with plugins; [
+          nix
+          lua
+        ]
     ))
     vim-startuptime
     nvim-notify
@@ -83,8 +82,7 @@ let
   environmentVariables = {
   };
   extraWrapperArgs = [];
-in
-{
+in {
   lspsAndRuntimeDeps = runtime;
   startupPlugins = startupPlugins ++ startupPluginsVim;
   optionalPlugins = lazyPlugins ++ lazyPluginsVim;

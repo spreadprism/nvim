@@ -19,3 +19,4 @@ lsp("nixd"):ft("nix"):settings({
 		},
 	},
 })
+formatter("nix", "alejandra")

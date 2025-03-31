@@ -1,5 +1,4 @@
-{ nixpkgs, ...}:
-{
+{nixpkgs, ...}: {
   settings = {
     wrapRc = true;
     aliases = [];

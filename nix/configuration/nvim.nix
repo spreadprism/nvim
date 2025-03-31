@@ -1,8 +1,7 @@
-{...}:
-{
+{...}: {
   settings = {
     wrapRc = true;
-    aliases = [ "v" ];
+    aliases = ["v"];
   };
   categories = {
     tmux = true;

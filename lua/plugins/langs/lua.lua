@@ -26,3 +26,4 @@ lsp("lua_ls"):ft("lua"):settings({
 plugin("lazydev.nvim"):on_require("lazydev"):cmd("LazyDev"):ft("lua"):opts({
 	library = require("internal.lazydev").paths,
 })
+formatter("lua", "stylua")

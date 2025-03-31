@@ -1,14 +1,14 @@
-{ pkgs, ...}:
-let
+{pkgs, ...}: let
   neovimPlugins = pkgs.neovimPlugins;
   vimPlugins = pkgs.vimPlugins;
-in
-{
+in {
   startupPlugins = with vimPlugins; [
     nvim-nio
   ];
-  optionalPlugins = with vimPlugins; [
-    neotest
-  ] ++ ( with neovimPlugins; [
-  ]);
+  optionalPlugins = with vimPlugins;
+    [
+      neotest
+    ]
+    ++ (with neovimPlugins; [
+      ]);
 }

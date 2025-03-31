@@ -1,8 +1,6 @@
-{ pkgs, ...}:
-let
+{pkgs, ...}: let
   vimPlugins = pkgs.vimPlugins;
-in
-{
+in {
   optionalPlugins = with vimPlugins; [
     nvim-osc52
   ];

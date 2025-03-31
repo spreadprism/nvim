@@ -33,7 +33,9 @@
   } @ inputs: let
     inherit (nixCats) utils;
     luaPath = "${./.}";
-    forEachSystem = utils.eachSystem nixpkgs.lib.platforms.all;
+    supportedSystems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
+    forEachSystem = utils.eachSystem supportedSystems;
+    forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
     extra_pkg_config = {
       allowUnfree = true;
     };
@@ -313,6 +315,7 @@
 
       nixosModules.default = nixosModule;
       homeModules.default = homeModule;
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
       inherit utils nixosModule homeModule;
       inherit (utils) templates;

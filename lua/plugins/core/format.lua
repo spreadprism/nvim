@@ -1,18 +1,8 @@
 plugin("conform.nvim"):on_require("conform"):triggerUIEnter():after(function()
-	local formatters = {
-		["*"] = { "trim_whitespace" },
-	}
-	if nixCats("go") then
-		formatters.go = { "goimports", "gofmt" }
-	end
-	if nixCats("lua") then
-		formatters.lua = { "stylua" }
-	end
-	if nixCats("nix") then
-		formatters.nix = { "alejandra" }
-	end
 	require("conform").setup({
-		formatters_by_ft = formatters,
+		formatters_by_ft = vim.tbl_extend("error", require("internal.formatter").formatter_by_ft, {
+			["*"] = { "trim_whitespace" },
+		}),
 	})
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		pattern = "*",
