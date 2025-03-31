@@ -17,10 +17,10 @@ local function get_path()
 		path = vim.fn.expand("%:p")
 	end
 
-	---@diagnostic disable-next-line: param-type-mismatch
-	path = string.gsub(path, cwd, vim.fn.fnamemodify(vim.fn.getcwd(), ":t"))
 	-- remove trailing /
+	---@diagnostic disable-next-line: param-type-mismatch
 	path = string.gsub(path, "/$", "")
+	path = string.gsub(path, cwd, vim.fn.fnamemodify(cwd, ":t"))
 	-- remove leading /
 	path = string.gsub(path, "^/", "")
 

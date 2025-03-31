@@ -93,8 +93,10 @@
           (nvim-treesitter.withPlugins (
             plugins: with plugins; [
               go
+              gowork
               gomod
               gosum
+              gotmpl
             ]
           ))
         ];
