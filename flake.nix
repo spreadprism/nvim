@@ -33,8 +33,135 @@
       (utils.standardPluginOverlay inputs)
       # neovim-nightly-overlay.overlays.default # BUG: Won't start
     ];
-    categoryDefinitions = import ./nix/mkCategoriesDefinitions.nix;
-    packageDefinitions = import ./nix/mkConfiguration.nix { inherit nixpkgs; };
+
+    categoryDefinitions = { pkgs, settings, categories, name, ... }@packageDef: {
+      lspsAndRuntimeDeps = {
+        core = with pkgs; [
+          ripgrep
+          fd
+          lua-language-server
+          vscode-langservers-extracted
+          stylua
+        ];
+      };
+      startupPlugins = rec {
+        debugging = with pkgs.vimPlugins; [
+          nvim-nio
+        ];
+        testing = debugging;
+        tmux = with pkgs.vimPlugins; [
+          vim-tmux-navigator
+        ];
+        core = with pkgs.neovimPlugins; [
+          oil-vcs-status
+        ] ++ (with pkgs.vimPlugins; [
+            lze
+            lzextras
+            plenary-nvim
+            promise-async
+            oil-nvim
+            nvim-web-devicons
+            tokyonight-nvim
+            transparent-nvim
+            lualine-nvim
+            which-key-nvim
+        ]);
+      };
+      optionalPlugins = {
+        ai = with pkgs.vimPlugins; [
+          codecompanion-nvim
+        ] ++ (with pkgs.neovimPlugins; [
+            copilot
+        ]);
+        debugging = with pkgs.vimPlugins; [
+          nvim-dap
+          nvim-dap-ui
+          nvim-dap-virtual-text
+        ];
+        testing = with pkgs.vimPlugins; [
+          neotest
+        ];
+        git = with pkgs.vimPlugins; [
+          neogit
+          diffview-nvim
+          gitsigns-nvim
+        ];
+        remote = with pkgs.vimPlugins; [
+          nvim-osc52
+        ];
+        core = with pkgs.vimPlugins; [
+          nvim-osc52
+          neoscroll-nvim
+          nvim-lspconfig
+          nvim-treesitter-textobjects
+          nvim-treesitter-endwise
+          (nvim-treesitter.withPlugins (
+            plugins: with plugins; [
+              nix
+              lua
+            ]
+          ))
+          vim-startuptime
+          nvim-notify
+          noice-nvim
+          dressing-nvim
+          todo-comments-nvim
+          mini-indentscope
+          nvim-highlight-colors
+          smart-splits-nvim
+          nvim-ts-autotag
+          mini-pairs
+          mini-ai
+          mini-surround
+          mini-move
+          nvim-surround
+          comment-nvim
+          blink-cmp
+          lazydev-nvim
+          neoconf-nvim
+          hover-nvim
+          fidget-nvim
+          telescope-nvim
+          telescope-zf-native-nvim
+          telescope-fzf-native-nvim
+          hop-nvim
+          nvim-lint
+          conform-nvim
+          tabout-nvim
+          nvim-ufo
+          luasnip
+          grug-far-nvim
+          trouble-nvim
+        ] ++ (with pkgs.neovimPlugins; [
+            harpoon
+          ]);
+      };
+      sharedLibraries = {};
+      environmentVariables = {};
+      extraWrapperArgs = {};
+    };
+    base_settings = {pkgs, ...}@misc: {
+      wrapRc = true;
+      viAlias = false;
+      vimAlias = false;
+    };
+    base_categories = { pkgs, ...}@misc: {
+      core = true;
+      ai = true;
+      git = true;
+      debugging = true;
+      testing = true;
+    };
+
+    packageDefinitions = {
+      nvim = { pkgs, ...}@misc: {
+        settings = base_settings misc // {
+        };
+        categories = base_categories misc // {
+        };
+      };
+    };
+
     defaultPackageName = "nvim";
   in forEachSystem( system: let
     nixCatsBuilder = utils.baseBuilder luaPath {
