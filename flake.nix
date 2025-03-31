@@ -168,7 +168,7 @@
     packageDefinitions = {
       nvim = { pkgs, ...}@misc: {
         settings = base_settings misc // {
-          alias = [ "v" ];
+          aliases = [ "v" ];
         };
         categories = base_categories misc // {
           go = true;
