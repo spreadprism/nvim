@@ -230,6 +230,22 @@
         "type": "github"
       }
     },
+    "plugins-exrc": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1718698681,
+        "narHash": "sha256-iF2fEIo7Pm3KtSwy7rhc//YXuqcD32BeP2h5ZYN8vKc=",
+        "owner": "jedrzejboczar",
+        "repo": "exrc.nvim",
+        "rev": "4346164895f432f361e453d837b612e6c7cbe3e6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jedrzejboczar",
+        "repo": "exrc.nvim",
+        "type": "github"
+      }
+    },
     "plugins-harpoon": {
       "flake": false,
       "locked": {
@@ -263,31 +279,15 @@
         "type": "github"
       }
     },
-    "plugins-workspace": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1718698681,
-        "narHash": "sha256-iF2fEIo7Pm3KtSwy7rhc//YXuqcD32BeP2h5ZYN8vKc=",
-        "owner": "jedrzejboczar",
-        "repo": "exrc.nvim",
-        "rev": "4346164895f432f361e453d837b612e6c7cbe3e6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jedrzejboczar",
-        "repo": "exrc.nvim",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs",
         "plugins-copilot": "plugins-copilot",
+        "plugins-exrc": "plugins-exrc",
         "plugins-harpoon": "plugins-harpoon",
-        "plugins-oil-vcs-status": "plugins-oil-vcs-status",
-        "plugins-workspace": "plugins-workspace"
+        "plugins-oil-vcs-status": "plugins-oil-vcs-status"
       }
     },
     "treefmt-nix": {

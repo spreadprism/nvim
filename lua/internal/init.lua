@@ -19,6 +19,8 @@ M.keymapGroup = require("internal.keymap").keymap_group
 M.load_all = require("internal.loader").load_all
 M.merge_specs = require("internal.specs").merge
 M.telescope = require("internal.telescope")
+M.workspace = require("internal.workspace")
+M.env = require("internal.env")
 
 M.Symbols = {
 	modified = "󱇧 ",
@@ -70,6 +72,8 @@ _G.keymap = M.keymap
 _G.keymapCmd = M.keymapCmd
 _G.keymapLoad = M.keymapLoad
 _G.keymapGroup = M.keymapGroup
+_G.workspace = M.workspace
+_G.env = M.env
 
 _G.Symbols = M.Symbols
 _G.Colors = M.Colors

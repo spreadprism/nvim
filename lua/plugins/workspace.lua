@@ -1,5 +1,5 @@
 if nixCats("workspace") then
-	plugin("exrc.nvim"):triggerUIEnter():after(function()
+	plugin("exrc"):triggerUIEnter():after(function()
 		local workspace_file_name = ".nvim.lua"
 		require("exrc").setup({
 			on_vim_enter = false,

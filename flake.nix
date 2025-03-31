@@ -19,7 +19,7 @@
       url = "github:zbirenbaum/copilot.lua";
       flake = false;
     };
-    "plugins-workspace" = {
+    "plugins-exrc" = {
       url = "github:jedrzejboczar/exrc.nvim";
       flake = false;
     };
@@ -83,8 +83,8 @@
           nvim-dap-ui
           nvim-dap-virtual-text
         ];
-        worspace = with pkgs.neovimPlugins; [
-          workspace
+        workspace = with pkgs.neovimPlugins; [
+          exrc
         ];
         testing = with pkgs.vimPlugins; [
           neotest
@@ -185,6 +185,7 @@
       debugging = true;
       testing = true;
       tmux = true;
+      workspace = true;
     };
 
     packageDefinitions = {

@@ -5,17 +5,6 @@ if nixCats("debugging") then
 		:triggerUIEnter()
 		:after(function()
 			local dap = require("dap")
-			-- INFO: dap configs ordering
-			local dap_configs = dap.providers.configs
-			local global, vscode = dap_configs["dap.global"], dap_configs["dap.launch.json"]
-			dap_configs["dap.global"] = nil
-			dap_configs["dap.launch.json"] = nil
-			dap_configs["dap.global"] = function(bufnr)
-				local configs = {}
-				configs = vim.list_extend(configs, vscode(bufnr))
-				configs = vim.list_extend(configs, global(bufnr))
-				return configs
-			end
 			-- INFO: define symbols
 			vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "ErrorMsg", linehl = "", numhl = "" })
 			vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "ErrorMsg", linehl = "", numhl = "" })

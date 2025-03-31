@@ -4,7 +4,7 @@ if nixCats("go") then
 			"-/nix/**",
 		},
 	}):ft("go")
-	formatter("go", "gofmt")
+	formatter("go", { "goimports", "gofmt" })
 	-- linter("go", "golangcilint") # BUG: its broken for some reason
 	plugin("nvim-dap-go"):on_require("dap-go"):ft("go"):after(function()
 		require("dap-go").setup({})
