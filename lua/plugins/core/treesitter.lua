@@ -3,7 +3,7 @@ plugin("nvim-treesitter-textobjects"):on_plugin("nvim-treesitter"):after(nil)
 plugin("nvim-treesitter"):triggerUIEnter():after(function(_)
 	require("nvim-treesitter.configs").setup({
 		highlight = { enable = true },
-		indent = { enable = true },
+		indent = { enable = false },
 		textobjects = {
 			select = {
 				enable = false, -- INFO: taken care of by mini.ai

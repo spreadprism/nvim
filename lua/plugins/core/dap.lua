@@ -47,8 +47,8 @@ if nixCats("debugging") then
 		})
 		:keys(keymapGroup("<leader>du", "dapui", {
 			keymap("n", "", function()
-				require("internal.dap_ui").set_overlay(1)
-			end, "dapui repl"),
+				require("internal.dap_ui").close()
+			end, "close ui"),
 			keymap("n", "r", function()
 				require("internal.dap_ui").set_overlay(1)
 			end, "dapui repl"),
