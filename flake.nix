@@ -93,6 +93,7 @@
           ]
           ++ (with pkgs.vimPlugins; [
             lze
+            mini-pairs
             lzextras
             plenary-nvim
             promise-async
@@ -189,7 +190,6 @@
             nvim-highlight-colors
             smart-splits-nvim
             nvim-ts-autotag
-            mini-pairs
             mini-ai
             mini-surround
             mini-move
