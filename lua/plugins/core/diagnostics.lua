@@ -18,6 +18,7 @@ plugin("trouble.nvim")
 					end
 					return "(" .. i .. "/" .. total .. ") ", ""
 				end,
+				source = true,
 			})
 		end),
 	})
