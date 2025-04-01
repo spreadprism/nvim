@@ -4,6 +4,13 @@ local dont_show_lsp = {
 
 return {
 	{
+		"overseer",
+		unique = false,
+		symbols = {
+			["RUNNING"] = "󰦖 ",
+		},
+	},
+	{
 		function()
 			local all_clients = vim.lsp.get_clients({ bufnr = vim.fn.bufnr() }) or {}
 

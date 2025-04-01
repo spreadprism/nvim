@@ -91,6 +91,8 @@
             tokyonight-nvim
             transparent-nvim
             which-key-nvim
+            lualine-nvim
+            overseer-nvim
           ]);
       };
       optionalPlugins = {
@@ -161,7 +163,6 @@
                 ]
             ))
             vim-startuptime
-            lualine-nvim
             nvim-notify
             noice-nvim
             dressing-nvim
@@ -192,7 +193,6 @@
             luasnip
             grug-far-nvim
             trouble-nvim
-            overseer-nvim
           ]
           ++ (with pkgs.neovimPlugins; [
             harpoon
