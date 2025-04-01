@@ -32,22 +32,26 @@ function LspPlugin:enabled(enabled)
 	return self
 end
 
----@param lsp_name string
----@param config table
----@param force? boolean
-function LspPlugin:config(lsp_name, config, force)
-	local configs = require("lspconfig/configs")
-	if force or not configs[lsp_name] then
-		configs[lsp_name] = {
-			default_config = config,
-		}
-	end
-	return self
+---@param display boolean
+function LspPlugin:display(display)
+	M.set_client_display(self.name, display)
 end
 
-function LspPlugin:setup(lsp_name, opts)
-	require("lspconfig")[lsp_name].setup(opts)
-	return self
+---@type table<string, boolean>
+local client_filter = {}
+---@param bufnr number
+function M.get_clients(bufnr)
+	local all_clients = vim.lsp.get_clients({ bufnr = bufnr }) or {}
+	all_clients = vim.tbl_map(function(val)
+		return val.name
+	end, all_clients)
+	return vim.tbl_filter(function(val)
+		return client_filter[val] or client_filter[val] == nil
+	end, all_clients)
 end
-
+---@param client string
+---@param display boolean
+function M.set_client_display(client, display)
+	client_filter[client] = display
+end
 return M

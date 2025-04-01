@@ -27,6 +27,10 @@
       url = "github:cvigilv/esqueleto.nvim";
       flake = false;
     };
+    "plugins-copilot-lualine" = {
+      url = "github:AndreM222/copilot-lualine";
+      flake = false;
+    };
   };
   outputs = {
     self,
@@ -79,6 +83,9 @@
         testing = debugging;
         tmux = with pkgs.vimPlugins; [
           vim-tmux-navigator
+        ];
+        ai = with pkgs.neovimPlugins; [
+          copilot-lualine
         ];
         core = with pkgs.neovimPlugins;
           [

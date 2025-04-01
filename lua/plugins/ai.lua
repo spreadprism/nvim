@@ -1,4 +1,5 @@
 if nixCats("ai") then
+	require("internal.lsp").set_client_display("copilot", false)
 	plugin("copilot")
 		:triggerUIEnter()
 		:on_require("copilot")

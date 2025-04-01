@@ -1,4 +1,5 @@
 require("plugins.overseer")
+require("copilot-lualine")
 require("lualine").setup({
 	options = {
 		theme = "auto",

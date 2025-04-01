@@ -1,35 +1,29 @@
 return {
 	{
-		function()
-			local ok, dap = pcall(require, "dap")
-			if not ok then
-				return " "
+		"copilot",
+		separator = "",
+		padding = { left = 1, right = 0 },
+		color = function()
+			local c = require("copilot-lualine")
+			local ok, loading = pcall(c.is_loading)
+			if ok and loading then
+				return { fg = Colors.blue }
+			else
+				return { fg = "#565f89" }
 			end
-			---@type dap.Session
-			local session = dap.session()
-			if session == nil then
-				return " "
-			end
-			return session.config.name
 		end,
-		draw_empty = true,
-		icon = {
-			"",
-			color = function()
-				local ok, dap = pcall(require, "dap")
-				if not ok then
-					return ""
-				end
-				---@type dap.Session
-				local session = dap.session()
-				if session == nil then
-					return { fg = "#565f89" }
-				end
-				if not session.initialized then
-					return { fg = "#e7c664" }
-				end
-				return { fg = "#1abc9c" }
-			end,
-		}, -- nerd icon.
+		show_loading = false,
+		symbols = {
+			status = {
+				icons = {
+					enabled = " ",
+					sleep = " ", -- auto-trigger disabled
+					disabled = " ",
+					warning = " ",
+					unknown = " ",
+				},
+			},
+		},
 	},
+	require("plugins.ui.lualine_configs.components.dap"),
 }

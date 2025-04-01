@@ -8,14 +8,7 @@ return {
 	},
 	{
 		function()
-			local all_clients = vim.lsp.get_clients({ bufnr = vim.fn.bufnr() }) or {}
-
-			local displays = {}
-			for _, client in pairs(all_clients) do
-				table.insert(displays, client.name)
-			end
-
-			return table.concat(displays, " | ")
+			return table.concat(require("internal.lsp").get_clients(vim.fn.bufnr()), ", ")
 		end,
 	},
 	{
