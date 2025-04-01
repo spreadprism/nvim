@@ -188,6 +188,7 @@
             luasnip
             grug-far-nvim
             trouble-nvim
+            overseer-nvim
           ]
           ++ (with pkgs.neovimPlugins; [
             harpoon
