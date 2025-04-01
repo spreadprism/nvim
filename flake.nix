@@ -67,6 +67,7 @@
           gopls
           delve
           golangci-lint
+          golangci-lint-langserver
         ];
         proto = with pkgs; [
           buf

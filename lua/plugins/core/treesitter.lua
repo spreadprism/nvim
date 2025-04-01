@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 plugin("nvim-treesitter-endwise"):on_plugin("nvim-treesitter"):after(nil)
 plugin("nvim-treesitter-textobjects"):on_plugin("nvim-treesitter"):after(nil)
 plugin("nvim-treesitter"):triggerUIEnter():after(function(_)

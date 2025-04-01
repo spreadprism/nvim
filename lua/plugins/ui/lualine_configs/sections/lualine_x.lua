@@ -1,7 +1,3 @@
-local dont_show_lsp = {
-	"copilot",
-}
-
 return {
 	{
 		"overseer",
@@ -16,10 +12,7 @@ return {
 
 			local displays = {}
 			for _, client in pairs(all_clients) do
-				local name = client.name
-				if not vim.tbl_contains(dont_show_lsp, name) then
-					table.insert(displays, name)
-				end
+				table.insert(displays, client.name)
 			end
 
 			return table.concat(displays, " | ")
