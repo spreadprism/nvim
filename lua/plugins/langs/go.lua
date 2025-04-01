@@ -13,5 +13,6 @@ if nixCats("go") then
 		end)
 		:on_plugin("nvim-dap")
 	plugin("neotest-golang"):after(nil):ft("go")
+	formatter("go", { "goimports", "gofmt" })
+	linter("go", "golangcilint")
 end
-formatter("go", {"goimports", "gofmt"})
