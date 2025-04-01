@@ -33,7 +33,7 @@ plugin("nvim-highlight-colors"):triggerBufferEnter():opts({
 	virtual_symbol_suffix = " ",
 })
 plugin("nvim-ts-autotag"):event({ "BufReadPre", "BufNewFile" })
-plugin("mini.pairs"):event({ "InsertEnter", "CmdlineEnter" }):opts({
+plugin("mini.pairs"):triggerUIEnter():opts({
 	modes = { insert = true, command = true, terminal = false },
 })
 plugin("mini.surround"):triggerUIEnter():opts({
