@@ -5,4 +5,12 @@ plugin("nvim-lint"):on_require("lint"):after(function()
 			require("lint").try_lint()
 		end,
 	})
+	local goci = require("lint").linters.golangcilint
+	goci.args = {
+		"run",
+		"--output.json.path=stdout",
+		"--show-stats=false",
+		"--issues-exit-code",
+		"0",
+	}
 end)
