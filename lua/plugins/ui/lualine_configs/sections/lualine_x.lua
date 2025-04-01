@@ -1,23 +1,15 @@
-local overseer = function()
-	local ok, _
-	pcall(require, "overseer")
-	if ok then
-		return {
-			"overseer",
-			unique = true,
-			symbols = {
-				[require("overseer").STATUS.RUNNING] = "󰦖 ",
-			},
-		}
-	end
-	return {}
-end
-
 local dont_show_lsp = {
 	"copilot",
 }
 
 return {
+	{
+		"overseer",
+		unique = true,
+		symbols = {
+			RUNNING = "󰦖 ",
+		},
+	},
 	function()
 		local all_clients = vim.lsp.get_clients({ bufnr = vim.fn.bufnr() }) or {}
 

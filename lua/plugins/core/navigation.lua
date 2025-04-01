@@ -9,6 +9,7 @@ plugin("hop.nvim")
 		keymap({ "n", "v" }, "F", hop.hop_char_line(false), "hop char l-BC"),
 		keymap({ "n", "v" }, "t", hop.hop_char_line(true, -1), "hop before char l-AC"),
 		keymap({ "n", "v" }, "T", hop.hop_char_line(false, 1), "hop after char l-BC"),
+		keymap("v", "<M-l>", keymapCmd("HopLine"), "hop line"),
 		keymap("n", "<M-l>", keymapCmd("HopLineStart"), "hop line start"),
 		keymap("n", "<M-/>", keymapCmd("HopPattern"), "hop at pattern"),
 	})
