@@ -6,7 +6,6 @@ plugin("nvim-lint"):on_require("lint"):after(function()
 		end,
 	})
 	local goci = require("lint").linters.golangcilint
-	-- BUG: nvim-lint doesn't work with golangcilint v2
 	goci.args = {
 		"run",
 		"--output.json.path=stdout",
