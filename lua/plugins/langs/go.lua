@@ -4,7 +4,7 @@ if nixCats("go") then
 			"-/nix/**",
 		},
 	}):ft("go")
-	lsp("golangci_lint_ls"):ft("go")
+	linter("go", "golangci-lint")
 	plugin("nvim-dap-go")
 		:on_require("dap-go")
 		:ft("go")
