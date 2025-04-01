@@ -72,6 +72,8 @@ plugin("blink.cmp"):event({ "InsertEnter", "CmdlineEnter" }):opts({
 				require("copilot.suggestion").next()
 			end,
 		},
+		["<M-n>"] = { "snippet_forward" },
+		["<M-p>"] = { "snippet_backward" },
 	}, base_keymap),
 	signature = { enabled = true, window = {
 		border = "rounded",

@@ -10,7 +10,7 @@ local s, i, t, f, r, fmt =
 
 return {
 	s("if", fmt("if {} {{\n  {}\n}}", { i(1), i(0) })),
-	s("tfunc", fmt("func Test{}(t *testing.T) {{\n  {}\n}}", { i(1), i(0)})),
+	s("tfunc", fmt("func Test{}(t *testing.T) {{\n  {}\n}}", { i(1), i(0) })),
 	s("struct", fmt("type {} struct {{\n  {}\n}}", { i(1), i(0) })),
 	s("interface", fmt("type {} interface {{\n  {}\n}}", { i(1), i(0) })),
 }

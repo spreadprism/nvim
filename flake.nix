@@ -68,6 +68,9 @@
           delve
           golangci-lint
         ];
+        proto = with pkgs; [
+          protols
+        ];
       };
       startupPlugins = rec {
         debugging = with pkgs.vimPlugins; [
@@ -133,7 +136,15 @@
               ]
           ))
         ];
-        remote = with pkgs.vimPlugins; [
+        proto = with pkgs.vimPlugins; [
+          (nvim-treesitter.withPlugins (
+            plugins:
+              with plugins; [
+                proto
+              ]
+          ))
+        ];
+        remote = with pkgs.oimPlugins; [
           nvim-osc52
         ];
         core = with pkgs.vimPlugins;
@@ -241,6 +252,7 @@
           base_categories misc
           // {
             go = true;
+            proto = true;
           };
       };
       nvim_minimal = {pkgs, ...} @ misc: {
