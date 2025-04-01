@@ -5,12 +5,12 @@ return {
 			if not ok then
 				return " "
 			end
+			---@type dap.Session
 			local session = dap.session()
 			if session == nil then
 				return " "
 			end
-
-			return string.lower(dap.status())
+			return session.config.name
 		end,
 		draw_empty = true,
 		icon = {
