@@ -5,7 +5,7 @@ local dont_show_lsp = {
 return {
 	{
 		"overseer",
-		unique = false,
+		unique = true,
 		symbols = {
 			["RUNNING"] = "󰦖 ",
 		},
