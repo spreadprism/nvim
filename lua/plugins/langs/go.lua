@@ -12,7 +12,7 @@ if nixCats("go") then
 			require("internal.dap").clear("go")
 		end)
 		:on_plugin("nvim-dap")
-	plugin("neotest-golang"):after(nil):ft("go")
+	plugin("neotest-golang"):after(nil):ft("go"):on_plugin("neotest")
 	formatter("go", { "goimports", "gofmt" })
 	linter("go", "golangcilint")
 end

@@ -2,14 +2,8 @@ if nixCats("testing") then
 	plugin("neotest")
 		:after(function()
 			local adapters = {}
-			if nixCats("go") then
+			if package.loaded["neotest-golang"] then
 				table.insert(adapters, require("neotest-golang")({}))
-			end
-			if nixCats("rust") then
-				table.insert(adapters, require("neotest-rust"))
-			end
-			if nixCats("python") then
-				table.insert(adapters, require("neotest-python")({}))
 			end
 			require("neotest").setup({
 				adapters = adapters,
@@ -21,11 +15,6 @@ if nixCats("testing") then
 				},
 			})
 		end)
-		:on_plugin({
-			"neotest-golang",
-			"neotest-rust",
-			"neotest-python",
-		})
 		:cmd("Neotest")
 		:keys(keymapGroup("<leader>u", "unit-testing", {
 			keymap("n", "e", keymapCmd("Neotest summary"), "tests explorer"),
