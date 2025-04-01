@@ -1,3 +1,3 @@
 if nixCats("proto") then
-	lsp("protobuf_language_server"):ft("proto")
+	lsp("buf_ls"):ft("proto")
 end

@@ -68,6 +68,9 @@
           delve
           golangci-lint
         ];
+        proto = with pkgs; [
+          buf
+        ];
       };
       startupPlugins = rec {
         debugging = with pkgs.vimPlugins; [
