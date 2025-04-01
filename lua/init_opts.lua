@@ -13,5 +13,6 @@ vim.o.timeoutlen = 200
 vim.opt.splitright = true
 vim.o.updatetime = 250
 vim.o.cmdheight = 0
+vim.opt.undofile = true -- INFO: Save undo history
 
 vim.deprecate = function() end

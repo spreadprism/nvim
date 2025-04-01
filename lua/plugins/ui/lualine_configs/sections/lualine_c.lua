@@ -12,4 +12,11 @@ return {
 			return session ~= nil
 		end,
 	},
+	{
+		"overseer",
+		unique = true,
+		symbols = {
+			RUNNING = "󰦖 ",
+		},
+	},
 }

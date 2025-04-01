@@ -86,7 +86,6 @@
             nvim-web-devicons
             tokyonight-nvim
             transparent-nvim
-            lualine-nvim
             which-key-nvim
           ]);
       };
@@ -158,6 +157,7 @@
                 ]
             ))
             vim-startuptime
+            lualine-nvim
             nvim-notify
             noice-nvim
             dressing-nvim
