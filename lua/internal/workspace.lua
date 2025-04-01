@@ -9,6 +9,8 @@ local dap_configurations
 ---@type integer
 local workspace_group_id
 
+local workspace_tasks_bundle = "workspace_tasks"
+
 function M.init()
 	require("exrc").init()
 	workspace_group_id = vim.api.nvim_create_augroup("workspace_on_save", { clear = true })
@@ -21,6 +23,8 @@ function M.init()
 				return dap_configurations
 			end
 		end
+	end
+	if nixCats("workspace") then
 	end
 end
 
@@ -83,7 +87,7 @@ function M.on_write(pattern, action)
 	if type(action) == "string" then
 		action = function()
 			-- TODO: Implement overseer for task name
-			print(action)
+			vim.cmd("OverseerRunCmd " .. action)
 		end
 	end
 	M.autocmd("BufWritePost", {
