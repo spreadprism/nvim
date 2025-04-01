@@ -82,17 +82,14 @@ function M.autocmd(event, opts)
 	)
 end
 ---@param pattern string | string[]
----@param action string | fun()
+---@param action string
 function M.on_write(pattern, action)
-	if type(action) == "string" then
-		action = function()
-			-- TODO: Implement overseer for task name
-			vim.cmd("OverseerRunCmd " .. action)
-		end
+	local callback = function()
+		require("overseer").run_template({ name = action })
 	end
 	M.autocmd("BufWritePost", {
 		pattern = pattern,
-		callback = action,
+		callback = callback,
 	})
 end
 
