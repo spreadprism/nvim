@@ -35,47 +35,6 @@ plugin("nvim-highlight-colors"):triggerBufferEnter():opts({
 plugin("nvim-ts-autotag"):event({ "BufReadPre", "BufNewFile" })
 plugin("mini.pairs"):event({ "InsertEnter", "CmdlineEnter" }):opts({
 	modes = { insert = true, command = true, terminal = false },
-	mappings = {
-		[")"] = { action = "close", pair = "()", neigh_pattern = "[^\\]." },
-		["]"] = { action = "close", pair = "[]", neigh_pattern = "[^\\]." },
-		["}"] = { action = "close", pair = "{}", neigh_pattern = "[^\\]." },
-		["["] = {
-			action = "open",
-			pair = "[]",
-			neigh_pattern = ".[%s%z%)}%]%,]",
-			register = { cr = false },
-		},
-		["{"] = {
-			action = "open",
-			pair = "{}",
-			neigh_pattern = ".[%s%z%)}%]%,]",
-			register = { cr = false },
-		},
-		["("] = {
-			action = "open",
-			pair = "()",
-			neigh_pattern = ".[%s%z%)%,]",
-			register = { cr = false },
-		},
-		['"'] = {
-			action = "closeopen",
-			pair = '""',
-			neigh_pattern = "[^%w\\][^%w]",
-			register = { cr = false },
-		},
-		["'"] = {
-			action = "closeopen",
-			pair = "''",
-			neigh_pattern = "[^%w\\][^%w]",
-			register = { cr = false },
-		},
-		["`"] = {
-			action = "closeopen",
-			pair = "``",
-			neigh_pattern = "[^%w\\][^%w]",
-			register = { cr = false },
-		},
-	},
 })
 plugin("mini.surround"):triggerUIEnter():opts({
 	mappings = {
