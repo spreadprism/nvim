@@ -230,6 +230,22 @@
         "type": "github"
       }
     },
+    "plugins-esqueleto": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1738612031,
+        "narHash": "sha256-MHiEEbFe79dAlMMHmH4C8X8xD8OK9bWrvmlQTGiVnEI=",
+        "owner": "cvigilv",
+        "repo": "esqueleto.nvim",
+        "rev": "490a02145412fb2cbb8d00b59e806070ed3cbdea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cvigilv",
+        "repo": "esqueleto.nvim",
+        "type": "github"
+      }
+    },
     "plugins-exrc": {
       "flake": false,
       "locked": {
@@ -285,6 +301,7 @@
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs",
         "plugins-copilot": "plugins-copilot",
+        "plugins-esqueleto": "plugins-esqueleto",
         "plugins-exrc": "plugins-exrc",
         "plugins-harpoon": "plugins-harpoon",
         "plugins-oil-vcs-status": "plugins-oil-vcs-status"

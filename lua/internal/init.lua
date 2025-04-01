@@ -4,9 +4,18 @@ local M = {}
 -- _G.print = vim.print
 _G.cwd = vim.fn.getcwd
 _G.joinpath = vim.fs.joinpath
+_G.exec = function(cmd)
+	local handle = io.popen(cmd)
+	---@diagnostic disable-next-line: need-check-nil
+	local result = handle:read("*a")
+	---@diagnostic disable-next-line: need-check-nil
+	handle:close()
+	return result
+end
 _G.HOME = os.getenv("HOME")
 _G.XDG_CONFIG = os.getenv("XDG_CONFIG_HOME") or joinpath(HOME, ".config")
 _G.LUA_PATH = joinpath(nixCats.configDir, "lua")
+_G.TEMPLATES_PATH = joinpath(LUA_PATH, "templates")
 
 M.plugin = require("internal.plugin").plugin
 M.lsp = require("internal.lsp").lsp

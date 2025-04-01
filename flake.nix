@@ -23,6 +23,10 @@
       url = "github:jedrzejboczar/exrc.nvim";
       flake = false;
     };
+    "plugins-esqueleto" = {
+      url = "github:cvigilv/esqueleto.nvim";
+      flake = false;
+    };
   };
   outputs = {
     self,
@@ -192,6 +196,7 @@
           ]
           ++ (with pkgs.neovimPlugins; [
             harpoon
+            esqueleto
           ]);
       };
       sharedLibraries = {};
