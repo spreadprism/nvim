@@ -144,7 +144,7 @@
               ]
           ))
         ];
-        remote = with pkgs.oimPlugins; [
+        remote = with pkgs.vimPlugins; [
           nvim-osc52
         ];
         core = with pkgs.vimPlugins;
