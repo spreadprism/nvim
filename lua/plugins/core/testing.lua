@@ -2,7 +2,7 @@ if nixCats("testing") then
 	plugin("neotest")
 		:after(function()
 			local adapters = {}
-			if package.loaded["neotest-golang"] then
+			if nixCats("go") then
 				table.insert(adapters, require("neotest-golang")({}))
 			end
 			require("neotest").setup({
