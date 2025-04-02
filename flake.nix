@@ -203,6 +203,7 @@
             telescope-nvim
             telescope-zf-native-nvim
             telescope-fzf-native-nvim
+            telescope-dap-nvim
             hop-nvim
             nvim-lint
             conform-nvim

@@ -1,4 +1,4 @@
-lsp("lua_ls"):ft("lua"):settings({
+lsp("lua_ls"):settings({
 	Lua = {
 		runtime = { version = "LuaJIT" },
 		formatters = {
