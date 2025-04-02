@@ -16,6 +16,9 @@ if nixCats("requests") then
 		once = true,
 		callback = function(args)
 			keymapGroup("<localleader>", "http", {
+				keymap("n", "x", function()
+					require("kulala.io").clear_response_history()
+				end, "send request", { buffer = args.buf }),
 				keymap("n", "s", function()
 					require("kulala").run()
 				end, "send request", { buffer = args.buf }),
@@ -42,6 +45,10 @@ if nixCats("requests") then
 				end, "show verbose", { buffer = args.buf }),
 			})
 			keymapLoad({
+				keymap("n", "<C-q>", function()
+					require("kulala.ui").close_kulala_buffer()
+					vim.cmd("q")
+				end, "Next request", { buffer = args.buf }),
 				keymap("n", "<Right>", function()
 					require("kulala.ui").show_next()
 				end, "Next request", { buffer = args.buf }),
