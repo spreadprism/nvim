@@ -36,7 +36,7 @@
       flake = false;
     };
     "plugins-kulala" = {
-      url = "github:mistweaverco/kulala.nvim";
+      url = "github:spreadprism/kulala.nvim";
       flake = false;
     };
   };

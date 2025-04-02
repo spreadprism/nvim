@@ -23,9 +23,9 @@ return {
 				return { fg = "#565f89" }
 			end
 			if not session.initialized then
-				return { fg = Colors.blue }
+				return { fg = Colors.yellow }
 			end
-			return { fg = "#1abc9c" }
+			return { fg = Colors.blue }
 		end,
 	},
 }
