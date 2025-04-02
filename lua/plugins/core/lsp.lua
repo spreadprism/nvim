@@ -71,12 +71,11 @@ require("lze").load({
 			},
 			virtual_lines = {
 				enabled = true,
-				source = "if_many",
 				severity = {
 					min = vim.diagnostic.severity.ERROR,
 				},
 			},
-			update_in_insert = true,
+			update_in_insert = false,
 			underline = true,
 			severity_sort = true,
 			float = {
