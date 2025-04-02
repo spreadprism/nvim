@@ -3,7 +3,7 @@ if nixCats("go") then
 		directoryFilters = {
 			"-/nix/**",
 		},
-	}):ft("go")
+	})
 	-- BUG: nvim-lint currently doesn't support v2 see: https://github.com/mfussenegger/nvim-lint/pull/761
 	-- linter("go", "golangcilint")
 	plugin("nvim-dap-go")
