@@ -8,6 +8,7 @@ local ft_blacklist = {
 	"dapui_watches",
 	"dapui_stacks",
 	"dapui_console",
+	"html.kualala_ui",
 }
 
 function M.winbar_cond(cond)

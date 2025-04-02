@@ -4,7 +4,16 @@ require("lualine").setup({
 	options = {
 		theme = "auto",
 		globalstatus = true,
-		disabled_filetypes = { statusline = { "dashboard", "alpha" } },
+		disabled_filetypes = {
+			statusline = {
+				"dashboard",
+				"alpha",
+			},
+			winbar = {
+				"kulala-ui",
+				"dap-view",
+			},
+		},
 		ignore_focus = { "TelescopePrompt" },
 		refresh = {
 			winbar = 1,

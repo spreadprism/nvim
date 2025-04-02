@@ -31,6 +31,14 @@
       url = "github:AndreM222/copilot-lualine";
       flake = false;
     };
+    "plugins-lualine-nvim" = {
+      url = "github:nvim-lualine/lualine.nvim";
+      flake = false;
+    };
+    "plugins-kulala" = {
+      url = "github:mistweaverco/kulala.nvim";
+      flake = false;
+    };
   };
   outputs = {
     self,
@@ -67,6 +75,12 @@
           nixd
           alejandra
         ];
+        requests = with pkgs; [
+          curl
+          grpcurl
+          jq
+          libxml2
+        ];
         go = with pkgs; [
           gopls
           delve
@@ -90,6 +104,7 @@
         core = with pkgs.neovimPlugins;
           [
             oil-vcs-status
+            lualine-nvim
           ]
           ++ (with pkgs.vimPlugins; [
             lze
@@ -102,7 +117,6 @@
             tokyonight-nvim
             transparent-nvim
             which-key-nvim
-            lualine-nvim
             overseer-nvim
           ]);
       };
@@ -119,6 +133,21 @@
           nvim-dap-ui
           nvim-dap-virtual-text
         ];
+        requests = with pkgs.vimPlugins;
+          [
+            (nvim-treesitter.withPlugins (
+              plugins:
+                with plugins; [
+                  http
+                  html
+                  javascript
+                  typescript
+                ]
+            ))
+          ]
+          ++ (with pkgs.neovimPlugins; [
+            kulala
+          ]);
         workspace = with pkgs.neovimPlugins; [
           exrc
         ];
@@ -235,6 +264,7 @@
       testing = true;
       tmux = true;
       workspace = true;
+      requests = true;
     };
     base_extra = {pkgs, ...} @ misc: {
       nixpkgs = ''import ${pkgs.path} {}'';
@@ -260,6 +290,7 @@
           base_categories misc
           // {
             go = true;
+            requests = true;
             proto = true;
           };
       };

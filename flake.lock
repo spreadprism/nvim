@@ -295,6 +295,38 @@
         "type": "github"
       }
     },
+    "plugins-kulala": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1743610072,
+        "narHash": "sha256-sfoyrkf038xti9IDTHFRsoPZDbjizcrZ6FWVvRQLCos=",
+        "owner": "mistweaverco",
+        "repo": "kulala.nvim",
+        "rev": "3ee4e4e18d0c6237717e06a7f075ef7423f5e81e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mistweaverco",
+        "repo": "kulala.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-lualine-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1743064178,
+        "narHash": "sha256-DAYRf8JIty6W78JXBSyfnyCryUUYX+QrsHSAlcOk7Fc=",
+        "owner": "nvim-lualine",
+        "repo": "lualine.nvim",
+        "rev": "1517caa8fff05e4b4999857319d3b0609a7f57fa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-lualine",
+        "repo": "lualine.nvim",
+        "type": "github"
+      }
+    },
     "plugins-oil-vcs-status": {
       "flake": false,
       "locked": {
@@ -321,6 +353,8 @@
         "plugins-esqueleto": "plugins-esqueleto",
         "plugins-exrc": "plugins-exrc",
         "plugins-harpoon": "plugins-harpoon",
+        "plugins-kulala": "plugins-kulala",
+        "plugins-lualine-nvim": "plugins-lualine-nvim",
         "plugins-oil-vcs-status": "plugins-oil-vcs-status"
       }
     },
