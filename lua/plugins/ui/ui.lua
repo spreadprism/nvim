@@ -85,5 +85,12 @@ plugin("noice.nvim")
 				},
 				opts = { skip = true },
 			},
+			{
+				filter = {
+					event = "msg_show",
+					find = "Errors in request",
+				},
+				opts = { skip = true },
+			},
 		},
 	})

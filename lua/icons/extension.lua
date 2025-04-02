@@ -80,8 +80,8 @@ return {
 		name = "copilot",
 	},
 	["http"] = {
-		icon = "",
-		color = "#4B3EC6",
-		name = "copilot",
+		icon = "",
+		color = "#EF314C",
+		name = "http",
 	},
 }

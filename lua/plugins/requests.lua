@@ -3,6 +3,10 @@ if nixCats("requests") then
 	plugin("kulala")
 		:opts({
 			vscode_rest_client_environmentvars = true,
+			disable_script_print_output = true,
+			ui = {
+				winbar = false,
+			},
 		})
 		:triggerUIEnter()
 
@@ -11,22 +15,45 @@ if nixCats("requests") then
 		pattern = { "*.http", "kulala://ui" },
 		once = true,
 		callback = function(args)
-			keymapLoad({
-				keymap("n", "<localleader>s", function()
+			keymapGroup("<localleader>", "http", {
+				keymap("n", "s", function()
 					require("kulala").run()
 				end, "send request", { buffer = args.buf }),
-				keymap("n", "<localleader>s", function()
+				keymap("n", "S", function()
 					require("kulala").run_all()
 				end, "send all request", { buffer = args.buf }),
-				keymap("n", "<localleader>i", function()
+				keymap("n", "r", function()
+					require("kulala").replay()
+				end, "resend last request", { buffer = args.buf }),
+				keymap("n", "i", function()
 					require("kulala").inspect()
 				end, "inspect current request", { buffer = args.buf }),
+				keymap("n", "h", function()
+					require("kulala.ui").show_headers()
+				end, "show headers", { buffer = args.buf }),
+				keymap("n", "b", function()
+					require("kulala.ui").show_body()
+				end, "show body", { buffer = args.buf }),
+				keymap("n", "a", function()
+					require("kulala.ui").show_headers_body()
+				end, "show header and body", { buffer = args.buf }),
+				keymap("n", "v", function()
+					require("kulala.ui").show_verbose()
+				end, "show verbose", { buffer = args.buf }),
+			})
+			keymapLoad({
 				keymap("n", "<Right>", function()
 					require("kulala.ui").show_next()
 				end, "Next request", { buffer = args.buf }),
 				keymap("n", "<Left>", function()
 					require("kulala.ui").show_previous()
 				end, "Previous request", { buffer = args.buf }),
+				keymap("n", "<Down>", function()
+					require("kulala").jump_next()
+				end, "Jump next request", { buffer = args.buf }),
+				keymap("n", "<Up>", function()
+					require("kulala").jump_prev()
+				end, "Jump previous request", { buffer = args.buf }),
 			})
 		end,
 	})

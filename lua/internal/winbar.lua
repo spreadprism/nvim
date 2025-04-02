@@ -8,7 +8,11 @@ local ft_blacklist = {
 	"dapui_watches",
 	"dapui_stacks",
 	"dapui_console",
-	"html.kualala_ui",
+	"kualala-ui",
+}
+
+local name_blacklist = {
+	"ui",
 }
 
 function M.winbar_cond(cond)
@@ -19,6 +23,9 @@ function M.winbar_cond(cond)
 	end
 	local f = function()
 		if vim.tbl_contains(ft_blacklist, vim.bo.filetype) then
+			return false
+		end
+		if vim.tbl_contains(name_blacklist, vim.fn.expand("%:t")) then
 			return false
 		end
 		return true
