@@ -52,7 +52,7 @@ require("lze").load({
 			capabilities = get_capabilities(plugin.name),
 			on_attach = o_a,
 		}, plugin.lsp or {}))
-		-- vim.api.nvim_exec_autocmds("FileType", {})
+		vim.api.nvim_exec_autocmds("FileType", {})
 	end,
 	after = function()
 		-- Symbols
