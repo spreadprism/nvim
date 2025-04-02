@@ -1,5 +1,16 @@
 plugin("nui-nvim"):on_plugin("noice-nvim"):after(nil)
-plugin("dressing.nvim"):on_plugin("noice-nvim"):on_require("dressing"):triggerUIEnter()
+plugin("dressing.nvim"):on_plugin("noice-nvim"):on_require("dressing"):triggerUIEnter():opts({
+	select = {
+		get_config = function(opts)
+			if opts.kind == "codeaction" then
+				return {
+					backend = "telescope",
+					telescope = require("telescope.themes").get_cursor({}),
+				}
+			end
+		end,
+	},
+})
 plugin("noice.nvim")
 	:for_cat("core")
 	:triggerUIEnter()
