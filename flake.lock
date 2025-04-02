@@ -298,11 +298,11 @@
     "plugins-kulala": {
       "flake": false,
       "locked": {
-        "lastModified": 1743613271,
-        "narHash": "sha256-Ke1FKwIKKaB79lmDCgJZVbAEijI0T4aem8atTFmTa1E=",
+        "lastModified": 1743613485,
+        "narHash": "sha256-LhTsg/4a2Ljzpft1o5qwfxrV79WGQ9FOPST24l40ysA=",
         "owner": "spreadprism",
         "repo": "kulala.nvim",
-        "rev": "6c8e0e3c4d14e8048fb09129c6295d091a6ef220",
+        "rev": "7f97a1c5b1b35bf967a664ab3493e03df5c9225c",
         "type": "github"
       },
       "original": {
