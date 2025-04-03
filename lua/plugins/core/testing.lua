@@ -1,5 +1,7 @@
 if nixCats("testing") then
 	plugin("neotest")
+		:cmd("Neotest")
+		:on_require("neotest")
 		:config(function()
 			local adapters = {}
 			if nixCats("go") then
@@ -15,7 +17,6 @@ if nixCats("testing") then
 				},
 			})
 		end)
-		:cmd("Neotest")
 		:keys(kgroup("<leader>u", "unit-testing", {}, {
 			kmap("n", "e", kcmd("Neotest summary"), "tests explorer"),
 			kmap("n", "c", kcmd("lua require('neotest').run.run()"), "test current function"),
