@@ -125,7 +125,7 @@ function Plugin:event(event)
 end
 
 function Plugin:event_user()
-	return self:event("User")
+	return self:event("DeferredUIEnter")
 end
 
 --- Lazy-load on command
