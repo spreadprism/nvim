@@ -1,7 +1,7 @@
 vim.loader.enable()
+require("init_opts")
 require("init_nixcats")
 require("init_lze")
-require("init_opts")
 require("init_ft")
 require("internal")
 require("init_keymaps")
