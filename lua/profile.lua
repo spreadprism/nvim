@@ -1,3 +1,4 @@
+-- INFO: https://ui.perfetto.dev
 local autocmd = require("profile.autocmd")
 local clock = require("profile.clock")
 local instrument = require("profile.instrument")

@@ -1,12 +1,5 @@
 -- TODO: Fix the duplicated keys
 local M = {}
-local UserPassed = false
-vim.api.nvim_create_autocmd("User", {
-	once = true,
-	callback = function()
-		UserPassed = true
-	end,
-})
 
 ---@class KeymapOpts: vim.keymap.set.Opts
 ---@field cond? boolean | fun():boolean
@@ -43,19 +36,19 @@ function M.keymap(mode, keys, action, desc, opts)
 		mode = vim.split(mode, "", { trimempty = true })
 	end
 	local keymap = setmetatable({ mode = mode, keys = keys, action = action, opts = opts }, Keymap)
-	if keymap.opts.map or keymap.opts.map == nil then
-		if UserPassed then
-			vim.schedule(function()
+	-- if v:vim_did_enter
+
+	if vim.fn.exists("v:vim_did_enter") == 1 then
+		vim.schedule(function()
+			keymap:map_which_key()
+		end)
+	else
+		vim.api.nvim_create_autocmd("VimEnter", {
+			once = true,
+			callback = function()
 				keymap:map_which_key()
-			end)
-		else
-			vim.api.nvim_create_autocmd("User", {
-				once = true,
-				callback = function()
-					keymap:map_which_key()
-				end,
-			})
-		end
+			end,
+		})
 	end
 	return keymap
 end
@@ -95,25 +88,11 @@ function M.group(keys, desc, opts, maps)
 	for _, kmap in ipairs(maps) do
 		kmap.keys = keys .. kmap.keys
 	end
-	local map = function()
-		require("which-key").add({
-			---@diagnostic disable-next-line: assign-type-mismatch
-			keys,
-			group = desc,
-		})
-	end
-
-	if UserPassed then
-		vim.schedule(function()
-			map()
-		end)
-	else
-		vim.api.nvim_create_autocmd("User", {
-			callback = function()
-				map()
-			end,
-		})
-	end
+	require("which-key").add({
+		---@diagnostic disable-next-line: assign-type-mismatch
+		keys,
+		group = desc,
+	})
 
 	return unpack(maps)
 end
