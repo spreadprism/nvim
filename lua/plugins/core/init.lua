@@ -1,1 +1,1 @@
-internal.load_all({ "plugins", "core" }, "testing")
+internal.load_all({ "plugins", "core" })
