@@ -38,6 +38,9 @@ local function after_setup(plugin)
 	local setup = function(module, opts)
 		if module.setup then
 			if opts or opts == nil then
+				if type(opts) == "function" then
+					opts = opts()
+				end
 				module.setup(opts or {})
 			else
 				module.setup()

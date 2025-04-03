@@ -20,7 +20,7 @@ end
 ---@field config? boolean | fun(Plugin)
 ---@field init? function
 ---@field setup? function
----@field opts? boolean | table
+---@field opts? boolean | table | fun(): table
 ---@field set_options_o? function
 ---@field set_options_g? function
 ---@field possible_names? string[]
@@ -182,7 +182,7 @@ function Plugin:on_require(name)
 	return self
 end
 
----@param opts? boolean | table
+---@param opts? boolean | table | fun(): table
 function Plugin:opts(opts)
 	self.plugin_opts.opts = opts
 	return self
