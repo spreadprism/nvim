@@ -1,5 +1,5 @@
 plugin("luasnip")
-	:event_ui()
+	:defer()
 	:opts({
 		history = true,
 		updateevents = "TextChangedI, TextChangedI", -- BUG: nvim-cmp breaks with this setting

@@ -42,7 +42,7 @@ local base_keymap = {
 		end,
 	},
 }
-plugin("blink.cmp"):event({ "InsertEnter", "CmdlineEnter" }):opts({
+plugin("blink.cmp"):event({ "InsertEnter", "CmdlineEnter" }):on_require("blink"):opts({
 	snippets = { preset = "luasnip" },
 	sources = {
 		default = {

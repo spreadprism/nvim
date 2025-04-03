@@ -98,13 +98,9 @@
         tmux = with pkgs.vimPlugins; [
           vim-tmux-navigator
         ];
-        ai = with pkgs.neovimPlugins; [
-          copilot-lualine
-        ];
         core = with pkgs.neovimPlugins;
           [
             oil-vcs-status
-            lualine-nvim
           ]
           ++ (with pkgs.vimPlugins; [
             lze
@@ -117,7 +113,6 @@
             tokyonight-nvim
             transparent-nvim
             which-key-nvim
-            overseer-nvim
           ]);
       };
       optionalPlugins = {
@@ -127,6 +122,7 @@
           ]
           ++ (with pkgs.neovimPlugins; [
             copilot
+            copilot-lualine
           ]);
         debugging = with pkgs.vimPlugins; [
           nvim-dap
@@ -242,8 +238,10 @@
             grug-far-nvim
             trouble-nvim
             treesj
+            overseer-nvim
           ]
           ++ (with pkgs.neovimPlugins; [
+            lualine-nvim
             harpoon
             esqueleto
           ]);

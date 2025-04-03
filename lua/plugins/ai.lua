@@ -1,7 +1,7 @@
 if nixCats("ai") then
 	require("internal.lsp").set_client_display("copilot", false)
 	plugin("copilot")
-		:event_ui()
+		:defer()
 		:on_require("copilot")
 		:opts({
 			suggestion = {
@@ -24,7 +24,7 @@ if nixCats("ai") then
 		end
 	end
 	plugin("codecompanion.nvim")
-		:event_ui()
+		:defer()
 		:on_require("codecompanion")
 		:opts({
 			display = {

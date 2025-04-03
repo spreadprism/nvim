@@ -1,6 +1,6 @@
 local hop = require("internal.hop")
 plugin("hop.nvim")
-	:event_ui()
+	:defer()
 	:on_require("hop")
 	:keys({
 		kmap({ "n", "v" }, "<M-s>", hop.hop_word, "hop"),
@@ -20,7 +20,7 @@ plugin("hop.nvim")
 		vim.api.nvim_set_hl(0, "HopNextKey1", { fg = fg, bold = true, underline = true })
 		vim.api.nvim_set_hl(0, "HopNextKey2", { fg = fg, bold = true })
 	end)
-plugin("harpoon"):event_ui():config(false):keys({
+plugin("harpoon"):defer():config(false):keys({
 	kmap("n", "<M-m>", function()
 		require("harpoon"):list():add()
 	end, "mark"),

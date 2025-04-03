@@ -125,6 +125,10 @@ function Plugin:event(event)
 end
 
 function Plugin:event_ui()
+	return self:event("UIEnter")
+end
+
+function Plugin:defer()
 	return self:event("DeferredUIEnter")
 end
 
