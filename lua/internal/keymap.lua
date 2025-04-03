@@ -1,6 +1,8 @@
+-- TODO: Fix the duplicated keys
 local M = {}
 local UserPassed = false
 vim.api.nvim_create_autocmd("User", {
+	once = true,
 	callback = function()
 		UserPassed = true
 	end,
@@ -48,6 +50,7 @@ function M.keymap(mode, keys, action, desc, opts)
 			end)
 		else
 			vim.api.nvim_create_autocmd("User", {
+				once = true,
 				callback = function()
 					keymap:map_which_key()
 				end,
