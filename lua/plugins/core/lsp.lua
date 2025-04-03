@@ -1,7 +1,7 @@
 ---@param server_name string
 local function get_capabilities(server_name)
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	capabilities.textDocument.completion.completionItem.snippetSupport = true
+	capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 	return capabilities
 end
 
