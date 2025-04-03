@@ -3,7 +3,7 @@ plugin("telescope-zf-native.nvim"):dep_of("telescope.nvim"):config(false)
 plugin("telescope-dap.nvim"):dep_of("telescope.nvim"):config(false)
 plugin("telescope.nvim")
 	:for_cat("core")
-	:event_user()
+	:event_ui()
 	:config(function()
 		local actions = require("telescope.actions")
 		require("telescope").setup({

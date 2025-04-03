@@ -1,5 +1,5 @@
 plugin("conform.nvim")
-	:event_user()
+	:event_ui()
 	:opts(function()
 		return {
 			formatters_by_ft = vim.tbl_deep_extend("error", require("internal.formatter").formatter_by_ft, {

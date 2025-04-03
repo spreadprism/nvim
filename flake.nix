@@ -241,6 +241,7 @@
             luasnip
             grug-far-nvim
             trouble-nvim
+            treesj
           ]
           ++ (with pkgs.neovimPlugins; [
             harpoon

@@ -124,7 +124,7 @@ function Plugin:event(event)
 	return self
 end
 
-function Plugin:event_user()
+function Plugin:event_ui()
 	return self:event("DeferredUIEnter")
 end
 

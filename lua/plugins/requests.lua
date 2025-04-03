@@ -8,7 +8,7 @@ if nixCats("requests") then
 				winbar = false,
 			},
 		})
-		:event_user()
+		:event_ui()
 
 	-- autocmd on buffer enter http ft
 	vim.api.nvim_create_autocmd("BufEnter", {

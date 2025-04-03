@@ -1,5 +1,5 @@
 plugin("smart-splits.nvim")
-	:event_user()
+	:event_ui()
 	:on_require("smart-splits")
 	:opts({
 		resize_mode = {

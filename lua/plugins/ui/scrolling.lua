@@ -1,4 +1,4 @@
-plugin("neoscroll.nvim"):for_cat("core"):event_user():opts({
+plugin("neoscroll.nvim"):for_cat("core"):event_ui():opts({
 	stop_eof = false,
 	pre_hook = function()
 		vim.opt.eventignore:append({
