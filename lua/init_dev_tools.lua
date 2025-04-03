@@ -21,8 +21,9 @@ if should_profile then
 	else
 		require("profile").instrument("*")
 	end
-	kgroup("<leader>=", "nvim cfgs utils", {}, {
-		kmap("n", "p", toggle_profile, "toggle profiling"),
-		kmap("n", "s", kcmd("tab StartupTime"), "startup time"),
-	})
+	kmap("n", "<leader>=p", toggle_profile, "toggle profiling")
 end
+
+kgroup("<leader>=", "devtools", {}, {
+	kmap("n", "s", kcmd("tab StartupTime"), "startup time"),
+})
