@@ -4,7 +4,7 @@ plugin("smart-splits.nvim")
 	:opts({
 		resize_mode = {
 			silent = true,
-			quit_key = "<ESC>",
+			quit_key = "",
 		},
 	})
 	:keys({
