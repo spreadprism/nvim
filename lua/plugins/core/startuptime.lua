@@ -1,9 +1,5 @@
-plugin("vim-startuptime")
-	:for_cat("core")
-	:cmd("StartupTime")
-	:set_g_options({
-		startuptime_event_width = 0,
-		startuptime_tries = 10,
-		startuptime_exe_path = nixCats.packageBinPath,
-	})
-	:config(false)
+plugin("vim-startuptime"):for_cat("core"):cmd("StartupTime"):config(function()
+	vim.g.startuptime_event_width = 0
+	vim.g.startuptime_tries = 10
+	vim.g.startuptime_exe_path = nixCats.packageBinPath
+end)
