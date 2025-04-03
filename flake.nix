@@ -292,6 +292,7 @@
             go = true;
             requests = true;
             proto = true;
+            remote = true;
           };
       };
       nvim_minimal = {pkgs, ...} @ misc: {

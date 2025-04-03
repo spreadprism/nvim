@@ -26,9 +26,9 @@ require("overseer").setup({
 		},
 	},
 })
-keymapGroup("<leader>t", "tasks", {
-	keymap("n", "t", keymapCmd("OverseerToggle"), "Toggle UI"),
-	keymap("n", "b", keymapCmd("OverseerToggle"), "Trigger build"),
-	keymap("n", "r", keymapCmd("OverseerRun"), "Task run"),
-	keymap("n", "l", keymapCmd("OverseerQuickAction open float"), "Open float last task"),
+kgroup("<leader>t", "tasks", {}, {
+	kmap("n", "t", kcmd("OverseerToggle"), "Toggle UI"),
+	kmap("n", "b", kcmd("OverseerToggle"), "Trigger build"),
+	kmap("n", "r", kcmd("OverseerRun"), "Task run"),
+	kmap("n", "l", kcmd("OverseerQuickAction open float"), "Open float last task"),
 })

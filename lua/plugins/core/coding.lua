@@ -1,4 +1,4 @@
-plugin("mini.indentscope"):triggerUIEnter():for_cat("core"):before(function()
+plugin("mini.indentscope"):for_cat("core"):event_user():init(function()
 	vim.api.nvim_create_autocmd("FileType", {
 		pattern = {
 			"",
@@ -20,12 +20,12 @@ plugin("mini.indentscope"):triggerUIEnter():for_cat("core"):before(function()
 		end,
 	})
 end)
-plugin("todo-comments.nvim"):on_require("todo-comments"):triggerBufferEnter():opts({
+plugin("todo-comments.nvim"):on_require("todo-comments"):event_user():opts({
 	highlight = {
 		multiline = false,
 	},
 })
-plugin("nvim-highlight-colors"):triggerBufferEnter():opts({
+plugin("nvim-highlight-colors"):event_user():opts({
 	render = "virtual",
 	virtual_symbol = "",
 	virtual_symbol_position = "eow",
@@ -33,10 +33,10 @@ plugin("nvim-highlight-colors"):triggerBufferEnter():opts({
 	virtual_symbol_suffix = " ",
 })
 plugin("nvim-ts-autotag"):event({ "BufReadPre", "BufNewFile" })
-plugin("mini.pairs"):triggerUIEnter():opts({
+plugin("mini.pairs"):event_user():opts({
 	modes = { insert = true, command = true, terminal = false },
 })
-plugin("mini.surround"):triggerUIEnter():opts({
+plugin("mini.surround"):event_user():opts({
 	mappings = {
 		delete = "",
 		find = "",
@@ -48,7 +48,7 @@ plugin("mini.surround"):triggerUIEnter():opts({
 		suffix_next = "",
 	},
 })
-plugin("mini.ai"):triggerBufferEnter():after(function(_)
+plugin("mini.ai"):event_user():config(function()
 	local gen_spec = require("mini.ai").gen_spec
 	require("mini.ai").setup({
 		custom_textobjects = {
@@ -62,7 +62,7 @@ plugin("mini.ai"):triggerBufferEnter():after(function(_)
 		},
 	})
 end)
-plugin("mini.move"):triggerUIEnter():opts({
+plugin("mini.move"):event_user():opts({
 	mappings = {
 		up = "<M-k>",
 		down = "<M-j>",
@@ -74,10 +74,8 @@ plugin("mini.move"):triggerUIEnter():opts({
 		line_up = "<M-k>",
 	},
 })
-plugin("nvim-surround"):triggerUIEnter()
-plugin("comment.nvim"):triggerUIEnter():after(function(_)
-	require("Comment").setup()
-end)
+plugin("nvim-surround"):event_user()
+plugin("comment.nvim"):event_user():on_require("Comment"):opts(false)
 plugin("tabout.nvim"):event("InsertCharPre"):on_require("tabout"):opts({
 	act_as_shift_tab = true,
 	tabouts = {
@@ -90,11 +88,11 @@ plugin("tabout.nvim"):event("InsertCharPre"):on_require("tabout"):opts({
 		{ open = "<", close = ">" },
 	},
 })
-plugin("grug-far.nvim"):triggerUIEnter():on_require("grug-far"):opts({}):keys({
-	keymap({ "n", "v" }, "<M-r>", function()
+plugin("grug-far.nvim"):event_user():on_require("grug-far"):opts({}):keys({
+	kmap({ "n", "v" }, "<M-r>", function()
 		require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } })
 	end, "replace current buffer"),
-	keymap({ "n", "v" }, "<M-R>", function()
+	kmap({ "n", "v" }, "<M-R>", function()
 		require("grug-far").open()
 	end, "replace global"),
 })

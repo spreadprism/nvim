@@ -1,5 +1,5 @@
-plugin("nui-nvim"):on_plugin("noice-nvim"):after(nil)
-plugin("dressing.nvim"):on_plugin("noice-nvim"):on_require("dressing"):triggerUIEnter():opts({
+plugin("nui-nvim"):on_plugin("noice-nvim"):config(false)
+plugin("dressing.nvim"):on_plugin("noice-nvim"):event_user():opts({
 	select = {
 		get_config = function(opts)
 			if opts.kind == "codeaction" then
@@ -13,12 +13,14 @@ plugin("dressing.nvim"):on_plugin("noice-nvim"):on_require("dressing"):triggerUI
 })
 plugin("noice.nvim")
 	:for_cat("core")
-	:triggerUIEnter()
+	:event_user()
 	:on_require("noice")
-	:keys(keymapGroup("<leader>n", "notifications", {
-		keymap("n", "d", keymapCmd("Noice dismiss"), "dismiss notifications"),
-		keymap("n", "l", keymapCmd("Noice last"), "last notifications"),
-	}))
+	:keys({
+		kgroup("<leader>n", "notifications", {}, {
+			kmap("n", "d", kcmd("Noice dismiss"), "dismiss notifications"),
+			kmap("n", "l", kcmd("Noice last"), "last notifications"),
+		}),
+	})
 	:opts({
 		cmdline = {
 			view = "cmdline",

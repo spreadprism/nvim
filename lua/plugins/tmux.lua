@@ -1,8 +1,6 @@
 if nixCats("tmux") then
-	keymapLoad({
-		keymap("n", "<C-h>", keymapCmd("TmuxNavigateLeft"), "Navigate window left"),
-		keymap("n", "<C-j>", keymapCmd("TmuxNavigateDown"), "Navigate window down"),
-		keymap("n", "<C-k>", keymapCmd("TmuxNavigateUp"), "Navigate window up"),
-		keymap("n", "<C-l>", keymapCmd("TmuxNavigateRight"), "Navigate window right"),
-	})
+	kmap("n", "<C-h>", kcmd("TmuxNavigateLeft"), "Navigate window left")
+	kmap("n", "<C-j>", kcmd("TmuxNavigateDown"), "Navigate window down")
+	kmap("n", "<C-k>", kcmd("TmuxNavigateUp"), "Navigate window up")
+	kmap("n", "<C-l>", kcmd("TmuxNavigateRight"), "Navigate window right")
 end

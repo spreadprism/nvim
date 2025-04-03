@@ -1,5 +1,5 @@
 plugin("diffview.nvim")
-	:triggerUIEnter()
+	:event_user()
 	:for_cat("git")
 	:on_plugin("neogit")
 	:on_require("diffview")
@@ -20,8 +20,8 @@ plugin("diffview.nvim")
 			view = require("internal.diffview").view_keys,
 		},
 	})
-	:keys(keymapGroup("<leader>g", "git", {
-		keymap("n", "d", keymapCmd("DiffviewOpen"), "open diffview"),
+	:keys(kgroup("<leader>g", "git", {}, {
+		kmap("n", "d", kcmd("DiffviewOpen"), "open diffview"),
 	}))
 plugin("neogit")
 	:for_cat("git")
@@ -34,19 +34,18 @@ plugin("neogit")
 		},
 		graph_style = "unicode",
 	})
-	:keys(keymapGroup("<leader>g", "git", {
-		keymap("n", "g", keymapCmd("Neogit"), "open neogit"),
+	:keys(kgroup("<leader>g", "git", {}, {
+		kmap("n", "g", kcmd("Neogit"), "open neogit"),
 	}))
-plugin("gitsigns.nvim"):triggerBufferEnter():on_require("gitsigns"):opts({
+plugin("gitsigns.nvim"):event_user():on_require("gitsigns"):opts({
 	current_line_blame_opts = {
 		delay = 10,
 	},
 	current_line_blame_formatter = "<author>, <author_time:%R>",
 	on_attach = function(bufnr)
-		local opts = { buffer = bufnr }
-		keymapGroup("<leader>g", "git", {
-			keymap("n", "b", keymapCmd("Gitsigns toggle_current_line_blame"), "Toggle current line blame", opts),
-			keymap("n", "B", keymapCmd("Gitsigns blame"), "Open gitblame", opts),
+		kgroup("<leader>g", "git", { buffer = bufnr }, {
+			kmap("n", "b", kcmd("Gitsigns toggle_current_line_blame"), "Toggle current line blame"),
+			kmap("n", "B", kcmd("Gitsigns blame"), "Open gitblame"),
 		})
 	end,
 })

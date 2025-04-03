@@ -1,9 +1,10 @@
-plugin("nvim-ufo"):triggerBufferEnter():after(function()
+plugin("nvim-ufo"):event_user():config(function()
 	vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 	vim.o.foldlevelstart = 99
 	vim.o.foldenable = true
 	vim.o.foldcolumn = "0"
 	vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+	---@diagnostic disable-next-line: unused-local
 	require("ufo").setup({
 		provider_selector = function(bufnr, filetype, buftype)
 			return { "treesitter", "indent" }

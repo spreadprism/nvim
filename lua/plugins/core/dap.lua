@@ -2,8 +2,8 @@ if nixCats("debugging") then
 	local dap_func = require("internal.dap_func")
 	plugin("nvim-dap")
 		:on_require("dap")
-		:triggerUIEnter()
-		:after(function()
+		:event_user()
+		:config(function()
 			local dap = require("dap")
 			-- INFO: define symbols
 			vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "ErrorMsg", linehl = "", numhl = "" })
@@ -21,20 +21,20 @@ if nixCats("debugging") then
 			-- dap.listeners.before.launch.trigger_load = dap.listeners.before.attach.trigger_load
 		end)
 		:keys({
-			keymap("n", "<F5>", dap_func("continue"), "DAP start / continue"),
-			keymap("n", "<F10>", dap_func("step_over"), "DAP step over"),
-			keymap("n", "<F11>", dap_func("step_into"), "DAP step into"),
-			keymap("n", "<F12>", dap_func("step_out"), "DAP step out"),
-			unpack(keymapGroup("<leader>d", "dap", {
-				keymap("n", "b", dap_func("toggle_breakpoint"), "toggle breakpoint"),
-				keymap("n", "g", dap_func("run_to_cursor"), "run to cursor"),
-				keymap("n", "l", dap_func("log_point"), "log point"),
-				keymap("n", "cb", dap_func("cond_point"), "conditional breakpoint"),
-				keymap("n", "s", dap_func("terminate"), "stop debugging session"),
-				keymap("n", "t", dap_func("debug_test"), "debug closest test"),
-				keymap("n", "r", dap_func("run_last"), "run last config"),
-				keymap("n", "e", dap_func("eval"), "evaluate expression"),
-			})),
+			kmap("n", "<F5>", dap_func("continue"), "DAP start / continue"),
+			kmap("n", "<F10>", dap_func("step_over"), "DAP step over"),
+			kmap("n", "<F11>", dap_func("step_into"), "DAP step into"),
+			kmap("n", "<F12>", dap_func("step_out"), "DAP step out"),
+			kgroup("<leader>d", "dap", {}, {
+				kmap("n", "b", dap_func("toggle_breakpoint"), "toggle breakpoint"),
+				kmap("n", "g", dap_func("run_to_cursor"), "run to cursor"),
+				kmap("n", "l", dap_func("log_point"), "log point"),
+				kmap("n", "cb", dap_func("cond_point"), "conditional breakpoint"),
+				kmap("n", "s", dap_func("terminate"), "stop debugging session"),
+				kmap("n", "t", dap_func("debug_test"), "debug closest test"),
+				kmap("n", "r", dap_func("run_last"), "run last config"),
+				kmap("n", "e", dap_func("eval"), "evaluate expression"),
+			}),
 		})
 	plugin("nvim-dap-ui")
 		:on_require("dapui")
@@ -45,17 +45,19 @@ if nixCats("debugging") then
 			},
 			layouts = require("internal.dap_ui").generate_layouts(),
 		})
-		:keys(keymapGroup("<leader>du", "dapui", {
-			keymap("n", "", function()
-				require("internal.dap_ui").close()
-			end, "close ui"),
-			keymap("n", "r", function()
-				require("internal.dap_ui").set_overlay(1)
-			end, "dapui repl"),
-			keymap("n", "c", function()
-				require("internal.dap_ui").set_overlay(2)
-			end, "dapui repl"),
-		}))
+		:keys({
+			kgroup("<leader>du", "dapui", {}, {
+				kmap("n", "", function()
+					require("internal.dap_ui").close()
+				end, "close ui"),
+				kmap("n", "r", function()
+					require("internal.dap_ui").set_overlay(1)
+				end, "dapui repl"),
+				kmap("n", "c", function()
+					require("internal.dap_ui").set_overlay(2)
+				end, "dapui repl"),
+			}),
+		})
 	local virtual_max_char = 15
 	plugin("nvim-dap-virtual-text")
 		:opts({

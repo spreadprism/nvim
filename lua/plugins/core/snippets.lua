@@ -1,7 +1,9 @@
-plugin("luasnip"):triggerUIEnter():after(function()
-	require("luasnip").setup({
+plugin("luasnip")
+	:event_user()
+	:opts({
 		history = true,
 		updateevents = "TextChangedI, TextChangedI", -- BUG: nvim-cmp breaks with this setting
 	})
-	require("luasnip.loaders.from_lua").load({ paths = joinpath(LUA_PATH, "snippets") })
-end)
+	:setup(function()
+		require("luasnip.loaders.from_lua").load({ paths = { joinpath(LUA_PATH, "snippets") } })
+	end)

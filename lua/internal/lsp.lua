@@ -1,40 +1,50 @@
 local M = {}
-local specs = require("internal.specs")
+local lze = require("internal.plugin.lze")
 vim.g.lsp_display = {}
 
----@class LspPlugin: Plugin
----@field name string
-LspPlugin = {}
-LspPlugin.__index = LspPlugin
+---@class Lsp
+---@param name string
+Lsp = {}
+Lsp.__index = Lsp
 
 ---@param name string
----@return LspPlugin
+---@return Lsp
 function M.lsp(name)
-	return specs.init(name, { lsp = {} }, LspPlugin)
+	local lsp = setmetatable({
+		name = name,
+		lsp = {},
+	}, Lsp)
+
+	lze.apply(name, lsp)
+	return lsp
 end
 
 ---@param ft string | string[]
----@return LspPlugin
-function LspPlugin:ft(ft)
-	specs.apply(self.name, { lsp = { filetypes = ft } })
+---@return Lsp
+function Lsp:ft(ft)
+	lze.apply(self.name, { lsp = { filetypes = ft } })
 	return self
 end
 
 ---@param settings table
----@return LspPlugin
-function LspPlugin:settings(settings)
-	specs.apply(self.name, { lsp = { settings = settings } })
+---@return Lsp
+function Lsp:settings(settings)
+	lze.apply(self.name, { lsp = { settings = settings } })
 	return self
 end
 
-function LspPlugin:enabled(enabled)
-	specs.apply(self.name, { enabled = enabled })
+---@param enabled boolean
+---@return Lsp
+function Lsp:enabled(enabled)
+	lze.apply(self.name, { enabled = enabled })
 	return self
 end
 
 ---@param display boolean
-function LspPlugin:display(display)
+---@return Lsp
+function Lsp:display(display)
 	M.set_client_display(self.name, display)
+	return self
 end
 
 ---@type table<string, boolean>

@@ -22,11 +22,21 @@ M.lsp = require("internal.lsp").lsp
 M.formatter = require("internal.formatter").formatter
 M.linter = require("internal.linter").linter
 M.keymap = require("internal.keymap").keymap
-M.keymapCmd = require("internal.keymap").keymapCmd
-M.keymapLoad = require("internal.keymap").load_all
-M.keymapGroup = require("internal.keymap").keymap_group
+---@param cmd string
+---@param ignore_error? boolean
+M.kcmd = function(cmd, ignore_error)
+	return function()
+		if ignore_error then
+			---@diagnostic disable-next-line: param-type-mismatch
+			pcall(vim.cmd, cmd)
+		else
+			vim.cmd(cmd)
+		end
+	end
+end
+M.kgroup = require("internal.keymap").group
 M.load_all = require("internal.loader").load_all
-M.merge_specs = require("internal.specs").merge
+M.merge_specs = require("internal.plugin.lze").merge
 M.telescope = require("internal.telescope")
 M.workspace = require("internal.workspace")
 M.env = require("internal.env")
@@ -66,9 +76,9 @@ M.global_vars = {
 	"plugin",
 	"lsp",
 	"keymap",
-	"keymapCmd",
+	"kcmd",
 	"keymapLoad",
-	"keymapGroup",
+	"kgroup",
 	"Symbols",
 	"Colors",
 }
@@ -77,10 +87,9 @@ _G.plugin = M.plugin
 _G.lsp = M.lsp
 _G.formatter = M.formatter
 _G.linter = M.linter
-_G.keymap = M.keymap
-_G.keymapCmd = M.keymapCmd
-_G.keymapLoad = M.keymapLoad
-_G.keymapGroup = M.keymapGroup
+_G.kmap = M.keymap
+_G.kcmd = M.kcmd
+_G.kgroup = M.kgroup
 _G.workspace = M.workspace
 _G.env = M.env
 

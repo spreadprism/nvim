@@ -1,12 +1,12 @@
-plugin("telescope-fzf-native.nvim"):dep_of("telescope.nvim"):after(nil)
-plugin("telescope-zf-native.nvim"):dep_of("telescope.nvim"):after(nil)
-plugin("telescope-dap.nvim"):dep_of("telescope.nvim"):after(nil)
+plugin("telescope-fzf-native.nvim"):dep_of("telescope.nvim"):config(false)
+plugin("telescope-zf-native.nvim"):dep_of("telescope.nvim"):config(false)
+plugin("telescope-dap.nvim"):dep_of("telescope.nvim"):config(false)
 plugin("telescope.nvim")
-	:triggerUIEnter()
-	:after(function(_)
-		local telescope = require("telescope")
+	:for_cat("core")
+	:event_user()
+	:config(function()
 		local actions = require("telescope.actions")
-		telescope.setup({
+		require("telescope").setup({
 			defaults = {
 				mappings = {
 					i = {
@@ -42,12 +42,12 @@ plugin("telescope.nvim")
 		pcall(require("telescope").load_extension, "dap")
 	end)
 	:keys({
-		keymap("n", "<M-g>", internal.telescope.live_grep(), "grep buffer"),
-		keymap("n", "<M-G>", internal.telescope.live_grep(true), "grep everything"),
-		keymap("n", "<M-f>", keymapCmd("Telescope current_buffer_fuzzy_find"), "fuzzy find buffer"),
-		unpack(keymapGroup("<leader>f", "find", {
-			keymap("n", "f", keymapCmd("Telescope find_files"), "files"),
-			keymap("n", "l", keymapCmd("Telescope resume"), "last"),
-			keymap("n", "s", keymapCmd("Telescope lsp_document_symbols"), "symbols"),
-		})),
+		kmap("n", "<M-g>", internal.telescope.live_grep(), "grep buffer"),
+		kmap("n", "<M-G>", internal.telescope.live_grep(true), "grep everything"),
+		kmap("n", "<M-f>", kcmd("Telescope current_buffer_fuzzy_find"), "fuzzy find buffer"),
+		kgroup("<leader>f", "find", {}, {
+			kmap("n", "f", kcmd("Telescope find_files"), "files"),
+			kmap("n", "l", kcmd("Telescope resume"), "last"),
+			kmap("n", "s", kcmd("Telescope lsp_document_symbols"), "symbols"),
+		}),
 	})

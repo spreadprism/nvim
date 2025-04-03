@@ -6,9 +6,9 @@ plugin("trouble.nvim")
 		focus = true,
 	})
 	:keys({
-		keymap("n", "<M-t>", keymapCmd("Trouble diagnostics toggle")),
-		keymap("n", "<M-T>", keymapCmd("Trouble diagnostics toggle filter.buf=0")),
-		keymap("n", "<M-d>", function()
+		kmap("n", "<M-t>", kcmd("Trouble diagnostics toggle")),
+		kmap("n", "<M-T>", kcmd("Trouble diagnostics toggle filter.buf=0")),
+		kmap("n", "<M-d>", function()
 			vim.diagnostic.open_float({
 				border = "rounded",
 				scope = "line",

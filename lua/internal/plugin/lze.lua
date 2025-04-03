@@ -6,9 +6,7 @@ function M.apply(name, specs)
 		merge = true,
 	}, specs)
 	new_specs.name = nil
-	new_specs.require_name = nil
-	new_specs.opts_table = nil
-	-- print(new_specs)
+	new_specs.plugin_opts = nil
 	require("lze").load(new_specs)
 end
 

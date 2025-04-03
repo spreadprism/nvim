@@ -6,20 +6,18 @@ local function get_capabilities(server_name)
 end
 
 local function on_attach(_, bufnr)
-	keymapLoad({
-		keymap({ "n", "v" }, "gd", function()
-			require("telescope.builtin").lsp_definitions()
-		end, "go to definition"),
-		keymap({ "n", "v" }, "gt", function()
-			require("telescope.builtin").lsp_type_definitions()
-		end, "go to type"),
-		keymap({ "n", "v" }, "gr", function()
-			require("telescope.builtin").lsp_references()
-		end, "go to reference"),
-		keymap("n", "<F2>", vim.lsp.buf.rename, "rename"),
-	})
-	keymapGroup("<leader>l", "lsp", {
-		keymap({ "n", "v" }, "a", vim.lsp.buf.code_action, "code actions"),
+	kmap({ "n", "v" }, "gd", function()
+		require("telescope.builtin").lsp_definitions()
+	end, "go to definition")
+	kmap({ "n", "v" }, "gt", function()
+		require("telescope.builtin").lsp_type_definitions()
+	end, "go to type")
+	kmap({ "n", "v" }, "gr", function()
+		require("telescope.builtin").lsp_references()
+	end, "go to reference")
+	kmap("n", "<F2>", vim.lsp.buf.rename, "rename")
+	kgroup("<leader>l", "lsp", {}, {
+		kmap({ "n", "v" }, "a", vim.lsp.buf.code_action, "code actions"),
 	})
 end
 
@@ -38,7 +36,7 @@ require("lze").load({
 	"nvim-lspconfig",
 	for_cat = "core",
 	on_require = { "lspconfig" },
-	event = "DeferredUIEnter",
+	event = "User",
 	lsp = function(plugin)
 		local o_a = on_attach
 		if plugin.lsp.on_attach then
@@ -106,16 +104,15 @@ require("lze").load({
 	end,
 })
 
-keymapGroup("<leader>l", "lsp", {
-	keymap("n", "i", keymapCmd("LspInfo"), "Info"),
-	keymap("n", "r", keymapCmd("LspRestart"), "Restart language server"),
-	keymap("n", "s", keymapCmd("LspStart"), "Start language server"),
-	keymap("n", "S", keymapCmd("LspStop"), "Start language server"),
-	keymap("n", "e", keymapCmd("Neoconf"), "Edit LSP settings"),
+kgroup("<leader>l", "lsp", {}, {
+	kmap("n", "i", kcmd("LspInfo"), "Info"),
+	kmap("n", "r", kcmd("LspRestart"), "Restart language server"),
+	kmap("n", "s", kcmd("LspStart"), "Start language server"),
+	kmap("n", "S", kcmd("LspStop"), "Start language server"),
+	kmap("n", "e", kcmd("Neoconf"), "Edit LSP settings"),
 })
 
 plugin("hover.nvim")
-	:on_require("hover")
 	:opts({
 		init = function()
 			require("hover.providers.lsp")
@@ -126,7 +123,7 @@ plugin("hover.nvim")
 		title = false,
 	})
 	:keys({
-		keymap("n", "K", function()
+		kmap("n", "K", function()
 			local api = vim.api
 			local hover_win = vim.b.hover_preview
 			if hover_win and api.nvim_win_is_valid(hover_win) then

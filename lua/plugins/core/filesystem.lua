@@ -51,14 +51,12 @@ require("oil-vcs-status").setup({
 	},
 })
 
-keymapLoad({
-	keymap("n", "-", function()
-		if vim.bo.filetype:match("^Neogit") then
-			vim.cmd("q")
-		end
-		vim.cmd("Oil")
-	end, "Open filesystem"),
-	keymap("n", "_", function()
-		vim.cmd("Oil " .. vim.fn.getcwd())
-	end, "Open current working directory"),
-})
+kmap("n", "-", function()
+	if vim.bo.filetype:match("^Neogit") then
+		vim.cmd("q")
+	end
+	vim.cmd("Oil")
+end, "Open filesystem")
+kmap("n", "_", function()
+	vim.cmd("Oil " .. vim.fn.getcwd())
+end, "Open current working directory")

@@ -1,7 +1,7 @@
 if nixCats("ai") then
 	require("internal.lsp").set_client_display("copilot", false)
 	plugin("copilot")
-		:triggerUIEnter()
+		:event_user()
 		:on_require("copilot")
 		:opts({
 			suggestion = {
@@ -24,7 +24,7 @@ if nixCats("ai") then
 		end
 	end
 	plugin("codecompanion.nvim")
-		:triggerUIEnter()
+		:event_user()
 		:on_require("codecompanion")
 		:opts({
 			display = {
@@ -54,17 +54,17 @@ if nixCats("ai") then
 				},
 			},
 		})
-		:keys(keymapGroup("<leader>a", "AI-assistant", {
-			keymap("n", "p", keymapCmd("CodeCompanion"), "Prompt"),
-			keymap("v", "p", function()
+		:keys(kgroup("<leader>a", "AI-assistant", {}, {
+			kmap("n", "p", kcmd("CodeCompanion"), "Prompt"),
+			kmap("v", "p", function()
 				vim.ui.input({ prompt = "Prompt" }, function(input)
 					vim.cmd("'<,'>CodeCompanion " .. input)
 				end)
 			end, "Prompt"),
-			keymap("v", "e", keymapCmd("CodeCompanion /explain"), "Explain"),
-			keymap("v", "f", keymapCmd("CodeCompanion @editor /fix"), "Fix"),
-			keymap("v", "t", keymapCmd("CodeCompanion @editor /tests"), "Generate tests"),
-			keymap("n", "c", keymapCmd("CodeCompanionChat Toggle"), "Toggle chat"),
-			keymap("n", "a", keymapCmd("CodeCompanionActions"), "Actions"),
+			kmap("v", "e", kcmd("CodeCompanion /explain"), "Explain"),
+			kmap("v", "f", kcmd("CodeCompanion @editor /fix"), "Fix"),
+			kmap("v", "t", kcmd("CodeCompanion @editor /tests"), "Generate tests"),
+			kmap("n", "c", kcmd("CodeCompanionChat Toggle"), "Toggle chat"),
+			kmap("n", "a", kcmd("CodeCompanionActions"), "Actions"),
 		}))
 end

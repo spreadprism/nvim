@@ -1,28 +1,26 @@
+local function copy(lines, _)
+	require("osc52").copy(table.concat(lines, "\n"))
+end
+
+local function paste()
+	return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
+end
 plugin("nvim-osc52")
+	:on_require("osc52")
 	:for_cat("remote")
-	:envPresent({
+	:env_enabled({
 		"SSH_CLIENT",
 		"SSH_TTY",
 	})
-	:event("DeferredUIEnter")
-	:after(function()
-		local osc = require("osc52")
-		osc.setup({
-			tmux_passthrough = true,
-			silent = true,
-			trim = true,
-		})
-		local function copy(lines, _)
-			require("osc52").copy(table.concat(lines, "\n"))
-		end
-
-		local function paste()
-			return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
-		end
-
-		vim.g.clipboard = {
+	:set_g_options({
+		clipboard = {
 			name = "osc52",
 			copy = { ["+"] = copy, ["*"] = copy },
 			paste = { ["+"] = paste, ["*"] = paste },
-		}
-	end)
+		},
+	})
+	:opts({
+		tmux_passthrough = true,
+		silent = true,
+		trim = true,
+	})

@@ -1,4 +1,4 @@
-plugin("esqueleto"):triggerUIEnter():opts({
+plugin("esqueleto"):event_user():opts({
 	directories = { TEMPLATES_PATH },
 	wildcards = {
 		lookup = {

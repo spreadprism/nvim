@@ -16,11 +16,11 @@ if nixCats("testing") then
 			})
 		end)
 		:cmd("Neotest")
-		:keys(keymapGroup("<leader>u", "unit-testing", {
-			keymap("n", "e", keymapCmd("Neotest summary"), "tests explorer"),
-			keymap("n", "c", keymapCmd("lua require('neotest').run.run()"), "test current function"),
-			keymap("n", "f", keymapCmd("lua require('neotest').run.run(vim.fn.expand('%'))"), "test current file"),
-			keymap("n", "p", keymapCmd("lua require('neotest').run.run(vim.fn.getcwd())"), "test current project"),
-			keymap("n", "x", keymapCmd("lua require('neotest').run.stop()"), "stop current test"),
+		:keys(kgroup("<leader>u", "unit-testing", {
+			kmap("n", "e", kcmd("Neotest summary"), "tests explorer"),
+			kmap("n", "c", kcmd("lua require('neotest').run.run()"), "test current function"),
+			kmap("n", "f", kcmd("lua require('neotest').run.run(vim.fn.expand('%'))"), "test current file"),
+			kmap("n", "p", kcmd("lua require('neotest').run.run(vim.fn.getcwd())"), "test current project"),
+			kmap("n", "x", kcmd("lua require('neotest').run.stop()"), "stop current test"),
 		}))
 end
