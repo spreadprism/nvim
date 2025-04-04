@@ -1,3 +1,4 @@
+-- TODO: Switch to new-file-template.nvim
 plugin("esqueleto"):event_defer():opts({
 	directories = { TEMPLATES_PATH },
 	wildcards = {

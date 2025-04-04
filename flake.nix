@@ -272,8 +272,6 @@
     };
     base_settings = {pkgs, ...} @ misc: {
       wrapRc = true;
-      viAlias = false;
-      vimAlias = false;
     };
     base_categories = {pkgs, ...} @ misc: {
       core = true;

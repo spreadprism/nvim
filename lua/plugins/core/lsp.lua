@@ -32,6 +32,20 @@ plugin("neoconf.nvim"):on_require("neoconf"):on_plugin("nvim-lspconfig"):opts({
 		},
 	},
 })
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(t)
+		local path = vim.api.nvim_buf_get_name(t.buf)
+		-- if it matches */nvim/lua/templates/*
+		if path:match("nvim/lua/templates") then
+			for _, client in pairs(vim.lsp.get_actc({ bufnr = t.buf })) do
+				vim.defer_fn(function()
+					pcall(vim.lsp.buf_detach_client, t.buf, client.id)
+				end, 10)
+			end
+		end
+	end,
+})
 require("lze").load({
 	"nvim-lspconfig",
 	for_cat = "core",
