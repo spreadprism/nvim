@@ -13,10 +13,10 @@ local function toggle_profile()
 	end
 end
 
-local should_profile = os.getenv("NVIM_PROFILE")
-if should_profile then
+if nixCats("devtools") then
 	require("profile").instrument_autocmds()
-	if should_profile:lower():match("^start") then
+	local should_profile = os.getenv("NVIM_PROFILE")
+	if should_profile and should_profile:lower():match("^start") then
 		require("profile").start("*")
 	else
 		require("profile").instrument("*")

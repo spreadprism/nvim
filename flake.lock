@@ -262,6 +262,22 @@
         "type": "github"
       }
     },
+    "plugins-ex-colors": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1743346060,
+        "narHash": "sha256-zbE9WcxLw5vn2TM8CrgACkzX7ZOKHmuzrxyTBrzI4eM=",
+        "owner": "aileot",
+        "repo": "ex-colors.nvim",
+        "rev": "5edcaee2aea26e243dc4191c94026da437196db9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aileot",
+        "repo": "ex-colors.nvim",
+        "type": "github"
+      }
+    },
     "plugins-exrc": {
       "flake": false,
       "locked": {
@@ -343,6 +359,22 @@
         "type": "github"
       }
     },
+    "plugins-profile": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1741191467,
+        "narHash": "sha256-2Mk6VbC+K/WhTWF+yHyDhQKJhTi2rpo8VJsnO7ofHXs=",
+        "owner": "stevearc",
+        "repo": "profile.nvim",
+        "rev": "30433d7513f0d14665c1cfcea501c90f8a63e003",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stevearc",
+        "repo": "profile.nvim",
+        "type": "github"
+      }
+    },
     "plugins-tmux-navigation": {
       "flake": false,
       "locked": {
@@ -367,11 +399,13 @@
         "plugins-copilot": "plugins-copilot",
         "plugins-copilot-lualine": "plugins-copilot-lualine",
         "plugins-esqueleto": "plugins-esqueleto",
+        "plugins-ex-colors": "plugins-ex-colors",
         "plugins-exrc": "plugins-exrc",
         "plugins-harpoon": "plugins-harpoon",
         "plugins-kulala": "plugins-kulala",
         "plugins-lualine-nvim": "plugins-lualine-nvim",
         "plugins-oil-vcs-status": "plugins-oil-vcs-status",
+        "plugins-profile": "plugins-profile",
         "plugins-tmux-navigation": "plugins-tmux-navigation"
       }
     },

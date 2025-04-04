@@ -43,6 +43,14 @@
       url = "github:alexghergh/nvim-tmux-navigation";
       flake = false;
     };
+    "plugins-ex-colors" = {
+      url = "github:aileot/ex-colors.nvim";
+      flake = false;
+    };
+    "plugins-profile" = {
+      url = "github:stevearc/profile.nvim";
+      flake = false;
+    };
   };
   outputs = {
     self,
@@ -99,6 +107,9 @@
           nvim-nio
         ];
         testing = debugging;
+        devtools = with pkgs.neovimPlugins; [
+          profile
+        ];
         core = with pkgs.neovimPlugins;
           [
             oil-vcs-status
@@ -248,6 +259,7 @@
             lualine-nvim
             harpoon
             esqueleto
+            ex-colors
           ]);
       };
       sharedLibraries = {};
@@ -296,6 +308,7 @@
             requests = true;
             proto = true;
             remote = true;
+            devtools = true;
           };
       };
       nvim_minimal = {pkgs, ...} @ misc: {
