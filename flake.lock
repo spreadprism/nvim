@@ -230,22 +230,6 @@
         "type": "github"
       }
     },
-    "plugins-copilot-lualine": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1743343936,
-        "narHash": "sha256-3QlaRQkZ7ZtnDnfigezZRvb6/KXMYMPZ0I8NE12Ot0o=",
-        "owner": "AndreM222",
-        "repo": "copilot-lualine",
-        "rev": "a36398674fa88ba6a90cc4a57a27e411c1c27735",
-        "type": "github"
-      },
-      "original": {
-        "owner": "AndreM222",
-        "repo": "copilot-lualine",
-        "type": "github"
-      }
-    },
     "plugins-easycolor": {
       "flake": false,
       "locked": {
@@ -413,7 +397,6 @@
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs",
         "plugins-copilot": "plugins-copilot",
-        "plugins-copilot-lualine": "plugins-copilot-lualine",
         "plugins-easycolor": "plugins-easycolor",
         "plugins-esqueleto": "plugins-esqueleto",
         "plugins-ex-colors": "plugins-ex-colors",

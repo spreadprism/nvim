@@ -27,10 +27,6 @@
       url = "github:cvigilv/esqueleto.nvim";
       flake = false;
     };
-    "plugins-copilot-lualine" = {
-      url = "github:AndreM222/copilot-lualine";
-      flake = false;
-    };
     "plugins-lualine-nvim" = {
       url = "github:nvim-lualine/lualine.nvim";
       flake = false;

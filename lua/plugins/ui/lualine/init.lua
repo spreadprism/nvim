@@ -1,4 +1,3 @@
-plugin("copilot-lualine"):on_plugin("lualine-nvim"):config(false)
 -- INFO: Even if not lazyloaded, we don't save any time on the bar display
 plugin("lualine-nvim"):dep_on("overseer.nvim"):config(function()
 	internal.load_all("plugins.ui.lualine.components")
