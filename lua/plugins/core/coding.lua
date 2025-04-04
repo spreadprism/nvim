@@ -32,6 +32,11 @@ plugin("nvim-highlight-colors"):event_defer():opts({
 	virtual_symbol_prefix = " ",
 	virtual_symbol_suffix = " ",
 })
+plugin("easycolor")
+	:keys({
+		kmap("v", "<M-p>", "d<cmd>EasyColor<cr>", "open colorpicker"),
+	})
+	:dep_on("dressing.nvim")
 plugin("nvim-ts-autotag"):event({ "BufReadPre", "BufNewFile" })
 plugin("mini.pairs"):event_defer():opts({
 	modes = { insert = true, command = true, terminal = false },

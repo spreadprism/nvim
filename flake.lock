@@ -246,6 +246,22 @@
         "type": "github"
       }
     },
+    "plugins-easycolor": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1742064021,
+        "narHash": "sha256-uCgAb4KUbk3HyC/9a2OszBN0Mse8fcS6oC+6uJ56kjs=",
+        "owner": "vi013t",
+        "repo": "easycolor.nvim",
+        "rev": "907b54a77a0f996c66bc2d5888eee891a4019a99",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vi013t",
+        "repo": "easycolor.nvim",
+        "type": "github"
+      }
+    },
     "plugins-esqueleto": {
       "flake": false,
       "locked": {
@@ -398,6 +414,7 @@
         "nixpkgs": "nixpkgs",
         "plugins-copilot": "plugins-copilot",
         "plugins-copilot-lualine": "plugins-copilot-lualine",
+        "plugins-easycolor": "plugins-easycolor",
         "plugins-esqueleto": "plugins-esqueleto",
         "plugins-ex-colors": "plugins-ex-colors",
         "plugins-exrc": "plugins-exrc",

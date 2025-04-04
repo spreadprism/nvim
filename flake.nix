@@ -51,6 +51,10 @@
       url = "github:stevearc/profile.nvim";
       flake = false;
     };
+    "plugins-easycolor" = {
+      url = "github:vi013t/easycolor.nvim";
+      flake = false;
+    };
   };
   outputs = {
     self,
@@ -261,6 +265,7 @@
             lualine-nvim
             harpoon
             esqueleto
+            easycolor
           ]);
         devtools = with pkgs.neovimPlugins; [
           ex-colors

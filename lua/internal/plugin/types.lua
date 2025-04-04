@@ -172,6 +172,16 @@ function Plugin:dep_of(name)
 	return self
 end
 
+---@param name string | string[]
+function Plugin:dep_on(name)
+	if type(name) == "string" then
+		name = { name }
+	end
+	for _, n in ipairs(name) do
+		lze.apply(n, { dep_of = self.name })
+	end
+end
+
 --- Lazy-load after another plugin but before its `after` hook
 ---@param name string | string[]
 function Plugin:on_plugin(name)
