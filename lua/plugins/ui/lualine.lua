@@ -1,6 +1,7 @@
 -- require("plugins.overseer")
 plugin("copilot-lualine"):on_plugin("lualine-nvim"):config(false)
-plugin("lualine-nvim"):event_defer():config(function()
+-- INFO: Even if not lazyloaded, we don't save any time on the bar display
+plugin("lualine-nvim"):config(function()
 	require("lualine").setup({
 		options = {
 			theme = "auto",
