@@ -21,21 +21,20 @@ if nixCats("devtools") then
 	else
 		require("profile").instrument("*")
 	end
-	kmap("n", "<leader>=p", toggle_profile, "toggle profiling")
-end
-
-kgroup("<leader>=", "devtools", {}, {
-	kmap("n", "s", kcmd("tab StartupTime"), "startup time"),
-	kmap("n", "l", function()
-		local state = require("lze").state(vim.fn.input("plugin name"))
-		if state then
-			vim.print("ready to be loaded")
-		else
-			if state == nil then
-				vim.print("never loaded")
+	kgroup("<leader>=", "devtools", {}, {
+		kmap("n", "<leader>=p", toggle_profile, "toggle profiling"),
+		kmap("n", "l", function()
+			local state = require("lze").state(vim.fn.input("plugin name"))
+			if state then
+				vim.print("ready to be loaded")
 			else
-				vim.print("loaded")
+				if state == nil then
+					vim.print("never loaded")
+				else
+					vim.print("loaded")
+				end
 			end
-		end
-	end, "query plugin status"),
-})
+		end, "query plugin status"),
+	})
+end
+kmap("n", "<leader>=s", kcmd("tab StartupTime"), "startup time")

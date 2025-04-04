@@ -1,4 +1,13 @@
-vim.cmd("colorscheme tokyonight-storm")
+if nixCats("colorscheme") then
+	vim.cmd("colorscheme tokyonight-storm")
+	if nixCats("devtools") then
+		plugin("ex-colors"):cmd("ExColors"):opts({
+			colors_dir = joinpath(cwd(), "colors"),
+		})
+	end
+else
+	vim.cmd("colorscheme ex-tokyonight-storm")
+end
 local transparent = require("transparent")
 transparent.setup({
 	exclude_groups = {

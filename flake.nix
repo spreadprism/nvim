@@ -122,10 +122,12 @@
             promise-async
             oil-nvim
             nvim-web-devicons
-            tokyonight-nvim
             transparent-nvim
             which-key-nvim
           ]);
+        colorscheme = with pkgs.vimPlugins; [
+          tokyonight-nvim
+        ];
       };
       optionalPlugins = {
         ai = with pkgs.vimPlugins;
@@ -259,8 +261,10 @@
             lualine-nvim
             harpoon
             esqueleto
-            ex-colors
           ]);
+        devtools = with pkgs.neovimPlugins; [
+          ex-colors
+        ];
       };
       sharedLibraries = {};
       environmentVariables = {};
@@ -280,6 +284,7 @@
       tmux = true;
       workspace = true;
       requests = true;
+      colorscheme = true; # BUG: Currently the built colorscheme doesn't work
     };
     base_extra = {pkgs, ...} @ misc: {
       nixpkgs = ''import ${pkgs.path} {}'';
