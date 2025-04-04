@@ -343,6 +343,22 @@
         "type": "github"
       }
     },
+    "plugins-tmux-navigation": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1707171454,
+        "narHash": "sha256-CxAgQSbOrg/SsQXupwCv8cyZXIB7tkWO+Y6FDtoR8xk=",
+        "owner": "alexghergh",
+        "repo": "nvim-tmux-navigation",
+        "rev": "4898c98702954439233fdaf764c39636681e2861",
+        "type": "github"
+      },
+      "original": {
+        "owner": "alexghergh",
+        "repo": "nvim-tmux-navigation",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "neovim-nightly-overlay": "neovim-nightly-overlay",
@@ -355,7 +371,8 @@
         "plugins-harpoon": "plugins-harpoon",
         "plugins-kulala": "plugins-kulala",
         "plugins-lualine-nvim": "plugins-lualine-nvim",
-        "plugins-oil-vcs-status": "plugins-oil-vcs-status"
+        "plugins-oil-vcs-status": "plugins-oil-vcs-status",
+        "plugins-tmux-navigation": "plugins-tmux-navigation"
       }
     },
     "treefmt-nix": {

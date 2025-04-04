@@ -39,6 +39,10 @@
       url = "github:spreadprism/kulala.nvim";
       flake = false;
     };
+    "plugins-tmux-navigation" = {
+      url = "github:alexghergh/nvim-tmux-navigation";
+      flake = false;
+    };
   };
   outputs = {
     self,
@@ -95,9 +99,6 @@
           nvim-nio
         ];
         testing = debugging;
-        tmux = with pkgs.vimPlugins; [
-          vim-tmux-navigator
-        ];
         core = with pkgs.neovimPlugins;
           [
             oil-vcs-status
@@ -124,6 +125,9 @@
             copilot
             copilot-lualine
           ]);
+        tmux = with pkgs.neovimPlugins; [
+          tmux-navigation
+        ];
         debugging = with pkgs.vimPlugins; [
           nvim-dap
           nvim-dap-ui
