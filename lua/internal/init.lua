@@ -40,6 +40,9 @@ M.merge_specs = require("internal.plugin.lze").merge
 M.telescope = require("internal.telescope")
 M.workspace = require("internal.workspace")
 M.env = require("internal.env")
+M.plugin_loaded = function(plugin)
+	return require("lze").state(plugin) == false
+end
 
 M.Symbols = {
 	modified = "󱇧 ",

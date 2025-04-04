@@ -180,6 +180,7 @@ function Plugin:dep_on(name)
 	for _, n in ipairs(name) do
 		lze.apply(n, { dep_of = self.name })
 	end
+	return self
 end
 
 --- Lazy-load after another plugin but before its `after` hook
