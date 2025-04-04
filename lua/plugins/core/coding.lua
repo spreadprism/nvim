@@ -92,8 +92,8 @@ plugin("treesj")
 	:event_defer()
 	:cmd({ "TSJSplit", "TSJJoin" })
 	:keys({
-		kmap("n", "S", kcmd("TSJSplit"), "Split"),
-		kmap("n", "J", kcmd("TSJJoin"), "Join"),
+		kmap("n", "gs", kcmd("TSJSplit"), "Split"),
+		kmap("n", "gj", kcmd("TSJJoin"), "Join"),
 	})
 	:opts({
 		use_default_keymaps = false,

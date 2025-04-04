@@ -1,7 +1,16 @@
 plugin("overseer.nvim")
 	:on_require("overseer")
 	:opts({
-		templates = { "cargo", "vscode", "make", "npm" },
+		templates = { "cargo", "vscode", "make", "npm", "shell" },
+		component_aliases = {
+			default = {
+				{ "display_duration", detail_level = 2 },
+				"on_output_summarize",
+				"on_exit_set_status",
+				{ "on_complete_notify", statuses = { "FAILURE" } },
+				{ "on_complete_dispose", require_view = { "SUCCESS", "FAILURE" } },
+			},
+		},
 		task_list = {
 			bindings = {
 				["?"] = "ShowHelp",
@@ -28,7 +37,7 @@ plugin("overseer.nvim")
 			},
 		},
 	})
-	:cmd({ "OverseerRun", "OverseerToggle", "OverseerQuickAction" })
+	:cmd({ "OverseerRun", "OverseerToggle", "OverseerQuickAction", "OverseerRunCmd" })
 	:keys({
 		kgroup("<leader>t", "tasks", {}, {
 			kmap("n", "t", kcmd("OverseerToggle"), "Toggle UI"),

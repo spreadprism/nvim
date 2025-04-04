@@ -10,6 +10,7 @@ require("which-key").setup({
 kmap("ivs", ";;", "<Esc>", "Escape")
 kmap("t", ";;", "<C-\\><C-n>", "Escape")
 kmap("n", "<C-q>", kcmd("q"), "quit")
+kmap("i", "<M-v>", "<C-v>", "raw char")
 -- -- INFO: Code navigation
 kmap("nvxso", "L", "g_", "Move cursor to last non-whitespace character")
 kmap("nvxso", "H", "^", "Move cursor to first non-whitespace character")
