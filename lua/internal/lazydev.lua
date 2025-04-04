@@ -5,7 +5,7 @@ M.paths = {
 	"nvim-dap",
 	"nvim-dap-ui",
 }
-if cwd() ~= joinpath(XDG_CONFIG, "nvim") and not vim.g.disable_lazydev_cfg then
+if not vim.g.disable_lazydev_cfg then
 	table.insert(M.paths, (nixCats.configDir or "") .. "/lua/internal")
 end
 

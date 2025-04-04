@@ -1,6 +1,6 @@
 plugin("diffview.nvim")
-	:defer()
 	:for_cat("git")
+	:cmd("DiffviewOpen")
 	:on_plugin("neogit")
 	:on_require("diffview")
 	:opts({
@@ -37,7 +37,7 @@ plugin("neogit")
 	:keys(kgroup("<leader>g", "git", {}, {
 		kmap("n", "g", kcmd("Neogit"), "open neogit"),
 	}))
-plugin("gitsigns.nvim"):defer():on_require("gitsigns"):opts({
+plugin("gitsigns.nvim"):event_buffer_enter():on_require("gitsigns"):opts({
 	current_line_blame_opts = {
 		delay = 10,
 	},

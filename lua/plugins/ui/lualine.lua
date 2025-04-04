@@ -1,6 +1,6 @@
 -- require("plugins.overseer")
 plugin("copilot-lualine"):on_plugin("lualine-nvim"):config(false)
-plugin("lualine-nvim"):defer():config(function()
+plugin("lualine-nvim"):event_defer():config(function()
 	require("lualine").setup({
 		options = {
 			theme = "auto",

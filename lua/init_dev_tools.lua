@@ -26,4 +26,16 @@ end
 
 kgroup("<leader>=", "devtools", {}, {
 	kmap("n", "s", kcmd("tab StartupTime"), "startup time"),
+	kmap("n", "l", function()
+		local state = require("lze").state(vim.fn.input("plugin name"))
+		if state then
+			vim.print("ready to be loaded")
+		else
+			if state == nil then
+				vim.print("never loaded")
+			else
+				vim.print("loaded")
+			end
+		end
+	end, "query plugin status"),
 })

@@ -1,6 +1,5 @@
 plugin("overseer.nvim")
 	:on_require("overseer")
-	:defer()
 	:opts({
 		templates = { "cargo", "vscode", "make", "npm" },
 		task_list = {

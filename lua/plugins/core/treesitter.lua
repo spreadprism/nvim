@@ -1,7 +1,7 @@
 plugin("nvim-treesitter-endwise"):on_plugin("nvim-treesitter"):config(false)
 plugin("nvim-treesitter-textobjects"):on_plugin("nvim-treesitter"):config(false)
 plugin("nvim-treesitter")
-	:defer()
+	:event_defer()
 	:config(function()
 		---@diagnostic disable-next-line: missing-fields
 		require("nvim-treesitter.configs").setup({

@@ -1,4 +1,4 @@
-plugin("esqueleto"):defer():opts({
+plugin("esqueleto"):event_defer():opts({
 	directories = { TEMPLATES_PATH },
 	wildcards = {
 		lookup = {

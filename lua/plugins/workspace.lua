@@ -1,6 +1,6 @@
 if nixCats("workspace") then
 	plugin("exrc")
-		:defer()
+		:event_defer()
 		:set_g_options({
 			workspace = {
 				file_name = ".nvim.lua",

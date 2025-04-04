@@ -1,4 +1,4 @@
-plugin("mini.indentscope"):for_cat("core"):defer():init(function()
+plugin("mini.indentscope"):for_cat("core"):event_defer():init(function()
 	vim.api.nvim_create_autocmd("FileType", {
 		pattern = {
 			"",
@@ -20,12 +20,12 @@ plugin("mini.indentscope"):for_cat("core"):defer():init(function()
 		end,
 	})
 end)
-plugin("todo-comments.nvim"):on_require("todo-comments"):defer():opts({
+plugin("todo-comments.nvim"):on_require("todo-comments"):event_defer():opts({
 	highlight = {
 		multiline = false,
 	},
 })
-plugin("nvim-highlight-colors"):defer():opts({
+plugin("nvim-highlight-colors"):event_defer():opts({
 	render = "virtual",
 	virtual_symbol = "",
 	virtual_symbol_position = "eow",
@@ -33,10 +33,10 @@ plugin("nvim-highlight-colors"):defer():opts({
 	virtual_symbol_suffix = " ",
 })
 plugin("nvim-ts-autotag"):event({ "BufReadPre", "BufNewFile" })
-plugin("mini.pairs"):defer():opts({
+plugin("mini.pairs"):event_defer():opts({
 	modes = { insert = true, command = true, terminal = false },
 })
-plugin("mini.surround"):defer():opts({
+plugin("mini.surround"):event_defer():opts({
 	mappings = {
 		delete = "",
 		find = "",
@@ -48,7 +48,7 @@ plugin("mini.surround"):defer():opts({
 		suffix_next = "",
 	},
 })
-plugin("mini.ai"):defer():config(function()
+plugin("mini.ai"):event_defer():config(function()
 	local gen_spec = require("mini.ai").gen_spec
 	require("mini.ai").setup({
 		custom_textobjects = {
@@ -62,7 +62,7 @@ plugin("mini.ai"):defer():config(function()
 		},
 	})
 end)
-plugin("mini.move"):defer():opts({
+plugin("mini.move"):event_defer():opts({
 	mappings = {
 		up = "<M-k>",
 		down = "<M-j>",
@@ -74,8 +74,8 @@ plugin("mini.move"):defer():opts({
 		line_up = "<M-k>",
 	},
 })
-plugin("nvim-surround"):defer()
-plugin("comment.nvim"):defer():on_require("Comment"):opts(false)
+plugin("nvim-surround"):event_defer()
+plugin("comment.nvim"):event_defer():on_require("Comment"):opts(false)
 plugin("tabout.nvim"):event("InsertCharPre"):on_require("tabout"):opts({
 	act_as_shift_tab = true,
 	tabouts = {
@@ -89,7 +89,7 @@ plugin("tabout.nvim"):event("InsertCharPre"):on_require("tabout"):opts({
 	},
 })
 plugin("treesj")
-	:defer()
+	:event_defer()
 	:cmd({ "TSJSplit", "TSJJoin" })
 	:keys({
 		kmap("n", "S", kcmd("TSJSplit"), "Split"),
@@ -98,7 +98,7 @@ plugin("treesj")
 	:opts({
 		use_default_keymaps = false,
 	})
-plugin("grug-far.nvim"):defer():on_require("grug-far"):opts({}):keys({
+plugin("grug-far.nvim"):event_defer():on_require("grug-far"):opts({}):keys({
 	kmap({ "n", "v" }, "<M-r>", function()
 		require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } })
 	end, "replace current buffer"),

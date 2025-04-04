@@ -1,7 +1,7 @@
 if nixCats("ai") then
 	require("internal.lsp").set_client_display("copilot", false)
 	plugin("copilot")
-		:defer()
+		:event_defer()
 		:on_require("copilot")
 		:opts({
 			suggestion = {
@@ -16,15 +16,12 @@ if nixCats("ai") then
 			panel = { enabled = false },
 		})
 		:on_plugin("codecompanion.nvim")
-	local GetChatAdapter = function()
-		if os.getenv("GEMINI_API_KEY") ~= nil then
-			return "gemini"
-		else
-			return "copilot"
-		end
+	local code_adapter = "copilot"
+	if os.getenv("GEMINI_API_KEY") ~= nil then
+		code_adapter = "gemini"
 	end
 	plugin("codecompanion.nvim")
-		:defer()
+		:event_defer()
 		:on_require("codecompanion")
 		:opts({
 			display = {
@@ -42,7 +39,7 @@ if nixCats("ai") then
 			},
 			strategies = {
 				chat = {
-					adapter = GetChatAdapter(),
+					adapter = code_adapter,
 					keymaps = {
 						close = {
 							modes = { i = "<C-q>" },
@@ -50,7 +47,7 @@ if nixCats("ai") then
 					},
 				},
 				inline = {
-					adapter = GetChatAdapter(),
+					adapter = code_adapter,
 				},
 			},
 		})

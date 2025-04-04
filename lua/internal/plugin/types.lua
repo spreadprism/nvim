@@ -128,8 +128,12 @@ function Plugin:event_ui()
 	return self:event("UIEnter")
 end
 
-function Plugin:defer()
+function Plugin:event_defer()
 	return self:event("DeferredUIEnter")
+end
+
+function Plugin:event_buffer_enter()
+	return self:event("BufEnter")
 end
 
 --- Lazy-load on command
