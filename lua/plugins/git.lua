@@ -1,3 +1,8 @@
+plugin("mini.diff"):event_defer()
+plugin("git-conflict"):for_cat("git"):event_defer():opts({
+	default_commands = false,
+	disable_diagnostics = true,
+})
 plugin("diffview.nvim")
 	:for_cat("git")
 	:cmd("DiffviewOpen")
@@ -37,7 +42,7 @@ plugin("neogit")
 	:keys(kgroup("<leader>g", "git", {}, {
 		kmap("n", "g", kcmd("Neogit"), "open neogit"),
 	}))
-plugin("gitsigns.nvim"):event_buffer_enter():on_require("gitsigns"):opts({
+plugin("gitsigns.nvim"):for_cat("git"):event_buffer_enter():on_require("gitsigns"):opts({
 	current_line_blame_opts = {
 		delay = 10,
 	},

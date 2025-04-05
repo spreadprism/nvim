@@ -22,6 +22,7 @@ if nixCats("ai") then
 	end
 	plugin("codecompanion.nvim")
 		:event_defer()
+		:dep_on("mini.diff")
 		:on_require("codecompanion")
 		:opts({
 			display = {

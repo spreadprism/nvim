@@ -294,6 +294,22 @@
         "type": "github"
       }
     },
+    "plugins-git-conflict": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1735340003,
+        "narHash": "sha256-CmSgmpg5K3ySXYrDjg8yTAojeLWJdSHP8uNVFyrkNhc=",
+        "owner": "akinsho",
+        "repo": "git-conflict.nvim",
+        "rev": "a1badcd070d176172940eb55d9d59029dad1c5a6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "akinsho",
+        "repo": "git-conflict.nvim",
+        "type": "github"
+      }
+    },
     "plugins-harpoon": {
       "flake": false,
       "locked": {
@@ -417,6 +433,7 @@
         "plugins-esqueleto": "plugins-esqueleto",
         "plugins-ex-colors": "plugins-ex-colors",
         "plugins-exrc": "plugins-exrc",
+        "plugins-git-conflict": "plugins-git-conflict",
         "plugins-harpoon": "plugins-harpoon",
         "plugins-kulala": "plugins-kulala",
         "plugins-lualine-nvim": "plugins-lualine-nvim",

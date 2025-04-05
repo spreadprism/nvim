@@ -55,6 +55,10 @@
       url = "github:MeanderingProgrammer/render-markdown.nvim";
       flake = false;
     };
+    "plugins-git-conflict" = {
+      url = "github:akinsho/git-conflict.nvim";
+      flake = false;
+    };
   };
   outputs = {
     self,
@@ -172,11 +176,16 @@
         testing = with pkgs.vimPlugins; [
           neotest
         ];
-        git = with pkgs.vimPlugins; [
-          neogit
-          diffview-nvim
-          gitsigns-nvim
-        ];
+        git = with pkgs.vimPlugins;
+          [
+            neogit
+            diffview-nvim
+            gitsigns-nvim
+            mini-diff
+          ]
+          ++ (with pkgs.neovimPlugins; [
+            git-conflict
+          ]);
         go = with pkgs.vimPlugins; [
           nvim-dap-go
           neotest-golang
