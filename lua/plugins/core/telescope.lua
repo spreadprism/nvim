@@ -1,6 +1,7 @@
 plugin("telescope-fzf-native.nvim"):dep_of("telescope.nvim"):config(false)
 plugin("telescope-zf-native.nvim"):dep_of("telescope.nvim"):config(false)
 plugin("telescope-dap.nvim"):dep_of("telescope.nvim"):config(false)
+plugin("telescope-git-conflicts.nvim"):for_cat("git"):dep_of("telescope.nvim"):config(false)
 plugin("telescope.nvim")
 	:on_require("telescope")
 	:cmd("Telescope")
@@ -40,6 +41,7 @@ plugin("telescope.nvim")
 		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "zf-native")
 		pcall(require("telescope").load_extension, "dap")
+		pcall(require("telescope").load_extension, "conflicts")
 	end)
 	:keys({
 		kmap("n", "<M-g>", internal.telescope.live_grep(), "grep buffer"),
@@ -48,6 +50,7 @@ plugin("telescope.nvim")
 		kgroup("<leader>f", "find", {}, {
 			kmap("n", "f", kcmd("Telescope find_files"), "files"),
 			kmap("n", "l", kcmd("Telescope resume"), "last"),
+			kmap("n", "c", kcmd("Telescope conflicts"), "conflicts"),
 			kmap("n", "s", kcmd("Telescope lsp_document_symbols"), "symbols"),
 		}),
 	})

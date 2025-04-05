@@ -14,7 +14,9 @@ local default_options = {
 		unnamed = "[No Name]",
 		newfile = "[New]",
 	},
-	exclude_filetypes = {},
+	exclude_filetypes = {
+		"vim",
+	},
 }
 
 local always_exclude = {

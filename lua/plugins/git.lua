@@ -1,8 +1,46 @@
 plugin("mini.diff"):event_defer()
-plugin("git-conflict"):for_cat("git"):event_defer():opts({
-	default_commands = false,
-	disable_diagnostics = true,
-})
+plugin("git-conflict")
+	:for_cat("git")
+	:event_defer()
+	:opts({
+		default_mappings = false,
+		default_commands = false,
+		disable_diagnostics = true,
+	})
+	:setup(function()
+		vim.api.nvim_create_autocmd("BufEnter", {
+			callback = function(args)
+				vim.defer_fn(function()
+					local count = require("git-conflict").conflict_count(args.buf)
+					if count > 0 then
+						kgroup("<leader>c", "choose", { buffer = args.buf }, {
+							kmap("n", "c", function()
+								require("git-conflict").choose("ours")
+							end, "choose current"),
+							kmap("n", "i", function()
+								require("git-conflict").choose("theirs")
+							end, "choose incoming"),
+							kmap("n", "b", function()
+								require("git-conflict").choose("both")
+							end, "choose both"),
+							kmap("n", "n", function()
+								require("git-conflict").choose("none")
+							end, "choose none"),
+						})
+					else
+						require("internal.keymap").buf_del_keymap(
+							args.buf,
+							"n",
+							"<leader>cc",
+							"<leader>ci",
+							"<leader>cb",
+							"<leader>cn"
+						)
+					end
+				end, 100)
+			end,
+		})
+	end)
 plugin("diffview.nvim")
 	:for_cat("git")
 	:cmd("DiffviewOpen")
@@ -35,7 +73,7 @@ plugin("neogit")
 		disable_hint = true,
 		integrations = {
 			telescope = true,
-			diffview = true,
+			diffview = false,
 		},
 		graph_style = "unicode",
 	})

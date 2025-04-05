@@ -16,11 +16,29 @@ Keymap = {}
 Keymap.__index = Keymap
 
 function Keymap:map_which_key()
-	require("which-key").add(vim.tbl_deep_extend("force", {
-		self.keys,
-		self.action,
-		mode = self.mode,
-	}, self.opts))
+	if self.opts.buffer ~= nil then
+		local new_mode = {}
+		for _, mode in ipairs(self.mode) do
+			local buffer = self.opts.buffer
+			if type(buffer) == "boolean" and buffer then
+				buffer = 0
+			end
+
+			---@diagnostic disable-next-line: param-type-mismatch
+			if not M.buf_has_keymap(buffer, mode, self.keys) then
+				table.insert(new_mode, mode)
+			end
+
+			self.mode = new_mode
+		end
+	end
+	if #self.mode > 0 then
+		require("which-key").add(vim.tbl_deep_extend("force", {
+			self.keys,
+			self.action,
+			mode = self.mode,
+		}, self.opts))
+	end
 end
 
 ---@param mode string | string[]
@@ -39,9 +57,9 @@ function M.keymap(mode, keys, action, desc, opts)
 	-- if v:vim_did_enter
 
 	if vim.fn.exists("v:vim_did_enter") == 1 then
-		vim.schedule(function()
+		vim.defer_fn(function()
 			keymap:map_which_key()
-		end)
+		end, 100)
 	else
 		vim.api.nvim_create_autocmd("VimEnter", {
 			once = true,
@@ -100,6 +118,34 @@ function M.group(keys, desc, opts, maps)
 	end
 
 	return unpack(maps)
+end
+
+---@param buffer integer
+---@param mode string
+---@param ... string
+---@return boolean
+function M.buf_has_keymap(buffer, mode, ...)
+	local keys = { ... }
+
+	local buffer_keys = vim.api.nvim_buf_get_keymap(buffer, mode)
+	buffer_keys = vim.tbl_map(function(k)
+		return k.lhs
+	end, buffer_keys)
+	for _, key in ipairs(keys) do
+		key = key:gsub("<leader>", vim.g.mapleader):gsub("<localleader>", vim.g.maplocalleader)
+		if vim.tbl_contains(buffer_keys, key) then
+			return true
+		end
+	end
+	return false
+end
+
+function M.buf_del_keymap(buffer, mode, ...)
+	local keys = { ... }
+	for _, key in ipairs(keys) do
+		key = key:gsub("<leader>", vim.g.mapleader):gsub("<localleader>", vim.g.maplocalleader)
+		pcall(vim.api.nvim_buf_del_keymap, buffer, mode, key)
+	end
 end
 
 return M

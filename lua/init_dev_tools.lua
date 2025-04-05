@@ -22,7 +22,7 @@ if nixCats("devtools") then
 		require("profile").instrument("*")
 	end
 	kgroup("<leader>=", "devtools", {}, {
-		kmap("n", "<leader>=p", toggle_profile, "toggle profiling"),
+		kmap("n", "p", toggle_profile, "toggle profiling"),
 		kmap("n", "l", function()
 			local state = require("lze").state(vim.fn.input("plugin name"))
 			if state then

@@ -14,7 +14,7 @@ kmap("i", "<M-v>", "<C-v>", "raw char")
 -- -- INFO: Code navigation
 kmap("nvo", "L", "g_", "Move cursor to last non-whitespace character")
 kmap("nvo", "H", "^", "Move cursor to first non-whitespace character")
--- -- INFO: Code manipulation
+-- INFO: Code manipulation
 kmap("v", "Y", '"+y', "Yank to clipboard")
 kmap("n", "<M-J>", "Vyp", "Duplicate line down")
 kmap("n", "<M-K>", "VyP", "Duplicate line up")

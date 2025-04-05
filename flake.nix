@@ -182,6 +182,7 @@
             diffview-nvim
             gitsigns-nvim
             mini-diff
+            telescope-git-conflicts-nvim
           ]
           ++ (with pkgs.neovimPlugins; [
             git-conflict
