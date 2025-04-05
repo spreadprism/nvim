@@ -46,6 +46,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end
 	end,
 })
+
 require("lze").load({
 	"nvim-lspconfig",
 	for_cat = "core",
