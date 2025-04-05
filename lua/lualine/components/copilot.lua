@@ -1,5 +1,4 @@
 -- Based on https://github.com/AndreM222/copilot-lualine
-
 local component = require("lualine.component"):extend()
 local highlight = require("lualine.highlight")
 

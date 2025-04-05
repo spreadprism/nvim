@@ -51,6 +51,10 @@
       url = "github:vi013t/easycolor.nvim";
       flake = false;
     };
+    "plugins-render-markdown" = {
+      url = "github:MeanderingProgrammer/render-markdown.nvim";
+      flake = false;
+    };
   };
   outputs = {
     self,
@@ -86,6 +90,7 @@
           stylua
           nixd
           alejandra
+          marksman
         ];
         requests = with pkgs; [
           curl
@@ -262,6 +267,7 @@
             harpoon
             esqueleto
             easycolor
+            render-markdown
           ]);
         devtools = with pkgs.neovimPlugins; [
           ex-colors

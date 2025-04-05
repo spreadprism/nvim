@@ -375,6 +375,22 @@
         "type": "github"
       }
     },
+    "plugins-render-markdown": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1743728671,
+        "narHash": "sha256-NTTflwYya4/PIxPY8Uijw2lSdwLPrrWTE/VWYgnpHng=",
+        "owner": "MeanderingProgrammer",
+        "repo": "render-markdown.nvim",
+        "rev": "0ed141a60ca4befcaf923b21c36f6f2971d61b9e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MeanderingProgrammer",
+        "repo": "render-markdown.nvim",
+        "type": "github"
+      }
+    },
     "plugins-tmux-navigation": {
       "flake": false,
       "locked": {
@@ -406,6 +422,7 @@
         "plugins-lualine-nvim": "plugins-lualine-nvim",
         "plugins-oil-vcs-status": "plugins-oil-vcs-status",
         "plugins-profile": "plugins-profile",
+        "plugins-render-markdown": "plugins-render-markdown",
         "plugins-tmux-navigation": "plugins-tmux-navigation"
       }
     },

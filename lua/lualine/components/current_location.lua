@@ -14,22 +14,22 @@ local default_options = {
 		unnamed = "[No Name]",
 		newfile = "[New]",
 	},
-	exclude_filetypes = {
-		"netrw",
-		"toggleterm",
-		"noice",
-		"dap",
-		"dap-repl",
-		"dapui_console",
-		"dapui_watches",
-		"dapui_stacks",
-		"dapui_breakpoints",
-		"dapui_scopes",
-	},
+	exclude_filetypes = {},
 }
+
+local always_exclude = {
+	"netrw",
+	"toggleterm",
+	"noice",
+}
+
 function component:init(options)
 	component.super.init(self, options)
 	self.options = vim.tbl_deep_extend("force", default_options, options or {})
+	for _, exclude in ipairs(always_exclude) do
+		table.insert(self.options.exclude_filetypes, exclude)
+	end
+
 	self.icon_hl_cache = {}
 	self.icon = ""
 

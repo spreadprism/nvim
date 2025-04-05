@@ -56,16 +56,16 @@ function M.live_grep(global)
 
 	if global then
 		return function()
-      require("telescope.builtin").live_grep({
-        prompt_title = 'grep global'
-      })
+			require("telescope.builtin").live_grep({
+				prompt_title = "grep global",
+			})
 		end
 	else
 		return function()
 			require("telescope.builtin").live_grep({
-        search_dirs = { vim.fn.expand("%:p") },
-        prompt_title = 'grep buffer',
-      })
+				search_dirs = { vim.fn.expand("%:p") },
+				prompt_title = "grep buffer",
+			})
 		end
 	end
 end
