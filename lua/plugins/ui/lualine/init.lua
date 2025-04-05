@@ -16,9 +16,6 @@ plugin("lualine-nvim"):dep_on("overseer.nvim"):config(function()
 				},
 			},
 			ignore_focus = { "TelescopePrompt" },
-			refresh = {
-				winbar = 1,
-			},
 		},
 		sections = require("plugins.ui.lualine.sections"),
 		winbar = require("plugins.ui.lualine.winbar"),
