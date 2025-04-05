@@ -45,19 +45,7 @@ if nixCats("debugging") then
 			},
 			layouts = require("internal.dap_ui").generate_layouts(),
 		})
-		:keys({
-			kgroup("<leader>du", "dapui", {}, {
-				kmap("n", "", function()
-					require("internal.dap_ui").close()
-				end, "close ui"),
-				kmap("n", "r", function()
-					require("internal.dap_ui").set_overlay(1)
-				end, "dapui repl"),
-				kmap("n", "c", function()
-					require("internal.dap_ui").set_overlay(2)
-				end, "dapui repl"),
-			}),
-		})
+		:keys({})
 	local virtual_max_char = 15
 	plugin("nvim-dap-virtual-text")
 		:opts({

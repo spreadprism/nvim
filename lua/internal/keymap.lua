@@ -78,6 +78,7 @@ function M.opts(opts, maps)
 	return maps
 end
 
+local groups_list = {}
 ---@param keys string
 ---@param desc string
 ---@param opts KeymapOpts
@@ -88,11 +89,15 @@ function M.group(keys, desc, opts, maps)
 	for _, kmap in ipairs(maps) do
 		kmap.keys = keys .. kmap.keys
 	end
-	require("which-key").add({
-		---@diagnostic disable-next-line: assign-type-mismatch
-		keys,
-		group = desc,
-	})
+
+	if not groups_list[keys .. desc] then
+		require("which-key").add({
+			---@diagnostic disable-next-line: assign-type-mismatch
+			keys,
+			group = desc,
+		})
+		groups_list[keys .. desc] = true
+	end
 
 	return unpack(maps)
 end

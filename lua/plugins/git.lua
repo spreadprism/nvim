@@ -45,7 +45,6 @@ plugin("gitsigns.nvim"):event_buffer_enter():on_require("gitsigns"):opts({
 	on_attach = function(bufnr)
 		kgroup("<leader>g", "git", { buffer = bufnr }, {
 			kmap("n", "b", kcmd("Gitsigns toggle_current_line_blame"), "Toggle current line blame"),
-			kmap("n", "B", kcmd("Gitsigns blame"), "Open gitblame"),
 		})
 	end,
 })
