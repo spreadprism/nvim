@@ -66,14 +66,4 @@ if nixCats("ai") then
 			kmap("n", "c", kcmd("CodeCompanionChat Toggle"), "Toggle chat"),
 			kmap("n", "a", kcmd("CodeCompanionActions"), "Actions"),
 		}))
-		:setup(function()
-			vim.api.nvim_create_autocmd("BufLeave", {
-				callback = function(args)
-					local ft = vim.bo[args.buf].filetype
-					if ft == "codecompanion" then
-						require("codecompanion").close_last_chat()
-					end
-				end,
-			})
-		end)
 end
