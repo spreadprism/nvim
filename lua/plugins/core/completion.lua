@@ -72,7 +72,7 @@ plugin("blink.cmp"):event({ "InsertEnter", "CmdlineEnter" }):on_require("blink")
 				require("copilot.suggestion").next()
 			end,
 		},
-		["<M-n>"] = { "snippet_forward" },
+		["<M-n>"] = { "snippet_forward", "fallback" },
 		["<M-p>"] = { "snippet_backward" },
 	}, base_keymap),
 	signature = { enabled = true, window = {

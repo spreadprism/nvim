@@ -9,8 +9,8 @@ plugin("hop.nvim")
 		kmap({ "n", "v" }, "F", hop.hop_char_line(false), "hop char l-BC"),
 		kmap({ "n", "v" }, "t", hop.hop_char_line(true, -1), "hop before char l-AC"),
 		kmap({ "n", "v" }, "T", hop.hop_char_line(false, 1), "hop after char l-BC"),
-		kmap("v", "<M-l>", kcmd("HopLine"), "hop line"),
-		kmap("n", "<M-l>", kcmd("HopLineStart"), "hop line start"),
+		kmap("v", "<M-;>", kcmd("HopLine"), "hop line"),
+		kmap("n", "<M-;>", kcmd("HopLineStart"), "hop line start"),
 		kmap("n", "<M-/>", kcmd("HopPattern"), "hop at pattern"),
 	})
 	:setup(function()
@@ -39,6 +39,9 @@ plugin("flash.nvim")
 		kmap("v", "v", function()
 			require("flash").treesitter()
 		end, "treesitter"),
+		kmap("v", "<M-s>", function()
+			require("flash").treesitter_search()
+		end, "treesitter search"),
 	})
 	:setup(function()
 		---@diagnostic disable-next-line: deprecated
@@ -52,7 +55,7 @@ plugin("harpoon"):event_defer():config(false):keys({
 	kmap("n", "<M-u>", function()
 		require("harpoon"):list():remove()
 	end, "unmark"),
-	kmap("n", "<M-h>", function()
+	kmap("n", "<M-e>", function()
 		require("harpoon").ui:toggle_quick_menu(require("harpoon"):list(), { border = "rounded" })
 	end, "harpoon list"),
 	kmap("n", "<M-i>", function()

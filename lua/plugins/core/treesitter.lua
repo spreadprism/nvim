@@ -14,6 +14,15 @@ plugin("nvim-treesitter")
 				select = {
 					enable = false, -- INFO: taken care of by mini.ai
 				},
+				swap = {
+					enable = true,
+					swap_next = {
+						["<M-l>"] = "@parameter.inner",
+					},
+					swap_previous = {
+						["<M-h>"] = "@parameter.inner",
+					},
+				},
 				move = {
 					enable = true,
 					set_jumps = true,
@@ -42,6 +51,17 @@ plugin("nvim-treesitter")
 			},
 		})
 	end)
+	:keys({
+		kmap("n", ";", function()
+			require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move()
+		end, "repeat last move"),
+		kmap("i", "<M-n>", function()
+			require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move()
+		end, "repeat last move"),
+		kmap("n", ",", function()
+			require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move_opposite()
+		end, "repeat last move previous"),
+	})
 	:setup(function()
 		vim.treesitter.language.register("bash", "dotenv")
 		vim.treesitter.language.register("python", "bzl")

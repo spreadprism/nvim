@@ -6,11 +6,12 @@ require("which-key").setup({
 	icons = {
 		mappings = false,
 	},
-	triggers = {
-		{ "<auto>", mode = "nixsotc" },
-		{ "<M-n>", mode = "n" },
-		{ "<M-p>", mode = "n" },
-	},
+	defer = function(ctx)
+		if vim.list_contains({ "d", "y", "v" }, ctx.operator) then
+			return true
+		end
+		return vim.list_contains({ "<C-V>", "V" }, ctx.mode)
+	end,
 })
 kmap("iv", ";;", "<Esc>", "Escape")
 kmap("t", ";;", "<C-\\><C-n>", "Escape")
