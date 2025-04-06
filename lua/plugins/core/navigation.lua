@@ -20,6 +20,31 @@ plugin("hop.nvim")
 		vim.api.nvim_set_hl(0, "HopNextKey1", { fg = fg, bold = true, underline = true })
 		vim.api.nvim_set_hl(0, "HopNextKey2", { fg = fg, bold = true })
 	end)
+
+plugin("flash.nvim")
+	:event_defer()
+	:opts({
+		modes = {
+			char = {
+				enabled = false,
+			},
+			treesitter = {
+				highlight = {
+					backdrop = true,
+				},
+			},
+		},
+	})
+	:keys({
+		kmap("v", "v", function()
+			require("flash").treesitter()
+		end, "treesitter"),
+	})
+	:setup(function()
+		---@diagnostic disable-next-line: deprecated
+		local fg = vim.api.nvim_get_hl_by_name("Constant", true).foreground
+		vim.api.nvim_set_hl(0, "FlashLabel", { fg = fg, bold = true, underline = true })
+	end)
 plugin("harpoon"):event_defer():config(false):keys({
 	kmap("n", "<M-m>", function()
 		require("harpoon"):list():add()

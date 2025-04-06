@@ -271,6 +271,8 @@
             trouble-nvim
             treesj
             overseer-nvim
+            flash-nvim
+            yanky-nvim
           ]
           ++ (with pkgs.neovimPlugins; [
             lualine-nvim

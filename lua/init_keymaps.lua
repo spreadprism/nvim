@@ -6,6 +6,11 @@ require("which-key").setup({
 	icons = {
 		mappings = false,
 	},
+	triggers = {
+		{ "<auto>", mode = "nixsotc" },
+		{ "<M-n>", mode = "n" },
+		{ "<M-p>", mode = "n" },
+	},
 })
 kmap("iv", ";;", "<Esc>", "Escape")
 kmap("t", ";;", "<C-\\><C-n>", "Escape")
@@ -14,6 +19,12 @@ kmap("i", "<M-v>", "<C-v>", "raw char")
 -- -- INFO: Code navigation
 kmap("nvo", "L", "g_", "Move cursor to last non-whitespace character")
 kmap("nvo", "H", "^", "Move cursor to first non-whitespace character")
+kmap("n", "<M-n>", function()
+	require("which-key").show({ keys = "]" })
+end, "next")
+kmap("n", "<M-p>", function()
+	require("which-key").show({ keys = "[" })
+end, "previous")
 -- INFO: Code manipulation
 kmap("v", "Y", '"+y', "Yank to clipboard")
 kmap("n", "<M-J>", "Vyp", "Duplicate line down")

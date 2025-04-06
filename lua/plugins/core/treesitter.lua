@@ -19,20 +19,22 @@ plugin("nvim-treesitter")
 					set_jumps = true,
 					goto_next_start = {
 						["]f"] = { query = "@function.outer", desc = "Next function" },
-						["]c"] = { query = "@class.outer", desc = "Next class" },
-					},
-					goto_next_end = {
-						["]F"] = "@function.outer",
-						["]C"] = "@class.outer",
+						["]p"] = { query = "@parameter.inner", desc = "Next param" },
+						["]i"] = { query = "@conditional.inner", desc = "Next conditional" },
+						["]I"] = { query = "@conditional.outer", desc = "Next conditional" },
+						["]r"] = { query = "@return.inner", desc = "Next return" },
+						["]l"] = { query = "@loop.inner", desc = "Next return" },
+						["]L"] = { query = "@loop.outer", desc = "Next return" },
 					},
 					goto_previous_start = {
 						["[f"] = "@function.outer",
-						["[c"] = "@class.outer",
+						["[p"] = { query = "@parameter.inner", desc = "Previous param" },
+						["[i"] = { query = "@conditional.inner", desc = "Previous conditional" },
+						["[r"] = { query = "@return.inner", desc = "Previous return" },
+						["[l"] = { query = "@loop.inner", desc = "Next return" },
 					},
-					goto_previous_end = {
-						["[F"] = "@function.outer",
-						["[C"] = "@class.outer",
-					},
+					goto_next_end = {},
+					goto_previous_end = {},
 				},
 			},
 			endwise = {

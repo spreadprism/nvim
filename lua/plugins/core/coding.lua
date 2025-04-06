@@ -57,6 +57,7 @@ plugin("mini.ai"):event_defer():config(function()
 	local gen_spec = require("mini.ai").gen_spec
 	require("mini.ai").setup({
 		custom_textobjects = {
+			a = gen_spec.treesitter({ a = "@attribute.outer", i = "@attribute.inner" }),
 			f = gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
 			c = gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }),
 			i = gen_spec.treesitter({ a = "@conditional.outer", i = "@conditional.inner" }),
@@ -79,6 +80,19 @@ plugin("mini.move"):event_defer():opts({
 		line_up = "<M-k>",
 	},
 })
+plugin("yanky.nvim")
+	:event_defer()
+	:keys({
+		kmap("nx", "y", "<Plug>(YankyYank)", "yank"),
+	})
+	:opts({
+		highlight = {
+			timer = 100,
+		},
+		preserve_cursor_position = {
+			enabled = true,
+		},
+	})
 plugin("nvim-surround"):event_defer()
 plugin("comment.nvim"):event_defer():on_require("Comment"):opts(false)
 plugin("tabout.nvim"):event("InsertCharPre"):on_require("tabout"):opts({
