@@ -32,7 +32,7 @@
       flake = false;
     };
     "plugins-kulala" = {
-      url = "github:spreadprism/kulala.nvim";
+      url = "github:spreadprism/kulala.nvim?ref=grpc_headers";
       flake = false;
     };
     "plugins-tmux-navigation" = {
