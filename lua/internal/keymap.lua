@@ -77,21 +77,12 @@ function Keymap:buffer(bufnr)
 	self.opts.buffer = bufnr
 end
 
----@generic T : Keymap | Keymap[]
 ---@param opts KeymapOpts
----@param maps T
----@return T
+---@param maps Keymap[]
 function M.opts(opts, maps)
-	if getmetatable(maps) == Keymap then
-		---@type Keymap
-		local kmap = maps
-		kmap.opts = vim.tbl_deep_extend("error", kmap.opts or {}, opts)
-	else
-		---@type Keymap[]
-		local kmaps = maps
-		for _, map in ipairs(kmaps) do
-			map.opts = vim.tbl_deep_extend("error", map.opts or {}, opts)
-		end
+	---@type Keymap[]
+	for _, map in ipairs(maps) do
+		map.opts = vim.tbl_deep_extend("error", map.opts or {}, opts)
 	end
 	return maps
 end
@@ -118,6 +109,19 @@ function M.group(keys, desc, opts, maps)
 	end
 
 	return unpack(maps)
+end
+
+---@param cmd string
+---@param ignore_error? boolean
+function M.cmd(cmd, ignore_error)
+	return function()
+		if ignore_error then
+			---@diagnostic disable-next-line: param-type-mismatch
+			pcall(vim.cmd, cmd)
+		else
+			vim.cmd(cmd)
+		end
+	end
 end
 
 ---@param buffer integer

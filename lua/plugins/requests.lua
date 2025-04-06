@@ -16,60 +16,54 @@ if nixCats("requests") then
 		pattern = { "*.http", "kulala://ui" },
 		once = true,
 		callback = function(args)
-			local opts = { buffer = args.buf }
-			vim.keymap.set("n", "<localleader>x", function()
-				require("kulala.ui").clear_response_history()
-			end, vim.tbl_extend("keep", opts, { desc = "clear request history" }))
-			vim.keymap.set("n", "<localleader>s", function()
-				require("kulala").run()
-			end, vim.tbl_extend("keep", opts, { desc = "send request" }))
-			-- kgroup("<localleader>", "http", {
-			-- 	keymap("n", "x", function()
-			-- 		require("kulala.ui").clear_response_history()
-			-- 	end, "send request", { buffer = args.buf }),
-			-- 	keymap("n", "s", function()
-			-- 		require("kulala").run()
-			-- 	end, "send request", { buffer = args.buf }),
-			-- 	keymap("n", "S", function()
-			-- 		require("kulala").run_all()
-			-- 	end, "send all request", { buffer = args.buf }),
-			-- 	keymap("n", "r", function()
-			-- 		require("kulala").replay()
-			-- 	end, "resend last request", { buffer = args.buf }),
-			-- 	keymap("n", "i", function()
-			-- 		require("kulala").inspect()
-			-- 	end, "inspect current request", { buffer = args.buf }),
-			-- 	keymap("n", "h", function()
-			-- 		require("kulala.ui").show_headers()
-			-- 	end, "show headers", { buffer = args.buf }),
-			-- 	keymap("n", "b", function()
-			-- 		require("kulala.ui").show_body()
-			-- 	end, "show body", { buffer = args.buf }),
-			-- 	keymap("n", "a", function()
-			-- 		require("kulala.ui").show_headers_body()
-			-- 	end, "show header and body", { buffer = args.buf }),
-			-- 	keymap("n", "v", function()
-			-- 		require("kulala.ui").show_verbose()
-			-- 	end, "show verbose", { buffer = args.buf }),
-			-- })
-			-- keymapLoad({
-			-- 	keymap("n", "<C-q>", function()
-			-- 		require("kulala.ui").close_kulala_buffer()
-			-- 		vim.cmd("q")
-			-- 	end, "Next request", { buffer = args.buf }),
-			-- 	keymap("n", "<Right>", function()
-			-- 		require("kulala.ui").show_next()
-			-- 	end, "Next request", { buffer = args.buf }),
-			-- 	keymap("n", "<Left>", function()
-			-- 		require("kulala.ui").show_previous()
-			-- 	end, "Previous request", { buffer = args.buf }),
-			-- 	keymap("n", "<Down>", function()
-			-- 		require("kulala").jump_next()
-			-- 	end, "Jump next request", { buffer = args.buf }),
-			-- 	keymap("n", "<Up>", function()
-			-- 		require("kulala").jump_prev()
-			-- 	end, "Jump previous request", { buffer = args.buf }),
-			-- })
+			kopts({ buffer = args.buf }, {
+				kmap("n", "<localleader>x", function()
+					require("kulala.ui").clear_response_history()
+				end, "clear requests"),
+				kmap("n", "<localleader>s", function()
+					require("kulala").run()
+				end, "send request"),
+				kmap("n", "<localleader>S", function()
+					require("kulala").run_all()
+				end, "send all request"),
+				kmap("n", "<localleader>r", function()
+					require("kulala").replay()
+				end, "replay request"),
+				kmap("n", "<localleader>i", function()
+					require("kulala").inspect()
+				end, "inspect request"),
+				kmap("n", "<localleader>h", function()
+					require("kulala.ui").show_headers()
+				end, "show headers"),
+				kmap("n", "<localleader>b", function()
+					require("kulala.ui").show_body()
+				end, "show body"),
+				kmap("n", "<localleader>v", function()
+					require("kulala.ui").show_verbose()
+				end, "show verbose"),
+				kmap("n", "<localleader>a", function()
+					require("kulala.ui").show_headers_body()
+				end, "show all"),
+				kmap("n", "<localleader>e", function()
+					require("kulala.ui").open()
+				end, "close"),
+				kmap("n", "<C-q>", function()
+					require("kulala.ui").close_kulala_buffer()
+					vim.cmd("q")
+				end, "close"),
+				kmap("n", "<Right>", function()
+					require("kulala.ui").show_next()
+				end, "next request"),
+				kmap("n", "<Left>", function()
+					require("kulala.ui").show_previous()
+				end, "previous request"),
+				kmap("n", "<Down>", function()
+					require("kulala").jump_next()
+				end, "jump next request"),
+				kmap("n", "<Up>", function()
+					require("kulala").jump_prev()
+				end, "jump previous request"),
+			})
 		end,
 	})
 end

@@ -151,15 +151,15 @@ function Plugin:ft(ft)
 end
 
 --- Lazy-load on keys
----@param keys Keymap[]
-function Plugin:keys(keys)
+---@param ... Keymap
+function Plugin:keys(...)
 	-- -- TODO: this won't work
+	-- local keys = { ... }
 	-- local actual_keys = {}
 	-- for _, key in ipairs(keys) do
-	-- 	table.insert(keys, { key.mode, key.keys, key.action })
+	-- 	table.insert(keys, { key.mode, key.keys })
 	-- end
 	--
-	--  vim.print(actual_keys)
 	-- lze.apply(self.name, { keys = actual_keys })
 	return self
 end

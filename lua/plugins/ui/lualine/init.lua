@@ -5,6 +5,10 @@ plugin("lualine-nvim"):dep_on("overseer.nvim"):config(function()
 			theme = "auto",
 			globalstatus = true,
 			ignore_focus = { "TelescopePrompt" },
+			disabled_filetypes = {
+				statusline = {},
+				winbar = { "kulala_ui" },
+			},
 		},
 		sections = require("plugins.ui.lualine.sections"),
 		winbar = require("plugins.ui.lualine.winbar"),

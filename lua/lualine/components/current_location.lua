@@ -51,11 +51,17 @@ function component:init(options)
 	vim.api.nvim_create_autocmd("BufEnter", {
 		group = vim.api.nvim_create_augroup("pretty_path", {}),
 		callback = function()
-			if not vim.tbl_contains(self.options.exclude_filetypes, vim.bo.filetype) then
-				require("lualine").refresh({
-					place = { "winbar" },
-				})
+			if vim.bo.filetype == "" then
+				return
 			end
+			for _, filetype in ipairs(self.options.exclude_filetypes) do
+				if string.find(filetype, vim.bo.filetype) then
+					return
+				end
+			end
+			require("lualine").refresh({
+				place = { "winbar" },
+			})
 		end,
 	})
 end
@@ -79,8 +85,13 @@ local function get_oil_path()
 end
 
 function component:update_status()
-	if vim.bo.filetype == "" or vim.tbl_contains(self.options.exclude_filetypes, vim.bo.filetype) then
-		return
+	if vim.bo.filetype == "" then
+		return ""
+	end
+	for _, filetype in ipairs(self.options.exclude_filetypes) do
+		if string.find(filetype, vim.bo.filetype) then
+			return ""
+		end
 	end
 
 	self:update_icon()
@@ -115,6 +126,14 @@ function component:update_status()
 end
 
 function component:update_icon()
+	if vim.bo.filetype == "" then
+		return ""
+	end
+	for _, filetype in ipairs(self.options.exclude_filetypes) do
+		if string.find(filetype, vim.bo.filetype) then
+			return ""
+		end
+	end
 	if vim.bo.filetype == "oil" then
 		self.icon = ""
 		return

@@ -21,20 +21,11 @@ M.plugin = require("internal.plugin").plugin
 M.lsp = require("internal.lsp").lsp
 M.formatter = require("internal.formatter").formatter
 M.linter = require("internal.linter").linter
-M.keymap = require("internal.keymap").keymap
----@param cmd string
----@param ignore_error? boolean
-M.kcmd = function(cmd, ignore_error)
-	return function()
-		if ignore_error then
-			---@diagnostic disable-next-line: param-type-mismatch
-			pcall(vim.cmd, cmd)
-		else
-			vim.cmd(cmd)
-		end
-	end
-end
-M.kgroup = require("internal.keymap").group
+local keymap = require("internal.keymap")
+M.kmap = keymap.keymap
+M.kcmd = keymap.cmd
+M.kgroup = keymap.group
+M.kopts = keymap.opts
 M.load_all = require("internal.loader").load_all
 M.merge_specs = require("internal.plugin.lze").merge
 M.telescope = require("internal.telescope")
@@ -90,9 +81,10 @@ _G.plugin = M.plugin
 _G.lsp = M.lsp
 _G.formatter = M.formatter
 _G.linter = M.linter
-_G.kmap = M.keymap
+_G.kmap = M.kmap
 _G.kcmd = M.kcmd
 _G.kgroup = M.kgroup
+_G.kopts = M.kopts
 _G.workspace = M.workspace
 _G.env = M.env
 
