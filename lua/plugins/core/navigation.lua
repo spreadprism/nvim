@@ -58,10 +58,31 @@ plugin("harpoon"):event_defer():config(false):keys({
 	kmap("n", "<M-e>", function()
 		require("harpoon").ui:toggle_quick_menu(require("harpoon"):list(), { border = "rounded" })
 	end, "harpoon list"),
-	kmap("n", "<M-i>", function()
-		require("harpoon"):list():next({ ui_nav_wrap = true })
-	end, "next mark"),
-	kmap("n", "<M-o>", function()
-		require("harpoon"):list():prev({ ui_nav_wrap = true })
-	end, "previous mark"),
+	kmap("n", "<M-1>", function()
+		require("harpoon"):list():select(1)
+	end, "go to harpoon mark(1)"),
+	kmap("n", "<M-2>", function()
+		require("harpoon"):list():select(2)
+	end, "go to harpoon mark(2)"),
+	kmap("n", "<M-3>", function()
+		require("harpoon"):list():select(3)
+	end, "go to harpoon mark(3)"),
+	kmap("n", "<M-4>", function()
+		require("harpoon"):list():select(4)
+	end, "go to harpoon mark(4)"),
+	kmap("n", "<M-5>", function()
+		require("harpoon"):list():select(5)
+	end, "go to harpoon mark(5)"),
+	kmap("n", "<M-6>", function()
+		require("harpoon"):list():select(6)
+	end, "go to harpoon mark(6)"),
+	kmap("n", "<M-7>", function()
+		require("harpoon"):list():select(7)
+	end, "go to harpoon mark(7)"),
+	kmap("n", "<M-8>", function()
+		require("harpoon"):list():select(8)
+	end, "go to harpoon mark(8)"),
+	kmap("n", "<M-9>", function()
+		require("harpoon"):list():select(9)
+	end, "go to harpoon mark(9)"),
 })

@@ -8,4 +8,9 @@ return {
 		},
 		exclude_filetypes = { "NeogitStatus" },
 	},
+	{
+		"harpoon",
+		padding = { left = 0, right = 0 },
+		color = { bg = "None" },
+	},
 }

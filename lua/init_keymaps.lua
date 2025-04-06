@@ -36,6 +36,12 @@ kmap("v", "<Tab>", ">gv", "Insert tab")
 kmap("v", "<S-Tab>", "<gv", "Remove tab")
 -- -- INFO: Tab management
 kmap("n", "<M-Tab>", kcmd("tabnew"), "New tab")
-for i = 1, 9 do
-	kmap("n", "<M-" .. i .. ">", kcmd("tabn " .. i, true), "Go to tab " .. i)
-end
+kmap("n", "<M-!>", kcmd("tabn 1", true), "Go to tab 2")
+kmap("n", "<M-@>", kcmd("tabn 2", true), "Go to tab 2")
+kmap("n", "<M-#>", kcmd("tabn 3", true), "Go to tab 3")
+kmap("n", "<M-$>", kcmd("tabn 4", true), "Go to tab 4")
+kmap("n", "<M-%>", kcmd("tabn 5", true), "Go to tab 5")
+kmap("n", "<M-^>", kcmd("tabn 6", true), "Go to tab 6")
+kmap("n", "<M-&>", kcmd("tabn 7", true), "Go to tab 7")
+kmap("n", "<M-*>", kcmd("tabn 8", true), "Go to tab 8")
+kmap("n", "<M-(>", kcmd("tabn 9", true), "Go to tab 9")
