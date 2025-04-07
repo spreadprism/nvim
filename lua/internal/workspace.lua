@@ -16,6 +16,7 @@ function M.init()
 	workspace_group_id = vim.api.nvim_create_augroup("workspace_on_save", { clear = true })
 	dap_configurations = {}
 	vim.g.find_file_blacklist = {}
+	require("internal.db").clear_connections()
 	if nixCats("debugging") then
 		local dap = require("dap")
 		local cfg = dap.providers.configs
