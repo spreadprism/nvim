@@ -59,6 +59,18 @@
       url = "github:akinsho/git-conflict.nvim";
       flake = false;
     };
+    "plugins-blink-compat" = {
+      url = "github:Saghen/blink.compat";
+      flake = false;
+    };
+    "plugins-nvim-dbee" = {
+      url = "github:kndndrj/nvim-dbee";
+      flake = false;
+    };
+    "plugins-cmp-dbee" = {
+      url = "github:MattiasMTS/cmp-dbee";
+      flake = false;
+    };
   };
   outputs = {
     self,
@@ -155,10 +167,20 @@
           nvim-dap-ui
           nvim-dap-virtual-text
         ];
-        db = with pkgs.vimPlugins; [
-          nvim-dbee
-          nui-nvim
-        ];
+        db = with pkgs.vimPlugins;
+          [
+            nui-nvim
+            (nvim-treesitter.withPlugins (
+              plugins:
+                with plugins; [
+                  sql
+                ]
+            ))
+          ]
+          ++ (with pkgs.neovimPlugins; [
+            nvim-dbee
+            cmp-dbee
+          ]);
         requests = with pkgs.vimPlugins;
           [
             (nvim-treesitter.withPlugins (
@@ -285,6 +307,7 @@
             esqueleto
             easycolor
             render-markdown
+            blink-compat
           ]);
         devtools = with pkgs.neovimPlugins; [
           ex-colors

@@ -1,3 +1,4 @@
+plugin("cmp-dbee"):on_plugin("nvim-dbee")
 plugin("nvim-dbee")
 	:for_cat("db")
 	:cmd("Dbee")

@@ -214,6 +214,38 @@
         "type": "github"
       }
     },
+    "plugins-blink-compat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1742235335,
+        "narHash": "sha256-GluPgQ8EPH9XXsyLnw//sh1lcDEdcu3VbYQG4ns5JAE=",
+        "owner": "Saghen",
+        "repo": "blink.compat",
+        "rev": "2ed6d9a28b07fa6f3bface818470605f8896408c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Saghen",
+        "repo": "blink.compat",
+        "type": "github"
+      }
+    },
+    "plugins-cmp-dbee": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1720538879,
+        "narHash": "sha256-XxB4jQu9xAi/7XDcwsd0hGLSs74ysjg0N/uaTHjqByI=",
+        "owner": "MattiasMTS",
+        "repo": "cmp-dbee",
+        "rev": "1650f67b9bf43c029fc37570665ca895a33cdf5a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MattiasMTS",
+        "repo": "cmp-dbee",
+        "type": "github"
+      }
+    },
     "plugins-copilot": {
       "flake": false,
       "locked": {
@@ -360,6 +392,22 @@
         "type": "github"
       }
     },
+    "plugins-nvim-dbee": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1742830384,
+        "narHash": "sha256-AZojgGP8SbPywWlxyeKa5aijK6QgACbRu9q4po+grqc=",
+        "owner": "kndndrj",
+        "repo": "nvim-dbee",
+        "rev": "b4aebcabedbf0f5aa90ca391c87d6095e365ac33",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kndndrj",
+        "repo": "nvim-dbee",
+        "type": "github"
+      }
+    },
     "plugins-oil-vcs-status": {
       "flake": false,
       "locked": {
@@ -429,6 +477,8 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs",
+        "plugins-blink-compat": "plugins-blink-compat",
+        "plugins-cmp-dbee": "plugins-cmp-dbee",
         "plugins-copilot": "plugins-copilot",
         "plugins-easycolor": "plugins-easycolor",
         "plugins-esqueleto": "plugins-esqueleto",
@@ -438,6 +488,7 @@
         "plugins-harpoon": "plugins-harpoon",
         "plugins-kulala": "plugins-kulala",
         "plugins-lualine-nvim": "plugins-lualine-nvim",
+        "plugins-nvim-dbee": "plugins-nvim-dbee",
         "plugins-oil-vcs-status": "plugins-oil-vcs-status",
         "plugins-profile": "plugins-profile",
         "plugins-render-markdown": "plugins-render-markdown",

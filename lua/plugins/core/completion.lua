@@ -42,15 +42,20 @@ local base_keymap = {
 		end,
 	},
 }
+plugin("blink-compat"):dep_of("blink.cmp"):on_require("blink.compat")
+local default = {
+	"lsp",
+	"path",
+	"snippets",
+	"buffer",
+}
 plugin("blink.cmp"):event({ "InsertEnter", "CmdlineEnter" }):on_require("blink"):opts({
 	snippets = { preset = "luasnip" },
 	sources = {
-		default = {
-			"snippets",
-			"buffer",
-			"lazydev",
-			"lsp",
-			"path",
+		default = default,
+		per_filetype = {
+			lua = vim.list_extend({ "lazydev" }, default),
+			sql = { "dbee", "buffer" },
 		},
 		providers = {
 			lazydev = {
@@ -58,6 +63,7 @@ plugin("blink.cmp"):event({ "InsertEnter", "CmdlineEnter" }):on_require("blink")
 				module = "lazydev.integrations.blink",
 				score_offset = 100,
 			},
+			dbee = { name = "cmp-dbee", module = "blink.compat.source" },
 		},
 	},
 	keymap = vim.tbl_deep_extend("keep", {
