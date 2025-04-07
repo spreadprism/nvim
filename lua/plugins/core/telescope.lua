@@ -23,8 +23,20 @@ plugin("telescope.nvim")
 			},
 			pickers = {
 				find_files = {
-					find_command = internal.telescope.find_command,
-					theme = "dropdown",
+					find_command = function()
+						local blacklist = vim.tbl_map(function(pattern)
+							return "--glob=!" .. pattern
+						end, {
+							".git/*",
+							"**/target/*",
+							"**/.cache/*",
+							"**/node_modules/*",
+							".venv",
+							unpack(vim.g.grep_blacklist_pattern or {}),
+						})
+						return { "rg", "-uuu", "--files", "--hidden", unpack(blacklist) }
+					end,
+					theme = "ivy",
 				},
 				live_grep = {
 					theme = "ivy",
@@ -34,8 +46,14 @@ plugin("telescope.nvim")
 				},
 			},
 			extensions = {
-				["zf-native"] = internal.telescope.zf_native,
-				["fzf"] = internal.telescope.fzf,
+				["zf-native"] = {
+					generic = {
+						enable = false,
+					},
+				},
+				["fzf"] = {
+					override_file_sorter = false,
+				},
 			},
 		})
 		pcall(require("telescope").load_extension, "fzf")
@@ -44,8 +62,17 @@ plugin("telescope.nvim")
 		pcall(require("telescope").load_extension, "conflicts")
 	end)
 	:keys({
-		kmap("n", "<M-g>", internal.telescope.live_grep(), "grep buffer"),
-		kmap("n", "<M-G>", internal.telescope.live_grep(true), "grep everything"),
+		kmap("n", "<M-g>", function()
+			require("telescope.builtin").live_grep({
+				search_dirs = { vim.fn.expand("%:p") },
+				prompt_title = "grep buffer",
+			})
+		end, "grep buffer"),
+		kmap("n", "<M-G>", function()
+			require("telescope.builtin").live_grep({
+				prompt_title = "grep global",
+			})
+		end, "grep everything"),
 		kmap("n", "<M-f>", kcmd("Telescope current_buffer_fuzzy_find"), "fuzzy find buffer"),
 		kgroup("<leader>f", "find", {}, {
 			kmap("n", "f", kcmd("Telescope find_files"), "files"),

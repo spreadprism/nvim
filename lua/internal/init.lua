@@ -28,7 +28,6 @@ M.kgroup = keymap.group
 M.kopts = keymap.opts
 M.load_all = require("internal.loader").load_all
 M.merge_specs = require("internal.plugin.lze").merge
-M.telescope = require("internal.telescope")
 M.workspace = require("internal.workspace")
 M.env = require("internal.env")
 M.plugin_loaded = function(plugin)

@@ -15,6 +15,7 @@ function M.init()
 	require("exrc").init()
 	workspace_group_id = vim.api.nvim_create_augroup("workspace_on_save", { clear = true })
 	dap_configurations = {}
+	vim.g.find_file_blacklist = {}
 	if nixCats("debugging") then
 		local dap = require("dap")
 		local cfg = dap.providers.configs
@@ -24,15 +25,14 @@ function M.init()
 			end
 		end
 	end
-	if nixCats("workspace") then
-	end
 end
 
----@param env_files? string | string[]
-function M.dotenv(env_files)
-	env_files = env_files or { ".env", ".local.env" }
-	if type(env_files) == "string" then
-		env_files = { env_files }
+---@param ... string
+function M.dotenv(...)
+	local env_files = { ... }
+
+	if #env_files == 0 then
+		env_files = { ".env" }
 	end
 
 	local cwd = cwd()
@@ -126,6 +126,16 @@ function M.launch_configs_ft(ft, cfgs)
 	end
 
 	M.launch_configs(cfgs)
+end
+---@param ... string
+function M.grep_pattern_ignore(...)
+	local ignore_pattern = { ... }
+
+	local tmp = {}
+	for _, pattern in ipairs(ignore_pattern) do
+		table.insert(tmp, pattern)
+	end
+	vim.g.grep_blacklist_pattern = tmp
 end
 
 return M
