@@ -306,6 +306,7 @@
       tmux = true;
       workspace = true;
       requests = true;
+      db = true;
       colorscheme = true; # BUG: Currently the built colorscheme doesn't work
     };
     base_extra = {pkgs, ...} @ misc: {
@@ -332,8 +333,6 @@
           base_categories misc
           // {
             go = true;
-            db = true;
-            requests = true;
             proto = true;
             remote = true;
             devtools = true;
