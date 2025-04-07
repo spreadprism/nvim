@@ -25,22 +25,19 @@ end
 ---@field username string
 ---@field password string
 ---@field host? string
----@field port? string
+---@field port? number
 ---@field db? string
 
 ---@param conn_name string
 ---@param opts MysqlOpts
 function M.add_mysql_conn(conn_name, opts)
-	---@type MysqlOpts
-	opts = vim.tbl_deep_extend("force", {
-		host = "127.0.0.1",
-		port = "3306",
-		db = "",
-	}, opts)
+	opts.host = opts.host or "127.0.0.1"
+	opts.port = opts.port or 3306
+	opts.db = opts.db or ""
 	M.add_connection({
 		name = conn_name,
 		type = "mysql",
-		url = string.format("%s:%s@tcp(%s:%s)/%s", opts.username, opts.password, opts.host, opts.port, opts.db),
+		url = string.format("%s:%s@tcp(%s:%d)/%s", opts.username, opts.password, opts.host, opts.port, opts.db),
 	})
 end
 
