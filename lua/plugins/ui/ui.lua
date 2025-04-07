@@ -1,5 +1,5 @@
-plugin("nui-nvim"):on_plugin("noice-nvim"):config(false)
-plugin("dressing.nvim"):on_plugin("noice-nvim"):event_defer():opts({
+plugin("nui.nvim"):config(false)
+plugin("dressing.nvim"):opts({
 	select = {
 		get_config = function(opts)
 			if opts.kind == "codeaction" then
@@ -14,6 +14,7 @@ plugin("dressing.nvim"):on_plugin("noice-nvim"):event_defer():opts({
 plugin("noice.nvim")
 	:for_cat("core")
 	:event_defer()
+	:dep_on("nui.nvim", "dressing.nvim")
 	:on_require("noice")
 	:keys({
 		kgroup("<leader>n", "notifications", {}, {

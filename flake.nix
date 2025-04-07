@@ -155,6 +155,10 @@
           nvim-dap-ui
           nvim-dap-virtual-text
         ];
+        db = with pkgs.vimPlugins; [
+          nvim-dbee
+          nui-nvim
+        ];
         requests = with pkgs.vimPlugins;
           [
             (nvim-treesitter.withPlugins (
@@ -216,6 +220,7 @@
           [
             nvim-osc52
             neoscroll-nvim
+            nui-nvim
             nvim-lspconfig
             nvim-treesitter-textobjects
             nvim-treesitter-endwise
@@ -327,6 +332,7 @@
           base_categories misc
           // {
             go = true;
+            db = true;
             requests = true;
             proto = true;
             remote = true;

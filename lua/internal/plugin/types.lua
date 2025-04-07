@@ -166,27 +166,25 @@ end
 
 --- Lazy-load before another plugin but after
 --- its `before` hook
----@param name string | string[]
-function Plugin:dep_of(name)
-	lze.apply(self.name, { dep_of = name })
+---@param ... string
+function Plugin:dep_of(...)
+	lze.apply(self.name, { dep_of = { ... } })
 	return self
 end
 
----@param name string | string[]
-function Plugin:dep_on(name)
-	if type(name) == "string" then
-		name = { name }
-	end
+---@param ... string
+function Plugin:dep_on(...)
+	local name = { ... }
 	for _, n in ipairs(name) do
-		lze.apply(n, { dep_of = self.name })
+		lze.apply(n, { dep_of = { self.name } })
 	end
 	return self
 end
 
 --- Lazy-load after another plugin but before its `after` hook
----@param name string | string[]
-function Plugin:on_plugin(name)
-	lze.apply(self.name, { on_plugin = name })
+---@param ... string
+function Plugin:on_plugin(...)
+	lze.apply(self.name, { on_plugin = { ... } })
 	return self
 end
 
