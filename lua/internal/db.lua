@@ -43,4 +43,19 @@ end
 
 M.source = WorkspaceSource
 
+M.layout = function()
+	local o = {
+		egg = nil,
+		windows = {},
+		on_switch = opts.on_switch or "immutable",
+		is_opened = false,
+		drawer_width = opts.drawer_width or 40,
+		result_height = opts.result_height or 20,
+		call_log_height = opts.call_log_height or 20,
+	}
+	setmetatable(o, self)
+	self.__index = self
+	return o
+end
+
 return M

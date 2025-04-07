@@ -11,10 +11,9 @@ plugin("telescope.nvim")
 			defaults = {
 				mappings = {
 					i = {
-						["<Tab>"] = actions.move_selection_next,
-						["<S-Tab>"] = actions.move_selection_previous,
 						["<M-m>"] = actions.toggle_selection,
 						["<C-q>"] = actions.close,
+						["<M-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
 					},
 					n = {
 						["<Tab>"] = actions.toggle_selection,
@@ -37,6 +36,16 @@ plugin("telescope.nvim")
 						return { "rg", "-uuu", "--files", "--hidden", unpack(blacklist) }
 					end,
 					theme = "ivy",
+				},
+				help_tags = {
+					mappings = {
+						i = {
+							["<Enter>"] = "file_tab",
+						},
+						n = {
+							["<Enter>"] = "file_tab",
+						},
+					},
 				},
 				live_grep = {
 					theme = "ivy",
@@ -79,5 +88,6 @@ plugin("telescope.nvim")
 			kmap("n", "l", kcmd("Telescope resume"), "last"),
 			kmap("n", "c", kcmd("Telescope conflicts"), "conflicts"),
 			kmap("n", "s", kcmd("Telescope lsp_document_symbols"), "symbols"),
+			kmap("n", "h", kcmd("Telescope help_tags"), "symbols"),
 		}),
 	})

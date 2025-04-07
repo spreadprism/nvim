@@ -14,15 +14,15 @@ local default_options = {
 		unnamed = "[No Name]",
 		newfile = "[New]",
 	},
-	exclude_filetypes = {
-		"vim",
-	},
+	exclude_filetypes = {},
 }
 
 local always_exclude = {
 	"netrw",
 	"toggleterm",
 	"noice",
+	"vim",
+	"qf",
 }
 
 function component:init(options)
