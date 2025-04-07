@@ -138,4 +138,6 @@ function M.grep_pattern_ignore(...)
 	vim.g.grep_blacklist_pattern = tmp
 end
 
+M.mysql = require("internal.db").add_mysql_conn
+
 return M
