@@ -24,6 +24,8 @@ plugin("nvim-dbee")
 			},
 			result = {
 				mappings = {
+					{ key = "<Right>", mode = "n", action = "page_next" },
+					{ key = "<Left>", mode = "n", action = "page_prev" },
 					-- next/previous page
 					{ key = "yj", mode = "n", action = "yank_current_json" },
 					{ key = "yj", mode = "v", action = "yank_selection_json" },
@@ -36,6 +38,8 @@ plugin("nvim-dbee")
 			},
 			editor = {
 				mappings = {
+					{ key = "<Right>", mode = "n", action = "page_next" },
+					{ key = "<Left>", mode = "n", action = "page_prev" },
 					{ key = "<Enter>", mode = "v", action = "run_selection" },
 					{ key = "<Enter>", mode = "n", action = "run_file" },
 					{ key = "<C-c>", mode = "", action = "cancel_call" },
