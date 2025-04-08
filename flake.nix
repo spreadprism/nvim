@@ -295,7 +295,7 @@
             nvim-ufo
             luasnip
             grug-far-nvim
-            trouble-nvim
+            # trouble-nvim
             treesj
             overseer-nvim
             flash-nvim

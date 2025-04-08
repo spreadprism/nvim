@@ -7,6 +7,7 @@ plugin("telescope.nvim")
 	:cmd("Telescope")
 	:config(function()
 		local actions = require("telescope.actions")
+		local action_state = require("telescope.actions.state")
 		require("telescope").setup({
 			defaults = {
 				mappings = {
@@ -45,6 +46,11 @@ plugin("telescope.nvim")
 						n = {
 							["<Enter>"] = "file_tab",
 						},
+					},
+				},
+				diagnostics = {
+					mappings = {
+						i = {},
 					},
 				},
 				live_grep = {
@@ -88,6 +94,7 @@ plugin("telescope.nvim")
 			kmap("n", "l", kcmd("Telescope resume"), "last"),
 			kmap("n", "c", kcmd("Telescope conflicts"), "conflicts"),
 			kmap("n", "s", kcmd("Telescope lsp_document_symbols"), "symbols"),
-			kmap("n", "h", kcmd("Telescope help_tags"), "symbols"),
+			kmap("n", "h", kcmd("Telescope help_tags"), "help"),
+			kmap("n", "d", kcmd("Telescope diagnostics"), "diagnostics"),
 		}),
 	})

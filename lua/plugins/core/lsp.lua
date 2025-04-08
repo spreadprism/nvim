@@ -79,17 +79,14 @@ require("lze").load({
 				enabled = true,
 				source = "if_many",
 				prefix = "● ",
-				severity = {
-					max = vim.diagnostic.severity.WARN,
-				},
 			},
-			virtual_lines = {
-				enabled = true,
-				source = "if_many",
-				severity = {
-					min = vim.diagnostic.severity.ERROR,
-				},
-			},
+			-- virtual_lines = {
+			-- 	enabled = false,
+			-- 	source = "if_many",
+			-- 	severity = {
+			-- 		min = vim.diagnostic.severity.ERROR,
+			-- 	},
+			-- },
 			update_in_insert = true,
 			underline = true,
 			severity_sort = true,

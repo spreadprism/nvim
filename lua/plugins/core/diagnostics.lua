@@ -1,27 +1,27 @@
-plugin("trouble.nvim")
-	:on_require("trouble")
-	:cmd("Trouble")
-	:opts({
-		auto_preview = false,
-		focus = true,
-	})
-	:keys({
-		kmap("n", "<M-t>", kcmd("Trouble diagnostics toggle")),
-		kmap("n", "<M-T>", kcmd("Trouble diagnostics toggle filter.buf=0")),
-		kmap("n", "<M-d>", function()
-			vim.diagnostic.open_float({
-				border = "rounded",
-				scope = "line",
-				prefix = function(_, i, total)
-					if total == 1 then
-						return "", ""
-					end
-					return "(" .. i .. "/" .. total .. ") ", ""
-				end,
-				source = true,
-			})
-		end),
-	})
+-- plugin("trouble.nvim")
+-- 	:on_require("trouble")
+-- 	:cmd("Trouble")
+-- 	:opts({
+-- 		auto_preview = false,
+-- 		focus = true,
+-- 	})
+-- 	:keys({
+-- 		kmap("n", "<M-t>", kcmd("Trouble diagnostics toggle")),
+-- 		kmap("n", "<M-T>", kcmd("Trouble diagnostics toggle filter.buf=0")),
+-- 		kmap("n", "<M-d>", function()
+-- 			vim.diagnostic.open_float({
+-- 				border = "rounded",
+-- 				scope = "line",
+-- 				prefix = function(_, i, total)
+-- 					if total == 1 then
+-- 						return "", ""
+-- 					end
+-- 					return "(" .. i .. "/" .. total .. ") ", ""
+-- 				end,
+-- 				source = true,
+-- 			})
+-- 		end),
+-- 	})
 
 local old_set = vim.diagnostic.set
 ---@diagnostic disable-next-line: duplicate-set-field
