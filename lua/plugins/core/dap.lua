@@ -45,6 +45,11 @@ if nixCats("debugging") then
 			},
 			layouts = require("internal.dap_ui").generate_layouts(),
 		})
+		:setup(function()
+			local elements = require("dapui").elements
+			elements.repl.allow_without_session = true
+			elements.console.allow_without_session = true
+		end)
 		:keys({
 			kmap("n", "<M-c>", function()
 				local height = vim.fn.floor(vim.fn.winheight(0) * 0.9)
