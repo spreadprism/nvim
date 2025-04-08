@@ -31,8 +31,12 @@
       url = "github:nvim-lualine/lualine.nvim";
       flake = false;
     };
+    # "plugins-kulala" = {
+    #   url = "github:spreadprism/kulala.nvim?ref=grpc_headers";
+    #   flake = false;
+    # };
     "plugins-kulala" = {
-      url = "github:spreadprism/kulala.nvim?ref=grpc_headers";
+      url = "github:mistweaverco/kulala.nvim";
       flake = false;
     };
     "plugins-tmux-navigation" = {
