@@ -45,7 +45,28 @@ if nixCats("debugging") then
 			},
 			layouts = require("internal.dap_ui").generate_layouts(),
 		})
-		:keys({})
+		:keys({
+			kmap("n", "<M-c>", function()
+				local height = vim.fn.floor(vim.fn.winheight(0) * 0.9)
+				local width = vim.fn.floor(vim.fn.winwidth(0) * 0.9)
+				require("dapui").float_element("repl", {
+					width = width,
+					height = height,
+					enter = true,
+					position = "center",
+				})
+			end, "dap console (repl)"),
+			kmap("n", "<M-C>", function()
+				local height = vim.fn.floor(vim.fn.winheight(0) * 0.85)
+				local width = vim.fn.floor(vim.fn.winwidth(0) * 0.9)
+				require("dapui").float_element("console", {
+					width = width,
+					height = height,
+					enter = true,
+					position = "center",
+				})
+			end, "dap console (console)"),
+		})
 	local virtual_max_char = 15
 	plugin("nvim-dap-virtual-text")
 		:opts({
