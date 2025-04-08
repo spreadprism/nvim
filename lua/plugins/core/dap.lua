@@ -52,21 +52,17 @@ if nixCats("debugging") then
 		end)
 		:keys({
 			kmap("n", "<M-c>", function()
-				local height = vim.fn.floor(vim.fn.winheight(0) * 0.9)
-				local width = vim.fn.floor(vim.fn.winwidth(0) * 0.9)
 				require("dapui").float_element("repl", {
-					width = width,
-					height = height,
+					width = get_width(0.9),
+					height = get_height(0.9),
 					enter = true,
 					position = "center",
 				})
 			end, "dap console (repl)"),
 			kmap("n", "<M-C>", function()
-				local height = vim.fn.floor(vim.fn.winheight(0) * 0.85)
-				local width = vim.fn.floor(vim.fn.winwidth(0) * 0.9)
 				require("dapui").float_element("console", {
-					width = width,
-					height = height,
+					width = get_width(0.9),
+					height = get_height(0.9),
 					enter = true,
 					position = "center",
 				})

@@ -90,6 +90,14 @@ _G.env = M.env
 _G.Symbols = M.Symbols
 _G.Colors = M.Colors
 
+function _G.get_width(modifier)
+	return vim.fn.floor(tonumber(vim.api.nvim_command_output("echo &columns")) * (modifier or 1))
+end
+
+function _G.get_height(modifier)
+	return vim.fn.floor(tonumber(vim.api.nvim_command_output("echo &lines")) * (modifier or 1))
+end
+
 ---@param cmd string
 function M.cmd_on_click(cmd)
 	return function(_, mouse_button, _)
