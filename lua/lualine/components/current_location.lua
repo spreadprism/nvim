@@ -23,6 +23,8 @@ local always_exclude = {
 	"noice",
 	"vim",
 	"qf",
+	"startuptime",
+	"trouble",
 }
 
 function component:init(options)
