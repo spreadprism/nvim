@@ -19,6 +19,19 @@ local function on_attach(_, bufnr)
 	kgroup("<leader>l", "lsp", {}, {
 		kmap({ "n", "v" }, "a", vim.lsp.buf.code_action, "code actions"),
 	})
+	kmap("n", "<M-d>", function()
+		vim.diagnostic.open_float({
+			border = "rounded",
+			scope = "line",
+			prefix = function(_, i, total)
+				if total == 1 then
+					return "", ""
+				end
+				return "(" .. i .. "/" .. total .. ") ", ""
+			end,
+			source = true,
+		})
+	end, "diagnostic float")
 end
 
 plugin("neoconf.nvim"):on_require("neoconf"):on_plugin("nvim-lspconfig"):opts({

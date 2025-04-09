@@ -28,6 +28,7 @@ end
 ---@field port? number
 ---@field db? string
 
+local trigger_update = true
 ---@param conn_name string
 ---@param opts MysqlOpts
 function M.add_mysql_conn(conn_name, opts)
@@ -39,6 +40,17 @@ function M.add_mysql_conn(conn_name, opts)
 		type = "mysql",
 		url = string.format("%s:%s@tcp(%s:%d)/%s", opts.username, opts.password, opts.host, opts.port, opts.db),
 	})
+
+	vim.defer_fn(function()
+		if trigger_update then
+			trigger_update = false
+			require("dbee.api").core.source_reload("workspace")
+
+			vim.defer_fn(function()
+				trigger_update = true
+			end, 300)
+		end
+	end, 300)
 end
 
 M.source = WorkspaceSource
