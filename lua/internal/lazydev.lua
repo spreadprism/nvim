@@ -5,7 +5,8 @@ M.paths = {
 	"nvim-dap",
 	"nvim-dap-ui",
 }
-if not vim.g.disable_lazydev_cfg then
+
+if exec("git config remote.origin.url"):gsub("\n", "") ~= "git@github.com:spreadprism/nvim.git" then
 	table.insert(M.paths, (nixCats.configDir or "") .. "/lua/internal")
 end
 

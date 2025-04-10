@@ -3,7 +3,7 @@ local lze = require("internal.plugin.lze")
 vim.g.lsp_display = {}
 
 ---@class Lsp
----@param name string
+---@field name string
 Lsp = {}
 Lsp.__index = Lsp
 
@@ -19,10 +19,33 @@ function M.lsp(name)
 	return lsp
 end
 
----@param ft string | string[]
+---@param ... string
 ---@return Lsp
-function Lsp:ft(ft)
-	lze.apply(self.name, { lsp = { filetypes = ft } })
+function Lsp:ft(...)
+	lze.apply(self.name, { lsp = { filetypes = { ... } } })
+	return self
+end
+
+---@param ... string
+---@return Lsp
+function Lsp:cmd(...)
+	lze.apply(self.name, { lsp = { filetypes = { ... } } })
+	return self
+end
+
+---@param ... string
+---@return Lsp
+function Lsp:root_dir(...)
+	local args = ...
+	lze.apply(self.name, {
+		lsp = {
+			root_dir = {
+				function(startpath)
+					return require("lspconfig.util").root_pattern(args)(startpath) or cwd()
+				end,
+			},
+		},
+	})
 	return self
 end
 
@@ -64,4 +87,5 @@ end
 function M.set_client_display(client, display)
 	client_filter[client] = display
 end
+
 return M

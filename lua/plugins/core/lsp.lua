@@ -158,3 +158,5 @@ plugin("hover.nvim")
 			end
 		end, "hover"),
 	})
+
+lsp("ast_grep"):cmd("sg", "lsp", "--config", vim.fs.joinpath(LUA_PATH, "rules", "sgconfig.yml"))

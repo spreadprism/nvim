@@ -4,6 +4,7 @@ local M = {}
 -- _G.print = vim.print
 _G.cwd = vim.fn.getcwd
 _G.joinpath = vim.fs.joinpath
+---@return string
 _G.exec = function(cmd)
 	local handle = io.popen(cmd)
 	---@diagnostic disable-next-line: need-check-nil

@@ -1,0 +1,17 @@
+id: function-name-casing
+language: go
+message: "Function names should be in camelCase or PascalCase."
+severity: warning
+rule:
+  pattern: $NAME
+  kind: identifier
+  inside:
+    kind: function_declaration
+  not:
+    regex: ^[a-z][a-zA-Z0-9]*$|^[A-Z][a-zA-Z0-9]*$
+transform:
+  NEW_NAME:
+    convert:
+      source: $NAME
+      toCase: camelCase
+fix: $NEW_NAME
