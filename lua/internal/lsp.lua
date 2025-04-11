@@ -1,91 +1,67 @@
 local M = {}
-local lze = require("internal.plugin.lze")
-vim.g.lsp_display = {}
 
 ---@class Lsp
 ---@field name string
+---@field opts vim.lsp.Config
+---@field cat? string
 Lsp = {}
 Lsp.__index = Lsp
 
 ---@param name string
----@return Lsp
 function M.lsp(name)
-	local lsp = setmetatable({
-		name = name,
-		lsp = {},
-	}, Lsp)
-
-	lze.apply(name, lsp)
-	return lsp
+	local lsp = setmetatable({ name = name, opts = {} }, Lsp)
+	vim.defer_fn(function()
+		lsp:configure()
+	end, 100)
+	return lsp:cmd(name)
 end
 
----@param ... string
+---@param cat string
 ---@return Lsp
-function Lsp:ft(...)
-	lze.apply(self.name, { lsp = { filetypes = { ... } } })
+function Lsp:for_cat(cat)
+	self.cat = cat
 	return self
+end
+function Lsp:configure()
+	vim.lsp.config[self.name] = vim.tbl_deep_extend("force", vim.lsp.config[self.name] or {}, self.opts)
+
+	local final_cfg = vim.lsp.config[self.name]
+	local cat = nixCats(self.cat or "core")
+	local executable = vim.fn.executable(final_cfg.cmd[1]) == 1
+	if cat and not executable then
+		-- notify warn that we should enable but executable is missing
+		vim.notify(self.name .. " missing executable " .. final_cfg.cmd[1], vim.log.levels.WARN, { title = "LSP" })
+	end
+
+	vim.lsp.enable(self.name, cat and executable)
 end
 
 ---@param ... string
 ---@return Lsp
 function Lsp:cmd(...)
-	lze.apply(self.name, { lsp = { filetypes = { ... } } })
+	self.opts.cmd = { ... }
 	return self
 end
 
 ---@param ... string
 ---@return Lsp
-function Lsp:root_dir(...)
-	local args = ...
-	lze.apply(self.name, {
-		lsp = {
-			root_dir = {
-				function(startpath)
-					return require("lspconfig.util").root_pattern(args)(startpath) or cwd()
-				end,
-			},
-		},
-	})
+function Lsp:ft(...)
+	self.opts.filetypes = { ... }
 	return self
 end
 
----@param settings table
+---@param ... string
 ---@return Lsp
-function Lsp:settings(settings)
-	lze.apply(self.name, { lsp = { settings = settings } })
+function Lsp:root_markers(...)
+	self.opts.root_markers = { ... }
 	return self
 end
 
----@param enabled boolean
+---@param ... string
 ---@return Lsp
-function Lsp:enabled(enabled)
-	lze.apply(self.name, { enabled = enabled })
+function Lsp:settings(...)
+	self.opts.settings = { ... }
 	return self
-end
-
----@param display boolean
----@return Lsp
-function Lsp:display(display)
-	M.set_client_display(self.name, display)
-	return self
-end
-
----@type table<string, boolean>
-local client_filter = {}
----@param bufnr number
-function M.get_clients(bufnr)
-	local all_clients = vim.lsp.get_clients({ bufnr = bufnr }) or {}
-	all_clients = vim.tbl_map(function(val)
-		return val.name
-	end, all_clients)
-	return vim.tbl_filter(function(val)
-		return client_filter[val] or client_filter[val] == nil
-	end, all_clients)
-end
----@param client string
----@param display boolean
-function M.set_client_display(client, display)
-	client_filter[client] = display
 end
 
 return M

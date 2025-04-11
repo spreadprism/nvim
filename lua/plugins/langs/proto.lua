@@ -1,3 +1,5 @@
-if nixCats("proto") then
-	lsp("buf_ls"):ft("proto")
-end
+lsp("buf_ls")
+	:for_cat("proto")
+	:ft("proto")
+	:root_markers("buf.yaml", ".git")
+	:cmd("buf", "beta", "lsp", "--timeout=0", "--log-format=text")

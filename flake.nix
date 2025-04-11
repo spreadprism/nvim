@@ -109,6 +109,7 @@
           vscode-langservers-extracted
           stylua
           nixd
+          ast-grep
           alejandra
           marksman
         ];
@@ -141,6 +142,7 @@
           ]
           ++ (with pkgs.vimPlugins; [
             lze
+            nvim-lspconfig # BUG: Unable to remove dependency for now
             mini-pairs
             lzextras
             plenary-nvim
@@ -247,7 +249,6 @@
             nvim-osc52
             neoscroll-nvim
             nui-nvim
-            nvim-lspconfig
             nvim-treesitter-textobjects
             nvim-treesitter-endwise
             (nvim-treesitter.withPlugins (

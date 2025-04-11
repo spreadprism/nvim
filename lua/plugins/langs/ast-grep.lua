@@ -1,0 +1,6 @@
+-- lsp("ast_grep")
+-- 	:cmd("sg", "lsp", "--config", vim.fs.joinpath(LUA_PATH, "rules", "sgconfig.yml"))
+-- 	:root_dir(function(_)
+-- 		return cwd()
+-- 	end)
+-- 	:ft("c", "cpp", "rust", "go", "java", "python", "javascript", "typescript", "html", "css", "kotlin", "dart", "lua")
