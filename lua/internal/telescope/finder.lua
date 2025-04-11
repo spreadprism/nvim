@@ -69,6 +69,11 @@ finder_multi = function(opts, base_buffer)
 		map({ "n", "i" }, "<C-f>", actions.to_fuzzy_refine)
 		return true
 	end
+	if opts.search_dirs ~= nil and opts.search_dirs[1] == base_buffer then
+		opts.path_display = { "hidden" }
+	else
+		opts.path_display = nil
+	end
 	opts.prompt_title = prompt_title(opts, base_buffer)
 	require("telescope.builtin").live_grep(opts, base_buffer)
 end
