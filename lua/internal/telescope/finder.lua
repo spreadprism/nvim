@@ -61,6 +61,7 @@ finder_multi = function(opts, base_buffer)
 		map({ "n", "i" }, "<C-d>", function()
 			require("dir-telescope.util").get_dirs({ disable_devicons = true, show_preview = false }, fn_finder)
 		end)
+		map({ "n", "i" }, "<C-f>", actions.to_fuzzy_refine)
 		return true
 	end
 	opts.prompt_title = prompt_title(opts, base_buffer)
