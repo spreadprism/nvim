@@ -27,65 +27,95 @@ diagnostic_multi = function(opts)
 	opts = opts or {}
 
 	opts.attach_mappings = function(_, map)
-		map({ "n", "i" }, "<C-g>", function(prompt_bufnr)
-			local prompt = state.get_current_line()
-			actions.close(prompt_bufnr)
-			opts.bufnr = nil
-			opts.default_text = prompt
-			opts.prompt_title = prompt_title(opts.bufnr, opts.severity)
-			diagnostic_multi(opts)
-		end)
-		map({ "n", "i" }, "<C-b>", function(prompt_bufnr)
-			local prompt = state.get_current_line()
-			actions.close(prompt_bufnr)
-			opts.bufnr = 0
-			opts.default_text = prompt
-			opts.prompt_title = prompt_title(opts.bufnr, opts.severity)
-			diagnostic_multi(opts)
-		end)
-		map({ "n", "i" }, "<C-e>", function(prompt_bufnr)
-			local prompt = state.get_current_line()
-			actions.close(prompt_bufnr)
-			opts.severity = "ERROR"
-			opts.default_text = prompt
-			opts.prompt_title = prompt_title(opts.bufnr, opts.severity)
-			diagnostic_multi(opts)
-		end)
-		map({ "n", "i" }, "<C-w>", function(prompt_bufnr)
-			local prompt = state.get_current_line()
-			actions.close(prompt_bufnr)
-			opts.severity = "WARN"
-			opts.default_text = prompt
-			opts.prompt_title = prompt_title(opts.bufnr, opts.severity)
-			diagnostic_multi(opts)
-		end)
-		map({ "n", "i" }, "<C-i>", function(prompt_bufnr)
-			local prompt = state.get_current_line()
-			actions.close(prompt_bufnr)
-			opts.severity = "WARN"
-			opts.default_text = prompt
-			opts.prompt_title = prompt_title(opts.bufnr, opts.severity)
-			diagnostic_multi(opts)
-		end)
-		map({ "n", "i" }, "<C-i>", function(prompt_bufnr)
-			local prompt = state.get_current_line()
-			actions.close(prompt_bufnr)
-			opts.severity = "HINT"
-			opts.default_text = prompt
-			opts.prompt_title = prompt_title(opts.bufnr, opts.severity)
-			diagnostic_multi(opts)
-		end)
-		map({ "n", "i" }, "<C-a>", function(prompt_bufnr)
-			local prompt = state.get_current_line()
-			actions.close(prompt_bufnr)
-			opts.severity = nil
-			opts.default_text = prompt
-			opts.prompt_title = prompt_title(opts.bufnr, opts.severity)
-			diagnostic_multi(opts)
-		end)
+		local opts_fn = require("internal.telescope").opts_fn
+		map(
+			{ "n", "i" },
+			"<C-g>",
+			opts_fn(diagnostic_multi, function(prompt)
+				if opts.bufnr == 0 then
+					return false
+				end
+				opts.bufnr = nil
+				opts.default_text = prompt
+				return opts
+			end)
+		)
+		map(
+			{ "n", "i" },
+			"<C-b>",
+			opts_fn(diagnostic_multi, function(prompt)
+				if opts.bufnr == 0 then
+					return false
+				end
+				opts.bufnr = 0
+				opts.default_text = prompt
+				return opts
+			end)
+		)
+		map(
+			{ "n", "i" },
+			"<C-e>",
+			opts_fn(diagnostic_multi, function(prompt)
+				if opts.severity == "ERROR" then
+					return false
+				end
+				opts.severity = "ERROR"
+				opts.default_text = prompt
+				return opts
+			end)
+		)
+		map(
+			{ "n", "i" },
+			"<C-w>",
+			opts_fn(diagnostic_multi, function(prompt)
+				if opts.severity == "WARN" then
+					return false
+				end
+				opts.severity = "WARN"
+				opts.default_text = prompt
+				return opts
+			end)
+		)
+		map(
+			{ "n", "i" },
+			"<C-h>",
+			opts_fn(diagnostic_multi, function(prompt)
+				if opts.severity == "HINT" then
+					return false
+				end
+				opts.severity = "HINT"
+				opts.default_text = prompt
+				return opts
+			end)
+		)
+		map(
+			{ "n", "i" },
+			"<C-i>",
+			opts_fn(diagnostic_multi, function(prompt)
+				if opts.severity == "INFO" then
+					return false
+				end
+				opts.severity = "INFO"
+				opts.default_text = prompt
+				return opts
+			end)
+		)
+		map(
+			{ "n", "i" },
+			"<C-a>",
+			opts_fn(diagnostic_multi, function(prompt)
+				if opts.severity == nil then
+					return false
+				end
+				opts.severity = nil
+				opts.default_text = prompt
+				return opts
+			end)
+		)
 		return true
 	end
 
+	opts.prompt_title = prompt_title(opts.bufnr, opts.severity)
 	require("telescope.builtin").diagnostics(opts)
 end
 

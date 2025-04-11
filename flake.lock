@@ -262,6 +262,22 @@
         "type": "github"
       }
     },
+    "plugins-dir-telescope": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1724719740,
+        "narHash": "sha256-B/cZUkjAVi52jopBwZJYmiaVf8PqnawusnSGOx7dDqs=",
+        "owner": "princejoogie",
+        "repo": "dir-telescope.nvim",
+        "rev": "805405b9f98dc3470f8676773dc0e6151a9158ed",
+        "type": "github"
+      },
+      "original": {
+        "owner": "princejoogie",
+        "repo": "dir-telescope.nvim",
+        "type": "github"
+      }
+    },
     "plugins-easycolor": {
       "flake": false,
       "locked": {
@@ -479,6 +495,7 @@
         "plugins-blink-compat": "plugins-blink-compat",
         "plugins-cmp-dbee": "plugins-cmp-dbee",
         "plugins-copilot": "plugins-copilot",
+        "plugins-dir-telescope": "plugins-dir-telescope",
         "plugins-easycolor": "plugins-easycolor",
         "plugins-esqueleto": "plugins-esqueleto",
         "plugins-ex-colors": "plugins-ex-colors",

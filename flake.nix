@@ -75,6 +75,10 @@
       url = "github:MattiasMTS/cmp-dbee";
       flake = false;
     };
+    "plugins-dir-telescope" = {
+      url = "github:princejoogie/dir-telescope.nvim";
+      flake = false;
+    };
   };
   outputs = {
     self,
@@ -312,6 +316,7 @@
             easycolor
             render-markdown
             blink-compat
+            dir-telescope
           ]);
         devtools = with pkgs.neovimPlugins; [
           ex-colors

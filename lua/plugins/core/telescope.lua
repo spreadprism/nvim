@@ -1,14 +1,13 @@
 plugin("telescope-fzf-native.nvim"):dep_of("telescope.nvim"):config(false)
 plugin("telescope-zf-native.nvim"):dep_of("telescope.nvim"):config(false)
 plugin("telescope-dap.nvim"):dep_of("telescope.nvim"):config(false)
+plugin("dir-telescope"):dep_of("telescope.nvim"):config(false)
 plugin("telescope-git-conflicts.nvim"):for_cat("git"):dep_of("telescope.nvim"):config(false)
 plugin("telescope.nvim")
 	:on_require("telescope")
 	:cmd("Telescope")
 	:config(function()
 		local actions = require("telescope.actions")
-		local action_state = require("telescope.actions.state")
-		local transform_mod = require("telescope.actions.mt").transform_mod
 
 		require("telescope").setup({
 			defaults = {
@@ -77,18 +76,15 @@ plugin("telescope.nvim")
 		pcall(require("telescope").load_extension, "zf-native")
 		pcall(require("telescope").load_extension, "dap")
 		pcall(require("telescope").load_extension, "conflicts")
+		pcall(require("telescope").load_extension, "dir")
 	end)
 	:keys({
 		kmap("n", "<M-g>", function()
-			require("telescope.builtin").live_grep({
-				search_dirs = { vim.fn.expand("%:p") },
-				prompt_title = "grep buffer",
-			})
+			local path = vim.fn.expand("%:p")
+			require("internal.telescope").finder({ search_dirs = { vim.fn.expand("%:p") } }, vim.fn.expand("%:p"))
 		end, "grep buffer"),
 		kmap("n", "<M-G>", function()
-			require("telescope.builtin").live_grep({
-				prompt_title = "grep global",
-			})
+			require("internal.telescope").finder({}, vim.fn.expand("%:p"))
 		end, "grep everything"),
 		kmap("n", "<M-f>", kcmd("Telescope current_buffer_fuzzy_find"), "fuzzy find buffer"),
 		kgroup("<leader>f", "find", {}, {
