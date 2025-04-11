@@ -57,10 +57,10 @@ function Lsp:root_markers(...)
 	return self
 end
 
----@param ... string
+---@param settings table
 ---@return Lsp
-function Lsp:settings(...)
-	self.opts.settings = { ... }
+function Lsp:settings(settings)
+	self.opts.settings = settings
 	return self
 end
 
