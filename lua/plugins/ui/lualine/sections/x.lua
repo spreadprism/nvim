@@ -10,6 +10,7 @@ return {
 		"lsp",
 		blacklist = {
 			"copilot",
+			"ast_grep",
 		},
 	},
 	{
