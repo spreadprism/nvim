@@ -18,6 +18,6 @@ lsp("gopls")
 	:settings({
 		directoryFilters = {
 			"-/nix/**",
-			string.format("-%s/**", os.getenv("GOBIN")),
+			string.format("-%s/**", os.getenv("GOPATH")),
 		},
 	})
