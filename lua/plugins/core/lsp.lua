@@ -69,7 +69,7 @@ vim.diagnostic.config({
 	virtual_text = {
 		enabled = true,
 		source = "if_many",
-		prefix = "● ",
+		prefix = "●",
 	},
 
 	update_in_insert = true,
