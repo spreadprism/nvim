@@ -15,7 +15,7 @@ plugin("mini.indentscope"):for_cat("core"):event_defer():init(function()
 			"lazyterm",
 			"neotest-summary",
 			"dbee",
-			"markdown",
+			"noice",
 		},
 		callback = function()
 			vim.b.miniindentscope_disable = true
