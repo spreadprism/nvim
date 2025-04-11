@@ -97,13 +97,12 @@ vim.cmd([[highlight DiagnosticDeprecated guifg=#e0af68]])
 vim.cmd([[highlight DiagnosticUnderlineInfo guifg=#0db9d7]])
 vim.cmd([[highlight DiagnosticInfo guifg=#0db9d7]])
 
--- kgroup("<leader>l", "lsp", {}, {
--- 	kmap("n", "i", kcmd("LspInfo"), "Info"),
--- 	kmap("n", "r", kcmd("LspRestart"), "Restart language server"),
--- 	kmap("n", "s", kcmd("LspStart"), "Start language server"),
--- 	kmap("n", "S", kcmd("LspStop"), "Start language server"),
--- 	kmap("n", "e", kcmd("Neoconf"), "Edit LSP settings"),
--- })
+kgroup("<leader>l", "lsp", {}, {
+	kmap("n", "i", kcmd("LspInfo"), "Info"),
+	kmap("n", "r", kcmd("LspRestart"), "Restart language server"),
+	kmap("n", "s", kcmd("LspStart"), "Start language server"),
+	kmap("n", "S", kcmd("LspStop"), "Start language server"),
+})
 
 plugin("neoconf.nvim"):on_require("neoconf"):opts({
 	import = {

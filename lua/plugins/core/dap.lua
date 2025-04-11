@@ -15,10 +15,6 @@ if nixCats("debugging") then
 				"DapStopped",
 				{ text = "", texthl = "DapStoppedSign", linehl = "DapStoppedSign", numhl = "" }
 			)
-			-- -- INFO: Setup dap plugins startup
-			-- dap.listeners.before.attach.trigger_load = function()
-			-- end
-			-- dap.listeners.before.launch.trigger_load = dap.listeners.before.attach.trigger_load
 		end)
 		:keys({
 			kmap("n", "<F5>", dap_func("continue"), "DAP start / continue"),
@@ -47,7 +43,9 @@ if nixCats("debugging") then
 		})
 		:setup(function()
 			local elements = require("dapui").elements
+			---@diagnostic disable-next-line: inject-field
 			elements.repl.allow_without_session = true
+			---@diagnostic disable-next-line: inject-field
 			elements.console.allow_without_session = true
 		end)
 		:keys({

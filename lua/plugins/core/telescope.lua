@@ -8,6 +8,8 @@ plugin("telescope.nvim")
 	:config(function()
 		local actions = require("telescope.actions")
 		local action_state = require("telescope.actions.state")
+		local transform_mod = require("telescope.actions.mt").transform_mod
+
 		require("telescope").setup({
 			defaults = {
 				mappings = {
@@ -95,6 +97,8 @@ plugin("telescope.nvim")
 			kmap("n", "c", kcmd("Telescope conflicts"), "conflicts"),
 			kmap("n", "s", kcmd("Telescope lsp_document_symbols"), "symbols"),
 			kmap("n", "h", kcmd("Telescope help_tags"), "help"),
-			kmap("n", "d", kcmd("Telescope diagnostics"), "diagnostics"),
+			kmap("n", "d", function()
+				require("internal.telescope.diagnostics").diagnostic_multi()
+			end, "diagnostics"),
 		}),
 	})
