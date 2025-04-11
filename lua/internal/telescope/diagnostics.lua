@@ -2,8 +2,6 @@
 local actions = require("telescope.actions")
 local state = require("telescope.actions.state")
 
-local M = {}
-
 ---@param bufnr? integer
 ---@param severity? string
 local function prompt_title(bufnr, severity)
@@ -23,8 +21,9 @@ local function prompt_title(bufnr, severity)
 	return name
 end
 
+local diagnostic_multi
 ---@param opts? table
-M.diagnostic_multi = function(opts)
+diagnostic_multi = function(opts)
 	opts = opts or {}
 
 	opts.attach_mappings = function(_, map)
@@ -34,7 +33,7 @@ M.diagnostic_multi = function(opts)
 			opts.bufnr = nil
 			opts.default_text = prompt
 			opts.prompt_title = prompt_title(opts.bufnr, opts.severity)
-			M.diagnostic_multi(opts)
+			diagnostic_multi(opts)
 		end)
 		map({ "n", "i" }, "<C-b>", function(prompt_bufnr)
 			local prompt = state.get_current_line()
@@ -42,7 +41,7 @@ M.diagnostic_multi = function(opts)
 			opts.bufnr = 0
 			opts.default_text = prompt
 			opts.prompt_title = prompt_title(opts.bufnr, opts.severity)
-			M.diagnostic_multi(opts)
+			diagnostic_multi(opts)
 		end)
 		map({ "n", "i" }, "<C-e>", function(prompt_bufnr)
 			local prompt = state.get_current_line()
@@ -50,7 +49,7 @@ M.diagnostic_multi = function(opts)
 			opts.severity = "ERROR"
 			opts.default_text = prompt
 			opts.prompt_title = prompt_title(opts.bufnr, opts.severity)
-			M.diagnostic_multi(opts)
+			diagnostic_multi(opts)
 		end)
 		map({ "n", "i" }, "<C-w>", function(prompt_bufnr)
 			local prompt = state.get_current_line()
@@ -58,7 +57,7 @@ M.diagnostic_multi = function(opts)
 			opts.severity = "WARN"
 			opts.default_text = prompt
 			opts.prompt_title = prompt_title(opts.bufnr, opts.severity)
-			M.diagnostic_multi(opts)
+			diagnostic_multi(opts)
 		end)
 		map({ "n", "i" }, "<C-i>", function(prompt_bufnr)
 			local prompt = state.get_current_line()
@@ -66,7 +65,7 @@ M.diagnostic_multi = function(opts)
 			opts.severity = "WARN"
 			opts.default_text = prompt
 			opts.prompt_title = prompt_title(opts.bufnr, opts.severity)
-			M.diagnostic_multi(opts)
+			diagnostic_multi(opts)
 		end)
 		map({ "n", "i" }, "<C-i>", function(prompt_bufnr)
 			local prompt = state.get_current_line()
@@ -74,7 +73,7 @@ M.diagnostic_multi = function(opts)
 			opts.severity = "HINT"
 			opts.default_text = prompt
 			opts.prompt_title = prompt_title(opts.bufnr, opts.severity)
-			M.diagnostic_multi(opts)
+			diagnostic_multi(opts)
 		end)
 		map({ "n", "i" }, "<C-a>", function(prompt_bufnr)
 			local prompt = state.get_current_line()
@@ -82,7 +81,7 @@ M.diagnostic_multi = function(opts)
 			opts.severity = nil
 			opts.default_text = prompt
 			opts.prompt_title = prompt_title(opts.bufnr, opts.severity)
-			M.diagnostic_multi(opts)
+			diagnostic_multi(opts)
 		end)
 		return true
 	end
@@ -90,4 +89,4 @@ M.diagnostic_multi = function(opts)
 	require("telescope.builtin").diagnostics(opts)
 end
 
-return M
+return diagnostic_multi

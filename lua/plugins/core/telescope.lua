@@ -98,7 +98,7 @@ plugin("telescope.nvim")
 			kmap("n", "s", kcmd("Telescope lsp_document_symbols"), "symbols"),
 			kmap("n", "h", kcmd("Telescope help_tags"), "help"),
 			kmap("n", "d", function()
-				require("internal.telescope.diagnostics").diagnostic_multi()
+				require("internal.telescope").diagnostics()
 			end, "diagnostics"),
 		}),
 	})

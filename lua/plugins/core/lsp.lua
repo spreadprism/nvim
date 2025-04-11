@@ -1,9 +1,6 @@
 ---@param client vim.lsp.Client
 ---@param buf integer
 local function on_attach(client, buf)
-	if client.capabilities.textDocument.hover then
-		require("hover")
-	end
 	if client.name == "lua_ls" then
 		require("neoconf")
 	end
@@ -15,6 +12,9 @@ local function set_lsp_keymaps(buf)
 		kmap({ "n", "v" }, "gd", function()
 			require("telescope.builtin").lsp_definitions()
 		end, "go to definition"),
+		kmap({ "n", "v" }, "K", function()
+			vim.lsp.buf.hover()
+		end, "hover"),
 		kmap({ "n", "v" }, "gt", function()
 			require("telescope.builtin").lsp_type_definitions()
 		end, "go to type"),
@@ -119,25 +119,26 @@ plugin("neoconf.nvim"):on_require("neoconf"):opts({
 	},
 })
 
-plugin("hover.nvim")
-	:on_require("hover")
-	:opts({
-		init = function()
-			require("hover.providers.lsp")
-		end,
-		preview_opts = {
-			border = "rounded",
-		},
-		title = false,
-	})
-	:keys({
-		kmap("n", "K", function()
-			local api = vim.api
-			local hover_win = vim.b.hover_preview
-			if hover_win and api.nvim_win_is_valid(hover_win) then
-				api.nvim_set_current_win(hover_win)
-			else
-				require("hover").hover({})
-			end
-		end, "hover"),
-	})
+-- plugin("hover.nvim")
+-- 	:on_require("hover")
+-- 	:opts({
+-- 		init = function()
+-- 			require("hover.providers.lsp")
+-- 			-- require("hover.providers.highlight")
+-- 		end,
+-- 		preview_opts = {
+-- 			border = "rounded",
+-- 		},
+-- 		title = false,
+-- 	})
+-- 	:keys({
+-- 		kmap("n", "K", function()
+-- 			local api = vim.api
+-- 			local hover_win = vim.b.hover_preview
+-- 			if hover_win and api.nvim_win_is_valid(hover_win) then
+-- 				api.nvim_set_current_win(hover_win)
+-- 			else
+-- 				require("hover").hover({})
+-- 			end
+-- 		end, "hover"),
+-- 	})

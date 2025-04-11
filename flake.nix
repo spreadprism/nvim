@@ -287,7 +287,6 @@
             blink-cmp
             lazydev-nvim
             neoconf-nvim
-            hover-nvim
             fidget-nvim
             telescope-nvim
             telescope-zf-native-nvim
