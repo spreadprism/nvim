@@ -1,7 +1,13 @@
--- plugin("lazydev.nvim"):on_require("lazydev"):cmd("LazyDev"):ft("lua"):opts({
--- 	library = require("internal.lazydev").paths,
--- })
 formatter("lua", "stylua")
+
+local paths = {
+	vim.env.VIMRUNTIME,
+	(nixCats.nixCatsPath or "") .. "/lua",
+}
+local s = vim.split(cwd(), "/", { trimempty = true })
+if s[#s] ~= "nvim" then
+	table.insert(paths, (nixCats.configDir or "") .. "/lua/internal")
+end
 lsp("lua_ls")
 	:cmd("lua-language-server")
 	:ft("lua")
@@ -20,11 +26,7 @@ lsp("lua_ls")
 		Lua = {
 			runtime = { version = "LuaJIT" },
 			workspace = {
-				library = {
-					vim.env.VIMRUNTIME,
-					(nixCats.nixCatsPath or "") .. "/lua",
-					(nixCats.configDir or "") .. "/lua/internal",
-				},
+				library = paths,
 			},
 			formatters = {
 				ignoreComments = true,
