@@ -1,6 +1,6 @@
-plugin("lazydev.nvim"):on_require("lazydev"):cmd("LazyDev"):ft("lua"):opts({
-	library = require("internal.lazydev").paths,
-})
+-- plugin("lazydev.nvim"):on_require("lazydev"):cmd("LazyDev"):ft("lua"):opts({
+-- 	library = require("internal.lazydev").paths,
+-- })
 formatter("lua", "stylua")
 lsp("lua_ls")
 	:cmd("lua-language-server")
@@ -19,6 +19,11 @@ lsp("lua_ls")
 	:settings({
 		Lua = {
 			runtime = { version = "LuaJIT" },
+			workspace = {
+				library = {
+					vim.env.VIMRUNTIME,
+				},
+			},
 			formatters = {
 				ignoreComments = true,
 			},

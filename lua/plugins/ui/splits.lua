@@ -20,6 +20,4 @@ plugin("smart-splits.nvim")
 		kmap("n", "<M-C-J>", function()
 			require("smart-splits").resize_down()
 		end, "resize down"),
-		kmap("n", "<M-v>", kcmd("vsplit"), "Vertical split"),
-		kmap("n", "<M-V>", kcmd("split"), "Vertical split"),
 	})

@@ -54,15 +54,15 @@ plugin("blink.cmp"):event({ "InsertEnter", "CmdlineEnter" }):on_require("blink")
 	sources = {
 		default = default,
 		per_filetype = {
-			lua = vim.list_extend({ "lazydev" }, default),
+			-- lua = vim.list_extend({ "lazydev" }, default),
 			sql = { "dbee", "buffer" },
 		},
 		providers = {
-			lazydev = {
-				name = "LazyDev",
-				module = "lazydev.integrations.blink",
-				score_offset = 100,
-			},
+			-- lazydev = {
+			-- 	name = "LazyDev",
+			-- 	module = "lazydev.integrations.blink",
+			-- 	score_offset = 100,
+			-- },
 			dbee = { name = "cmp-dbee", module = "blink.compat.source" },
 		},
 	},
