@@ -285,7 +285,6 @@
             nvim-surround
             comment-nvim
             blink-cmp
-            lazydev-nvim
             neoconf-nvim
             fidget-nvim
             telescope-nvim
