@@ -22,6 +22,8 @@ lsp("lua_ls")
 			workspace = {
 				library = {
 					vim.env.VIMRUNTIME,
+					(nixCats.nixCatsPath or "") .. "/lua",
+					(nixCats.configDir or "") .. "/lua/internal",
 				},
 			},
 			formatters = {
