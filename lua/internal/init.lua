@@ -92,10 +92,12 @@ _G.Symbols = M.Symbols
 _G.Colors = M.Colors
 
 function _G.get_width(modifier)
+	---@diagnostic disable-next-line: deprecated
 	return vim.fn.floor(tonumber(vim.api.nvim_command_output("echo &columns")) * (modifier or 1))
 end
 
 function _G.get_height(modifier)
+	---@diagnostic disable-next-line: deprecated
 	return vim.fn.floor(tonumber(vim.api.nvim_command_output("echo &lines")) * (modifier or 1))
 end
 

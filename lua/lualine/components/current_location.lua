@@ -69,7 +69,6 @@ function component:init(options)
 end
 
 ---@param path string
----@param include_cwd? boolean
 local function cwd_context(path)
 	path = path:gsub("/$", "")
 	local cwd_parent = vim.fn.fnamemodify(vim.fn.getcwd():gsub("/$", ""), ":h")
