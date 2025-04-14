@@ -8,6 +8,7 @@ end
 plugin("nvim-osc52")
 	:on_require("osc52")
 	:for_cat("remote")
+	:event_defer()
 	:env_enabled({
 		"SSH_CLIENT",
 		"SSH_TTY",
