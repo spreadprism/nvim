@@ -233,6 +233,14 @@
               ]
           ))
         ];
+        ruby = with pkgs.vimPlugins; [
+          (nvim-treesitter.withPlugins (
+            plugins:
+              with plugins; [
+                ruby
+              ]
+          ))
+        ];
         proto = with pkgs.vimPlugins; [
           (nvim-treesitter.withPlugins (
             plugins:
