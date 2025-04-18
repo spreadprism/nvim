@@ -75,6 +75,10 @@
       url = "github:princejoogie/dir-telescope.nvim";
       flake = false;
     };
+    "plugins-nvim-lint" = {
+      url = "github:mfussenegger/nvim-lint";
+      flake = false;
+    };
   };
   outputs = {
     self,
@@ -300,7 +304,6 @@
             telescope-fzf-native-nvim
             telescope-dap-nvim
             hop-nvim
-            nvim-lint
             conform-nvim
             tabout-nvim
             nvim-ufo
@@ -320,6 +323,7 @@
             render-markdown
             blink-compat
             dir-telescope
+            nvim-lint
           ]);
         devtools = with pkgs.neovimPlugins; [
           ex-colors

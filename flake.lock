@@ -423,6 +423,22 @@
         "type": "github"
       }
     },
+    "plugins-nvim-lint": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1744751781,
+        "narHash": "sha256-0TbtNq9FBpvI0PwxQiw2Nx54u8DXoBEsWzKFh7UqX9E=",
+        "owner": "mfussenegger",
+        "repo": "nvim-lint",
+        "rev": "3615c26c4922ae5f7366f0c1943a0e7cece04325",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mfussenegger",
+        "repo": "nvim-lint",
+        "type": "github"
+      }
+    },
     "plugins-oil-vcs-status": {
       "flake": false,
       "locked": {
@@ -505,6 +521,7 @@
         "plugins-kulala": "plugins-kulala",
         "plugins-lualine-nvim": "plugins-lualine-nvim",
         "plugins-nvim-dbee": "plugins-nvim-dbee",
+        "plugins-nvim-lint": "plugins-nvim-lint",
         "plugins-oil-vcs-status": "plugins-oil-vcs-status",
         "plugins-profile": "plugins-profile",
         "plugins-render-markdown": "plugins-render-markdown",
