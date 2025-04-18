@@ -116,6 +116,7 @@
           ast-grep
           alejandra
           marksman
+          nodePackages_latest.prettier
         ];
         requests = with pkgs; [
           curl
