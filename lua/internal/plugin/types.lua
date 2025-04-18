@@ -136,6 +136,10 @@ function Plugin:event_buffer_enter()
 	return self:event("BufEnter")
 end
 
+function Plugin:event_insert()
+	return self:event("InsertEnter")
+end
+
 --- Lazy-load on command
 ---@param cmd string | string[]
 function Plugin:cmd(cmd)
