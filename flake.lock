@@ -391,6 +391,22 @@
         "type": "github"
       }
     },
+    "plugins-lspconfig": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1744991637,
+        "narHash": "sha256-wfQlSNA6M0V/b3v35JaBl6E/mXf72cjJyQgJn7WKZPk=",
+        "owner": "neovim",
+        "repo": "nvim-lspconfig",
+        "rev": "b70b900fba6e3255a5a8113c76f213102564cb0d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "neovim",
+        "repo": "nvim-lspconfig",
+        "type": "github"
+      }
+    },
     "plugins-lualine-nvim": {
       "flake": false,
       "locked": {
@@ -519,6 +535,7 @@
         "plugins-git-conflict": "plugins-git-conflict",
         "plugins-harpoon": "plugins-harpoon",
         "plugins-kulala": "plugins-kulala",
+        "plugins-lspconfig": "plugins-lspconfig",
         "plugins-lualine-nvim": "plugins-lualine-nvim",
         "plugins-nvim-dbee": "plugins-nvim-dbee",
         "plugins-nvim-lint": "plugins-nvim-lint",

@@ -7,12 +7,4 @@ plugin("render-markdown"):dep_on("nvim-treesitter"):ft({ "markdown", "codecompan
 		border = "thick",
 	},
 })
-formatter(ft, { "prettier" })
--- vim.api.nvim_create_autocmd("BufEnter", {
--- 	once = true,
--- 	callback = function(args)
--- 		if vim.tbl_contains(ft, vim.bo[args].ft) then
--- 			kopts({ buffer = args.buf }, {})
--- 		end
--- 	end,
--- })
+formatter(ft, "prettier")

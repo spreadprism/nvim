@@ -79,6 +79,10 @@
       url = "github:mfussenegger/nvim-lint";
       flake = false;
     };
+    "plugins-lspconfig" = {
+      url = "github:neovim/nvim-lspconfig";
+      flake = false;
+    };
   };
   outputs = {
     self,
@@ -117,6 +121,8 @@
           alejandra
           marksman
           nodePackages_latest.prettier
+          nodePackages_latest.vscode-json-languageserver
+          yaml-language-server
         ];
         requests = with pkgs; [
           curl
@@ -128,6 +134,7 @@
           gopls
           delve
           golangci-lint
+          gotools
         ];
         proto = with pkgs; [
           buf
@@ -144,10 +151,10 @@
         core = with pkgs.neovimPlugins;
           [
             oil-vcs-status
+            lspconfig
           ]
           ++ (with pkgs.vimPlugins; [
             lze
-            nvim-lspconfig # BUG: Unable to remove dependency for now
             mini-pairs
             lzextras
             plenary-nvim
@@ -156,6 +163,7 @@
             nvim-web-devicons
             transparent-nvim
             which-key-nvim
+            SchemaStore-nvim
           ]);
         colorscheme = with pkgs.vimPlugins; [
           tokyonight-nvim

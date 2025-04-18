@@ -1,4 +1,4 @@
-lsp("nixd"):ft("nix"):root_markers(".git"):settings({
+lsp("nixd"):settings({
 	nixd = {
 		expr = nixCats.extra("nixdExtras.nixpkgs") or [[import <nixpkgs> {}]],
 	},

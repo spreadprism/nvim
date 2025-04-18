@@ -13,7 +13,7 @@ function M.lsp(name)
 	vim.defer_fn(function()
 		lsp:configure()
 	end, 100)
-	return lsp:cmd(name)
+	return lsp
 end
 
 ---@param cat string
@@ -23,14 +23,17 @@ function Lsp:for_cat(cat)
 	return self
 end
 function Lsp:configure()
-	vim.lsp.config[self.name] = vim.tbl_deep_extend("force", vim.lsp.config[self.name] or {}, self.opts)
-
-	local final_cfg = vim.lsp.config[self.name]
+	vim.lsp.config(self.name, self.opts)
+	local opts = vim.lsp.config[self.name]
+	if opts.cmd == nil then
+		opts.cmd = { self.name }
+		vim.lsp.config(self.name, opts)
+	end
 	local cat = nixCats(self.cat or "core")
-	local executable = vim.fn.executable(final_cfg.cmd[1]) == 1
+	local executable = vim.fn.executable(opts.cmd[1]) == 1
 	if cat and not executable then
 		-- notify warn that we should enable but executable is missing
-		vim.notify(self.name .. " missing executable " .. final_cfg.cmd[1], vim.log.levels.WARN, { title = "LSP" })
+		vim.notify(self.name .. " missing executable " .. opts.cmd[1], vim.log.levels.WARN, { title = "LSP" })
 	end
 
 	vim.lsp.enable(self.name, cat and executable)
@@ -61,6 +64,13 @@ end
 ---@return Lsp
 function Lsp:settings(settings)
 	self.opts.settings = settings
+	return self
+end
+
+---@param opts table
+---@return Lsp
+function Lsp:init_options(opts)
+	self.opts.init_options = opts
 	return self
 end
 

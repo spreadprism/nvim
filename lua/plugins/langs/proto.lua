@@ -1,5 +1,1 @@
-lsp("buf_ls")
-	:for_cat("proto")
-	:ft("proto")
-	:root_markers("buf.yaml", ".git")
-	:cmd("buf", "beta", "lsp", "--timeout=0", "--log-format=text")
+lsp("buf_ls"):for_cat("proto"):ft("proto"):root_markers("buf.yaml", ".git")
