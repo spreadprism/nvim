@@ -68,7 +68,6 @@ vim.lsp.config("*", {
 vim.diagnostic.config({
 	virtual_text = {
 		enabled = true,
-		source = "if_many",
 		prefix = "●",
 	},
 
@@ -99,9 +98,22 @@ vim.cmd([[highlight DiagnosticInfo guifg=#0db9d7]])
 
 kgroup("<leader>l", "lsp", {}, {
 	kmap("n", "i", kcmd("LspInfo"), "Info"),
-	kmap("n", "r", kcmd("LspRestart"), "Restart language server"),
-	kmap("n", "s", kcmd("LspStart"), "Start language server"),
-	kmap("n", "S", kcmd("LspStop"), "Start language server"),
+	kmap("n", "r", function()
+		local bufnr = vim.fn.bufnr()
+		local clients = vim.lsp.get_clients({ bufnr = bufnr })
+		for _, client in ipairs(clients) do
+			if client.name == "copilot" then
+				goto continue
+			end
+			vim.lsp.stop_client(client.id, true)
+			vim.defer_fn(function()
+				vim.lsp.start(client.config, {
+					bufnr = bufnr,
+				})
+			end, 1000)
+			::continue::
+		end
+	end, "Restart language server"),
 })
 
 plugin("neoconf.nvim"):on_require("neoconf"):opts({
