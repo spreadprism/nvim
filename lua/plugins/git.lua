@@ -80,14 +80,40 @@ plugin("neogit")
 	:keys(kgroup("<leader>g", "git", {}, {
 		kmap("n", "g", kcmd("Neogit"), "open neogit"),
 	}))
-plugin("gitsigns.nvim"):for_cat("git"):event_buffer_enter():on_require("gitsigns"):opts({
-	current_line_blame_opts = {
-		delay = 10,
-	},
-	current_line_blame_formatter = "<author>, <author_time:%R>",
-	on_attach = function(bufnr)
-		kgroup("<leader>g", "git", { buffer = bufnr }, {
-			kmap("n", "b", kcmd("Gitsigns toggle_current_line_blame"), "Toggle current line blame"),
+plugin("gitsigns.nvim")
+	:for_cat("git")
+	:event_buffer_enter()
+	:on_require("gitsigns")
+	:dep_on("neogit")
+	:opts({
+		current_line_blame_opts = {
+			delay = 10,
+		},
+		preview_config = {
+			border = "rounded",
+		},
+		current_line_blame_formatter = "<author>, <author_time:%R>",
+		on_attach = function(bufnr)
+			kmap("n", "<M-b>", kcmd("Gitsigns blame_line"), "blame hover", { buffer = bufnr })
+			kgroup("<leader>g", "git", { buffer = bufnr }, {
+				kmap("n", "b", kcmd("Gitsigns toggle_current_line_blame"), "Toggle current line blame"),
+				kmap("n", "B", kcmd("Gitsigns blame"), "Toggle blame"),
+			})
+		end,
+	})
+	:setup(function()
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = { "gitsigns-blame" },
+			callback = function(args)
+				kopts({ buffer = args.buf }, {
+					kmap("n", "<cr>", function()
+						local hash = vim.split(vim.api.nvim_get_current_line(), " ", { trimempty = true })[2]
+						require("neogit.buffers.commit_view").open_or_run_in_window(hash)
+						vim.defer_fn(function()
+							vim.cmd("q")
+						end, 50)
+					end, "open in gitsigns"),
+				})
+			end,
 		})
-	end,
-})
+	end)

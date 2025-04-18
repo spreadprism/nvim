@@ -13,6 +13,12 @@ plugin("lualine-nvim"):dep_on("overseer.nvim"):config(function()
 		sections = require("plugins.ui.lualine.sections"),
 		winbar = require("plugins.ui.lualine.winbar"),
 		inactive_winbar = require("plugins.ui.lualine.winbar"),
-		extensions = { require("plugins.ui.lualine.extensions.nvim-dap-ui") },
+		extensions = {
+			require("plugins.ui.lualine.extensions.nvim-dap-ui"),
+			{
+				filetypes = { "gitsigns-blame", "NeogitCommitView" },
+				winbar = {},
+			},
+		},
 	})
 end)
