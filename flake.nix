@@ -134,7 +134,7 @@
           gopls
           delve
           golangci-lint
-          gotools
+          gofumpt
         ];
         proto = with pkgs; [
           buf

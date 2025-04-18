@@ -9,7 +9,7 @@ lsp("gopls")
 		},
 	})
 linter("go", "golangcilint")
-formatter("go", { "goimports", "gofmt" })
+formatter("go", "gofumpt")
 plugin("nvim-dap-go")
 	:for_cat("go")
 	:on_require("dap-go")
