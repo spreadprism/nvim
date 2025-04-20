@@ -50,11 +50,32 @@ plugin("diffview.nvim")
 		enhanced_diff_hl = true,
 		view = {
 			default = {
-				layout = "diff2_horizontal",
+				disable_diagnostics = true,
+				winbar_info = true,
 			},
 			merge_tool = {
 				layout = "diff3_mixed",
 			},
+		},
+		file_panel = {
+			-- listing_style = "list",
+		},
+		hooks = {
+			view_opened = function(view)
+				vim.cmd("wincmd l")
+			end,
+			view_enter = function()
+				require("lualine").hide({
+					place = { "winbar" },
+					unhide = false,
+				})
+			end,
+			view_leave = function()
+				require("lualine").hide({
+					place = { "winbar" },
+					unhide = true,
+				})
+			end,
 		},
 		keymaps = {
 			disable_defaults = true,
@@ -66,6 +87,20 @@ plugin("diffview.nvim")
 	:keys(kgroup("<leader>g", "git", {}, {
 		kmap("n", "d", kcmd("DiffviewOpen"), "open diffview"),
 	}))
+	:init(function()
+		vim.opt.fillchars = {
+			diff = "╱",
+		}
+		vim.opt.diffopt = {
+			"internal",
+			"filler",
+			"closeoff",
+			"context:12",
+			"algorithm:histogram",
+			"linematch:200",
+			"indent-heuristic",
+		}
+	end)
 plugin("neogit")
 	:for_cat("git")
 	:cmd("Neogit")
@@ -73,13 +108,23 @@ plugin("neogit")
 		disable_hint = true,
 		integrations = {
 			telescope = true,
-			diffview = false,
+			diffview = true,
 		},
 		graph_style = "unicode",
 	})
 	:keys(kgroup("<leader>g", "git", {}, {
 		kmap("n", "g", kcmd("Neogit"), "open neogit"),
 	}))
+	:setup(function()
+		local neogit = require("neogit")
+		vim.api.nvim_create_autocmd({ "BufEnter" }, {
+			pattern = "NeogitStatus",
+			callback = function()
+				neogit.dispatch_refresh()
+			end,
+			group = neogit.autocmd_group,
+		})
+	end)
 plugin("gitsigns.nvim")
 	:for_cat("git")
 	:event_buffer_enter()

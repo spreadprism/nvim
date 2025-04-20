@@ -124,6 +124,21 @@ function M.cmd(cmd, ignore_error)
 	end
 end
 
+---@param module string
+function M.lazy(module)
+	return setmetatable({}, {
+		__index = function(_, key)
+			return function(...)
+				local args = { ... }
+				return function()
+					-- vim.print(string.format("require(%s).%s(%s)", module, key, table.concat(args, ", ")))
+					return require(module)[key](unpack(args))
+				end
+			end
+		end,
+	})
+end
+
 ---@param buffer integer
 ---@param mode string
 ---@param ... string
