@@ -88,20 +88,6 @@ plugin("diffview.nvim")
 	:keys(kgroup("<leader>g", "git", {}, {
 		kmap("n", "d", kcmd("DiffviewOpen"), "open diffview"),
 	}))
-	:init(function()
-		vim.opt.fillchars = {
-			diff = "╱",
-		}
-		vim.opt.diffopt = {
-			"internal",
-			"filler",
-			"closeoff",
-			"context:12",
-			"algorithm:histogram",
-			"linematch:200",
-			"indent-heuristic",
-		}
-	end)
 plugin("neogit")
 	:for_cat("git")
 	:cmd("Neogit")
