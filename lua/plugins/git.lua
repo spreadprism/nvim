@@ -93,6 +93,7 @@ plugin("diffview.nvim")
 	}))
 plugin("neogit")
 	:for_cat("git")
+	:on_require("neogit")
 	:cmd("Neogit")
 	:opts({
 		disable_hint = true,
@@ -109,7 +110,6 @@ plugin("gitsigns.nvim")
 	:for_cat("git")
 	:event_buffer_enter()
 	:on_require("gitsigns")
-	:dep_on("neogit")
 	:opts({
 		current_line_blame_opts = {
 			delay = 10,
