@@ -10,6 +10,9 @@ plugin("git-conflict")
 	:setup(function()
 		vim.api.nvim_create_autocmd("BufEnter", {
 			callback = function(args)
+				if not internal.plugin_loaded("git-conflict") then
+					return
+				end
 				vim.defer_fn(function()
 					local count = require("git-conflict").conflict_count(args.buf)
 					if count > 0 then
