@@ -58,7 +58,7 @@ plugin("diffview.nvim")
 			},
 		},
 		file_panel = {
-			-- listing_style = "list",
+			listing_style = "list",
 		},
 		hooks = {
 			view_opened = function(view)
