@@ -75,6 +75,7 @@ plugin("diffview.nvim")
 					place = { "winbar" },
 					unhide = true,
 				})
+				require("neogit").dispatch_refresh()
 			end,
 		},
 		keymaps = {
@@ -115,16 +116,6 @@ plugin("neogit")
 	:keys(kgroup("<leader>g", "git", {}, {
 		kmap("n", "g", kcmd("Neogit"), "open neogit"),
 	}))
-	:setup(function()
-		local neogit = require("neogit")
-		vim.api.nvim_create_autocmd({ "BufEnter" }, {
-			pattern = "NeogitStatus",
-			callback = function()
-				neogit.dispatch_refresh()
-			end,
-			group = neogit.autocmd_group,
-		})
-	end)
 plugin("gitsigns.nvim")
 	:for_cat("git")
 	:event_buffer_enter()
