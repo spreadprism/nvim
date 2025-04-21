@@ -105,6 +105,11 @@ plugin("neogit")
 	})
 	:keys(kgroup("<leader>g", "git", {}, {
 		kmap("n", "g", kcmd("Neogit"), "open neogit"),
+		kmap("n", "b", kcmd("Neogit branch"), "select branch"),
+		kmap("n", "p", kcmd("Neogit pull"), "pull"),
+		kmap("n", "P", kcmd("Neogit push"), "push"),
+		kmap("n", "c", kcmd("Neogit commit"), "commit"),
+		kmap("n", "r", kcmd("Neogit remote"), "remote"),
 	}))
 plugin("gitsigns.nvim")
 	:for_cat("git")
@@ -121,8 +126,8 @@ plugin("gitsigns.nvim")
 		on_attach = function(bufnr)
 			kmap("n", "<M-b>", kcmd("Gitsigns blame_line"), "blame hover", { buffer = bufnr })
 			kgroup("<leader>g", "git", { buffer = bufnr }, {
-				kmap("n", "b", kcmd("Gitsigns toggle_current_line_blame"), "Toggle current line blame"),
-				kmap("n", "B", kcmd("Gitsigns blame"), "Toggle blame"),
+				kmap("n", "w", kcmd("Gitsigns toggle_current_line_blame"), "Toggle current line blame"),
+				kmap("n", "W", kcmd("Gitsigns blame"), "Toggle blame"),
 			})
 		end,
 	})
