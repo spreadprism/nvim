@@ -1,5 +1,8 @@
 local M = {}
 
+--- apply specs to plugin
+---@param name string
+---@param specs table
 function M.apply(name, specs)
 	local new_specs = vim.tbl_deep_extend("keep", {
 		name,

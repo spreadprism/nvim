@@ -49,7 +49,7 @@ local default = {
 	"snippets",
 	"buffer",
 }
-plugin("blink.cmp"):event({ "InsertEnter", "CmdlineEnter" }):on_require("blink"):opts({
+plugin("blink.cmp"):event_typing():on_require("blink"):opts({
 	snippets = { preset = "luasnip" },
 	sources = {
 		default = default,

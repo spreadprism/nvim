@@ -136,8 +136,8 @@ function Plugin:event_buffer_enter()
 	return self:event("BufEnter")
 end
 
-function Plugin:event_insert()
-	return self:event("InsertEnter")
+function Plugin:event_typing()
+	return self:event({ "InsertEnter", "CmdlineEnter" })
 end
 
 --- Lazy-load on command

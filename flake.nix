@@ -324,6 +324,7 @@
             overseer-nvim
             flash-nvim
             yanky-nvim
+            neogen
           ]
           ++ (with pkgs.neovimPlugins; [
             lualine-nvim
