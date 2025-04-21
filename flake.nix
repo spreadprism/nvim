@@ -289,6 +289,7 @@
                   vim
                   vimdoc
                   proto
+                  kdl
                 ]
             ))
             vim-startuptime
