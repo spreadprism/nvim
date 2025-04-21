@@ -3,12 +3,12 @@ plugin("hop.nvim")
 	:event_defer()
 	:on_require("hop")
 	:keys({
-		kmap({ "n", "v" }, "<M-s>", hop.hop_word, "hop"),
-		kmap({ "n", "v" }, "<M-S>", hop.hop_char_global, "jump char"),
-		kmap({ "n", "v" }, "f", hop.hop_char_line(), "hop char l-AC"),
-		kmap({ "n", "v" }, "F", hop.hop_char_line(false), "hop char l-BC"),
-		kmap({ "n", "v" }, "t", hop.hop_char_line(true, -1), "hop before char l-AC"),
-		kmap({ "n", "v" }, "T", hop.hop_char_line(false, 1), "hop after char l-BC"),
+		kmap({ "n", "x" }, "<M-s>", hop.hop_word, "hop"),
+		kmap({ "n", "x" }, "<M-S>", hop.hop_char_global, "jump char"),
+		kmap({ "n", "x" }, "f", hop.hop_char_line(), "hop char l-AC"),
+		kmap({ "n", "x" }, "F", hop.hop_char_line(false), "hop char l-BC"),
+		kmap({ "n", "x" }, "t", hop.hop_char_line(true, -1), "hop before char l-AC"),
+		kmap({ "n", "x" }, "T", hop.hop_char_line(false, 1), "hop after char l-BC"),
 		kmap("v", "<M-;>", kcmd("HopLine"), "hop line"),
 		kmap("n", "<M-;>", kcmd("HopLineStart"), "hop line start"),
 		kmap("n", "<M-/>", kcmd("HopPattern"), "hop at pattern"),

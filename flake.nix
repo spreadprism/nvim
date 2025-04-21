@@ -289,6 +289,7 @@
                   vim
                   vimdoc
                   proto
+                  kdl
                 ]
             ))
             vim-startuptime
@@ -323,6 +324,7 @@
             overseer-nvim
             flash-nvim
             yanky-nvim
+            neogen
           ]
           ++ (with pkgs.neovimPlugins; [
             lualine-nvim

@@ -10,6 +10,9 @@ plugin("git-conflict")
 	:setup(function()
 		vim.api.nvim_create_autocmd("BufEnter", {
 			callback = function(args)
+				if not internal.plugin_loaded("git-conflict") then
+					return
+				end
 				vim.defer_fn(function()
 					local count = require("git-conflict").conflict_count(args.buf)
 					if count > 0 then
@@ -50,11 +53,33 @@ plugin("diffview.nvim")
 		enhanced_diff_hl = true,
 		view = {
 			default = {
-				layout = "diff2_horizontal",
+				disable_diagnostics = true,
+				winbar_info = true,
 			},
 			merge_tool = {
 				layout = "diff3_mixed",
 			},
+		},
+		file_panel = {
+			listing_style = "list",
+		},
+		hooks = {
+			view_opened = function(view)
+				vim.cmd("wincmd l")
+			end,
+			view_enter = function()
+				require("lualine").hide({
+					place = { "winbar" },
+					unhide = false,
+				})
+			end,
+			view_leave = function()
+				require("lualine").hide({
+					place = { "winbar" },
+					unhide = true,
+				})
+				require("neogit").dispatch_refresh()
+			end,
 		},
 		keymaps = {
 			disable_defaults = true,
@@ -68,23 +93,28 @@ plugin("diffview.nvim")
 	}))
 plugin("neogit")
 	:for_cat("git")
+	:on_require("neogit")
 	:cmd("Neogit")
 	:opts({
 		disable_hint = true,
 		integrations = {
 			telescope = true,
-			diffview = false,
+			diffview = true,
 		},
 		graph_style = "unicode",
 	})
 	:keys(kgroup("<leader>g", "git", {}, {
 		kmap("n", "g", kcmd("Neogit"), "open neogit"),
+		kmap("n", "b", kcmd("Neogit branch"), "select branch"),
+		kmap("n", "p", kcmd("Neogit pull"), "pull"),
+		kmap("n", "P", kcmd("Neogit push"), "push"),
+		kmap("n", "c", kcmd("Neogit commit"), "commit"),
+		kmap("n", "r", kcmd("Neogit remote"), "remote"),
 	}))
 plugin("gitsigns.nvim")
 	:for_cat("git")
 	:event_buffer_enter()
 	:on_require("gitsigns")
-	:dep_on("neogit")
 	:opts({
 		current_line_blame_opts = {
 			delay = 10,
@@ -96,8 +126,8 @@ plugin("gitsigns.nvim")
 		on_attach = function(bufnr)
 			kmap("n", "<M-b>", kcmd("Gitsigns blame_line"), "blame hover", { buffer = bufnr })
 			kgroup("<leader>g", "git", { buffer = bufnr }, {
-				kmap("n", "b", kcmd("Gitsigns toggle_current_line_blame"), "Toggle current line blame"),
-				kmap("n", "B", kcmd("Gitsigns blame"), "Toggle blame"),
+				kmap("n", "w", kcmd("Gitsigns toggle_current_line_blame"), "Toggle current line blame"),
+				kmap("n", "W", kcmd("Gitsigns blame"), "Toggle blame"),
 			})
 		end,
 	})

@@ -6,7 +6,7 @@ return {
 			modified = Symbols.modified,
 			readonly = Symbols.readonly,
 		},
-		exclude_filetypes = { "NeogitStatus" },
+		exclude_filetypes = { "NeogitStatus", "DiffviewFiles" },
 	},
 	{
 		"harpoon",

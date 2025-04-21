@@ -1,206 +1,41 @@
 local M = {}
 
-M.file_history_keys = {
-	["gd"] = function()
-		require("diffview.actions").goto_file()
-		vim.cmd("tabclose #")
-	end,
-	["<C-q>"] = function()
-		vim.cmd("tabclose")
-	end,
-	["<leader>gh"] = function()
-		vim.cmd("tabclose")
-	end,
-	{
-		"n",
-		"j",
-		function()
-			require("diffview.actions").next_entry()
-		end,
-		{ desc = "Bring the cursor to the next file entry" },
-	},
-	{
-		"n",
-		"k",
-		function()
-			require("diffview.actions").prev_entry()
-		end,
-		{ desc = "Bring the cursor to the previous file entry" },
-	},
-	{
-		"n",
-		"<cr>",
-		function()
-			require("diffview.actions").select_entry()
-		end,
-		{ desc = "Open the diff for the selected entry" },
-	},
+local common = {
+	{ "n", "<C-q>", kcmd("tabclose"), { desc = "close" } },
+	{ "n", "<Down>", klazy("diffview.actions").select_next_entry(), { desc = "select next entry" } },
+	{ "n", "<Up>", klazy("diffview.actions").select_prev_entry(), { desc = "select previous entry" } },
+	{ "n", "<localleader>e", klazy("diffview.actions").toggle_files(), { desc = "toggle files" } },
 }
-
+M.file_history_keys = {}
 M.file_panel_keys = {
-	["gd"] = function()
-		require("diffview.actions").goto_file()
-		vim.cmd("tabclose #")
-	end,
-	["<C-q>"] = function()
-		vim.cmd("tabclose")
-	end,
-	["<leader>gd"] = function()
-		vim.cmd("tabclose")
-	end,
-	{
-		"n",
-		"j",
-		function()
-			require("diffview.actions").next_entry()
-		end,
-		{ desc = "Bring the cursor to the next file entry" },
-	},
-	{
-		"n",
-		"k",
-		function()
-			require("diffview.actions").prev_entry()
-		end,
-		{ desc = "Bring the cursor to the previous file entry" },
-	},
-	{
-		"n",
-		"<cr>",
-		function()
-			require("diffview.actions").select_entry()
-		end,
-		{ desc = "Open the diff for the selected entry" },
-	},
+	{ "n", "s", klazy("diffview.actions").toggle_stage_entry(), { desc = "toggle stage" } },
+	{ "n", "u", klazy("diffview.actions").toggle_stage_entry(), { desc = "toggle stage" } },
+	{ "n", "S", klazy("diffview.actions").stage_all(), { desc = "stage all" } },
+	{ "n", "U", klazy("diffview.actions").unstage_all(), { desc = "unstage all" } },
+	{ "n", "<cr>", klazy("diffview.actions").select_entry(), { desc = "select entry" } },
+	{ "n", "<Tab>", klazy("diffview.actions").select_entry(), { desc = "select entry" } },
+}
+M.view_keys = {
+	{ "n", "<Down>", klazy("diffview.actions").select_next_entry(), { desc = "select next entry" } },
+	{ "n", "<Up>", klazy("diffview.actions").select_prev_entry(), { desc = "select previous entry" } },
+	{ "n", "<Right>", klazy("diffview.actions").next_conflict(), { desc = "next conflict" } },
+	{ "n", "<Left>", klazy("diffview.actions").prev_conflict(), { desc = "previous conflict" } },
+	-- { "n", "co", klazy("diffview.actions").conflict_choose("ours"), { desc = "choose ours" } },
+	-- { "n", "cO", klazy("diffview.actions").conflict_choose_all("ours"), { desc = "choose all ours" } },
+	-- { "n", "ct", klazy("diffview.actions").conflict_choose("theirs"), { desc = "choose theirs" } },
+	-- { "n", "cT", klazy("diffview.actions").conflict_choose_all("theirs"), { desc = "choose all theirs" } },
+	-- { "n", "cb", klazy("diffview.actions").conflict_choose("base"), { desc = "choose base" } },
+	-- { "n", "cB", klazy("diffview.actions").conflict_choose_all("base"), { desc = "choose all base" } },
+	-- { "n", "cx", klazy("diffview.actions").conflict_choose("none"), { desc = "choose none" } },
+	-- { "n", "cX", klazy("diffview.actions").conflict_choose_all("none"), { desc = "choose all none" } },
+	-- { "n", "s", klazy("diffview.actions").toggle_stage_entry(), { desc = "toggle stage" } },
+	-- { "n", "u", klazy("diffview.actions").toggle_stage_entry(), { desc = "toggle stage" } },
+	-- { "n", "S", klazy("diffview.actions").stage_all(), { desc = "stage all" } },
+	-- { "n", "U", klazy("diffview.actions").unstage_all(), { desc = "unstage all" } },
 }
 
-M.view_keys = {
-	["<C-q>"] = function()
-		vim.cmd("tabclose")
-	end,
-	["<leader>gd"] = function()
-		vim.cmd("tabclose")
-	end,
-	{
-		"n",
-		"<M-l>",
-		function()
-			require("diffview.actions").prev_conflict()
-		end,
-		{ desc = "In the merge-tool: jump to the previous conflict" },
-	},
-	{
-		"n",
-		"<M-h>",
-		function()
-			require("diffview.actions").next_conflict()
-		end,
-		{ desc = "In the merge-tool: jump to the next conflict" },
-	},
-	{
-		"n",
-		"<M-j>",
-		function()
-			require("diffview.actions").select_next_entry()
-		end,
-		{ desc = "Open the diff for the next file" },
-	},
-	{
-		"n",
-		"<M-k>",
-		function()
-			require("diffview.actions").select_prev_entry()
-		end,
-		{ desc = "Open the diff for the previous file" },
-	},
-	{
-		"n",
-		"<leader>e",
-		function()
-			require("diffview.actions").toggle_files()
-		end,
-		{ desc = "Toggle the file panel." },
-	},
-	{
-		"n",
-		"<leader>co",
-		function()
-			require("diffview.actions").conflict_choose("ours")
-		end,
-		{ desc = "Choose the OURS version of a conflict" },
-	},
-	{
-		"n",
-		"<leader>ct",
-		function()
-			require("diffview.actions").conflict_choose("theirs")
-		end,
-		{ desc = "Choose the THEIRS version of a conflict" },
-	},
-	{
-		"n",
-		"<leader>cb",
-		function()
-			require("diffview.actions").conflict_choose("base")
-		end,
-		{ desc = "Choose the BASE version of a conflict" },
-	},
-	{
-		"n",
-		"<leader>ca",
-		function()
-			require("diffview.actions").conflict_choose("all")
-		end,
-		{ desc = "Choose all the versions of a conflict" },
-	},
-	{
-		"n",
-		"dx",
-		function()
-			require("diffview.actions").conflict_choose("none")
-		end,
-		{ desc = "Delete the conflict region" },
-	},
-	{
-		"n",
-		"<leader>cO",
-		function()
-			require("diffview.actions").conflict_choose_all("ours")
-		end,
-		{ desc = "Choose the OURS version of a conflict for the whole file" },
-	},
-	{
-		"n",
-		"<leader>cT",
-		function()
-			require("diffview.actions").conflict_choose_all("theirs")
-		end,
-		{ desc = "Choose the THEIRS version of a conflict for the whole file" },
-	},
-	{
-		"n",
-		"<leader>cB",
-		function()
-			require("diffview.actions").conflict_choose_all("base")
-		end,
-		{ desc = "Choose the BASE version of a conflict for the whole file" },
-	},
-	{
-		"n",
-		"<leader>cA",
-		function()
-			require("diffview.actions").conflict_choose_all("all")
-		end,
-		{ desc = "Choose all the versions of a conflict for the whole file" },
-	},
-	{
-		"n",
-		"dX",
-		function()
-			require("diffview.actions").conflict_choose_all("none")
-		end,
-		{ desc = "Delete the conflict region for the whole file" },
-	},
-}
+vim.list_extend(M.file_history_keys, common)
+vim.list_extend(M.file_panel_keys, common)
+vim.list_extend(M.view_keys, common)
 
 return M

@@ -40,7 +40,7 @@ plugin("easycolor")
 	})
 	:dep_on("dressing.nvim")
 plugin("nvim-ts-autotag"):event({ "BufReadPre", "BufNewFile" })
-plugin("mini.pairs"):event_defer():opts({
+plugin("mini.pairs"):event_typing():opts({
 	modes = { insert = true, command = true, terminal = false },
 })
 plugin("mini.surround"):event_defer():opts({
@@ -95,9 +95,9 @@ plugin("yanky.nvim")
 			enabled = true,
 		},
 	})
-plugin("nvim-surround"):event_defer()
+plugin("nvim-surround"):event_typing()
 plugin("comment.nvim"):event_defer():on_require("Comment"):opts(false)
-plugin("tabout.nvim"):event("InsertCharPre"):on_require("tabout"):opts({
+plugin("tabout.nvim"):event_typing():on_require("tabout"):opts({
 	act_as_shift_tab = true,
 	tabouts = {
 		{ open = "'", close = "'" },
@@ -110,7 +110,6 @@ plugin("tabout.nvim"):event("InsertCharPre"):on_require("tabout"):opts({
 	},
 })
 plugin("treesj")
-	:event_defer()
 	:cmd({ "TSJSplit", "TSJJoin" })
 	:keys({
 		kmap("n", "gs", kcmd("TSJSplit"), "Split"),
@@ -119,7 +118,7 @@ plugin("treesj")
 	:opts({
 		use_default_keymaps = false,
 	})
-plugin("grug-far.nvim"):event_defer():on_require("grug-far"):opts({}):keys({
+plugin("grug-far.nvim"):on_require("grug-far"):keys({
 	kmap({ "n", "v" }, "<M-r>", function()
 		require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } })
 	end, "replace current buffer"),
@@ -127,3 +126,10 @@ plugin("grug-far.nvim"):event_defer():on_require("grug-far"):opts({}):keys({
 		require("grug-far").open()
 	end, "replace global"),
 })
+plugin("neogen")
+	:event_typing()
+	:on_require("neogen")
+	:opts({
+		snippet_engine = "luasnip",
+	})
+	:keys(kmap("nx", "ga", klazy("neogen").generate(), "annotate"))
