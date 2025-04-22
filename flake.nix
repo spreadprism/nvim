@@ -36,7 +36,7 @@
       flake = false;
     };
     "plugins-tmux-navigation" = {
-      url = "github:alexghergh/nvim-tmux-navigation";
+      url = "github:christoomey/vim-tmux-navigator";
       flake = false;
     };
     "plugins-ex-colors" = {

@@ -506,16 +506,16 @@
     "plugins-tmux-navigation": {
       "flake": false,
       "locked": {
-        "lastModified": 1707171454,
-        "narHash": "sha256-CxAgQSbOrg/SsQXupwCv8cyZXIB7tkWO+Y6FDtoR8xk=",
-        "owner": "alexghergh",
-        "repo": "nvim-tmux-navigation",
-        "rev": "4898c98702954439233fdaf764c39636681e2861",
+        "lastModified": 1740507558,
+        "narHash": "sha256-8KAKHK5pOB9yguhpt0WdtIPezHwl0yMUK205JkpbPOg=",
+        "owner": "christoomey",
+        "repo": "vim-tmux-navigator",
+        "rev": "791dacfcfc8ccb7f6eb1c853050883b03e5a22fe",
         "type": "github"
       },
       "original": {
-        "owner": "alexghergh",
-        "repo": "nvim-tmux-navigation",
+        "owner": "christoomey",
+        "repo": "vim-tmux-navigator",
         "type": "github"
       }
     },
