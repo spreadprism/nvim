@@ -136,8 +136,6 @@
           golangci-lint
           gofumpt
         ];
-        python = with pkgs; [
-        ];
         proto = with pkgs; [
           buf
         ];
