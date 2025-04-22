@@ -267,7 +267,6 @@
         ];
         core = with pkgs.vimPlugins;
           [
-            nvim-osc52
             neoscroll-nvim
             nui-nvim
             nvim-treesitter-textobjects
