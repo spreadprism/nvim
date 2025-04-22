@@ -269,6 +269,7 @@
           (nvim-treesitter.withPlugins (
             plugins:
               with plugins; [
+                python
                 robot
               ]
           ))
