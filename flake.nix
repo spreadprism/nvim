@@ -136,6 +136,8 @@
           golangci-lint
           gofumpt
         ];
+        python = with pkgs; [
+        ];
         proto = with pkgs; [
           buf
         ];
@@ -265,6 +267,14 @@
         remote = with pkgs.vimPlugins; [
           nvim-osc52
         ];
+        python = with pkgs.vimPlugins; [
+          (nvim-treesitter.withPlugins (
+            plugins:
+              with plugins; [
+                python
+              ]
+          ))
+        ];
         core = with pkgs.vimPlugins;
           [
             nvim-osc52
@@ -383,6 +393,7 @@
           base_categories misc
           // {
             go = true;
+            python = true;
             proto = true;
             remote = true;
             devtools = true;
