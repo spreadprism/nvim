@@ -272,6 +272,7 @@
             plugins:
               with plugins; [
                 python
+                robot
               ]
           ))
         ];
