@@ -130,6 +130,9 @@
           jq
           libxml2
         ];
+        docker = with pkgs; [
+          dockerfile-language-server-nodejs
+        ];
         go = with pkgs; [
           gopls
           delve
@@ -274,6 +277,14 @@
               ]
           ))
         ];
+        docker = with pkgs.vimPlugins; [
+          (nvim-treesitter.withPlugins (
+            plugins:
+              with plugins; [
+                dockerfile
+              ]
+          ))
+        ];
         core = with pkgs.vimPlugins;
           [
             nvim-osc52
@@ -359,6 +370,7 @@
     base_categories = {pkgs, ...} @ misc: {
       core = true;
       ai = true;
+      docker = true;
       git = true;
       debugging = true;
       testing = true;
