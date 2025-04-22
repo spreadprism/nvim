@@ -1,16 +1,13 @@
-plugin("tmux-navigation")
-	:for_cat("tmux")
-	:event_defer()
-	:config(false)
-	:keys({
-		kmap("n", "<C-h>", kcmd("TmuxNavigateLeft"), "Navigate window left"),
-		kmap("n", "<C-j>", kcmd("TmuxNavigateDown"), "Navigate window down"),
-		kmap("n", "<C-k>", kcmd("TmuxNavigateUp"), "Navigate window up"),
-		kmap("n", "<C-l>", kcmd("TmuxNavigateRight"), "Navigate window right"),
-	})
-	:cmd({
-		"TmuxNavigateLeft",
-		"TmuxNavigateDown",
-		"TmuxNavigateUp",
-		"TmuxNavigateRight",
-	})
+plugin("tmux-navigation"):for_cat("tmux"):event_defer():config(false)
+-- :keys({
+-- 	kmap("n", "<C-h>", kcmd("TmuxNavigateLeft"), "Navigate window left"),
+-- 	kmap("n", "<C-j>", kcmd("TmuxNavigateDown"), "Navigate window down"),
+-- 	kmap("n", "<C-k>", kcmd("TmuxNavigateUp"), "Navigate window up"),
+-- 	kmap("n", "<C-l>", kcmd("TmuxNavigateRight"), "Navigate window right"),
+-- })
+-- :cmd({
+-- 	"TmuxNavigateLeft",
+-- 	"TmuxNavigateDown",
+-- 	"TmuxNavigateUp",
+-- 	"TmuxNavigateRight",
+-- })
