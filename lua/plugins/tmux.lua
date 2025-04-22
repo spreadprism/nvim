@@ -1,6 +1,7 @@
 plugin("tmux-navigation")
 	:for_cat("tmux")
 	:event_defer()
+	:config(false)
 	:keys({
 		kmap("n", "<C-h>", kcmd("TmuxNavigateLeft"), "Navigate window left"),
 		kmap("n", "<C-j>", kcmd("TmuxNavigateDown"), "Navigate window down"),
