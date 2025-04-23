@@ -24,7 +24,7 @@ return {
 		color = "#E94D32",
 		name = "gitignore",
 	},
-	["makefile"] = {
+	["Makefile"] = {
 		icon = "󱁻",
 		color = "#EF5350",
 		name = "makefile",
