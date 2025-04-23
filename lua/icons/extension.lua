@@ -84,4 +84,9 @@ return {
 		color = "#EF314C",
 		name = "http",
 	},
+	["robot"] = {
+		icon = "",
+		color = "#00BEB4",
+		name = "robot",
+	},
 }
