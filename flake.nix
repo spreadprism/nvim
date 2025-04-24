@@ -130,6 +130,9 @@
           jq
           libxml2
         ];
+        python = with pkgs; [
+          basedpyright
+        ];
         docker = with pkgs; [
           dockerfile-language-server-nodejs
         ];
