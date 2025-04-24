@@ -133,6 +133,8 @@
         python = with pkgs; [
           basedpyright
         ];
+        robot = with pkgs; [
+        ];
         docker = with pkgs; [
           dockerfile-language-server-nodejs
         ];
@@ -271,12 +273,19 @@
         remote = with pkgs.vimPlugins; [
           nvim-osc52
         ];
+        robot = with pkgs.vimPlugins; [
+          (nvim-treesitter.withPlugins (
+            plugins:
+              with plugins; [
+                robot
+              ]
+          ))
+        ];
         python = with pkgs.vimPlugins; [
           (nvim-treesitter.withPlugins (
             plugins:
               with plugins; [
                 python
-                robot
               ]
           ))
         ];
