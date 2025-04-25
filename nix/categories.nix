@@ -12,6 +12,12 @@
       vim_pkgs = pkgs.vimPlugins;
       nvim_pkgs = pkgs.neovimPlugins;
     };
+  pathValueAttr = path: attr: let
+    val = pathValue path;
+  in
+    if builtins.hasAttr attr val
+    then val."${attr}"
+    else [];
   attrs = lib.unique (builtins.concatLists (builtins.map (p: builtins.attrNames (pathValue p)) nix_files));
 
   forEachAttrs = lib.genAttrs attrs;
@@ -23,38 +29,20 @@
         )
       )
     );
+  categories = attr:
+    builtins.map (
+      path: let
+        splitKey = lib.strings.splitString "." (pathToAttrs path);
+        value = pathValueAttr path attr;
+      in
+        lib.attrsets.setAttrByPath splitKey value
+    )
+    nix_files;
 in
   forEachAttrs (
     attr:
-      builtins.listToAttrs (builtins.map (
-          path: let
-            key = pathToAttrs path;
-            splitKey = lib.strings.splitString "." key;
-            value = pathValue path;
-            buildNestedAttr = parts: val:
-              if builtins.length parts == builtins.length splitKey
-              then {
-                name = builtins.head parts;
-                value =
-                  if builtins.length parts == 1
-                  then
-                    if builtins.hasAttr attr value
-                    then value."${attr}"
-                    else []
-                  else buildNestedAttr (builtins.tail parts) val;
-              }
-              else if builtins.length parts == 1
-              then {
-                ${builtins.head parts} =
-                  if builtins.hasAttr attr value
-                  then value."${attr}"
-                  else null;
-              }
-              else {
-                ${builtins.head parts} = value;
-              };
-          in
-            buildNestedAttr splitKey value
-        )
-        nix_files)
+      lib.lists.foldl
+      lib.attrsets.recursiveUpdate
+      {}
+      (categories attr)
   )

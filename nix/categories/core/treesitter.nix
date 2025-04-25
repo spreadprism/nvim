@@ -5,9 +5,6 @@
     (nvim-treesitter.withPlugins (
       plugins:
         with plugins; [
-          nix
-          lua
-          luadoc
           bash
           make
           json
@@ -18,7 +15,6 @@
           regex
           vim
           vimdoc
-          proto
         ]
     ))
   ];

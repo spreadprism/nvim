@@ -1,17 +1,14 @@
 {
+  pkgs,
   vim_pkgs,
   nvim_pkgs,
   ...
 }: {
-  lspsAndRuntimeDeps = with vim_pkgs; [
+  lspsAndRuntimeDeps = with pkgs; [
     ripgrep
     fd
-    lua-language-server
     vscode-langservers-extracted
-    stylua
-    nixd
     ast-grep
-    alejandra
     marksman
     nodePackages_latest.prettier
     nodePackages_latest.vscode-json-languageserver

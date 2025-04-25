@@ -1,17 +1,20 @@
 # todo
 
 - [x] core
-- [ ] ai
+- [x] ai
 - [x] git
-- [ ] debugging
-- [ ] testing
-- [ ] tmux
-- [ ] workspace
+- [x] debugging
+- [x] testing
+- [x] tmux
+- [x] workspace
 - [x] requests
-- [ ] db
-- [ ] colorscheme
-- [ ] wrapRc
-- [ ] go
-- [ ] proto
-- [ ] remote
+- [x] db
+- [x] colorscheme
+- [x] go
+- [x] python
+- [x] robot
+- [x] lua
+- [x] nix
+- [x] proto
+- [x] remote
 - [x] devtools
