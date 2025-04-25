@@ -1,8 +1,9 @@
 lsp("basedpyright"):for_cat("python"):settings({
 	basedpyright = {
 		analysis = {
-			reportAny = false,
-			reportExplicitAny = true,
+			diagnosticSeverityOverrides = {
+				reportAny = "none", -- Disable the specific rule
+			},
 		},
 	},
 })
