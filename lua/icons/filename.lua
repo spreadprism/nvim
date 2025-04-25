@@ -24,10 +24,10 @@ return {
 		color = "#E94D32",
 		name = "gitignore",
 	},
-	["Makefile"] = {
+	["makefile"] = {
 		icon = "󱁻",
 		color = "#EF5350",
-		name = "makefile",
+		name = "makefiler",
 	},
 	["vite.config.ts"] = {
 		icon = "",

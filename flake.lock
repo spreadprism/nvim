@@ -519,6 +519,23 @@
         "type": "github"
       }
     },
+    "plugins-venv-selector": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1742652355,
+        "narHash": "sha256-ogd4T+mIbb86qFUbDczzDra8yWm/bwKmYCRGYCJz6fM=",
+        "owner": "linux-cultist",
+        "repo": "venv-selector.nvim",
+        "rev": "c677caa1030808a9f90092e522de7cc20c1390dd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "linux-cultist",
+        "ref": "regexp",
+        "repo": "venv-selector.nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "neovim-nightly-overlay": "neovim-nightly-overlay",
@@ -542,7 +559,8 @@
         "plugins-oil-vcs-status": "plugins-oil-vcs-status",
         "plugins-profile": "plugins-profile",
         "plugins-render-markdown": "plugins-render-markdown",
-        "plugins-tmux-navigation": "plugins-tmux-navigation"
+        "plugins-tmux-navigation": "plugins-tmux-navigation",
+        "plugins-venv-selector": "plugins-venv-selector"
       }
     },
     "treefmt-nix": {

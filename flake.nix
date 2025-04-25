@@ -83,6 +83,10 @@
       url = "github:neovim/nvim-lspconfig";
       flake = false;
     };
+    "plugins-venv-selector" = {
+      url = "github:linux-cultist/venv-selector.nvim?ref=regexp";
+      flake = false;
+    };
   };
   outputs = {
     self,
@@ -132,6 +136,10 @@
         ];
         python = with pkgs; [
           basedpyright
+          ruff
+          ruff-lsp
+          fd
+          python312Packages.debugpy
         ];
         robot = with pkgs; [
         ];
@@ -281,14 +289,19 @@
               ]
           ))
         ];
-        python = with pkgs.vimPlugins; [
-          (nvim-treesitter.withPlugins (
-            plugins:
-              with plugins; [
-                python
-              ]
-          ))
-        ];
+        python = with pkgs.vimPlugins;
+          [
+            nvim-dap-python
+            (nvim-treesitter.withPlugins (
+              plugins:
+                with plugins; [
+                  python
+                ]
+            ))
+          ]
+          ++ (with pkgs.neovimPlugins; [
+            venv-selector
+          ]);
         docker = with pkgs.vimPlugins; [
           (nvim-treesitter.withPlugins (
             plugins:
