@@ -132,4 +132,4 @@ plugin("neogen")
 	:opts({
 		snippet_engine = "luasnip",
 	})
-	:keys(kmap("nx", "ga", klazy("neogen").generate(), "annotate"))
+	:keys(kmap("nx", "gca", klazy("neogen").generate(), "annotate"))

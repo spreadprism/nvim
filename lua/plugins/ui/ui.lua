@@ -57,6 +57,14 @@ plugin("noice.nvim")
 			{
 				filter = {
 					event = "msg_show",
+					kind = "",
+					find = "No information available",
+				},
+				opts = { skip = true },
+			},
+			{
+				filter = {
+					event = "msg_show",
 					find = "written",
 				},
 				opts = { skip = true },
