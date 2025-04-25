@@ -137,7 +137,6 @@
         python = with pkgs; [
           basedpyright
           ruff
-          ruff-lsp
           fd
           python312Packages.debugpy
         ];

@@ -11,7 +11,7 @@ return {
 		blacklist = {
 			"copilot",
 			"ast_grep",
-			"ruff_lsp",
+			"ruff",
 		},
 	},
 	{
