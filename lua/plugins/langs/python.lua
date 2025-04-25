@@ -1,4 +1,11 @@
-lsp("basedpyright"):for_cat("python")
+lsp("basedpyright"):for_cat("python"):settings({
+	basedpyright = {
+		analysis = {
+			reportAny = false,
+			reportExplicitAny = true,
+		},
+	},
+})
 lsp("ruff_lsp"):for_cat("python")
 formatter("python", "ruff_format")
 plugin("venv-selector"):for_cat("python"):ft("python"):on_plugin("nvim-dap-python"):on_require("venv-selector")
