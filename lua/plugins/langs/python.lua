@@ -9,8 +9,35 @@ lsp("basedpyright"):for_cat("python"):settings({
 })
 lsp("ruff"):for_cat("python")
 formatter("python", "ruff_format")
-plugin("venv-selector"):for_cat("python"):ft("python"):on_plugin("nvim-dap-python"):on_require("venv-selector")
+plugin("venv-selector")
+	:for_cat("python")
+	:ft("python")
+	:on_plugin("nvim-dap-python")
+	:on_require("venv-selector")
+	:setup(function()
+		kgroup("<leader>l", "lsp", {}, {
+			kmap("n", "e", kcmd("VenvSelect"), "select venv"),
+			kmap("n", "d", klazy("venv-selector").deactivate(), "deactivate current env"),
+		})
+	end)
 plugin("nvim-dap-python"):for_cat("python"):on_require("dap-python"):ft("python"):config(function()
-	require("dap-python").setup(require("venv-selector").python())
-	require("internal.dap").clear("python")
+	require("dap-python").setup("uv", { include_configs = false })
+	require("dap-python").resolve_python = function()
+		local path = require("venv-selector").python()
+		if path then
+			return path
+		end
+
+		---@diagnostic disable-next-line: redefined-local
+		local path, err = exec("command -v python")
+		if not err == nil then
+			return path
+		end
+		path, err = exec("command -v python3")
+		if not err == nil then
+			return path
+		end
+
+		return nil
+	end
 end)

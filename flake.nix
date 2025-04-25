@@ -138,7 +138,6 @@
           basedpyright
           ruff
           fd
-          python312Packages.debugpy
         ];
         robot = with pkgs; [
         ];
