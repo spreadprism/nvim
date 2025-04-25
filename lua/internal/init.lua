@@ -4,14 +4,14 @@ local M = {}
 -- _G.print = vim.print
 _G.cwd = vim.fn.getcwd
 _G.joinpath = vim.fs.joinpath
----@return string
 _G.exec = function(cmd)
-	local handle = io.popen(cmd)
+	local handle, err = io.popen(cmd)
+	---@type string
 	---@diagnostic disable-next-line: need-check-nil
 	local result = handle:read("*a")
 	---@diagnostic disable-next-line: need-check-nil
 	handle:close()
-	return result
+	return result, err
 end
 _G.HOME = os.getenv("HOME")
 _G.XDG_CONFIG = os.getenv("XDG_CONFIG_HOME") or joinpath(HOME, ".config")

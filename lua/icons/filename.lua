@@ -27,7 +27,7 @@ return {
 	["makefile"] = {
 		icon = "󱁻",
 		color = "#EF5350",
-		name = "makefile",
+		name = "makefiler",
 	},
 	["vite.config.ts"] = {
 		icon = "",

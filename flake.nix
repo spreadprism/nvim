@@ -36,7 +36,7 @@
       flake = false;
     };
     "plugins-tmux-navigation" = {
-      url = "github:alexghergh/nvim-tmux-navigation";
+      url = "github:christoomey/vim-tmux-navigator";
       flake = false;
     };
     "plugins-ex-colors" = {
@@ -81,6 +81,10 @@
     };
     "plugins-lspconfig" = {
       url = "github:neovim/nvim-lspconfig";
+      flake = false;
+    };
+    "plugins-venv-selector" = {
+      url = "github:linux-cultist/venv-selector.nvim?ref=regexp";
       flake = false;
     };
   };
@@ -129,6 +133,16 @@
           grpcurl
           jq
           libxml2
+        ];
+        python = with pkgs; [
+          basedpyright
+          ruff
+          fd
+        ];
+        robot = with pkgs; [
+        ];
+        docker = with pkgs; [
+          dockerfile-language-server-nodejs
         ];
         go = with pkgs; [
           gopls
@@ -265,6 +279,35 @@
         remote = with pkgs.vimPlugins; [
           nvim-osc52
         ];
+        robot = with pkgs.vimPlugins; [
+          (nvim-treesitter.withPlugins (
+            plugins:
+              with plugins; [
+                robot
+              ]
+          ))
+        ];
+        python = with pkgs.vimPlugins;
+          [
+            nvim-dap-python
+            (nvim-treesitter.withPlugins (
+              plugins:
+                with plugins; [
+                  python
+                ]
+            ))
+          ]
+          ++ (with pkgs.neovimPlugins; [
+            venv-selector
+          ]);
+        docker = with pkgs.vimPlugins; [
+          (nvim-treesitter.withPlugins (
+            plugins:
+              with plugins; [
+                dockerfile
+              ]
+          ))
+        ];
         core = with pkgs.vimPlugins;
           [
             neoscroll-nvim
@@ -349,6 +392,7 @@
     base_categories = {pkgs, ...} @ misc: {
       core = true;
       ai = true;
+      docker = true;
       git = true;
       debugging = true;
       testing = true;
@@ -382,6 +426,7 @@
           base_categories misc
           // {
             go = true;
+            python = true;
             proto = true;
             remote = true;
             devtools = true;

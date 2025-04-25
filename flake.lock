@@ -506,16 +506,33 @@
     "plugins-tmux-navigation": {
       "flake": false,
       "locked": {
-        "lastModified": 1707171454,
-        "narHash": "sha256-CxAgQSbOrg/SsQXupwCv8cyZXIB7tkWO+Y6FDtoR8xk=",
-        "owner": "alexghergh",
-        "repo": "nvim-tmux-navigation",
-        "rev": "4898c98702954439233fdaf764c39636681e2861",
+        "lastModified": 1740507558,
+        "narHash": "sha256-8KAKHK5pOB9yguhpt0WdtIPezHwl0yMUK205JkpbPOg=",
+        "owner": "christoomey",
+        "repo": "vim-tmux-navigator",
+        "rev": "791dacfcfc8ccb7f6eb1c853050883b03e5a22fe",
         "type": "github"
       },
       "original": {
-        "owner": "alexghergh",
-        "repo": "nvim-tmux-navigation",
+        "owner": "christoomey",
+        "repo": "vim-tmux-navigator",
+        "type": "github"
+      }
+    },
+    "plugins-venv-selector": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1742652355,
+        "narHash": "sha256-ogd4T+mIbb86qFUbDczzDra8yWm/bwKmYCRGYCJz6fM=",
+        "owner": "linux-cultist",
+        "repo": "venv-selector.nvim",
+        "rev": "c677caa1030808a9f90092e522de7cc20c1390dd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "linux-cultist",
+        "ref": "regexp",
+        "repo": "venv-selector.nvim",
         "type": "github"
       }
     },
@@ -542,7 +559,8 @@
         "plugins-oil-vcs-status": "plugins-oil-vcs-status",
         "plugins-profile": "plugins-profile",
         "plugins-render-markdown": "plugins-render-markdown",
-        "plugins-tmux-navigation": "plugins-tmux-navigation"
+        "plugins-tmux-navigation": "plugins-tmux-navigation",
+        "plugins-venv-selector": "plugins-venv-selector"
       }
     },
     "treefmt-nix": {

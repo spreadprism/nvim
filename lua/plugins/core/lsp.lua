@@ -1,8 +1,13 @@
+-- TODO: Add the possibility for this to be triggered from the lsp definition
 ---@param client vim.lsp.Client
 ---@param buf integer
 local function on_attach(client, buf)
 	if client.name == "lua_ls" then
 		require("neoconf")
+	else
+		if client.name == "ruff" then
+			client.server_capabilities.hoverProvider = false
+		end
 	end
 end
 
