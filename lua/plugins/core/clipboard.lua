@@ -7,7 +7,7 @@ local function paste()
 end
 plugin("nvim-osc52")
 	:on_require("osc52")
-	:for_cat("core.remote")
+	:for_cat("remote")
 	:event_defer()
 	:env_enabled({
 		"SSH_CLIENT",

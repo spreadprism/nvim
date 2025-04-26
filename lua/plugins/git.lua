@@ -104,13 +104,14 @@ plugin("neogit")
 		graph_style = "unicode",
 	})
 	:keys(kgroup("<leader>g", "git", {}, {
-		kmap("n", "g", kcmd("Neogit"), "open neogit"),
+		kmap("n", "g", kcmd("Neogit kind=floating"), "open neogit"),
 		kmap("n", "b", kcmd("Neogit branch"), "select branch"),
 		kmap("n", "p", kcmd("Neogit pull"), "pull"),
 		kmap("n", "P", kcmd("Neogit push"), "push"),
 		kmap("n", "c", kcmd("Neogit commit"), "commit"),
 		kmap("n", "r", kcmd("Neogit remote"), "remote"),
 	}))
+	:setup(function() end)
 plugin("gitsigns.nvim")
 	:for_cat("core.git")
 	:event_buffer_enter()
