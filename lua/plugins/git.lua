@@ -1,6 +1,6 @@
 plugin("mini.diff"):event_defer()
 plugin("git-conflict")
-	:for_cat("git")
+	:for_cat("core.git")
 	:event_defer()
 	:opts({
 		default_mappings = false,
@@ -45,7 +45,7 @@ plugin("git-conflict")
 		})
 	end)
 plugin("diffview.nvim")
-	:for_cat("git")
+	:for_cat("core.git")
 	:cmd("DiffviewOpen")
 	:on_plugin("neogit")
 	:on_require("diffview")
@@ -92,7 +92,7 @@ plugin("diffview.nvim")
 		kmap("n", "d", kcmd("DiffviewOpen"), "open diffview"),
 	}))
 plugin("neogit")
-	:for_cat("git")
+	:for_cat("core.git")
 	:on_require("neogit")
 	:cmd("Neogit")
 	:opts({
@@ -112,7 +112,7 @@ plugin("neogit")
 		kmap("n", "r", kcmd("Neogit remote"), "remote"),
 	}))
 plugin("gitsigns.nvim")
-	:for_cat("git")
+	:for_cat("core.git")
 	:event_buffer_enter()
 	:on_require("gitsigns")
 	:opts({

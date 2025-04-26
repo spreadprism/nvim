@@ -1,4 +1,4 @@
-plugin("mini.indentscope"):for_cat("core"):event_defer():init(function()
+plugin("mini.indentscope"):event_defer():init(function()
 	vim.api.nvim_create_autocmd("FileType", {
 		pattern = {
 			"",
