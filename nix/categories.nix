@@ -29,20 +29,20 @@
         )
       )
     );
-  categories = attr:
-    builtins.map (
-      path: let
-        splitKey = lib.strings.splitString "." (pathToAttrs path);
-        value = pathValueAttr path attr;
-      in
-        lib.attrsets.setAttrByPath splitKey value
-    )
-    nix_files;
 in
   forEachAttrs (
     attr:
       lib.lists.foldl
       lib.attrsets.recursiveUpdate
       {}
-      (categories attr)
+      (
+        builtins.map (
+          path: let
+            splitKey = lib.strings.splitString "." (pathToAttrs path);
+            value = pathValueAttr path attr;
+          in
+            lib.attrsets.setAttrByPath splitKey value
+        )
+        nix_files
+      )
   )

@@ -35,7 +35,7 @@ if nixCats("devtools") then
 				end
 			end
 		end, "query plugin status"),
-		kmap("n", "s", kcmd("tab StartupTime"), "startup time"),
+		kmap("n", "=", kcmd("tab StartupTime"), "startup time"),
 	})
 else
 	kmap("n", "<leader>=", kcmd("tab StartupTime"), "startup time")
