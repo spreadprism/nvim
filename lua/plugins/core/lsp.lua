@@ -120,7 +120,6 @@ kgroup("<leader>l", "lsp", {}, {
 		end
 	end, "Restart language server"),
 })
-
 plugin("neoconf.nvim"):on_require("neoconf"):opts({
 	import = {
 		coc = false,
@@ -135,27 +134,3 @@ plugin("neoconf.nvim"):on_require("neoconf"):opts({
 		},
 	},
 })
-
--- plugin("hover.nvim")
--- 	:on_require("hover")
--- 	:opts({
--- 		init = function()
--- 			require("hover.providers.lsp")
--- 			-- require("hover.providers.highlight")
--- 		end,
--- 		preview_opts = {
--- 			border = "rounded",
--- 		},
--- 		title = false,
--- 	})
--- 	:keys({
--- 		kmap("n", "K", function()
--- 			local api = vim.api
--- 			local hover_win = vim.b.hover_preview
--- 			if hover_win and api.nvim_win_is_valid(hover_win) then
--- 				api.nvim_set_current_win(hover_win)
--- 			else
--- 				require("hover").hover({})
--- 			end
--- 		end, "hover"),
--- 	})

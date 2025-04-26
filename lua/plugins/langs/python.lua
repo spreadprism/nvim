@@ -7,7 +7,14 @@ lsp("basedpyright"):for_cat("language.python"):settings({
 		},
 	},
 })
-lsp("ruff"):for_cat("language.python")
+lsp("ruff"):for_cat("language.python"):init_options({
+	settings = {
+		showSyntaxErrors = false,
+		lint = {
+			ignore = { "F401", "F841" },
+		},
+	},
+})
 formatter("python", "ruff_format")
 plugin("venv-selector")
 	:for_cat("language.python")
@@ -20,24 +27,29 @@ plugin("venv-selector")
 			kmap("n", "d", klazy("venv-selector").deactivate(), "deactivate current env"),
 		})
 	end)
-plugin("nvim-dap-python"):for_cat("language.python"):on_require("dap-python"):ft("python"):config(function()
-	require("dap-python").setup("uv", { include_configs = false })
-	require("dap-python").resolve_python = function()
-		local path = require("venv-selector").python()
-		if path then
-			return path
-		end
+plugin("nvim-dap-python")
+	:dep_on("nvim-dap")
+	:for_cat("language.python")
+	:on_require("dap-python")
+	:ft("python")
+	:config(function()
+		require("dap-python").setup("uv", { include_configs = false })
+		require("dap-python").resolve_python = function()
+			local path = require("venv-selector").python()
+			if path then
+				return path
+			end
 
-		---@diagnostic disable-next-line: redefined-local
-		local path, err = exec("command -v python")
-		if not err == nil then
-			return path
-		end
-		path, err = exec("command -v python3")
-		if not err == nil then
-			return path
-		end
+			---@diagnostic disable-next-line: redefined-local
+			local path, err = exec("command -v python")
+			if not err == nil then
+				return path
+			end
+			path, err = exec("command -v python3")
+			if not err == nil then
+				return path
+			end
 
-		return nil
-	end
-end)
+			return nil
+		end
+	end)
