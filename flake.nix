@@ -139,7 +139,7 @@
       requests = true;
     };
     base_extra = {pkgs, ...} @ misc: {
-      nixpkgs = ''import ${pkgs.path} {}'';
+      nixdExtras.nixpkgs = ''import ${pkgs.path} {}'';
     };
 
     packageDefinitions = {
@@ -152,6 +152,7 @@
           base_categories misc
           // {
           };
+        extra = base_extra misc // {};
       };
       nvim_dev = {pkgs, ...} @ misc: {
         settings =
@@ -166,6 +167,7 @@
             devtools = true;
             tmux = true;
           };
+        extra = base_extra misc // {};
       };
       nvim_minimal = {pkgs, ...} @ misc: {
         settings =
@@ -175,6 +177,7 @@
         categories = {
           core = true;
         };
+        extra = base_extra misc // {};
       };
     };
     defaultPackageName = "nvim";
