@@ -1,11 +1,10 @@
-{pkgs, ...}: {
-  optionalPlugins = with pkgs.vimPlugins; [
+{vim_pkgs, ...}: {
+  optionalPlugins = with vim_pkgs; [
+    nvim-treesitter-textobjects
+    nvim-treesitter-endwise
     (nvim-treesitter.withPlugins (
       plugins:
         with plugins; [
-          nix
-          lua
-          luadoc
           bash
           make
           json
@@ -16,7 +15,6 @@
           regex
           vim
           vimdoc
-          proto
         ]
     ))
   ];

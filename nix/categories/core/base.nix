@@ -1,0 +1,82 @@
+{
+  pkgs,
+  vim_pkgs,
+  nvim_pkgs,
+  ...
+}: {
+  lspsAndRuntimeDeps = with pkgs; [
+    ripgrep
+    fd
+    vscode-langservers-extracted
+    ast-grep
+    marksman
+    nodePackages_latest.prettier
+    nodePackages_latest.vscode-json-languageserver
+    yaml-language-server
+  ];
+  startupPlugins = with vim_pkgs;
+    [
+      lze
+      mini-pairs
+      lzextras
+      plenary-nvim
+      promise-async
+      oil-nvim
+      nvim-web-devicons
+      transparent-nvim
+      which-key-nvim
+      SchemaStore-nvim
+    ]
+    ++ (with nvim_pkgs; [
+      oil-vcs-status
+      lspconfig
+    ]);
+  optionalPlugins = with vim_pkgs;
+    [
+      neoscroll-nvim
+      nui-nvim
+      vim-startuptime
+      nvim-notify
+      noice-nvim
+      dressing-nvim
+      todo-comments-nvim
+      mini-indentscope
+      nvim-highlight-colors
+      smart-splits-nvim
+      nvim-ts-autotag
+      mini-ai
+      mini-surround
+      mini-move
+      nvim-surround
+      comment-nvim
+      blink-cmp
+      neoconf-nvim
+      fidget-nvim
+      telescope-nvim
+      telescope-zf-native-nvim
+      telescope-fzf-native-nvim
+      telescope-dap-nvim
+      hop-nvim
+      conform-nvim
+      tabout-nvim
+      nvim-ufo
+      luasnip
+      grug-far-nvim
+      # trouble-nvim
+      treesj
+      overseer-nvim
+      flash-nvim
+      yanky-nvim
+      neogen
+    ]
+    ++ (with nvim_pkgs; [
+      lualine-nvim
+      harpoon
+      esqueleto
+      easycolor
+      render-markdown
+      blink-compat
+      dir-telescope
+      nvim-lint
+    ]);
+}

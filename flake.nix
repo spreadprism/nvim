@@ -112,296 +112,31 @@
       categories,
       name,
       ...
-    } @ packageDef: {
-      lspsAndRuntimeDeps = {
-        core = with pkgs; [
-          ripgrep
-          fd
-          lua-language-server
-          vscode-langservers-extracted
-          stylua
-          nixd
-          ast-grep
-          alejandra
-          marksman
-          nodePackages_latest.prettier
-          nodePackages_latest.vscode-json-languageserver
-          yaml-language-server
-        ];
-        requests = with pkgs; [
-          curl
-          grpcurl
-          jq
-          libxml2
-        ];
-        python = with pkgs; [
-          basedpyright
-          ruff
-          fd
-        ];
-        robot = with pkgs; [
-        ];
-        docker = with pkgs; [
-          dockerfile-language-server-nodejs
-        ];
-        go = with pkgs; [
-          gopls
-          delve
-          golangci-lint
-          gofumpt
-        ];
-        proto = with pkgs; [
-          buf
-        ];
+    } @ packageDef: let
+      cats = import ./nix/categories.nix {
+        inherit pkgs;
+        lib = pkgs.lib;
       };
-      startupPlugins = rec {
-        debugging = with pkgs.vimPlugins; [
-          nvim-nio
-        ];
-        testing = debugging;
-        devtools = with pkgs.neovimPlugins; [
-          profile
-        ];
-        core = with pkgs.neovimPlugins;
-          [
-            oil-vcs-status
-            lspconfig
-          ]
-          ++ (with pkgs.vimPlugins; [
-            lze
-            mini-pairs
-            lzextras
-            plenary-nvim
-            promise-async
-            oil-nvim
-            nvim-web-devicons
-            transparent-nvim
-            which-key-nvim
-            SchemaStore-nvim
-          ]);
-        colorscheme = with pkgs.vimPlugins; [
-          tokyonight-nvim
-        ];
-      };
-      optionalPlugins = {
-        ai = with pkgs.vimPlugins;
-          [
-            codecompanion-nvim
-          ]
-          ++ (with pkgs.neovimPlugins; [
-            copilot
-            copilot-lualine
-          ]);
-        tmux = with pkgs.neovimPlugins; [
-          tmux-navigation
-        ];
-        debugging = with pkgs.vimPlugins; [
-          nvim-dap
-          nvim-dap-ui
-          nvim-dap-virtual-text
-        ];
-        db = with pkgs.vimPlugins;
-          [
-            nui-nvim
-            (nvim-treesitter.withPlugins (
-              plugins:
-                with plugins; [
-                  sql
-                ]
-            ))
-          ]
-          ++ (with pkgs.neovimPlugins; [
-            nvim-dbee
-            cmp-dbee
-          ]);
-        requests = with pkgs.vimPlugins;
-          [
-            (nvim-treesitter.withPlugins (
-              plugins:
-                with plugins; [
-                  http
-                  html
-                  javascript
-                  typescript
-                ]
-            ))
-          ]
-          ++ (with pkgs.neovimPlugins; [
-            kulala
-          ]);
-        workspace = with pkgs.neovimPlugins; [
-          exrc
-        ];
-        testing = with pkgs.vimPlugins; [
-          neotest
-        ];
-        git = with pkgs.vimPlugins;
-          [
-            neogit
-            diffview-nvim
-            gitsigns-nvim
-            mini-diff
-            telescope-git-conflicts-nvim
-          ]
-          ++ (with pkgs.neovimPlugins; [
-            git-conflict
-          ]);
-        go = with pkgs.vimPlugins; [
-          nvim-dap-go
-          neotest-golang
-          (nvim-treesitter.withPlugins (
-            plugins:
-              with plugins; [
-                go
-                gowork
-                gomod
-                gosum
-                gotmpl
-              ]
-          ))
-        ];
-        ruby = with pkgs.vimPlugins; [
-          (nvim-treesitter.withPlugins (
-            plugins:
-              with plugins; [
-                ruby
-              ]
-          ))
-        ];
-        proto = with pkgs.vimPlugins; [
-          (nvim-treesitter.withPlugins (
-            plugins:
-              with plugins; [
-                proto
-              ]
-          ))
-        ];
-        remote = with pkgs.vimPlugins; [
-          nvim-osc52
-        ];
-        robot = with pkgs.vimPlugins; [
-          (nvim-treesitter.withPlugins (
-            plugins:
-              with plugins; [
-                robot
-              ]
-          ))
-        ];
-        python = with pkgs.vimPlugins;
-          [
-            nvim-dap-python
-            (nvim-treesitter.withPlugins (
-              plugins:
-                with plugins; [
-                  python
-                ]
-            ))
-          ]
-          ++ (with pkgs.neovimPlugins; [
-            venv-selector
-          ]);
-        docker = with pkgs.vimPlugins; [
-          (nvim-treesitter.withPlugins (
-            plugins:
-              with plugins; [
-                dockerfile
-              ]
-          ))
-        ];
-        core = with pkgs.vimPlugins;
-          [
-            nvim-osc52
-            neoscroll-nvim
-            nui-nvim
-            nvim-treesitter-textobjects
-            nvim-treesitter-endwise
-            (nvim-treesitter.withPlugins (
-              plugins:
-                with plugins; [
-                  nix
-                  lua
-                  luadoc
-                  bash
-                  make
-                  json
-                  toml
-                  yaml
-                  markdown
-                  markdown_inline
-                  regex
-                  vim
-                  vimdoc
-                  proto
-                  kdl
-                ]
-            ))
-            vim-startuptime
-            nvim-notify
-            noice-nvim
-            dressing-nvim
-            todo-comments-nvim
-            mini-indentscope
-            nvim-highlight-colors
-            smart-splits-nvim
-            nvim-ts-autotag
-            mini-ai
-            mini-surround
-            mini-move
-            nvim-surround
-            comment-nvim
-            blink-cmp
-            neoconf-nvim
-            fidget-nvim
-            telescope-nvim
-            telescope-zf-native-nvim
-            telescope-fzf-native-nvim
-            telescope-dap-nvim
-            hop-nvim
-            conform-nvim
-            tabout-nvim
-            nvim-ufo
-            luasnip
-            grug-far-nvim
-            # trouble-nvim
-            treesj
-            overseer-nvim
-            flash-nvim
-            yanky-nvim
-            neogen
-          ]
-          ++ (with pkgs.neovimPlugins; [
-            lualine-nvim
-            harpoon
-            esqueleto
-            easycolor
-            render-markdown
-            blink-compat
-            dir-telescope
-            nvim-lint
-          ]);
-        devtools = with pkgs.neovimPlugins; [
-          ex-colors
-        ];
-      };
-      sharedLibraries = {};
-      environmentVariables = {};
-      extraWrapperArgs = {};
+      attrOrEmpty = attr:
+        if builtins.hasAttr attr cats
+        then cats."${attr}"
+        else {};
+    in {
+      lspsAndRuntimeDeps = attrOrEmpty "lspsAndRuntimeDeps";
+      startupPlugins = attrOrEmpty "startupPlugins";
+      optionalPlugins = attrOrEmpty "optionalPlugins";
     };
     base_settings = {pkgs, ...} @ misc: {
       wrapRc = true;
     };
     base_categories = {pkgs, ...} @ misc: {
       core = true;
+      language = {
+        lua = true;
+        nix = true;
+      };
       ai = true;
-      docker = true;
-      git = true;
-      debugging = true;
-      testing = true;
-      tmux = true;
-      workspace = true;
       requests = true;
-      db = true;
-      colorscheme = true; # BUG: Currently the built colorscheme doesn't work
     };
     base_extra = {pkgs, ...} @ misc: {
       nixpkgs = ''import ${pkgs.path} {}'';
@@ -426,11 +161,10 @@
         categories =
           base_categories misc
           // {
-            go = true;
-            python = true;
-            proto = true;
+            language = true;
             remote = true;
             devtools = true;
+            tmux = true;
           };
       };
       nvim_minimal = {pkgs, ...} @ misc: {
