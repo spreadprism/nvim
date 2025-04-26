@@ -1,4 +1,4 @@
-lsp("basedpyright"):for_cat("python"):settings({
+lsp("basedpyright"):for_cat("language.python"):settings({
 	basedpyright = {
 		analysis = {
 			diagnosticSeverityOverrides = {
@@ -7,10 +7,10 @@ lsp("basedpyright"):for_cat("python"):settings({
 		},
 	},
 })
-lsp("ruff"):for_cat("python")
+lsp("ruff"):for_cat("language.python")
 formatter("python", "ruff_format")
 plugin("venv-selector")
-	:for_cat("python")
+	:for_cat("language.python")
 	:ft("python")
 	:on_plugin("nvim-dap-python")
 	:on_require("venv-selector")
@@ -20,7 +20,7 @@ plugin("venv-selector")
 			kmap("n", "d", klazy("venv-selector").deactivate(), "deactivate current env"),
 		})
 	end)
-plugin("nvim-dap-python"):for_cat("python"):on_require("dap-python"):ft("python"):config(function()
+plugin("nvim-dap-python"):for_cat("language.python"):on_require("dap-python"):ft("python"):config(function()
 	require("dap-python").setup("uv", { include_configs = false })
 	require("dap-python").resolve_python = function()
 		local path = require("venv-selector").python()

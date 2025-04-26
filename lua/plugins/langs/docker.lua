@@ -1,1 +1,1 @@
-lsp("dockerls"):for_cat("docker")
+lsp("dockerls"):for_cat("language.docker")
