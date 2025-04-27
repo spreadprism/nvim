@@ -15,7 +15,7 @@ function M.init()
 	dap_configurations = {}
 	vim.g.find_file_blacklist = {}
 	require("internal.db").clear_connections()
-	if nixCats("debugging") then
+	if nixCats("core.debugging") then
 		local dap = require("dap")
 		local cfg = dap.providers.configs
 		if cfg["dap.workspace"] == nil then
