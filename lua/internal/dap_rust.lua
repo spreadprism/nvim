@@ -33,10 +33,8 @@ function M.cargo(config)
 	-- }
 	--
 	-- require("overseer").register_template(template)
-	final_config.preLaunchTask = template_name
-	final_config.program = function()
-		return executable
-	end
+	-- final_config.preLaunchTask = template_name
+	final_config.program = ""
 
 	final_config.cargo = nil
 	return final_config
