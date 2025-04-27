@@ -1,8 +1,7 @@
-if nixCats("debugging") then
+if nixCats("core.debugging") then
 	local dap_func = require("internal.dap_func")
 	plugin("nvim-dap")
 		:on_require("dap")
-		:event_defer()
 		:config(function()
 			local dap = require("dap")
 			-- INFO: define symbols
