@@ -42,10 +42,10 @@ plugin("telescope.nvim")
 				help_tags = {
 					mappings = {
 						i = {
-							["<Enter>"] = "file_tab",
+							["<cr>"] = actions.select_tab,
 						},
 						n = {
-							["<Enter>"] = "file_tab",
+							["<cr>"] = actions.select_tab,
 						},
 					},
 				},
