@@ -1,5 +1,5 @@
 plugin("exrc")
-	:for_cat("workspace")
+	:for_cat("core.workspace")
 	:event_defer()
 	:init(function()
 		vim.g.workspace_file_name = ".nvim.lua"
