@@ -14,8 +14,21 @@ function M.cargo(config)
 		builder = function()
 			return {
 				cmd = { "cargo" },
-				args = vim.list_extend(args, { "--message-format=json", ">>", msg_path }),
+				args = vim.list_extend(args, { "--message-format=json" }),
 				cwd = cwd,
+				components = {
+					{
+						desc = "grab output",
+						serializable = false,
+						constructor = function(params)
+							return {
+								on_output_lines = function(self, task, lines)
+									print(lines)
+								end,
+							}
+						end,
+					},
+				},
 			}
 		end,
 	}
