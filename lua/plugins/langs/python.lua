@@ -1,6 +1,10 @@
 lsp("basedpyright"):for_cat("language.python"):settings({
 	basedpyright = {
 		analysis = {
+			inlayHints = {
+				callArgumentNames = false,
+				genericTypes = true,
+			},
 			diagnosticSeverityOverrides = {
 				reportAny = "none", -- Disable the specific rule
 			},
