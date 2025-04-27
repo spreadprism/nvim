@@ -3,9 +3,17 @@ lsp("gopls")
 	:ft("go", "gomod", "gosum", "gowork", "gotmpl")
 	:root_markers("go.work", "go.mod", ".git")
 	:settings({
-		directoryFilters = {
-			"-/nix/**",
-			string.format("-%s/**", os.getenv("GOPATH")),
+		gopls = {
+			directoryFilters = {
+				"-/nix/**",
+				string.format("-%s/**", os.getenv("GOPATH")),
+			},
+			["ui.inlayhint.hints"] = {
+				assignVariableTypes = true,
+				constantValues = true,
+				rangeVariableTypes = true,
+				functionTypeParameters = true,
+			},
 		},
 	})
 linter("go", "golangcilint")
