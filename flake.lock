@@ -519,6 +519,22 @@
         "type": "github"
       }
     },
+    "plugins-tokyonight": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1739909711,
+        "narHash": "sha256-1xZhQR1BhH2eqax0swlNtnPWIEUTxSOab6sQ3Fv9WQA=",
+        "owner": "folke",
+        "repo": "tokyonight.nvim",
+        "rev": "057ef5d260c1931f1dffd0f052c685dcd14100a3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "tokyonight.nvim",
+        "type": "github"
+      }
+    },
     "plugins-venv-selector": {
       "flake": false,
       "locked": {
@@ -560,6 +576,7 @@
         "plugins-profile": "plugins-profile",
         "plugins-render-markdown": "plugins-render-markdown",
         "plugins-tmux-navigation": "plugins-tmux-navigation",
+        "plugins-tokyonight": "plugins-tokyonight",
         "plugins-venv-selector": "plugins-venv-selector"
       }
     },

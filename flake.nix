@@ -11,6 +11,10 @@
       url = "github:SirZenith/oil-vcs-status";
       flake = false;
     };
+    "plugins-tokyonight" = {
+      url = "github:folke/tokyonight.nvim";
+      flake = false;
+    };
     "plugins-harpoon" = {
       url = "github:ThePrimeagen/harpoon?ref=harpoon2";
       flake = false;

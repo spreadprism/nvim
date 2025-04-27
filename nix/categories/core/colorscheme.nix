@@ -1,6 +1,13 @@
-{vim_pkgs, ...}: {
-  startupPlugins = with vim_pkgs; [
-    tokyonight-nvim
-    transparent-nvim
-  ];
+{
+  vim_pkgs,
+  nvim_pkgs,
+  ...
+}: {
+  startupPlugins = with vim_pkgs;
+    [
+      transparent-nvim
+    ]
+    ++ (with nvim_pkgs; [
+      tokyonight
+    ]);
 }
