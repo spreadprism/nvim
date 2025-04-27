@@ -29,7 +29,7 @@ function M.cargo(config)
 	local cwd = cargo.cwd or cwd()
 
 	local template_name = final_config.name .. "_build"
-	local msg_path = joinpath(cwd(), template_name .. "_msg.json")
+	local msg_path = joinpath(cwd, template_name .. "_msg.json")
 	local template = {
 		name = template_name,
 		builder = function()
