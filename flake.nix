@@ -186,7 +186,7 @@
         extra = base_extra misc // {};
       };
     };
-    defaultPackageName = "nvim";
+    defaultPackageName = "nvim_dev";
   in
     forEachSystem (system: let
       nixCatsBuilder =
