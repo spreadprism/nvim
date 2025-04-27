@@ -40,7 +40,7 @@ plugin("easycolor")
 	})
 	:dep_on("dressing.nvim")
 plugin("nvim-ts-autotag"):event({ "BufReadPre", "BufNewFile" })
-plugin("mini.pairs"):event_typing():opts({
+plugin("mini.pairs"):event_defer():opts({
 	modes = { insert = true, command = true, terminal = false },
 })
 plugin("mini.surround"):event_defer():opts({
