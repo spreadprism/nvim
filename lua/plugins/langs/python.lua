@@ -21,6 +21,13 @@ plugin("venv-selector")
 	:ft("python")
 	:on_plugin("nvim-dap-python")
 	:on_require("venv-selector")
+	:opts({
+		-- TODO: add support for conda/mamba env
+		search = {
+			pipx = false,
+			poetry = false,
+		},
+	})
 	:setup(function()
 		kgroup("<leader>l", "lsp", {}, {
 			kmap("n", "e", kcmd("VenvSelect"), "select venv"),
