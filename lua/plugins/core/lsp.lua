@@ -9,6 +9,11 @@ local function on_attach(client, buf)
 			client.server_capabilities.hoverProvider = false
 		end
 	end
+	if client.server_capabilities.inlayHintProvider then
+		vim.lsp.inlay_hint.enable(true, {
+			bufnr = buf,
+		})
+	end
 end
 
 ---@param buf integer

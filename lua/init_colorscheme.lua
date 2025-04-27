@@ -24,4 +24,5 @@ if nixCats("core.colorscheme") then
 	transparent.clear_prefix("Float")
 	transparent.clear_prefix("Flash")
 	transparent.clear_prefix("NormalFloat")
+	transparent.clear_prefix("LspInlayHint")
 end
