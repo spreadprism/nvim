@@ -107,9 +107,11 @@
     extra_pkg_config = {
       allowUnfree = true;
     };
-    dependencyOverlays = [
-      (utils.standardPluginOverlay inputs)
-    ];
+    dependencyOverlays =
+      [
+        (utils.standardPluginOverlay inputs)
+      ]
+      ++ import ./nix/overlays;
     categoryDefinitions = {
       pkgs,
       settings,
@@ -194,7 +196,9 @@
         categoryDefinitions
         packageDefinitions;
       defaultPackage = nixCatsBuilder defaultPackageName;
-      pkgs = import nixpkgs {inherit system;};
+      pkgs = import nixpkgs {
+        inherit system;
+      };
     in {
       packages = utils.mkAllWithDefault defaultPackage;
 

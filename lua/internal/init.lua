@@ -20,6 +20,7 @@ _G.TEMPLATES_PATH = joinpath(LUA_PATH, "templates")
 
 M.plugin = require("internal.plugin").plugin
 M.lsp = require("internal.lsp").lsp
+M.dap = require("internal.dap").adapter
 M.formatter = require("internal.formatter").formatter
 M.linter = require("internal.linter").linter
 local keymap = require("internal.keymap")
@@ -80,6 +81,7 @@ M.global_vars = {
 
 _G.plugin = M.plugin
 _G.lsp = M.lsp
+_G.dap = M.dap
 _G.formatter = M.formatter
 _G.linter = M.linter
 _G.kmap = M.kmap

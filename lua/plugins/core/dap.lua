@@ -14,6 +14,7 @@ if nixCats("core.debugging") then
 				"DapStopped",
 				{ text = "", texthl = "DapStoppedSign", linehl = "DapStoppedSign", numhl = "" }
 			)
+			require("internal.dap").init_adapters()
 		end)
 		:keys({
 			kmap("n", "<F5>", dap_func("continue"), "DAP start / continue"),

@@ -1,3 +1,6 @@
+if not nixCats("language.lua") then
+	return
+end
 formatter("lua", "stylua")
 
 local paths = {

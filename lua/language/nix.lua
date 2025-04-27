@@ -1,3 +1,6 @@
+if not nixCats("language.nix") then
+	return
+end
 lsp("nixd"):settings({
 	nixd = {
 		nixpkgs = {
