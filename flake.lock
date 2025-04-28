@@ -391,6 +391,22 @@
         "type": "github"
       }
     },
+    "plugins-lazydev": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1740044730,
+        "narHash": "sha256-LoxziiV9jlHuU4vRVFfKtVLI45ouJcuyXC6DIyQKlew=",
+        "owner": "folke",
+        "repo": "lazydev.nvim",
+        "rev": "2367a6c0a01eb9edb0464731cc0fb61ed9ab9d2c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "lazydev.nvim",
+        "type": "github"
+      }
+    },
     "plugins-lspconfig": {
       "flake": false,
       "locked": {
@@ -568,6 +584,7 @@
         "plugins-git-conflict": "plugins-git-conflict",
         "plugins-harpoon": "plugins-harpoon",
         "plugins-kulala": "plugins-kulala",
+        "plugins-lazydev": "plugins-lazydev",
         "plugins-lspconfig": "plugins-lspconfig",
         "plugins-lualine-nvim": "plugins-lualine-nvim",
         "plugins-nvim-dbee": "plugins-nvim-dbee",

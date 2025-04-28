@@ -91,6 +91,10 @@
       url = "github:linux-cultist/venv-selector.nvim?ref=regexp";
       flake = false;
     };
+    "plugins-lazydev" = {
+      url = "github:folke/lazydev.nvim";
+      flake = false;
+    };
   };
   outputs = {
     self,

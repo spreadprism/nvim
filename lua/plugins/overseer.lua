@@ -1,7 +1,7 @@
 plugin("overseer.nvim")
 	:on_require("overseer")
 	:opts({
-		templates = { "cargo", "vscode", "make", "npm", "shell" },
+		templates = { "vscode", "make", "shell" },
 		component_aliases = {
 			default = {
 				{ "display_duration", detail_level = 2 },

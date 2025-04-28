@@ -24,9 +24,6 @@ lsp("lua_ls"):root_markers(
 ):settings({
 	Lua = {
 		runtime = { version = "LuaJIT" },
-		workspace = {
-			library = paths,
-		},
 		formatters = {
 			ignoreComments = true,
 		},
@@ -47,5 +44,12 @@ lsp("lua_ls"):root_markers(
 			disable = { "missing-fields", "different-requires" },
 		},
 		telemetry = { enabled = false },
+	},
+})
+
+plugin("lazydev"):ft("lua"):opts({
+	library = vim.list_extend(paths, {}),
+	integrations = {
+		cmp = false,
 	},
 })
