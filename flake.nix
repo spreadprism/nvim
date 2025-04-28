@@ -190,7 +190,7 @@
         extra = base_extra misc // {};
       };
     };
-    defaultPackageName = "nvim_dev";
+    defaultPackageName = "nvim";
   in
     forEachSystem (system: let
       nixCatsBuilder =
@@ -210,8 +210,8 @@
       # and add whatever else you want in it.
       devShells = {
         default = pkgs.mkShell {
-          name = defaultPackageName;
-          packages = [defaultPackage];
+          name = "nvim_dev";
+          packages = [(nixCatsBuilder "nvim_dev")];
           inputsFrom = [];
           shellHook = ''
           '';
