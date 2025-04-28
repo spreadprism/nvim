@@ -1,6 +1,6 @@
 plugin("cmp-dbee"):on_plugin("nvim-dbee")
 plugin("nvim-dbee")
-	:for_cat("db")
+	:for_cat("core.db")
 	:cmd("Dbee")
 	:on_require("dbee")
 	:dep_on("nui-nvim")
