@@ -8,7 +8,6 @@ lsp("gopls"):ft("go", "gomod", "gosum", "gowork", "gotmpl"):root_markers("go.wor
 			string.format("-%s/**", os.getenv("GOPATH")),
 		},
 		["ui.inlayhint.hints"] = {
-			assignVariableTypes = true,
 			constantValues = true,
 			rangeVariableTypes = true,
 			-- functionTypeParameters = true,
