@@ -1,10 +1,10 @@
-if nixCats("testing") then
+if nixCats("core.testing") then
 	plugin("neotest")
 		:cmd("Neotest")
 		:on_require("neotest")
 		:config(function()
 			local adapters = {}
-			if nixCats("go") then
+			if nixCats("language.go") then
 				table.insert(adapters, require("neotest-golang")({}))
 			end
 			require("neotest").setup({
