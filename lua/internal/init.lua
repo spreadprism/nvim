@@ -11,7 +11,8 @@ _G.exec = function(cmd)
 	local result = handle:read("*a")
 	---@diagnostic disable-next-line: need-check-nil
 	handle:close()
-	return result, err
+
+	return result:gsub("\n$", ""), err
 end
 _G.HOME = os.getenv("HOME")
 _G.XDG_CONFIG = os.getenv("XDG_CONFIG_HOME") or joinpath(HOME, ".config")

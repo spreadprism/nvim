@@ -95,6 +95,10 @@
       url = "github:folke/lazydev.nvim";
       flake = false;
     };
+    "plugins-overseer" = {
+      url = "github:stevearc/overseer.nvim";
+      flake = false;
+    };
   };
   outputs = {
     self,

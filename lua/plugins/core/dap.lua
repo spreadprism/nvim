@@ -3,7 +3,6 @@ if nixCats("core.debugging") then
 	plugin("nvim-dap")
 		:on_require("dap")
 		:config(function()
-			local dap = require("dap")
 			-- INFO: define symbols
 			vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "ErrorMsg", linehl = "", numhl = "" })
 			vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "ErrorMsg", linehl = "", numhl = "" })

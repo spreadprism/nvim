@@ -13,6 +13,7 @@
     nodePackages_latest.prettier
     nodePackages_latest.vscode-json-languageserver
     yaml-language-server
+    jq
   ];
   startupPlugins = with vim_pkgs;
     [
@@ -64,7 +65,6 @@
       grug-far-nvim
       # trouble-nvim
       treesj
-      overseer-nvim
       flash-nvim
       yanky-nvim
       neogen
@@ -78,5 +78,6 @@
       blink-compat
       dir-telescope
       nvim-lint
+      overseer
     ]);
 }

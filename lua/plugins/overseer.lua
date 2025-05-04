@@ -1,11 +1,9 @@
-plugin("overseer.nvim")
+plugin("overseer")
 	:on_require("overseer")
 	:opts({
-		templates = { "vscode", "make", "shell" },
+		templates = { "cargo", "cargo-dap", "vscode", "make", "shell" },
 		component_aliases = {
 			default = {
-				{ "display_duration", detail_level = 2 },
-				"on_output_summarize",
 				"on_exit_set_status",
 				{ "on_complete_notify", statuses = { "FAILURE" } },
 				{ "on_complete_dispose", require_view = { "SUCCESS", "FAILURE" } },
