@@ -1,5 +1,5 @@
 -- INFO: Even if not lazyloaded, we don't save any time on the bar display
-plugin("lualine-nvim"):config(function()
+plugin("lualine-nvim"):dep_on("overseer"):config(function()
 	require("lualine").setup({
 		options = {
 			theme = "auto",

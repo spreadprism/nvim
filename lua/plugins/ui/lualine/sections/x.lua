@@ -1,11 +1,11 @@
 return {
-	-- {
-	-- 	"overseer",
-	-- 	unique = true,
-	-- 	symbols = {
-	-- 		["RUNNING"] = "󰦖 ",
-	-- 	},
-	-- },
+	{
+		"overseer",
+		unique = true,
+		symbols = {
+			["RUNNING"] = "󰦖 ",
+		},
+	},
 	{
 		"lsp",
 		blacklist = {
