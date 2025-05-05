@@ -12,16 +12,17 @@ plugin("overseer")
 		task_list = {
 			bindings = {
 				["?"] = "ShowHelp",
-				["q"] = "Close",
+				["<C-q>"] = "Close",
 				["<CR>"] = "RunAction",
-				["o"] = "Open",
+				["o"] = "OpenFloat",
+				["p"] = "TogglePreview",
+				["e"] = "Edit",
+				["r"] = "Restart",
 				["g?"] = false,
 				["<C-e>"] = false,
 				["<C-v>"] = false,
 				["<C-s>"] = false,
 				["<C-f>"] = false,
-				["<C-q>"] = false,
-				["p"] = "TogglePreview",
 				["<C-l>"] = false,
 				["<C-h>"] = false,
 				["L"] = false,
@@ -34,9 +35,28 @@ plugin("overseer")
 				["<C-j>"] = false,
 			},
 		},
+		task_editor = {
+			bindings = {
+				i = {
+					["<CR>"] = "NextOrSubmit",
+					["<C-s>"] = "Submit",
+					["<Tab>"] = "Next",
+					["<S-Tab>"] = "Prev",
+					["<C-q>"] = "Cancel",
+				},
+				n = {
+					["<CR>"] = "Submit",
+					["<Tab>"] = "Next",
+					["<S-Tab>"] = "Prev",
+					["<C-q>"] = "Cancel",
+					["?"] = "ShowHelp",
+				},
+			},
+		},
 	})
 	:cmd({ "OverseerRun", "OverseerToggle", "OverseerQuickAction", "OverseerRunCmd" })
 	:keys({
+		kmap("n", "<leader><leader>", kcmd("OverseerRun shell"), "execute shell command"),
 		kgroup("<leader>t", "tasks", {}, {
 			kmap("n", "e", kcmd("OverseerToggle"), "Toggle explorer"),
 			kmap("n", "t", kcmd("OverseerRun"), "Task run"),
