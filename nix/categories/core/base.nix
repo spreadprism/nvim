@@ -22,13 +22,13 @@
       lzextras
       plenary-nvim
       promise-async
-      oil-nvim
       nvim-web-devicons
       transparent-nvim
       which-key-nvim
       SchemaStore-nvim
     ]
     ++ (with nvim_pkgs; [
+      oil
       oil-vcs-status
       lspconfig
     ]);

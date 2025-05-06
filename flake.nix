@@ -99,6 +99,10 @@
       url = "github:stevearc/overseer.nvim";
       flake = false;
     };
+    "plugins-oil" = {
+      url = "github:stevearc/oil.nvim";
+      flake = false;
+    };
   };
   outputs = {
     self,

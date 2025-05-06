@@ -471,6 +471,22 @@
         "type": "github"
       }
     },
+    "plugins-oil": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1745170557,
+        "narHash": "sha256-G9I/5zidjV4Q3QLzrPkiXqSpLVuvOIu695OTI6DTC/M=",
+        "owner": "stevearc",
+        "repo": "oil.nvim",
+        "rev": "685cdb4ffa74473d75a1b97451f8654ceeab0f4a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stevearc",
+        "repo": "oil.nvim",
+        "type": "github"
+      }
+    },
     "plugins-oil-vcs-status": {
       "flake": false,
       "locked": {
@@ -605,6 +621,7 @@
         "plugins-lualine-nvim": "plugins-lualine-nvim",
         "plugins-nvim-dbee": "plugins-nvim-dbee",
         "plugins-nvim-lint": "plugins-nvim-lint",
+        "plugins-oil": "plugins-oil",
         "plugins-oil-vcs-status": "plugins-oil-vcs-status",
         "plugins-overseer": "plugins-overseer",
         "plugins-profile": "plugins-profile",
