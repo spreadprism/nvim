@@ -104,11 +104,6 @@ function M.launch_configs(cfgs)
 		cfgs = { cfgs }
 	end
 	for _, cfg in ipairs(cfgs) do
-		cfg.request = cfg.request or "launch"
-		cfg.cwd = cfg.cwd or cwd()
-		if cfg.type == "go" then
-			cfg.outputMode = cfg.outputMode or "remote"
-		end
 		table.insert(dap_configurations, cfg)
 	end
 end

@@ -10,14 +10,25 @@ lsp("gopls"):ft("go", "gomod", "gosum", "gowork", "gotmpl"):root_markers("go.wor
 		["ui.inlayhint.hints"] = {
 			constantValues = true,
 			rangeVariableTypes = true,
-			-- functionTypeParameters = true,
 		},
 	},
 })
 linter("go", "golangcilint")
 formatter("go", "gofumpt")
-plugin("nvim-dap-go"):on_require("dap-go"):ft("go"):config(function()
-	require("dap-go").setup({})
-	require("internal.dap").clear("go")
-end)
+-- plugin("nvim-dap-go"):on_require("dap-go"):ft("go"):config(function()
+-- 	require("dap-go").setup({})
+-- 	require("internal.dap").clear("go")
+-- end)
 plugin("neotest-golang"):config(false):on_plugin("neotest")
+
+---@diagnostic disable-next-line: param-type-mismatch
+dap("go", {
+	type = "server",
+	port = "${port}",
+	executable = {
+		args = { "dap", "-l", "127.0.0.1:${port}" },
+		command = "dlv",
+		cwd = cwd(),
+	},
+	enrich_config = require("internal.dap.enrich_config.go"),
+})
