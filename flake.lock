@@ -583,6 +583,22 @@
         "type": "github"
       }
     },
+    "plugins-treesitter-context": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1746800706,
+        "narHash": "sha256-gRvGGvIf9tYw/HnfKLhwg8C6qlmJ8/AkEY4z9+Kt/Yw=",
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter-context",
+        "rev": "5c48b8ba1b0b7b25feb6e34e7eb293ea893aedc4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter-context",
+        "type": "github"
+      }
+    },
     "plugins-venv-selector": {
       "flake": false,
       "locked": {
@@ -628,6 +644,7 @@
         "plugins-render-markdown": "plugins-render-markdown",
         "plugins-tmux-navigation": "plugins-tmux-navigation",
         "plugins-tokyonight": "plugins-tokyonight",
+        "plugins-treesitter-context": "plugins-treesitter-context",
         "plugins-venv-selector": "plugins-venv-selector"
       }
     },

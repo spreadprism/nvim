@@ -103,6 +103,10 @@
       url = "github:stevearc/oil.nvim";
       flake = false;
     };
+    "plugins-treesitter-context" = {
+      url = "github:nvim-treesitter/nvim-treesitter-context";
+      flake = false;
+    };
   };
   outputs = {
     self,
