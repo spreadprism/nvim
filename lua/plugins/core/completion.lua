@@ -86,6 +86,9 @@ plugin("blink.cmp"):event_typing():on_require("blink"):opts({
 		show_documentation = true,
 	} },
 	completion = {
+		list = {
+			selection = { preselect = true, auto_insert = false },
+		},
 		accept = {
 			auto_brackets = {
 				enabled = false,

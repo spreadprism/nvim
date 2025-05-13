@@ -65,11 +65,12 @@ if nixCats("core.debugging") then
 				})
 			end, "dap console (console)"),
 		})
-	local virtual_max_char = 15
+	local virtual_max_char = 20
 	plugin("nvim-dap-virtual-text")
 		:opts({
 			only_first_definition = false,
 			virt_text_pos = "inline",
+			show_stop_reason = false,
 			display_callback = function(variable, buf, stackframe, node, options)
 				local value = variable.value
 				if #value > virtual_max_char then
