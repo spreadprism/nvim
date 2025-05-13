@@ -133,3 +133,14 @@ plugin("neogen")
 		snippet_engine = "luasnip",
 	})
 	:keys(kmap("n", "gca", klazy("neogen").generate(), "annotate"))
+
+plugin("live-command")
+	:event_defer()
+	:opts({
+		commands = {
+			Norm = { cmd = "norm" },
+		},
+	})
+	:setup(function()
+		vim.cmd("cnoreabbrev norm Norm")
+	end)

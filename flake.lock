@@ -407,6 +407,22 @@
         "type": "github"
       }
     },
+    "plugins-live-command": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1746051559,
+        "narHash": "sha256-DnUTaF3GSTFhQ/dsP/YUkBXTA+MRoirfyyOwMpz820c=",
+        "owner": "smjonas",
+        "repo": "live-command.nvim",
+        "rev": "05b9f886628f3e9e6122e734c1fac4f13dcb64b4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "smjonas",
+        "repo": "live-command.nvim",
+        "type": "github"
+      }
+    },
     "plugins-lspconfig": {
       "flake": false,
       "locked": {
@@ -633,6 +649,7 @@
         "plugins-harpoon": "plugins-harpoon",
         "plugins-kulala": "plugins-kulala",
         "plugins-lazydev": "plugins-lazydev",
+        "plugins-live-command": "plugins-live-command",
         "plugins-lspconfig": "plugins-lspconfig",
         "plugins-lualine-nvim": "plugins-lualine-nvim",
         "plugins-nvim-dbee": "plugins-nvim-dbee",

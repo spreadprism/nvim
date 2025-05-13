@@ -107,6 +107,10 @@
       url = "github:nvim-treesitter/nvim-treesitter-context";
       flake = false;
     };
+    "plugins-live-command" = {
+      url = "github:smjonas/live-command.nvim";
+      flake = false;
+    };
   };
   outputs = {
     self,

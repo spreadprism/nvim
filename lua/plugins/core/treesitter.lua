@@ -66,4 +66,6 @@ plugin("nvim-treesitter")
 		vim.treesitter.language.register("bash", "dotenv")
 		vim.treesitter.language.register("python", "bzl")
 	end)
-plugin("treesitter-context"):event_defer():for_cat("core")
+plugin("treesitter-context"):event_defer():for_cat("core"):opts({
+	mode = "topline",
+})

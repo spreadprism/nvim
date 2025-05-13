@@ -74,6 +74,7 @@
       harpoon
       esqueleto
       easycolor
+      live-command
       render-markdown
       blink-compat
       dir-telescope
