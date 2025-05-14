@@ -358,6 +358,22 @@
         "type": "github"
       }
     },
+    "plugins-guess-indent": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1742937349,
+        "narHash": "sha256-M/FkwCXXhojVFEcCuHo/GkuCCSX9GlVYHBUECSZxBjs=",
+        "owner": "nmac427",
+        "repo": "guess-indent.nvim",
+        "rev": "84a4987ff36798c2fc1169cbaff67960aed9776f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nmac427",
+        "repo": "guess-indent.nvim",
+        "type": "github"
+      }
+    },
     "plugins-harpoon": {
       "flake": false,
       "locked": {
@@ -646,6 +662,7 @@
         "plugins-ex-colors": "plugins-ex-colors",
         "plugins-exrc": "plugins-exrc",
         "plugins-git-conflict": "plugins-git-conflict",
+        "plugins-guess-indent": "plugins-guess-indent",
         "plugins-harpoon": "plugins-harpoon",
         "plugins-kulala": "plugins-kulala",
         "plugins-lazydev": "plugins-lazydev",

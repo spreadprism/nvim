@@ -111,6 +111,10 @@
       url = "github:smjonas/live-command.nvim";
       flake = false;
     };
+    "plugins-guess-indent" = {
+      url = "github:nmac427/guess-indent.nvim";
+      flake = false;
+    };
   };
   outputs = {
     self,

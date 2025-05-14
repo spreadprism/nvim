@@ -80,5 +80,6 @@
       dir-telescope
       nvim-lint
       overseer
+      guess-indent
     ]);
 }
