@@ -81,5 +81,6 @@
       nvim-lint
       overseer
       guess-indent
+      search-replace
     ]);
 }

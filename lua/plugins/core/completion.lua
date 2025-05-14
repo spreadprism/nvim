@@ -91,7 +91,7 @@ plugin("blink.cmp"):event_typing():on_require("blink"):opts({
 		},
 		accept = {
 			auto_brackets = {
-				enabled = false,
+				enabled = true,
 			},
 		},
 		documentation = {

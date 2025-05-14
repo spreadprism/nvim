@@ -583,6 +583,22 @@
         "type": "github"
       }
     },
+    "plugins-search-replace": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1694253952,
+        "narHash": "sha256-hEdEBDeHbJc3efgo7djktX4RemAiX8ZvQlJIEoAgkPM=",
+        "owner": "roobert",
+        "repo": "search-replace.nvim",
+        "rev": "d92290a02d97f4e9b8cd60d28b56b403432158d5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "roobert",
+        "repo": "search-replace.nvim",
+        "type": "github"
+      }
+    },
     "plugins-tmux-navigation": {
       "flake": false,
       "locked": {
@@ -676,6 +692,7 @@
         "plugins-overseer": "plugins-overseer",
         "plugins-profile": "plugins-profile",
         "plugins-render-markdown": "plugins-render-markdown",
+        "plugins-search-replace": "plugins-search-replace",
         "plugins-tmux-navigation": "plugins-tmux-navigation",
         "plugins-tokyonight": "plugins-tokyonight",
         "plugins-treesitter-context": "plugins-treesitter-context",

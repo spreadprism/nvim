@@ -118,8 +118,14 @@ plugin("treesj")
 	:opts({
 		use_default_keymaps = false,
 	})
+plugin("search-replace")
+	:on_require("search-replace")
+	:keys({
+		kmap("v", "<M-r>", kcmd("SearchReplaceSingleBufferVisualSelection"), "replace"),
+	})
+	:event_defer()
 plugin("grug-far.nvim"):on_require("grug-far"):keys({
-	kmap({ "n", "v" }, "<M-r>", function()
+	kmap("n", "<M-r>", function()
 		require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } })
 	end, "replace current buffer"),
 	kmap({ "n", "v" }, "<M-R>", function()

@@ -115,6 +115,10 @@
       url = "github:nmac427/guess-indent.nvim";
       flake = false;
     };
+    "plugins-search-replace" = {
+      url = "github:roobert/search-replace.nvim";
+      flake = false;
+    };
   };
   outputs = {
     self,
