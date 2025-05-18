@@ -51,18 +51,19 @@ if nixCats("ai") then
 				},
 			},
 		})
-		:keys(kgroup("<leader>a", "AI-assistant", {}, {
-
-			kmap("n", "p", kcmd("CodeCompanion"), "Prompt"),
-			kmap("v", "p", function()
-				vim.ui.input({ prompt = "Prompt" }, function(input)
-					vim.cmd("'<,'>CodeCompanion " .. input)
-				end)
-			end, "Prompt"),
-			kmap("v", "e", kcmd("CodeCompanion /explain"), "Explain"),
-			kmap("v", "f", kcmd("CodeCompanion @editor /fix"), "Fix"),
-			kmap("v", "t", kcmd("CodeCompanion @editor /tests"), "Generate tests"),
-			kmap("n", "c", kcmd("CodeCompanionChat Toggle"), "Toggle chat"),
-			kmap("n", "a", kcmd("CodeCompanionActions"), "Actions"),
-		}))
+		:keys({
+			kgroup("<leader>a", "AI-assistant", {}, {
+				kmap("n", "p", kcmd("CodeCompanion"), "Prompt"),
+				kmap("v", "p", function()
+					vim.ui.input({ prompt = "Prompt" }, function(input)
+						vim.cmd("'<,'>CodeCompanion " .. input)
+					end)
+				end, "Prompt"),
+				kmap("v", "e", kcmd("CodeCompanion /explain"), "Explain"),
+				kmap("v", "f", kcmd("CodeCompanion @editor /fix"), "Fix"),
+				kmap("v", "t", kcmd("CodeCompanion @editor /tests"), "Generate tests"),
+				kmap("n", "c", kcmd("CodeCompanionChat Toggle"), "Toggle chat"),
+				kmap("n", "a", kcmd("CodeCompanionActions"), "Actions"),
+			}),
+		})
 end

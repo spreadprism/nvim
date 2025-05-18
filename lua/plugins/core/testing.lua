@@ -17,11 +17,13 @@ if nixCats("core.testing") then
 				},
 			})
 		end)
-		:keys(kgroup("<leader>u", "unit-testing", {}, {
-			kmap("n", "e", kcmd("Neotest summary"), "tests explorer"),
-			kmap("n", "c", kcmd("lua require('neotest').run.run()"), "test current function"),
-			kmap("n", "f", kcmd("lua require('neotest').run.run(vim.fn.expand('%'))"), "test current file"),
-			kmap("n", "p", kcmd("lua require('neotest').run.run(vim.fn.getcwd())"), "test current project"),
-			kmap("n", "x", kcmd("lua require('neotest').run.stop()"), "stop current test"),
-		}))
+		:keys({
+			kgroup("<leader>u", "unit-testing", {}, {
+				kmap("n", "e", kcmd("Neotest summary"), "tests explorer"),
+				kmap("n", "c", kcmd("lua require('neotest').run.run()"), "test current function"),
+				kmap("n", "f", kcmd("lua require('neotest').run.run(vim.fn.expand('%'))"), "test current file"),
+				kmap("n", "p", kcmd("lua require('neotest').run.run(vim.fn.getcwd())"), "test current project"),
+				kmap("n", "x", kcmd("lua require('neotest').run.stop()"), "stop current test"),
+			}),
+		})
 end

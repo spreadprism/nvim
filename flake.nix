@@ -121,10 +121,8 @@
     };
   };
   outputs = {
-    self,
     nixpkgs,
     nixCats,
-    neovim-nightly-overlay,
     ...
   } @ inputs: let
     inherit (nixCats) utils;

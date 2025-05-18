@@ -155,16 +155,18 @@ function Plugin:ft(ft)
 end
 
 --- Lazy-load on keys
----@param ... Keymap
-function Plugin:keys(...)
-	-- -- TODO: this won't work
-	-- local keys = { ... }
-	-- local actual_keys = {}
-	-- for _, key in ipairs(keys) do
-	-- 	table.insert(keys, { key.mode, key.keys })
-	-- end
-	--
-	-- lze.apply(self.name, { keys = actual_keys })
+---@param keys Keymap | Keymap[]
+function Plugin:keys(keys)
+	if keys.__index == Keymap.__index then
+		keys = { keys }
+	end
+
+	local actual_keys = {}
+	for _, key in ipairs(keys) do
+		table.insert(actual_keys, { key.keys, mode = key.mode })
+	end
+
+	lze.apply(self.name, { keys = actual_keys })
 	return self
 end
 

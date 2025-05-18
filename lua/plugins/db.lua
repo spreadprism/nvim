@@ -68,9 +68,11 @@ plugin("nvim-dbee")
 		end
 		tools.restore = tools.save
 	end)
-	:keys(kgroup("<leader>b", "dBee", {}, {
-		kmap("n", "b", function()
-			vim.cmd("tabnew")
-			vim.cmd("Dbee")
-		end, "Open dbee"),
-	}))
+	:keys({
+		kgroup("<leader>b", "dBee", {}, {
+			kmap("n", "b", function()
+				vim.cmd("tabnew")
+				vim.cmd("Dbee")
+			end, "Open dbee"),
+		}),
+	})

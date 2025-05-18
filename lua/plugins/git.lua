@@ -88,9 +88,9 @@ plugin("diffview.nvim")
 			view = require("internal.diffview").view_keys,
 		},
 	})
-	:keys(kgroup("<leader>g", "git", {}, {
+	:keys({ kgroup("<leader>g", "git", {}, {
 		kmap("n", "d", kcmd("DiffviewOpen"), "open diffview"),
-	}))
+	}) })
 plugin("neogit")
 	:for_cat("core.git")
 	:on_require("neogit")
@@ -103,14 +103,16 @@ plugin("neogit")
 		},
 		graph_style = "unicode",
 	})
-	:keys(kgroup("<leader>g", "git", {}, {
-		kmap("n", "g", kcmd("Neogit kind=floating"), "open neogit"),
-		kmap("n", "b", kcmd("Neogit branch"), "select branch"),
-		kmap("n", "p", kcmd("Neogit pull"), "pull"),
-		kmap("n", "P", kcmd("Neogit push"), "push"),
-		kmap("n", "c", kcmd("Neogit commit"), "commit"),
-		kmap("n", "r", kcmd("Neogit remote"), "remote"),
-	}))
+	:keys({
+		kgroup("<leader>g", "git", {}, {
+			kmap("n", "g", kcmd("Neogit kind=floating"), "open neogit"),
+			kmap("n", "b", kcmd("Neogit branch"), "select branch"),
+			kmap("n", "p", kcmd("Neogit pull"), "pull"),
+			kmap("n", "P", kcmd("Neogit push"), "push"),
+			kmap("n", "c", kcmd("Neogit commit"), "commit"),
+			kmap("n", "r", kcmd("Neogit remote"), "remote"),
+		}),
+	})
 	:setup(function() end)
 plugin("gitsigns.nvim")
 	:for_cat("core.git")
