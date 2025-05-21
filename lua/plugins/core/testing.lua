@@ -5,7 +5,12 @@ if nixCats("core.testing") then
 		:config(function()
 			local adapters = {}
 			if nixCats("language.go") then
-				table.insert(adapters, require("neotest-golang")({}))
+				table.insert(
+					adapters,
+					require("neotest-golang")({
+						dap_mode = "manual",
+					})
+				)
 			end
 			require("neotest").setup({
 				adapters = adapters,
