@@ -9,6 +9,13 @@ if nixCats("core.testing") then
 					adapters,
 					require("neotest-golang")({
 						dap_mode = "manual",
+						dap_manual_config = {
+							type = "go",
+							name = "neotest",
+							request = "launch",
+							mode = "test",
+							outputMode = "remote",
+						},
 					})
 				)
 			end
