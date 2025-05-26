@@ -10,7 +10,7 @@
     vscode-langservers-extracted
     ast-grep
     marksman
-    nodePackages_latest.prettier
+    prettierd
     nodePackages_latest.vscode-json-languageserver
     yaml-language-server
     jq

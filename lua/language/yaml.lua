@@ -1,4 +1,4 @@
-formatter("yaml", "prettier")
+formatter("yaml", "prettierd")
 lsp("yamlls"):settings({
 	yaml = {
 		schemaStore = {

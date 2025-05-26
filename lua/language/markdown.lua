@@ -7,4 +7,4 @@ plugin("render-markdown"):dep_on("nvim-treesitter"):ft({ "markdown", "codecompan
 		border = "thick",
 	},
 })
-formatter(ft, "prettier")
+formatter(ft, "prettierd")
