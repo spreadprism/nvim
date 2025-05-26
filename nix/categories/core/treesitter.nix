@@ -13,6 +13,7 @@
             bash
             make
             json
+            just
             toml
             yaml
             markdown
