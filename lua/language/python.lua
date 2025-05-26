@@ -10,6 +10,7 @@ lsp("basedpyright"):settings({
 			},
 			diagnosticSeverityOverrides = {
 				reportAny = "none", -- Disable the specific rule
+				reportExplicitAny = "none", -- Disable the specific rule
 			},
 		},
 	},
