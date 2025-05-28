@@ -1,5 +1,5 @@
 formatter("yaml", "prettierd")
-lsp("yamlls"):settings({
+lsp("yamlls"):ft("yaml", "yaml.docker-compose", "yaml.gitlab", "helm"):settings({
 	yaml = {
 		schemaStore = {
 			enable = false,
