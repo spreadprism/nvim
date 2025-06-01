@@ -81,7 +81,7 @@ plugin("telescope.nvim")
 	:keys({
 		kmap("n", "<M-g>", function()
 			local path = vim.fn.expand("%:p")
-			require("internal.telescope").finder({ search_dirs = { vim.fn.expand("%:p") } }, vim.fn.expand("%:p"))
+			require("internal.telescope").finder({ search_dirs = { path } }, path)
 		end, "grep buffer"),
 		kmap("n", "<M-G>", function()
 			require("internal.telescope").finder({}, vim.fn.expand("%:p"))
@@ -93,6 +93,7 @@ plugin("telescope.nvim")
 			kmap("n", "c", kcmd("Telescope conflicts"), "conflicts"),
 			kmap("n", "s", kcmd("Telescope lsp_document_symbols"), "symbols"),
 			kmap("n", "h", kcmd("Telescope help_tags"), "help"),
+			kmap("n", "o", kcmd("Telescope oldfiles"), "oldfiles"),
 			kmap("n", "d", function()
 				require("internal.telescope").diagnostics()
 			end, "diagnostics"),
