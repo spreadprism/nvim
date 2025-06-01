@@ -16,7 +16,7 @@ plugin("lualine-nvim"):dep_on("overseer"):config(function()
 		extensions = {
 			require("plugins.ui.lualine.extensions.nvim-dap-ui"),
 			{
-				filetypes = { "gitsigns-blame", "NeogitCommitView", "OverseerList" },
+				filetypes = { "gitsigns-blame", "NeogitCommitView", "OverseerList", "undotree" },
 				winbar = {},
 			},
 		},

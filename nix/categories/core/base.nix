@@ -82,5 +82,6 @@
       overseer
       guess-indent
       search-replace
+      undotree
     ]);
 }

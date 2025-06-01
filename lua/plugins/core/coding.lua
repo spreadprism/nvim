@@ -151,3 +151,12 @@ plugin("live-command")
 		vim.cmd("cnoreabbrev norm Norm")
 	end)
 plugin("guess-indent"):event_defer()
+plugin("undotree")
+	:opts({
+		window = {
+			winblend = 0,
+		},
+	})
+	:event_defer()
+	:cmd("UndotreeToggle")
+	:keys(kmap("n", "<M-u>", klazy("undotree").toggle(), "open undotree"))

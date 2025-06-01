@@ -119,6 +119,10 @@
       url = "github:roobert/search-replace.nvim";
       flake = false;
     };
+    "plugins-undotree" = {
+      url = "github:jiaoshijie/undotree";
+      flake = false;
+    };
   };
   outputs = {
     nixpkgs,

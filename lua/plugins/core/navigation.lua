@@ -52,7 +52,7 @@ plugin("harpoon"):event_defer():config(false):keys({
 	kmap("n", "<M-m>", function()
 		require("harpoon"):list():add()
 	end, "mark"),
-	kmap("n", "<M-u>", function()
+	kmap("n", "<M-M>", function()
 		require("harpoon"):list():remove()
 	end, "unmark"),
 	kmap("n", "<M-e>", function()
