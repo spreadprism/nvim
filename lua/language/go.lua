@@ -15,12 +15,16 @@ lsp("gopls"):ft("go", "gomod", "gosum", "gowork", "gotmpl"):root_markers("go.wor
 })
 linter("go", "golangcilint")
 formatter("go", "gofumpt")
--- plugin("nvim-dap-go"):on_require("dap-go"):ft("go"):config(function()
--- 	require("dap-go").setup({})
--- 	require("internal.dap").clear("go")
--- end)
-plugin("neotest-golang"):config(false):on_plugin("neotest")
-
+neotest("neotest-golang")({
+	dap_mode = "manual",
+	dap_manual_config = {
+		type = "go",
+		name = "neotest",
+		request = "launch",
+		mode = "test",
+		outputMode = "remote",
+	},
+})
 ---@diagnostic disable-next-line: param-type-mismatch
 dap("go", {
 	type = "server",

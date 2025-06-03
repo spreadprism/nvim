@@ -2,25 +2,14 @@ if nixCats("core.testing") then
 	plugin("neotest")
 		:cmd("Neotest")
 		:on_require("neotest")
+		:dep_on("overseer")
 		:config(function()
-			local adapters = {}
-			if nixCats("language.go") then
-				table.insert(
-					adapters,
-					require("neotest-golang")({
-						dap_mode = "manual",
-						dap_manual_config = {
-							type = "go",
-							name = "neotest",
-							request = "launch",
-							mode = "test",
-							outputMode = "remote",
-						},
-					})
-				)
-			end
 			require("neotest").setup({
-				adapters = adapters,
+				adapters = require("internal.neotest").list_adapters(),
+				consumers = {
+					---@diagnostic disable-next-line: assign-type-mismatch
+					overseer = require("neotest.consumers.overseer"),
+				},
 				summary = {
 					mappings = {
 						expand = { "<tab>" },
