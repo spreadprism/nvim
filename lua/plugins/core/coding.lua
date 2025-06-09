@@ -24,6 +24,7 @@ plugin("mini.indentscope"):event_defer():init(function()
 end)
 plugin("todo-comments.nvim"):on_require("todo-comments"):event_defer():opts({
 	highlight = {
+		multiline = false,
 		-- vimgrep regex, supporting the pattern TODO(name):
 		pattern = [[.*<((KEYWORDS)%(\(.{-1,}\))?):]],
 	},
