@@ -83,5 +83,6 @@
       guess-indent
       search-replace
       undotree
+      quicker
     ]);
 }

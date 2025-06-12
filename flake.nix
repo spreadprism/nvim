@@ -123,6 +123,10 @@
       url = "github:jiaoshijie/undotree";
       flake = false;
     };
+    "plugins-quicker" = {
+      url = "github:stevearc/quicker.nvim";
+      flake = false;
+    };
   };
   outputs = {
     nixpkgs,

@@ -567,6 +567,22 @@
         "type": "github"
       }
     },
+    "plugins-quicker": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1747287269,
+        "narHash": "sha256-VRqm++wKKPnvMt402rSI27EFRKMrvuJatxCkNwgo0UA=",
+        "owner": "stevearc",
+        "repo": "quicker.nvim",
+        "rev": "51d3926f183c2d98fbc237cc237ae0926839af3a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stevearc",
+        "repo": "quicker.nvim",
+        "type": "github"
+      }
+    },
     "plugins-render-markdown": {
       "flake": false,
       "locked": {
@@ -707,6 +723,7 @@
         "plugins-oil-vcs-status": "plugins-oil-vcs-status",
         "plugins-overseer": "plugins-overseer",
         "plugins-profile": "plugins-profile",
+        "plugins-quicker": "plugins-quicker",
         "plugins-render-markdown": "plugins-render-markdown",
         "plugins-search-replace": "plugins-search-replace",
         "plugins-tmux-navigation": "plugins-tmux-navigation",
