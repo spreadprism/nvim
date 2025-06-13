@@ -1,6 +1,7 @@
 plugin("overseer")
 	:on_require("overseer")
 	:opts({
+		dap = false,
 		templates = { "cargo", "vscode", "make", "shell" },
 		component_aliases = {
 			default = {
