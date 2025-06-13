@@ -100,11 +100,11 @@ vim.diagnostic.config({
 	},
 })
 
-vim.cmd([[highlight DiagnosticUnderlineError guifg=#db4b4b]])
-vim.cmd([[highlight DiagnosticUnderlineWarn guifg=#e0af68]])
-vim.cmd([[highlight DiagnosticDeprecated guifg=#e0af68]])
-vim.cmd([[highlight DiagnosticUnderlineInfo guifg=#0db9d7]])
-vim.cmd([[highlight DiagnosticInfo guifg=#0db9d7]])
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { fg = "#db4b4b", undercurl = true })
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { fg = "#e0af68", undercurl = true })
+vim.api.nvim_set_hl(0, "DiagnosticDeprecated", { fg = "#e0af68" })
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { fg = "#0db9d7", undercurl = true })
+vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = "#0db9d7" })
 
 kgroup("<leader>l", "lsp", {}, {
 	kmap("n", "i", kcmd("LspInfo"), "Info"),
