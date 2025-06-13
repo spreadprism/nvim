@@ -127,6 +127,10 @@
       url = "github:stevearc/quicker.nvim";
       flake = false;
     };
+    "plugins-codecompanion" = {
+      url = "github:olimorris/codecompanion.nvim";
+      flake = false;
+    };
   };
   outputs = {
     nixpkgs,

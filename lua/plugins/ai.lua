@@ -14,12 +14,12 @@ if nixCats("ai") then
 			},
 			panel = { enabled = false },
 		})
-		:on_plugin("codecompanion.nvim")
+		:on_plugin("codecompanion")
 	local code_adapter = "copilot"
 	if os.getenv("GEMINI_API_KEY") ~= nil then
 		code_adapter = "gemini"
 	end
-	plugin("codecompanion.nvim")
+	plugin("codecompanion")
 		:event_defer()
 		:dep_on("mini.diff")
 		:on_require("codecompanion")

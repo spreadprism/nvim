@@ -5,10 +5,10 @@
 }: {
   optionalPlugins = with vim_pkgs;
     [
-      codecompanion-nvim
     ]
     ++ (with nvim_pkgs; [
       copilot
+      codecompanion
       copilot-lualine
     ]);
 }
