@@ -10,6 +10,9 @@ if nixCats("core.testing") then
 					---@diagnostic disable-next-line: assign-type-mismatch
 					overseer = require("neotest.consumers.overseer"),
 				},
+				discovery = {
+					enabled = false,
+				},
 				summary = {
 					mappings = {
 						expand = { "<tab>" },
