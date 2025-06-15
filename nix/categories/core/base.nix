@@ -14,6 +14,7 @@
     nodePackages_latest.vscode-json-languageserver
     yaml-language-server
     jq
+    just-lsp
   ];
   startupPlugins = with vim_pkgs;
     [

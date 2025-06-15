@@ -67,4 +67,9 @@ return {
 	[".envrc"] = vim.tbl_extend("force", require("icons.extension")["env"], {
 		name = "envrc",
 	}),
+	["justfile"] = {
+		icon = "󰚩",
+		color = "#8957E5",
+		name = "justfile",
+	},
 }
