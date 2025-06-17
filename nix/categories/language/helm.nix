@@ -11,6 +11,7 @@
       plugins:
         with plugins; [
           helm
+          gotmpl
         ]
     ))
   ];
