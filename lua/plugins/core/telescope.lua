@@ -92,7 +92,21 @@ plugin("telescope.nvim")
 			kmap("n", "l", kcmd("Telescope resume"), "last"),
 			kmap("n", "c", kcmd("Telescope conflicts"), "conflicts"),
 			kmap("n", "s", kcmd("Telescope lsp_document_symbols"), "symbols"),
-			kmap("n", "h", kcmd("Telescope help_tags"), "help"),
+			kmap("n", "h", function()
+				local ft = vim.bo.filetype
+				local case = {
+					function()
+						vim.print("no help for " .. ft .. " ft")
+					end,
+					lua = function()
+						require("telescope.builtin").help_tags()
+					end,
+					go = function() end,
+				}
+
+				local fn = case[ft] or case[1]
+				fn()
+			end, "help"),
 			kmap("n", "o", kcmd("Telescope oldfiles"), "oldfiles"),
 			kmap("n", "d", function()
 				require("internal.telescope").diagnostics()
