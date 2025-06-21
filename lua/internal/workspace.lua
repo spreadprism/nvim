@@ -132,6 +132,29 @@ function M.grep_pattern_ignore(...)
 	vim.g.grep_blacklist_pattern = tmp
 end
 
+---@param name string cli task name
+---@param cmd string|table cli task command
+---@return string
+function M.cli_task(name, cmd)
+	if type(cmd) == "table" then
+		cmd = table.concat(cmd, " ")
+	end
+
+	-- registry overseer task
+	require("overseer").register_template({
+		name = name,
+		builder = function()
+			return {
+				cmd = cmd,
+				cwd = cwd(),
+				components = { "default" },
+			}
+		end,
+	})
+
+	return name
+end
+
 M.mysql = require("internal.db").add_mysql_conn
 
 return M
