@@ -131,6 +131,10 @@
       url = "github:olimorris/codecompanion.nvim";
       flake = false;
     };
+    "plugins-gotmpl" = {
+      url = "github:ngynkvn/gotmpl.nvim";
+      flake = false;
+    };
   };
   outputs = {
     nixpkgs,

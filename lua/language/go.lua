@@ -1,3 +1,4 @@
+plugin("gotmpl"):event_defer()
 if not nixCats("language.go") then
 	return
 end

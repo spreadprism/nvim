@@ -85,5 +85,6 @@
       search-replace
       undotree
       quicker
+      gotmpl
     ]);
 }

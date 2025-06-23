@@ -374,6 +374,22 @@
         "type": "github"
       }
     },
+    "plugins-gotmpl": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1733419758,
+        "narHash": "sha256-EyPti2XYpCKItyMSCBMXPxHFjZ+6e3AM4mu+KpyDC0A=",
+        "owner": "ngynkvn",
+        "repo": "gotmpl.nvim",
+        "rev": "7c50c61a1f726d5733df7d8cc6f0dd9324661206",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ngynkvn",
+        "repo": "gotmpl.nvim",
+        "type": "github"
+      }
+    },
     "plugins-guess-indent": {
       "flake": false,
       "locked": {
@@ -727,6 +743,7 @@
         "plugins-ex-colors": "plugins-ex-colors",
         "plugins-exrc": "plugins-exrc",
         "plugins-git-conflict": "plugins-git-conflict",
+        "plugins-gotmpl": "plugins-gotmpl",
         "plugins-guess-indent": "plugins-guess-indent",
         "plugins-harpoon": "plugins-harpoon",
         "plugins-kulala": "plugins-kulala",
