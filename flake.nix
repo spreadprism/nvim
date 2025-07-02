@@ -135,6 +135,10 @@
       url = "github:ngynkvn/gotmpl.nvim";
       flake = false;
     };
+    "plugins-neogit" = {
+      url = "github:NeogitOrg/neogit";
+      flake = false;
+    };
   };
   outputs = {
     nixpkgs,

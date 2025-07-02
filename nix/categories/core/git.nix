@@ -5,7 +5,6 @@
 }: {
   optionalPlugins = with vim_pkgs;
     [
-      neogit
       diffview-nvim
       gitsigns-nvim
       mini-diff
@@ -13,5 +12,6 @@
     ]
     ++ (with nvim_pkgs; [
       git-conflict
+      neogit
     ]);
 }

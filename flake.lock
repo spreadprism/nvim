@@ -503,6 +503,22 @@
         "type": "github"
       }
     },
+    "plugins-neogit": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1751111328,
+        "narHash": "sha256-gtcJIW88YvomKVGq2E3XSuq72ff66uuZZR2Dr+6oSlU=",
+        "owner": "NeogitOrg",
+        "repo": "neogit",
+        "rev": "59725524d25f9a8a9474f113d60db52bad8504d0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NeogitOrg",
+        "repo": "neogit",
+        "type": "github"
+      }
+    },
     "plugins-nvim-dbee": {
       "flake": false,
       "locked": {
@@ -751,6 +767,7 @@
         "plugins-live-command": "plugins-live-command",
         "plugins-lspconfig": "plugins-lspconfig",
         "plugins-lualine-nvim": "plugins-lualine-nvim",
+        "plugins-neogit": "plugins-neogit",
         "plugins-nvim-dbee": "plugins-nvim-dbee",
         "plugins-nvim-lint": "plugins-nvim-lint",
         "plugins-oil": "plugins-oil",
