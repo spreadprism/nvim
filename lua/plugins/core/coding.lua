@@ -102,7 +102,11 @@ plugin("yanky.nvim")
 		},
 	})
 plugin("nvim-surround"):event_typing()
-plugin("comment.nvim"):event_defer():on_require("Comment"):opts(false)
+plugin("comment.nvim"):event_defer():on_require("Comment"):opts(false):config(function()
+	local ft = require("Comment.ft")
+	---@diagnostic disable-next-line: param-type-mismatch
+	ft.set("helm", ft.get("yaml"))
+end)
 plugin("tabout.nvim"):event_typing():on_require("tabout"):opts({
 	act_as_shift_tab = true,
 	tabouts = {
