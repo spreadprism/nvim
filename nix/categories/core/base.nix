@@ -86,5 +86,6 @@
       undotree
       quicker
       gotmpl
+      yaml
     ]);
 }

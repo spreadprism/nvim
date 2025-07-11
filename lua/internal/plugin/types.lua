@@ -148,9 +148,9 @@ function Plugin:cmd(cmd)
 end
 
 --- Lazy-load on filetype
----@param ft string | string[]
-function Plugin:ft(ft)
-	lze.apply(self.name, { ft = ft })
+---@param ... string
+function Plugin:ft(...)
+	lze.apply(self.name, { ft = { ... } })
 	return self
 end
 

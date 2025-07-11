@@ -744,6 +744,22 @@
         "type": "github"
       }
     },
+    "plugins-yaml": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1748450308,
+        "narHash": "sha256-eRG+Ovp44k8IJcsnwN44nudKdyRd4D83SoizrPju46s=",
+        "owner": "cuducos",
+        "repo": "yaml.nvim",
+        "rev": "09bbf7d936606d97f2c1d2e51171a602bc76b65e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cuducos",
+        "repo": "yaml.nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "neovim-nightly-overlay": "neovim-nightly-overlay",
@@ -781,7 +797,8 @@
         "plugins-tokyonight": "plugins-tokyonight",
         "plugins-treesitter-context": "plugins-treesitter-context",
         "plugins-undotree": "plugins-undotree",
-        "plugins-venv-selector": "plugins-venv-selector"
+        "plugins-venv-selector": "plugins-venv-selector",
+        "plugins-yaml": "plugins-yaml"
       }
     },
     "treefmt-nix": {

@@ -139,6 +139,10 @@
       url = "github:NeogitOrg/neogit";
       flake = false;
     };
+    "plugins-yaml" = {
+      url = "github:cuducos/yaml.nvim";
+      flake = false;
+    };
   };
   outputs = {
     nixpkgs,
