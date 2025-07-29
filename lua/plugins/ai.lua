@@ -48,6 +48,16 @@ if nixCats("ai") then
 				},
 				inline = {
 					adapter = code_adapter,
+					inline = {
+						keymaps = {
+							accept_change = {
+								modes = { n = "ga" },
+							},
+							reject_change = {
+								modes = { n = "gx" },
+							},
+						},
+					},
 				},
 			},
 		})
