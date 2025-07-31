@@ -19,6 +19,7 @@
             html
             javascript
             typescript
+            kulala_http
           ]
       ))
     ]
