@@ -38,7 +38,7 @@
       neoscroll-nvim
       nui-nvim
       vim-startuptime
-      nvim-notify
+      # nvim-notify
       noice-nvim
       dressing-nvim
       todo-comments-nvim
