@@ -88,7 +88,7 @@
       flake = false;
     };
     "plugins-venv-selector" = {
-      url = "github:linux-cultist/venv-selector.nvim?ref=regexp";
+      url = "github:linux-cultist/venv-selector.nvim";
       flake = false;
     };
     "plugins-lazydev" = {

@@ -730,16 +730,15 @@
     "plugins-venv-selector": {
       "flake": false,
       "locked": {
-        "lastModified": 1756283877,
-        "narHash": "sha256-9fVH/EBbssmsUnZNxhxJC6d3sDImIqKtq5nFl/T8L7o=",
+        "lastModified": 1758274487,
+        "narHash": "sha256-mz9RT1foan2DCHTZppuPZHaEqREqOHg2WU7uk3bjl0E=",
         "owner": "linux-cultist",
         "repo": "venv-selector.nvim",
-        "rev": "d2326e7433fdeb10f7d0d1237c18b91b353f9f8b",
+        "rev": "2b49d1f8b8fcf5cfbd0913136f48f118225cca5d",
         "type": "github"
       },
       "original": {
         "owner": "linux-cultist",
-        "ref": "regexp",
         "repo": "venv-selector.nvim",
         "type": "github"
       }
