@@ -4,7 +4,7 @@
   ...
 }: {
   lspsAndRuntimeDeps = with pkgs; [
-    dockerfile-language-server-nodejs
+    dockerfile-language-server
   ];
   optionalPlugins = with vim_pkgs; [
     (nvim-treesitter.withPlugins (
