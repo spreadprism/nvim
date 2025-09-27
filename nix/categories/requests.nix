@@ -10,7 +10,14 @@
     jq
     libxml2
   ];
-  optionalPlugins = with vim_pkgs;
+  optionalPlugins = with vim_pkgs; let
+    kulala-ts-http = pkgs.tree-sitter.buildGrammar {
+      language = "kulala_http";
+      version = nvim_pkgs.kulala.version; # <-- this can be anything I ususally do like, inputs.kulala-grammar.shortRev
+      src = nvim_pkgs.kulala;
+      location = "lua/tree-sitter";
+    };
+  in
     [
       (nvim-treesitter.withPlugins (
         plugins:
@@ -19,6 +26,7 @@
             html
             javascript
             typescript
+            kulala-ts-http
           ]
       ))
     ]

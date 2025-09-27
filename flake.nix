@@ -170,7 +170,7 @@
       ...
     } @ packageDef: let
       cats = import ./nix/categories.nix {
-        inherit pkgs;
+        inherit pkgs inputs;
         lib = pkgs.lib;
       };
       attrOrEmpty = attr:
