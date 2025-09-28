@@ -13,5 +13,6 @@
     ++ (with nvim_pkgs; [
       git-conflict
       neogit
+      lensline
     ]);
 }

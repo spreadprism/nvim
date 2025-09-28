@@ -437,6 +437,22 @@
         "type": "github"
       }
     },
+    "plugins-lensline": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1758979710,
+        "narHash": "sha256-aMOLIcW6BnSWBWqWnZXqlo9c8JLkkfn77gfSdhf1DF0=",
+        "owner": "oribarilan",
+        "repo": "lensline.nvim",
+        "rev": "9ae1e4a4d47533dc5bba301e790dcda44ec62be6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oribarilan",
+        "repo": "lensline.nvim",
+        "type": "github"
+      }
+    },
     "plugins-live-command": {
       "flake": false,
       "locked": {
@@ -761,6 +777,7 @@
         "plugins-harpoon": "plugins-harpoon",
         "plugins-kulala": "plugins-kulala",
         "plugins-lazydev": "plugins-lazydev",
+        "plugins-lensline": "plugins-lensline",
         "plugins-live-command": "plugins-live-command",
         "plugins-lspconfig": "plugins-lspconfig",
         "plugins-lualine-nvim": "plugins-lualine-nvim",

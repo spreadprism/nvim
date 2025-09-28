@@ -1,4 +1,5 @@
 plugin("mini.diff"):event_defer()
+plugin("lensline"):for_cat("core.git"):event_defer():opts({})
 plugin("git-conflict")
 	:for_cat("core.git")
 	:event_defer()

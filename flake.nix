@@ -143,6 +143,10 @@
       url = "github:cuducos/yaml.nvim";
       flake = false;
     };
+    "plugins-lensline" = {
+      url = "github:oribarilan/lensline.nvim";
+      flake = false;
+    };
   };
   outputs = {
     nixpkgs,
