@@ -106,3 +106,14 @@ plugin("noice.nvim")
 			},
 		},
 	})
+plugin("lensline"):for_cat("core.git"):event_defer():opts({
+	profiles = {
+		{
+			name = "default",
+			style = {
+				placement = "inline",
+				prefix = "",
+			},
+		},
+	},
+})
