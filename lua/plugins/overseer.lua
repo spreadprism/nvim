@@ -58,6 +58,7 @@ plugin("overseer")
 	:cmd({ "OverseerRun", "OverseerToggle", "OverseerQuickAction", "OverseerRunCmd" })
 	:keys({
 		kmap("n", "<leader><leader>", kcmd("OverseerRun shell"), "execute shell command"),
+		kmap("n", "<M-t>", kcmd("OverseerQuickAction open float"), "task console"),
 		kgroup("<leader>t", "tasks", {}, {
 			kmap("n", "e", kcmd("OverseerToggle"), "Toggle explorer"),
 			kmap("n", "t", kcmd("OverseerRun"), "Task run"),
@@ -70,6 +71,5 @@ plugin("overseer")
 					overseer.run_action(tasks[1], "restart")
 				end
 			end, "rerun last task"),
-			kmap("n", "f", kcmd("OverseerQuickAction open float"), "Open float last task"),
 		}),
 	})
