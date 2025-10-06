@@ -87,5 +87,6 @@
       quicker
       gotmpl
       yaml
+      lensline
     ]);
 }
