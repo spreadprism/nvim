@@ -146,6 +146,10 @@ end
 function M.buf_has_keymap(buffer, mode, ...)
 	local keys = { ... }
 
+	-- check if buffer id exists
+	if vim.api.nvim_buf_is_valid(buffer) == false then
+		return false
+	end
 	local buffer_keys = vim.api.nvim_buf_get_keymap(buffer, mode)
 	buffer_keys = vim.tbl_map(function(k)
 		return k.lhs
