@@ -3,6 +3,9 @@ if nixCats("ai") then
 		:event_defer()
 		:on_require("copilot")
 		:opts({
+			filetypes = {
+				yaml = true,
+			},
 			suggestion = {
 				enabled = true,
 				auto_trigger = false,
