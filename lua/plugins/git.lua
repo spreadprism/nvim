@@ -105,7 +105,7 @@ plugin("neogit")
 	})
 	:keys({
 		kgroup("<leader>g", "git", {}, {
-			kmap("n", "g", kcmd("Neogit kind=floating"), "open neogit"),
+			kmap("n", "g", kcmd("Neogit cwd=%:p:h kind=floating"), "open neogit"),
 			kmap("n", "b", kcmd("Neogit branch"), "select branch"),
 			kmap("n", "p", kcmd("Neogit pull"), "pull"),
 			kmap("n", "P", kcmd("Neogit push"), "push"),
