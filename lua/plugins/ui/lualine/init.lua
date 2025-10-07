@@ -4,7 +4,7 @@ plugin("lualine-nvim"):dep_on("overseer"):config(function()
 		options = {
 			theme = "auto",
 			globalstatus = true,
-			ignore_focus = { "TelescopePrompt", "NeogitStatus" },
+			ignore_focus = { "TelescopePrompt" },
 			disabled_filetypes = {
 				statusline = {},
 				winbar = { "kulala_ui", "dbee" },
