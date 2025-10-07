@@ -89,4 +89,9 @@ return {
 		color = "#00BEB4",
 		name = "robot",
 	},
+	["just"] = {
+		icon = "󰚩",
+		color = "#8957E5",
+		name = "just",
+	},
 }
