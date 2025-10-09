@@ -4,6 +4,7 @@ if nixCats("ai") then
 		:on_require("copilot")
 		:opts({
 			filetypes = {
+				markdown = true,
 				yaml = true,
 			},
 			suggestion = {
