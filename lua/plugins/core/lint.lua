@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
 			vim.defer_fn(function()
 				client = get_client()
 				require("lint").try_lint(nil, { cwd = client.root_dir or cwd() })
-			end, 100)
+			end, 1000) -- HACK: we set 1 second of wait, but we should wait for init event instead
 		else
 			require("lint").try_lint(nil, { cwd = client.root_dir or cwd() })
 		end
