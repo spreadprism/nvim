@@ -2,12 +2,9 @@ plugin("nui.nvim"):config(false)
 plugin("dressing.nvim"):opts({
 	select = {
 		get_config = function(opts)
-			if opts.kind == "codeaction" then
-				return {
-					backend = "telescope",
-					telescope = require("telescope.themes").get_cursor({}),
-				}
-			end
+			return {
+				backend = "snacks_picker",
+			}
 		end,
 	},
 })
