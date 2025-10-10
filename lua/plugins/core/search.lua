@@ -19,6 +19,7 @@ plugin("snacks")
 			kmap("n", "f", klazy("snacks.picker").files(), "files"),
 			kmap("n", "l", klazy("snacks.picker").resume(), "last"),
 			kmap("n", "s", klazy("snacks.picker").lsp_symbols(), "symbols"),
+			kmap("n", "p", klazy("snacks.picker").projects(), "projects"),
 			kmap("n", "d", klazy("snacks.picker").diagnostics_buffer(), "diagnostics buffer"),
 			kmap("n", "D", klazy("snacks.picker").diagnostics(), "diagnostics"),
 			kmap("n", "r", klazy("snacks.picker").lines(), "row"),
