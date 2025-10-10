@@ -135,11 +135,32 @@ plugin("search-replace")
 	})
 	:event_defer()
 plugin("grug-far.nvim"):on_require("grug-far"):keys({
-	kmap("n", "<M-r>", function()
+	kmap("n", "<M-g>", function()
 		require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } })
 	end, "replace current buffer"),
-	kmap({ "n", "v" }, "<M-R>", function()
+	kmap("v", "<M-g>", function()
+		vim.cmd('noau normal! "vy"')
+		local selection = vim.fn.getreg("v")
+
+		require("grug-far").open({
+			prefills = {
+				search = selection,
+				paths = vim.fn.expand("%"),
+			},
+		})
+	end, "replace current buffer"),
+	kmap("n", "<M-G>", function()
 		require("grug-far").open()
+	end, "replace global"),
+	kmap("v", "<M-G>", function()
+		vim.cmd('noau normal! "vy"')
+		local selection = vim.fn.getreg("v")
+
+		require("grug-far").open({
+			prefills = {
+				search = selection,
+			},
+		})
 	end, "replace global"),
 })
 plugin("neogen")

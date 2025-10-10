@@ -1,7 +1,5 @@
-{vim_pkgs, ...}: {
-  startupPlugins = with vim_pkgs; [
-  ];
-  optionalPlugins = with vim_pkgs; [
-    snacks-nvim
+{nvim_pkgs, ...}: {
+  optionalPlugins = with nvim_pkgs; [
+    snacks
   ];
 }

@@ -661,6 +661,22 @@
         "type": "github"
       }
     },
+    "plugins-snacks": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1759952087,
+        "narHash": "sha256-Hum8gZt0wcoZG9Hu+RBXiBAnsE5pO6M6JTqycP8m/Y8=",
+        "owner": "folke",
+        "repo": "snacks.nvim",
+        "rev": "dae80fb393f712bd7352a20f9185f5e16b69f20f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "snacks.nvim",
+        "type": "github"
+      }
+    },
     "plugins-tmux-navigation": {
       "flake": false,
       "locked": {
@@ -791,6 +807,7 @@
         "plugins-quicker": "plugins-quicker",
         "plugins-render-markdown": "plugins-render-markdown",
         "plugins-search-replace": "plugins-search-replace",
+        "plugins-snacks": "plugins-snacks",
         "plugins-tmux-navigation": "plugins-tmux-navigation",
         "plugins-tokyonight": "plugins-tokyonight",
         "plugins-treesitter-context": "plugins-treesitter-context",

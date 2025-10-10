@@ -19,18 +19,13 @@ end
 ---@param buf integer
 local function set_lsp_keymaps(buf)
 	kopts({ buffer = buf }, {
-		kmap({ "n", "v" }, "gd", function()
-			require("telescope.builtin").lsp_definitions()
-		end, "go to definition"),
+		kmap({ "n", "v" }, "gd", klazy("snacks.picker").lsp_definitions(), "go to definition"),
+		kmap({ "n", "v" }, "gt", klazy("snacks.picker").lsp_type_definitions(), "go to type definition"),
+		kmap({ "n", "v" }, "gr", klazy("snacks.picker").lsp_references(), "go to reference"),
+		kmap({ "n", "v" }, "gi", klazy("snacks.picker").lsp_implementations(), "go to implementations"),
 		kmap({ "n", "v" }, "K", function()
 			vim.lsp.buf.hover()
 		end, "hover"),
-		kmap({ "n", "v" }, "gt", function()
-			require("telescope.builtin").lsp_type_definitions()
-		end, "go to type"),
-		kmap({ "n", "v" }, "gr", function()
-			require("telescope.builtin").lsp_references()
-		end, "go to reference"),
 		kmap("n", "<F2>", vim.lsp.buf.rename, "rename"),
 		kgroup("<leader>l", "lsp", {}, {
 			kmap({ "n", "v" }, "a", vim.lsp.buf.code_action, "code actions"),
@@ -65,6 +60,7 @@ vim.keymap.del("n", "gra")
 vim.keymap.del("n", "grn")
 vim.keymap.del("n", "gri")
 vim.keymap.del("n", "grr")
+vim.keymap.del("n", "grt")
 
 vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
 vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })

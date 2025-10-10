@@ -15,6 +15,9 @@ if nixCats("core.colorscheme") then
 		},
 	})
 	transparent.clear_prefix("BlinkCmp")
+	transparent.clear_prefix("SnacksPickerBoxTitle")
+	transparent.clear_prefix("SnacksPickerInputTitle")
+	transparent.clear_prefix("SnacksPickerInputBorder")
 	transparent.clear_prefix("Telescope")
 	transparent.clear_prefix("Trouble")
 	transparent.clear_prefix("DiffviewFilePanel")

@@ -147,6 +147,10 @@
       url = "github:oribarilan/lensline.nvim";
       flake = false;
     };
+    "plugins-snacks" = {
+      url = "github:folke/snacks.nvim";
+      flake = false;
+    };
   };
   outputs = {
     nixpkgs,
