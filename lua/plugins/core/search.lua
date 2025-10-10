@@ -12,6 +12,9 @@ plugin("snacks")
 			},
 		},
 	})
+	:setup(function()
+		vim.ui.select = require("snacks.picker").select
+	end)
 	:keys({
 		kmap("n", "<M-r>", klazy("snacks.picker").lines(), "find row"),
 		kmap("n", "<M-f>", klazy("snacks.picker").grep(), "find"),
