@@ -13,6 +13,7 @@ plugin("snacks")
 		},
 	})
 	:keys({
+		kmap("n", "<M-r>", klazy("snacks.picker").lines(), "find row"),
 		kmap("n", "<M-f>", klazy("snacks.picker").grep(), "find"),
 		kmap("n", "<leader><leader>", klazy("snacks.picker").files(), "files"),
 		kgroup("<leader>f", "find", {}, {
@@ -22,7 +23,6 @@ plugin("snacks")
 			kmap("n", "p", klazy("snacks.picker").projects(), "projects"),
 			kmap("n", "d", klazy("snacks.picker").diagnostics_buffer(), "diagnostics buffer"),
 			kmap("n", "D", klazy("snacks.picker").diagnostics(), "diagnostics"),
-			kmap("n", "r", klazy("snacks.picker").lines(), "row"),
 			kmap("n", "c", klazy("snacks.picker").commands(), "commands"),
 		}),
 	})
