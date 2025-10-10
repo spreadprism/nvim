@@ -57,7 +57,6 @@ plugin("overseer")
 	})
 	:cmd({ "OverseerRun", "OverseerToggle", "OverseerQuickAction", "OverseerRunCmd" })
 	:keys({
-		kmap("n", "<leader><leader>", kcmd("OverseerRun shell"), "execute shell command"),
 		kmap("n", "<M-t>", kcmd("OverseerQuickAction open float"), "task console"),
 		kgroup("<leader>t", "tasks", {}, {
 			kmap("n", "e", kcmd("OverseerToggle"), "Toggle explorer"),
