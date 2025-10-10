@@ -13,7 +13,7 @@ plugin("snacks")
 		},
 	})
 	:keys({
-		kmap("n", "<M-F>", klazy("snacks.picker").grep(), "find"),
+		kmap("n", "<M-f>", klazy("snacks.picker").grep(), "find"),
 		kmap("n", "<leader><leader>", klazy("snacks.picker").files(), "files"),
 		kgroup("<leader>f", "find", {}, {
 			kmap("n", "f", klazy("snacks.picker").files(), "files"),
