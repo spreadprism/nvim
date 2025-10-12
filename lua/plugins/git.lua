@@ -112,7 +112,10 @@ plugin("neogit")
 				if ft == "oil" then
 					cwd = require("oil").get_current_dir() or cwd
 				end
-				vim.cmd("Neogit cwd=" .. cwd .. " kind=floating")
+				require("neogit").open({
+					kind = "floating",
+					cwd = cwd,
+				})
 			end, "open neogit"),
 			kmap("n", "b", kcmd("Neogit branch"), "select branch"),
 			kmap("n", "p", kcmd("Neogit pull"), "pull"),
