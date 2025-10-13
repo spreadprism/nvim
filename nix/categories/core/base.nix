@@ -73,7 +73,7 @@
     ++ (with nvim_pkgs; [
       lualine-nvim
       harpoon
-      esqueleto
+      new-file-template
       easycolor
       live-command
       render-markdown

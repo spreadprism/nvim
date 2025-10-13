@@ -160,6 +160,10 @@
       url = "github:mfussenegger/nvim-jdtls";
       flake = false;
     };
+    "plugins-new-file-template" = {
+      url = "github:otavioschwanck/new-file-template.nvim";
+      flake = false;
+    };
   };
   outputs = {
     nixpkgs,

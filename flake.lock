@@ -565,6 +565,22 @@
         "type": "github"
       }
     },
+    "plugins-new-file-template": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1721518222,
+        "narHash": "sha256-g0IjJrHRXw7U9goVLzVYUyHBSsDZGHMpi3YZPhg64zA=",
+        "owner": "otavioschwanck",
+        "repo": "new-file-template.nvim",
+        "rev": "6ac66669dbf2dc5cdee184a4fe76d22465ca67e8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "otavioschwanck",
+        "repo": "new-file-template.nvim",
+        "type": "github"
+      }
+    },
     "plugins-nvim-dbee": {
       "flake": false,
       "locked": {
@@ -849,6 +865,7 @@
         "plugins-lspconfig": "plugins-lspconfig",
         "plugins-lualine-nvim": "plugins-lualine-nvim",
         "plugins-neogit": "plugins-neogit",
+        "plugins-new-file-template": "plugins-new-file-template",
         "plugins-nvim-dbee": "plugins-nvim-dbee",
         "plugins-nvim-lint": "plugins-nvim-lint",
         "plugins-oil": "plugins-oil",
