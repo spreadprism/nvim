@@ -156,6 +156,10 @@
       url = "github:JFryy/keytrail.nvim";
       flake = false;
     };
+    "plugins-jdtls" = {
+      url = "github:mfussenegger/nvim-jdtls";
+      flake = false;
+    };
   };
   outputs = {
     nixpkgs,

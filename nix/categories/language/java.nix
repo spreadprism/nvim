@@ -1,18 +1,24 @@
 {
   pkgs,
   vim_pkgs,
+  nvim_pkgs,
   ...
 }: {
   lspsAndRuntimeDeps = with pkgs; [
     jdt-language-server
+    java-debug
   ];
-  optionalPlugins = with vim_pkgs; [
-    (nvim-treesitter.withPlugins (
-      plugins:
-        with plugins; [
-          java
-          xml
-        ]
-    ))
-  ];
+  optionalPlugins = with vim_pkgs;
+    [
+      (nvim-treesitter.withPlugins (
+        plugins:
+          with plugins; [
+            java
+            xml
+          ]
+      ))
+    ]
+    ++ (with nvim_pkgs; [
+      jdtls
+    ]);
 }

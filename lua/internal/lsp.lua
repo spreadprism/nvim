@@ -29,14 +29,7 @@ function Lsp:configure()
 		opts.cmd = { self.name }
 		vim.lsp.config(self.name, opts)
 	end
-	local cat = nixCats(self.cat or "core")
-	local executable = vim.fn.executable(opts.cmd[1]) == 1
-	if cat and not executable then
-		-- notify warn that we should enable but executable is missing
-		vim.notify(self.name .. " missing executable " .. opts.cmd[1], vim.log.levels.WARN, { title = "LSP" })
-	end
-
-	vim.lsp.enable(self.name, cat and executable)
+	vim.lsp.enable(self.name, true)
 end
 
 ---@param ... string
