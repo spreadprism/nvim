@@ -131,7 +131,7 @@
         "hercules-ci-effects": "hercules-ci-effects",
         "neovim-src": "neovim-src",
         "nixpkgs": [
-          "nixpkgs"
+          "nixpkgs-unstable"
         ],
         "treefmt-nix": "treefmt-nix"
       },
@@ -536,11 +536,11 @@
     "plugins-neogit": {
       "flake": false,
       "locked": {
-        "lastModified": 1760349375,
-        "narHash": "sha256-5xe28BZjgimyjc1soTdagjvPi1YKoj1RHc0wq+KUOus=",
+        "lastModified": 1759160869,
+        "narHash": "sha256-EgPBrXxCIqkGsHFn0rbxU4En+hdHFxSqZrwTvnafjQk=",
         "owner": "NeogitOrg",
         "repo": "neogit",
-        "rev": "0f48491ae0046796841aaa97d439267982fe72db",
+        "rev": "90dcfa7b2bd5f3f35d1a7afe24dde9e2bc482cd4",
         "type": "github"
       },
       "original": {

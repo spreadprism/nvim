@@ -6,7 +6,7 @@
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     "plugins-oil-vcs-status" = {
       url = "github:SirZenith/oil-vcs-status";
@@ -197,6 +197,7 @@
     };
     base_settings = {pkgs, ...} @ misc: {
       wrapRc = true;
+      neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
     };
     base_categories = {pkgs, ...} @ misc: {
       core = true;
