@@ -1,7 +1,7 @@
 ---@class Internal
 local M = {}
 
--- _G.print = vim.print
+_G.vprint = vim.print
 _G.cwd = vim.fn.getcwd
 _G.joinpath = vim.fs.joinpath
 _G.exec = function(cmd)
