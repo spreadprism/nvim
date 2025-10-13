@@ -52,6 +52,7 @@
       nvim-surround
       comment-nvim
       blink-cmp
+      pkgs.unstable.vimPlugins.grug-far-nvim
       neoconf-nvim
       fidget-nvim
       telescope-nvim
@@ -63,7 +64,6 @@
       tabout-nvim
       nvim-ufo
       luasnip
-      grug-far-nvim
       # trouble-nvim
       treesj
       flash-nvim

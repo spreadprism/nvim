@@ -1,3 +1,6 @@
+# Example
+
+```nix
 final: prev: {
   helm-ls = prev.helm-ls.overrideAttrs (old: rec {
     version = "0.4.1";
@@ -9,3 +12,4 @@ final: prev: {
     };
   });
 }
+```

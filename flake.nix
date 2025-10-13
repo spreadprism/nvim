@@ -1,7 +1,8 @@
 {
   description = "My neovim configuration";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
@@ -173,7 +174,7 @@
       [
         (utils.standardPluginOverlay inputs)
       ]
-      ++ import ./nix/overlays;
+      ++ (import ./nix/overlays {inherit inputs;});
     categoryDefinitions = {
       pkgs,
       settings,

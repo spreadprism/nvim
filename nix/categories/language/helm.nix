@@ -4,7 +4,7 @@
   ...
 }: {
   lspsAndRuntimeDeps = with pkgs; [
-    helm-ls
+    unstable.helm-ls
   ];
   optionalPlugins = with vim_pkgs; [
     (nvim-treesitter.withPlugins (
