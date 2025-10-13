@@ -151,6 +151,10 @@
       url = "github:folke/snacks.nvim";
       flake = false;
     };
+    "plugins-keytrail" = {
+      url = "github:JFryy/keytrail.nvim";
+      flake = false;
+    };
   };
   outputs = {
     nixpkgs,

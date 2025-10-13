@@ -405,6 +405,22 @@
         "type": "github"
       }
     },
+    "plugins-keytrail": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1757011141,
+        "narHash": "sha256-V4O1V7a/JpDWLhIt1+8imUE54mxuwPR3th24D+0N9cg=",
+        "owner": "JFryy",
+        "repo": "keytrail.nvim",
+        "rev": "0a1b4ca5866d43f7f63734266bdc06a7d0670949",
+        "type": "github"
+      },
+      "original": {
+        "owner": "JFryy",
+        "repo": "keytrail.nvim",
+        "type": "github"
+      }
+    },
     "plugins-kulala": {
       "flake": false,
       "locked": {
@@ -791,6 +807,7 @@
         "plugins-gotmpl": "plugins-gotmpl",
         "plugins-guess-indent": "plugins-guess-indent",
         "plugins-harpoon": "plugins-harpoon",
+        "plugins-keytrail": "plugins-keytrail",
         "plugins-kulala": "plugins-kulala",
         "plugins-lazydev": "plugins-lazydev",
         "plugins-lensline": "plugins-lensline",

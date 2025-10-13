@@ -2,6 +2,11 @@ if not nixCats("core.search") then
 	return
 end
 
+plugin("keytrail"):event_defer():opts({
+	key_mapping = "fk",
+	hover_delay = 9999999, -- HACK: can't disable the hover, so I just jacked the delay
+	filetypes = { yaml = true, json = true },
+})
 plugin("snacks")
 	:on_require("snacks")
 	:opts({
@@ -28,5 +33,6 @@ plugin("snacks")
 			kmap("n", "d", klazy("snacks.picker").diagnostics_buffer(), "diagnostics buffer"),
 			kmap("n", "D", klazy("snacks.picker").diagnostics(), "diagnostics"),
 			kmap("n", "c", klazy("snacks.picker").commands(), "commands"),
+			kmap("n", "k", kcmd("KeyTrailJump"), "key"),
 		}),
 	})
