@@ -98,7 +98,7 @@ plugin("neogit")
 	:opts({
 		disable_hint = true,
 		integrations = {
-			telescope = true,
+			snacks = true,
 			diffview = true,
 		},
 		graph_style = "unicode",
