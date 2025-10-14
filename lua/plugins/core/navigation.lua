@@ -4,7 +4,7 @@ plugin("hop.nvim")
 	:on_require("hop")
 	:keys({
 		kmap({ "n", "x" }, "<M-s>", hop.hop_word, "hop"),
-		kmap({ "n", "x" }, "<M-S>", hop.hop_char_global, "jump char"),
+		kmap({ "n", "x" }, "<M-S>", kcmd("HopPattern"), "jump char"),
 		kmap({ "n", "x" }, "f", hop.hop_char_line(), "hop char l-AC"),
 		kmap({ "n", "x" }, "F", hop.hop_char_line(false), "hop char l-BC"),
 		kmap({ "n", "x" }, "t", hop.hop_char_line(true, -1), "hop before char l-AC"),
