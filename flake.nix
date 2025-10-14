@@ -128,10 +128,6 @@
       url = "github:stevearc/quicker.nvim";
       flake = false;
     };
-    "plugins-codecompanion" = {
-      url = "github:olimorris/codecompanion.nvim";
-      flake = false;
-    };
     "plugins-gotmpl" = {
       url = "github:ngynkvn/gotmpl.nvim";
       flake = false;

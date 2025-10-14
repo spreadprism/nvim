@@ -8,7 +8,6 @@
     ]
     ++ (with nvim_pkgs; [
       copilot
-      codecompanion
       copilot-lualine
     ]);
 }
