@@ -11,6 +11,9 @@ plugin("snacks")
 	:on_require("snacks")
 	:opts({
 		picker = {
+			main = {
+				file = false,
+			},
 			enabled = true,
 			matcher = {
 				frecency = true,
