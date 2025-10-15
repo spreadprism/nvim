@@ -183,13 +183,7 @@
         (utils.standardPluginOverlay inputs)
       ]
       ++ (import ./nix/overlays {inherit inputs;});
-    categoryDefinitions = {
-      pkgs,
-      settings,
-      categories,
-      name,
-      ...
-    } @ packageDef: let
+    categoryDefinitions = {pkgs, ...}: let
       cats = import ./nix/categories.nix {
         inherit pkgs inputs;
         lib = pkgs.lib;
@@ -203,11 +197,11 @@
       startupPlugins = attrOrEmpty "startupPlugins";
       optionalPlugins = attrOrEmpty "optionalPlugins";
     };
-    base_settings = {pkgs, ...} @ misc: {
+    base_settings = {pkgs, ...}: {
       wrapRc = true;
       neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
     };
-    base_categories = {pkgs, ...} @ misc: {
+    base_categories = {...}: {
       core = true;
       language = {
         lua = true;
@@ -216,12 +210,12 @@
       ai = true;
       requests = true;
     };
-    base_extra = {pkgs, ...} @ misc: {
+    base_extra = {pkgs, ...}: {
       nixdExtras.nixpkgs = ''import ${pkgs.path} {}'';
     };
 
     packageDefinitions = {
-      nvim = {pkgs, ...} @ misc: {
+      nvim = {...} @ misc: {
         settings =
           base_settings misc
           // {
@@ -232,7 +226,7 @@
           };
         extra = base_extra misc // {};
       };
-      nvim_dev = {pkgs, ...} @ misc: {
+      nvim_dev = {...} @ misc: {
         settings =
           base_settings misc
           // {
@@ -247,7 +241,7 @@
           };
         extra = base_extra misc // {};
       };
-      nvim_minimal = {pkgs, ...} @ misc: {
+      nvim_minimal = {...} @ misc: {
         settings =
           base_settings misc
           // {
