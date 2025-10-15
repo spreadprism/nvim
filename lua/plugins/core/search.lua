@@ -35,6 +35,7 @@ plugin("snacks")
 			kmap("n", "p", klazy("snacks.picker").projects(), "projects"),
 			kmap("n", "d", klazy("snacks.picker").diagnostics_buffer(), "diagnostics buffer"),
 			kmap("n", "D", klazy("snacks.picker").diagnostics(), "diagnostics"),
+			kmap("n", "b", klazy("snacks.picker").buffers(), "buffers"),
 			kmap("n", "c", klazy("snacks.picker").commands(), "commands"),
 			kmap("n", "k", kcmd("KeyTrailJump"), "key"),
 		}),
