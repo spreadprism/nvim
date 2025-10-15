@@ -10,6 +10,9 @@ plugin("keytrail"):event_defer():opts({
 plugin("snacks")
 	:on_require("snacks")
 	:opts({
+		image = {
+			enabled = true,
+		},
 		picker = {
 			main = {
 				file = false,
