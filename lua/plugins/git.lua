@@ -96,6 +96,8 @@ plugin("neogit")
 	:on_require("neogit")
 	:cmd("Neogit")
 	:opts({
+		kind = "floating",
+		auto_refresh = true,
 		disable_hint = true,
 		integrations = {
 			snacks = true,
@@ -113,7 +115,6 @@ plugin("neogit")
 					cwd = require("oil").get_current_dir() or cwd
 				end
 				require("neogit").open({
-					kind = "floating",
 					cwd = cwd,
 				})
 			end, "open neogit"),
