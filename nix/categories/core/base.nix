@@ -80,6 +80,7 @@
       blink-compat
       dir-telescope
       nvim-lint
+      trouble
       overseer
       guess-indent
       search-replace

@@ -30,7 +30,7 @@ local function set_lsp_keymaps(buf)
 		kgroup("<leader>l", "lsp", {}, {
 			kmap({ "n", "v" }, "a", vim.lsp.buf.code_action, "code actions"),
 		}),
-		kmap("n", "<M-d>", function()
+		kmap("n", "<M-a>", function()
 			vim.diagnostic.open_float({
 				border = "rounded",
 				scope = "line",
@@ -121,6 +121,54 @@ kgroup("<leader>l", "lsp", {}, {
 		end
 	end, "Restart language server"),
 })
+
+local function filterSwitch(severity_switch)
+	return function(view)
+		local f = view:get_filter("severity")
+		local severity = (f and f.filter.severity or 0)
+		if severity ~= severity_switch then
+			severity = severity_switch
+		else
+			severity = 0
+		end
+		view:filter({ severity = severity }, {
+			id = "severity",
+			template = "{hl:Title}Filter:{hl} {severity}",
+			del = severity == 0,
+		})
+	end
+end
+plugin("trouble")
+	:on_require("trouble")
+	:cmd("Trouble")
+	:opts({
+		focus = true,
+		auto_preview = false,
+		keys = {
+			["<cr>"] = "jump_close",
+			["<Tab>"] = "preview",
+			["<C-e>"] = {
+				action = filterSwitch(1),
+				desc = "toggle errors",
+			},
+			["<C-w>"] = {
+				action = filterSwitch(2),
+				desc = "toggle warnings",
+			},
+			["<C-i>"] = {
+				action = filterSwitch(3),
+				desc = "toggle info",
+			},
+			["<C-h>"] = {
+				action = filterSwitch(4),
+				desc = "toggle hints",
+			},
+		},
+	})
+	:keys({
+		kmap("n", "<M-d>", kcmd("Trouble diagnostics toggle filter.buf=0"), "diagnostics (buffer)"),
+		kmap("n", "<M-D>", kcmd("Trouble diagnostics toggle"), "diagnostics (buffer)"),
+	})
 plugin("neoconf.nvim"):on_require("neoconf"):opts({
 	import = {
 		coc = false,

@@ -37,6 +37,9 @@ plugin("snacks")
 			kmap("n", "D", klazy("snacks.picker").diagnostics(), "diagnostics"),
 			kmap("n", "b", klazy("snacks.picker").buffers(), "buffers"),
 			kmap("n", "c", klazy("snacks.picker").commands(), "commands"),
+			kmap("n", "n", klazy("snacks.picker").notifications(), "notifications"),
+			kmap("n", "u", klazy("snacks.picker").undo(), "undo"),
+			kmap("n", "t", klazy("snacks.picker").todo_comments({ keywords = { "TODO", "FIX", "FIXME" } }), "tags"),
 			kmap("n", "k", kcmd("KeyTrailJump"), "key"),
 		}),
 	})

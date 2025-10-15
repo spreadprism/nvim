@@ -773,6 +773,22 @@
         "type": "github"
       }
     },
+    "plugins-trouble": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1759952083,
+        "narHash": "sha256-sYlKFjJgcEO/L5himRYDHtH6gYqHOsrb1ZvHSuPojew=",
+        "owner": "folke",
+        "repo": "trouble.nvim",
+        "rev": "c098362fe603d3922095e7db595961e020bdf2d0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "trouble.nvim",
+        "type": "github"
+      }
+    },
     "plugins-undotree": {
       "flake": false,
       "locked": {
@@ -862,6 +878,7 @@
         "plugins-tmux-navigation": "plugins-tmux-navigation",
         "plugins-tokyonight": "plugins-tokyonight",
         "plugins-treesitter-context": "plugins-treesitter-context",
+        "plugins-trouble": "plugins-trouble",
         "plugins-undotree": "plugins-undotree",
         "plugins-venv-selector": "plugins-venv-selector",
         "plugins-yaml": "plugins-yaml"

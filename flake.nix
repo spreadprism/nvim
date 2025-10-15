@@ -160,6 +160,10 @@
       url = "github:otavioschwanck/new-file-template.nvim";
       flake = false;
     };
+    "plugins-trouble" = {
+      url = "github:folke/trouble.nvim";
+      flake = false;
+    };
   };
   outputs = {
     nixpkgs,
