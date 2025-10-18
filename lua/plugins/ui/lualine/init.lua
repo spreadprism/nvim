@@ -7,7 +7,13 @@ plugin("lualine-nvim"):dep_on("overseer"):config(function()
 			ignore_focus = { "TelescopePrompt" },
 			disabled_filetypes = {
 				statusline = {},
-				winbar = { "kulala_ui", "dbee", "grug-far" },
+				winbar = {
+					"kulala_ui",
+					"dbee",
+					"grug-far",
+					"opencode_terminal",
+					"opencode_output",
+				},
 			},
 		},
 		sections = require("plugins.ui.lualine.sections"),

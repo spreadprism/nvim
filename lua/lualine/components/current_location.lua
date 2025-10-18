@@ -25,6 +25,8 @@ local always_exclude = {
 	"qf",
 	"startuptime",
 	"trouble",
+	"opencode",
+	"opencode_output",
 }
 
 function component:init(options)

@@ -164,6 +164,10 @@
       url = "github:folke/trouble.nvim";
       flake = false;
     };
+    "plugins-opencode" = {
+      url = "github:sudo-tee/opencode.nvim";
+      flake = false;
+    };
   };
   outputs = {
     nixpkgs,

@@ -629,6 +629,22 @@
         "type": "github"
       }
     },
+    "plugins-opencode": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1760801350,
+        "narHash": "sha256-4LcYT4YZPmgn4KZBxXJA3xxgkJdYLuAeF3fGT0SvUtA=",
+        "owner": "sudo-tee",
+        "repo": "opencode.nvim",
+        "rev": "abc1e2ac629a51dfd48f10513d994c6f6c2082c9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sudo-tee",
+        "repo": "opencode.nvim",
+        "type": "github"
+      }
+    },
     "plugins-overseer": {
       "flake": false,
       "locked": {
@@ -869,6 +885,7 @@
         "plugins-nvim-lint": "plugins-nvim-lint",
         "plugins-oil": "plugins-oil",
         "plugins-oil-vcs-status": "plugins-oil-vcs-status",
+        "plugins-opencode": "plugins-opencode",
         "plugins-overseer": "plugins-overseer",
         "plugins-profile": "plugins-profile",
         "plugins-quicker": "plugins-quicker",

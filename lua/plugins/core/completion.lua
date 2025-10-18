@@ -56,6 +56,10 @@ plugin("blink.cmp"):event_typing():on_require("blink"):opts({
 		per_filetype = {
 			lua = vim.list_extend({ "lazydev" }, default),
 			sql = { "dbee", "buffer" },
+			opencode = {
+				"lsp",
+				"snippets",
+			},
 		},
 		providers = {
 			lazydev = {

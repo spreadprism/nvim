@@ -18,3 +18,17 @@ plugin("copilot"):event_defer():on_require("copilot"):opts({
 	},
 	panel = { enabled = false },
 })
+
+plugin("opencode")
+	:dep_on("snacks")
+	:on_require("opencode")
+	:event_defer()
+	:opts({
+		preferred_picker = "snacks",
+		preferred_completion = "blink",
+		default_global_keymaps = false,
+	})
+	:keys(kgroup("<leader>a", "assistant", {}, {
+		kmap("n", "a", klazy("opencode.api").open_input(), "open input"),
+		kmap("n", "A", klazy("opencode.api").open_input(), "open input (new session)"),
+	}))
