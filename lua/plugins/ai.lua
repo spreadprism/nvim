@@ -30,5 +30,5 @@ plugin("opencode")
 	})
 	:keys(kgroup("<leader>a", "assistant", {}, {
 		kmap("n", "a", klazy("opencode.api").open_input(), "open input"),
-		kmap("n", "A", klazy("opencode.api").open_input(), "open input (new session)"),
+		kmap("n", "A", klazy("opencode.api").open_input_new_session(), "open input (new session)"),
 	}))

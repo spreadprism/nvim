@@ -632,11 +632,11 @@
     "plugins-opencode": {
       "flake": false,
       "locked": {
-        "lastModified": 1760801350,
-        "narHash": "sha256-4LcYT4YZPmgn4KZBxXJA3xxgkJdYLuAeF3fGT0SvUtA=",
+        "lastModified": 1760814677,
+        "narHash": "sha256-JQSnN3MKnhbEhaqpQkfFgP0u/FgiF4pXF25tE24YSS0=",
         "owner": "sudo-tee",
         "repo": "opencode.nvim",
-        "rev": "abc1e2ac629a51dfd48f10513d994c6f6c2082c9",
+        "rev": "946af3ab70fd6addf500aa0b8ef5e0c2e7cc55a6",
         "type": "github"
       },
       "original": {
