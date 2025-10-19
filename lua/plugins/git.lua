@@ -134,6 +134,20 @@ plugin("neogit")
 			end,
 			group = neogit.autocmd_group,
 		})
+		vim.api.nvim_create_autocmd("User", {
+			pattern = {
+				"NeogitCommitComplete",
+				"NeogitPushComplete",
+				"NeogitPullComplete",
+				"NeogitFetchComplete",
+			},
+			group = neogit.autocmd_group,
+			callback = function(data)
+				vim.defer_fn(function()
+					neogit.dispatch_refresh()
+				end, 100)
+			end,
+		})
 	end)
 plugin("gitsigns.nvim")
 	:for_cat("core.git")
