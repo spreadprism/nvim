@@ -131,7 +131,6 @@ function M.lazy(module)
 			return function(...)
 				local args = { ... }
 				return function()
-					-- vim.print(string.format("require(%s).%s(%s)", module, key, table.concat(args, ", ")))
 					return require(module)[key](unpack(args))
 				end
 			end

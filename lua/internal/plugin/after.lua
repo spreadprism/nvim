@@ -63,7 +63,6 @@ local function after_setup(plugin)
 		return
 	else
 		vim.print("Unable to require: " .. plugin.name)
-		vim.print(pass)
 	end
 end
 
