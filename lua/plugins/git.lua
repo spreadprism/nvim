@@ -146,7 +146,7 @@ plugin("neogit")
 				vim.defer_fn(function()
 					vim.notify("refreshing")
 					neogit.dispatch_refresh()
-				end, 1000)
+				end, 500)
 			end,
 		})
 	end)
