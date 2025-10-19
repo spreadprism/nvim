@@ -96,7 +96,6 @@ plugin("neogit")
 	:on_require("neogit")
 	:cmd("Neogit")
 	:opts({
-		kind = "floating",
 		auto_refresh = true,
 		disable_hint = true,
 		integrations = {
