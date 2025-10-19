@@ -145,7 +145,7 @@ plugin("neogit")
 			callback = function(data)
 				vim.defer_fn(function()
 					neogit.dispatch_refresh()
-				end, 100)
+				end, 1000)
 			end,
 		})
 	end)
