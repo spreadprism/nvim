@@ -13,6 +13,9 @@ plugin("snacks")
 		image = {
 			enabled = true,
 		},
+		inputs = {
+			enabled = true,
+		},
 		picker = {
 			main = {
 				file = false,

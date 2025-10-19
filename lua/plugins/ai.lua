@@ -27,8 +27,26 @@ plugin("opencode")
 		preferred_picker = "snacks",
 		preferred_completion = "blink",
 		default_global_keymaps = false,
+		keymap = {
+			input_window = {
+				["<M-m>"] = {
+					function()
+						require("opencode.api").select_agent()
+					end,
+					mode = { "i", "n" },
+				},
+			},
+		},
 	})
 	:keys(kgroup("<leader>a", "assistant", {}, {
 		kmap("n", "a", klazy("opencode.api").open_input(), "open input"),
 		kmap("n", "A", klazy("opencode.api").open_input_new_session(), "open input (new session)"),
+		kmap(
+			"n",
+			"p",
+			klazy("snacks").input({ prompt = "Assistant prompt" }, function(prompt)
+				require("opencode.api").run(prompt)
+			end),
+			"prompt"
+		),
 	}))
