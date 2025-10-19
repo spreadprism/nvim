@@ -125,7 +125,17 @@ plugin("neogit")
 			kmap("n", "r", kcmd("Neogit remote"), "remote"),
 		}),
 	})
-	:setup(function() end)
+	:setup(function()
+		local neogit = require("neogit")
+		---@diagnostic disable-next-line: param-type-mismatch
+		vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained" }, {
+			pattern = "NeogitStatus",
+			callback = function()
+				neogit.dispatch_refresh()
+			end,
+			group = neogit.autocmd_group,
+		})
+	end)
 plugin("gitsigns.nvim")
 	:for_cat("core.git")
 	:event_buffer_enter()
