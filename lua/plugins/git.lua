@@ -107,6 +107,8 @@ plugin("neogit")
 	:keys({
 		kgroup("<leader>g", "git", {}, {
 			kmap("n", "g", function()
+				-- TODO: make sure the tab is opened in last, currently 1, 2 would create 1, (neogit), 3
+				-- I want 1, 2, (neogit)
 				local ft = vim.bo.filetype
 
 				local cwd = "%:p:h"
