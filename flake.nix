@@ -61,7 +61,7 @@
       flake = false;
     };
     "plugins-git-conflict" = {
-      url = "github:akinsho/git-conflict.nvim";
+      url = "github:spreadprism/git-conflict.nvim";
       flake = false;
     };
     "plugins-blink-compat" = {

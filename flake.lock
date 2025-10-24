@@ -343,15 +343,15 @@
     "plugins-git-conflict": {
       "flake": false,
       "locked": {
-        "lastModified": 1735340003,
-        "narHash": "sha256-CmSgmpg5K3ySXYrDjg8yTAojeLWJdSHP8uNVFyrkNhc=",
-        "owner": "akinsho",
+        "lastModified": 1761348750,
+        "narHash": "sha256-fx2fz9hcYJFtNbGt3CovsZfEL6N832kL4IL0RGb0OeM=",
+        "owner": "spreadprism",
         "repo": "git-conflict.nvim",
-        "rev": "a1badcd070d176172940eb55d9d59029dad1c5a6",
+        "rev": "11f606d2904e2b403756aaa827562015fa6de2af",
         "type": "github"
       },
       "original": {
-        "owner": "akinsho",
+        "owner": "spreadprism",
         "repo": "git-conflict.nvim",
         "type": "github"
       }
