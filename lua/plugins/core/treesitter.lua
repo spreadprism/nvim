@@ -67,6 +67,7 @@ plugin("nvim-treesitter")
 		vim.treesitter.language.register("bash", "zsh")
 		vim.treesitter.language.register("python", "bzl")
 		vim.treesitter.language.register("markdown", "opencode")
+		vim.treesitter.language.register("groovy", "gradle")
 	end)
 plugin("treesitter-context"):event_defer():for_cat("core"):opts({
 	mode = "topline",

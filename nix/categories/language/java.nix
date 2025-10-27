@@ -15,6 +15,7 @@
           with plugins; [
             java
             xml
+            groovy
           ]
       ))
     ]
