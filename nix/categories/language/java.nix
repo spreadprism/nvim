@@ -7,6 +7,7 @@
   lspsAndRuntimeDeps = with pkgs; [
     jdt-language-server
     java-debug
+    zulu17
   ];
   optionalPlugins = with vim_pkgs;
     [

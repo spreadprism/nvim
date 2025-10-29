@@ -32,10 +32,10 @@ function Lsp:configure()
 	vim.lsp.enable(self.name, true)
 end
 
----@param ... string
+---@param cmd function | string[]
 ---@return Lsp
-function Lsp:cmd(...)
-	self.opts.cmd = { ... }
+function Lsp:cmd(cmd)
+	self.opts.cmd = cmd
 	return self
 end
 
@@ -46,7 +46,7 @@ function Lsp:ft(...)
 	return self
 end
 
----@param ... string
+---@param ... string | table
 ---@return Lsp
 function Lsp:root_markers(...)
 	self.opts.root_markers = { ... }
