@@ -102,6 +102,8 @@ vim.api.nvim_set_hl(0, "DiagnosticDeprecated", { fg = "#e0af68" })
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { fg = "#0db9d7", undercurl = true })
 vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = "#0db9d7" })
 
+vim.lsp.log.set_level(env.get("NVIM_LSP_LOG_LEVEL") or "OFF")
+
 kgroup("<leader>l", "lsp", {}, {
 	kmap("n", "i", kcmd("LspInfo"), "Info"),
 	kmap("n", "r", function()
