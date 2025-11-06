@@ -29,11 +29,23 @@ plugin("opencode")
 		default_global_keymaps = false,
 		keymap = {
 			input_window = {
-				["<M-m>"] = {
+				["<M-a>"] = {
 					function()
 						require("opencode.api").select_agent()
 					end,
-					mode = { "i", "n" },
+					mode = { "n" },
+				},
+				["<M-s>"] = {
+					function()
+						require("opencode.api").select_session()
+					end,
+					mode = { "n" },
+				},
+				["<M-m>"] = {
+					function()
+						require("opencode.api").configure_provider()
+					end,
+					mode = { "n" },
 				},
 			},
 		},
