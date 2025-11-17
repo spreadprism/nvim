@@ -20,6 +20,7 @@ kmap("i", "<M-v>", "<C-v>", "raw char")
 -- -- INFO: Code navigation
 kmap("nvo", "L", "g_", "Move cursor to last non-whitespace character")
 kmap("nvo", "H", "^", "Move cursor to first non-whitespace character")
+kmap("n", "<C-w>t", "<C-w>v<C-w>T", "Open tab on current file")
 kmap("nvo", "<M-o>", "%", "Move cursor to matching")
 kmap("n", "<M-n>", function()
 	require("which-key").show({ keys = "]" })
