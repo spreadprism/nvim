@@ -16,9 +16,9 @@ plugin("snacks")
 		inputs = {
 			enabled = true,
 		},
-		scroll = {
-			enabled = true,
-		},
+		-- scroll = {
+		-- 	enabled = true,
+		-- },
 		picker = {
 			main = {
 				file = false,
