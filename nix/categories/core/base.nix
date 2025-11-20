@@ -35,7 +35,6 @@
     ]);
   optionalPlugins = with vim_pkgs;
     [
-      neoscroll-nvim
       nui-nvim
       vim-startuptime
       # nvim-notify
