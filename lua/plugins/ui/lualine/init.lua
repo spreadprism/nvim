@@ -11,6 +11,7 @@ plugin("lualine-nvim"):dep_on("overseer"):config(function()
 					"kulala_ui",
 					"dbee",
 					"grug-far",
+					"opencode",
 					"opencode_terminal",
 					"opencode_output",
 				},
