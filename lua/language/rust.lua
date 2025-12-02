@@ -13,3 +13,5 @@ dap("rust", {
 	},
 	enrich_config = require("internal.dap.enrich_config.cargo"),
 })
+
+neotest("neotest-rust")({})

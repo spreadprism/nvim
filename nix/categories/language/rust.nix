@@ -11,6 +11,7 @@ in {
     clippy
   ];
   optionalPlugins = with vim_pkgs; [
+    neotest-rust
     (nvim-treesitter.withPlugins (
       plugins:
         with plugins; [
