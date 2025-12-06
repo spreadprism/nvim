@@ -97,7 +97,7 @@
       flake = false;
     };
     "plugins-overseer" = {
-      url = "github:stevearc/overseer.nvim";
+      url = "github:stevearc/overseer.nvim/v1.6.0";
       flake = false;
     };
     "plugins-oil" = {

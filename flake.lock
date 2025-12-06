@@ -542,15 +542,16 @@
     "plugins-overseer": {
       "flake": false,
       "locked": {
-        "lastModified": 1764658088,
-        "narHash": "sha256-pQzi23p+PyB5yPwzj/B58PUcpr+jwaCgbqW8fz4Slx0=",
+        "lastModified": 1739657817,
+        "narHash": "sha256-fXMB6SqP+BF6RmaoBrU6qWPso+bFMI6tm6rzoj8/30g=",
         "owner": "stevearc",
         "repo": "overseer.nvim",
-        "rev": "00e01e68b92773fcd1fcd530c126faf2b6851007",
+        "rev": "2c23513a4fd3a3be0459b3b62996fb0732c2fd7e",
         "type": "github"
       },
       "original": {
         "owner": "stevearc",
+        "ref": "v1.6.0",
         "repo": "overseer.nvim",
         "type": "github"
       }
