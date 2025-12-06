@@ -1,0 +1,44 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1764836381,
+        "narHash": "sha256-8jemYbbW9EBttQKHep7Rj8kzXaxsrk/lACdXA2DN5Xk=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "ff06bd3398fb1bea6c937039ece7e7c8aa396ebf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-25.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "oil-vcs-status": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1737881301,
+        "narHash": "sha256-ZxzrGMxD1YOa+3NutEopurrHo7RwWD1GvikWxB1t/VA=",
+        "owner": "SirZenith",
+        "repo": "oil-vcs-status",
+        "rev": "e0dd01a19f521b2393018e8466d46120a8ffba71",
+        "type": "github"
+      },
+      "original": {
+        "owner": "SirZenith",
+        "repo": "oil-vcs-status",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "oil-vcs-status": "oil-vcs-status"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

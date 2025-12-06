@@ -4,14 +4,16 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
-    neovim-nightly-overlay = {
+    neovim = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    plugins.url = "path:nix/plugins";
   };
   outputs = {
     nixpkgs,
     nixCats,
+    plugins,
     ...
   } @ inputs: let
     inherit (nixCats) utils;
@@ -23,7 +25,7 @@
       allowUnfree = true;
     };
     dependencyOverlays = [
-      (utils.standardPluginOverlay inputs)
+      (utils.standardPluginOverlay plugins.outputs)
     ];
     # ++ (import ./nix/overlays {inherit inputs;});
     categoryDefinitions = {pkgs, ...}: let
@@ -42,7 +44,7 @@
     };
     base_settings = {pkgs, ...}: {
       wrapRc = true;
-      neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
+      neovim-unwrapped = inputs.neovim.packages.${pkgs.system}.neovim;
     };
     base_categories = {...}: {
       core = true;
@@ -82,16 +84,6 @@
             devtools = true;
             tmux = true;
           };
-        extra = base_extra misc // {};
-      };
-      nvim_minimal = {...} @ misc: {
-        settings =
-          base_settings misc
-          // {
-          };
-        categories = {
-          core = true;
-        };
         extra = base_extra misc // {};
       };
     };
