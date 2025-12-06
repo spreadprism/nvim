@@ -24,10 +24,12 @@
     extra_pkg_config = {
       allowUnfree = true;
     };
-    dependencyOverlays = [
-      (utils.standardPluginOverlay plugins.outputs)
-    ];
-    # ++ (import ./nix/overlays {inherit inputs;});
+    overlays = import ./nix/overlays {inherit inputs;};
+    dependencyOverlays =
+      [
+        plugins.overlay
+      ]
+      ++ builtins.attrValues overlays;
     categoryDefinitions = {pkgs, ...}: let
       cats = import ./nix/categories.nix {
         inherit pkgs inputs;
