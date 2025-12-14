@@ -9,3 +9,4 @@ This task outlines the process for adding a new plugin to the repository.
 3. [Add input to flake.nix](3_add_input_to_flake.nix.md)
 4. [Add plugin to category](4_add_plugin_to_category.md)
 5. [Run nix flake update](5_run_nix_flake_update.md)
+6. [Add plugin config file](6_add_plugin_config.md)

@@ -56,6 +56,7 @@
       };
       ai = true;
       requests = true;
+      plugins_init = plugins.paths;
     };
     base_extra = {pkgs, ...}: {
       nixdExtras.nixpkgs = ''import ${pkgs.path} {}'';
@@ -83,8 +84,8 @@
           // {
             language = true;
             remote = true;
-            devtools = true;
             tmux = true;
+            dev = true;
           };
         extra = base_extra misc // {};
       };
