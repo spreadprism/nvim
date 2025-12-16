@@ -3,12 +3,12 @@
   nvim_pkgs,
   ...
 }: {
-  startupPlugins = with vim_pkgs;
-    [
-      lze
-      lzextras
-    ]
-    ++ (with nvim_pkgs; [
-      snacks
-    ]);
+  startupPlugins = with vim_pkgs; [
+    lze
+    lzextras
+  ];
+
+  optionalPlugins = with nvim_pkgs; [
+    snacks
+  ];
 }
