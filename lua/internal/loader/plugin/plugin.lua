@@ -5,6 +5,7 @@ local lze = require("internal.loader.plugin.lze")
 ---@class PluginSpec
 ---@field name string The plugin's name (not the module name, and not the url). This is the directory name of the plugin in the packpath and is usually the same as the repo name of the repo it was cloned from.
 ---@field enabled? boolean | fun():boolean When false, or if the function returns nil or false, then this plugin will not be included in the spec.
+---@field for_cat? string Categories this plugin belongs to. Used for filtering which plugins to load.
 ---@field beforeAll? fun(PluginSpec) Always executed upon calling require('lze').load(spec) before any plugin specs from that call are triggered to be loaded.
 ---@field before? fun(PluginSpec) Executed before a plugin is loaded.
 ---@field after? fun(PluginSpec) Executed after a plugin is loaded.
@@ -38,10 +39,107 @@ function M.NewPluginFactory(name)
 	return setmetatable({ name = name }, M.Plugin):on_require(name)
 end
 
+---When false, or if the function returns nil or false, then this plugin will not be included in the spec.
 ---@param enabled boolean | fun():boolean
 ---@return PluginSpecFactory
 function M.Plugin:enabled(enabled)
 	lze.apply({ name = self.name, enabled = enabled })
+	return self
+end
+
+---Always executed upon calling require('lze').load(spec) before any plugin specs from that call are triggered to be loaded.
+---@param hook fun(PluginSpec)
+---@return PluginSpecFactory
+function M.Plugin:beforeAll(hook)
+	lze.apply({ name = self.name, beforeAll = hook })
+	return self
+end
+
+---Executed before a plugin is loaded.
+---@param hook fun(PluginSpec)
+---@return PluginSpecFactory
+function M.Plugin:before(hook)
+	lze.apply({ name = self.name, before = hook })
+	return self
+end
+
+---Executed after a plugin is loaded.
+---@param hook fun(PluginSpec)
+---@return PluginSpecFactory
+function M.Plugin:after(hook)
+	lze.apply({ name = self.name, after = hook })
+	return self
+end
+
+---Custom load function. If provided, this function is called instead of the default loading mechanism.
+---@param fn fun(PluginSpec)
+---@return PluginSpecFactory
+function M.Plugin:load(fn)
+	lze.apply({ name = self.name, load = fn })
+	return self
+end
+
+---Lazy-load on event. Events can be specified as BufEnter or with a pattern like BufEnter *.lua.
+---@param event string | {event?:string|string[], pattern?:string|string[]} | string[]
+---@return PluginSpecFactory
+function M.Plugin:event(event)
+	lze.apply({ name = self.name, event = event })
+	return self
+end
+
+---Lazy-load on command.
+---@param cmd string | string[]
+---@return PluginSpecFactory
+function M.Plugin:cmd(cmd)
+	lze.apply({ name = self.name, cmd = cmd })
+	return self
+end
+
+---Lazy-load on filetype.
+---@param ft string | string[]
+---@return PluginSpecFactory
+function M.Plugin:ft(ft)
+	lze.apply({ name = self.name, ft = ft })
+	return self
+end
+
+---Lazy-load on keymap.
+---@param keys string | string[]
+---@return PluginSpecFactory
+function M.Plugin:keys(keys)
+	lze.apply({ name = self.name, keys = keys })
+	return self
+end
+
+---Lazy-load on colorscheme.
+---@param colorscheme string | string[]
+---@return PluginSpecFactory
+function M.Plugin:colorscheme(colorscheme)
+	lze.apply({ name = self.name, colorscheme = colorscheme })
+	return self
+end
+
+---Lazy-load before another plugin but after its before hook.
+---@param dep_of string | string[]
+---@return PluginSpecFactory
+function M.Plugin:dep_of(dep_of)
+	lze.apply({ name = self.name, dep_of = dep_of })
+	return self
+end
+
+---Lazy-load after another plugin but before its after hook.
+---@param on_plugin string | string[]
+---@return PluginSpecFactory
+function M.Plugin:on_plugin(on_plugin)
+	lze.apply({ name = self.name, on_plugin = on_plugin })
+	return self
+end
+
+---Accepts a top-level lua module name or a list of top-level lua module names. Will load when any submodule of those listed is required.
+---@param on_require string | string[]
+---@return PluginSpecFactory
+function M.Plugin:on_require(on_require)
+	lze.apply({ name = self.name, on_require = on_require })
 	return self
 end
 
