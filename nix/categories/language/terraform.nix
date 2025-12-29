@@ -13,6 +13,7 @@ in {
       plugins:
         with plugins; [
           terraform
+          hcl
         ]
     ))
   ];
