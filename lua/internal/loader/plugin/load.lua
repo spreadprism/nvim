@@ -8,8 +8,6 @@ local function faster_get_path(name)
 	end
 	return nil -- nil will make it default to normal behavior
 end
-
----@type fun(names: string[]|string)
-M.load_w_after_plugin = require("lzextras").make_load_with_afters({ "plugin" }, faster_get_path)
+M.load = require("lzextras").make_load_with_afters({ "plugin" }, faster_get_path)
 
 return M

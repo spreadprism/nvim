@@ -1,7 +1,7 @@
 local M = {}
 
 function M.read_cfg()
-	local modules = nixcats.cats.plugins_init
+	local modules = nixcats.cats.plugins.paths
 
 	local filtered = {}
 	local hasInit = {}

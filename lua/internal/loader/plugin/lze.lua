@@ -5,8 +5,8 @@ function M.apply(specs)
 	local merge_specs = vim.tbl_deep_extend("keep", {
 		specs.name,
 		merge = true,
-	})
-	specs.name = nil
+	}, specs)
+	merge_specs.name = nil
 	require("lze").load(merge_specs)
 end
 

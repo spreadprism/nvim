@@ -8,7 +8,10 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    plugins.url = "path:nix/plugins";
+    plugins = {
+      url = "path:nix/plugins";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
   outputs = {
     nixpkgs,
@@ -56,7 +59,10 @@
       };
       ai = true;
       requests = true;
-      plugins_init = plugins.paths;
+      plugins = {
+        paths = plugins.paths;
+        names = plugins.names;
+      };
     };
     base_extra = {pkgs, ...}: {
       nixdExtras.nixpkgs = ''import ${pkgs.path} {}'';

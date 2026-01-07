@@ -5,6 +5,14 @@
       url = "github:folke/snacks.nvim";
       flake = false;
     };
+    tokyonight = {
+      url = "github:folke/tokyonight.nvim";
+      flake = false;
+    };
+    which-key = {
+      url = "github:folke/which-key.nvim";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;
@@ -32,6 +40,7 @@
       map stripBasePath allFiles;
   in {
     paths = getRelativePaths ../../lua/plugins;
+    names = attrNames pluginSrcs;
     overlay = self: super: let
       inherit (super.vimUtils) buildVimPlugin;
       plugins = attrNames pluginSrcs;

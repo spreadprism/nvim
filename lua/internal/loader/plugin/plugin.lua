@@ -1,6 +1,7 @@
 local M = {}
 
 local lze = require("internal.loader.plugin.lze")
+local load_fn = require("internal.loader.plugin.load").load
 
 ---@class PluginSpec
 ---@field name string The plugin's name (not the module name, and not the url). This is the directory name of the plugin in the packpath and is usually the same as the repo name of the repo it was cloned from.
@@ -10,6 +11,8 @@ local lze = require("internal.loader.plugin.lze")
 ---@field before? fun(PluginSpec) Executed before a plugin is loaded.
 ---@field after? fun(PluginSpec) Executed after a plugin is loaded.
 ---@field load? fun(PluginSpec) Custom load function. If provided, this function is called instead of the default loading mechanism.
+---@field allow_again? boolean | fun(): boolean When a plugin has ALREADY BEEN LOADED, true would allow you to add it again.
+---@field opts? table | fun(): table
 ---@field event? string | {event?:string|string[], pattern?:string|string[]} | string[] Lazy-load on event. Events can be specified as BufEnter or with a pattern like BufEnter *.lua.
 ---@field cmd? string | string[] Lazy-load on command.
 ---@field ft? string | string[] Lazy-load on filetype.
@@ -18,6 +21,8 @@ local lze = require("internal.loader.plugin.lze")
 ---@field dep_of? string | string[] Lazy-load before another plugin but after its before hook.
 ---@field on_plugin? string | string[] Lazy-load after another plugin but before its after hook.
 ---@field on_require? string | string[] Accepts a top-level lua module name or a list of top-level lua module names. Will load when any submodule of those listed is required
+---@field lazy? boolean Whether the plugin is lazy-loaded or not.
+---@field priority? number Load priority. Higher numbers load first (default 50).
 M.PluginSpec = {}
 M.PluginSpec.__index = M.PluginSpec
 
@@ -36,7 +41,7 @@ M.Plugin.__index = M.Plugin
 
 ---@param name string The plugin's name
 function M.NewPluginFactory(name)
-	return setmetatable({ name = name }, M.Plugin):on_require(name)
+	return setmetatable({ name = name }, M.Plugin):on_require(name):load(load_fn)
 end
 
 ---When false, or if the function returns nil or false, then this plugin will not be included in the spec.
@@ -79,11 +84,33 @@ function M.Plugin:load(fn)
 	return self
 end
 
+---When a plugin has ALREADY BEEN LOADED, true would allow you to add it again. No idea why you would want this outside of testing.
+---@param allow boolean | fun(): boolean
+---@return PluginSpecFactory
+function M.Plugin:allow_again(allow)
+	lze.apply({ name = self.name, allow_again = allow })
+	return self
+end
+
+---Plugin options table or function that returns options.
+---@param opts table | fun(): table
+---@return PluginSpecFactory
+function M.Plugin:opts(opts)
+	lze.apply({ name = self.name, opts = opts })
+	return self
+end
+
 ---Lazy-load on event. Events can be specified as BufEnter or with a pattern like BufEnter *.lua.
 ---@param event string | {event?:string|string[], pattern?:string|string[]} | string[]
 ---@return PluginSpecFactory
 function M.Plugin:event(event)
 	lze.apply({ name = self.name, event = event })
+	return self
+end
+
+---Lazy-load on VimEnter.
+function M.Plugin:defer()
+	lze.apply({ name = self.name, event = "DeferredUIEnter" })
 	return self
 end
 
@@ -103,12 +130,27 @@ function M.Plugin:ft(ft)
 	return self
 end
 
----Lazy-load on keymap.
----@param keys string | string[]
+---plugin keybindings.
+---@param mappings wk.Spec
 ---@return PluginSpecFactory
-function M.Plugin:keys(keys)
-	lze.apply({ name = self.name, keys = keys })
+function M.Plugin:keymaps(mappings)
+	lze.apply({ name = self.name, keymaps = { mappings } })
 	return self
+end
+
+---@param mode string | string[]
+---@param key string
+---@param action string | function
+---@param desc string
+function M.Plugin:kmap(mode, key, action, desc)
+	return self:keymaps(kmap(mode, key, action, desc))
+end
+
+---@param key string
+---@param name string
+---@param mapping wk.Spec[]
+function M.Plugin:kgroup(name, key, mapping)
+	return self:keymaps(kgroup(name, key, mapping))
 end
 
 ---Lazy-load on colorscheme.
@@ -140,6 +182,22 @@ end
 ---@return PluginSpecFactory
 function M.Plugin:on_require(on_require)
 	lze.apply({ name = self.name, on_require = on_require })
+	return self
+end
+
+---Whether the plugin is lazy-loaded or not.
+---@param lazy boolean
+---@return PluginSpecFactory
+function M.Plugin:lazy(lazy)
+	lze.apply({ name = self.name, lazy = lazy })
+	return self
+end
+
+---Load priority. Higher numbers load first (default 50).
+---@param priority number
+---@return PluginSpecFactory
+function M.Plugin:priority(priority)
+	lze.apply({ name = self.name, priority = priority, lazy = false })
 	return self
 end
 
