@@ -19,7 +19,7 @@ plugin("snacks")
 	:allow_again(function()
 		return vim.env.PROF
 	end)
-	:kmap("n", "<leader><leader>", klazy("snacks.picker").files(), "find files")
+	:kmap("n", "<leader><leader>", klazy("snacks.picker").files(), "find files", { hidden = true })
 	:kgroup("find", "<leader>f", {
 		kmap("n", "f", klazy("snacks.picker").files(), "files"),
 		kmap("n", "h", klazy("snacks.picker").highlights(), "highlights"),

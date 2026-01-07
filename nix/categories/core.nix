@@ -10,10 +10,10 @@
     ]
     ++ (with nvim_pkgs; [
       tokyonight
+      which-key
     ]);
 
   optionalPlugins = with nvim_pkgs; [
     snacks
-    which-key
   ];
 }

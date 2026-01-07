@@ -23,6 +23,7 @@ local load_fn = require("internal.loader.plugin.load").load
 ---@field on_require? string | string[] Accepts a top-level lua module name or a list of top-level lua module names. Will load when any submodule of those listed is required
 ---@field lazy? boolean Whether the plugin is lazy-loaded or not.
 ---@field priority? number Load priority. Higher numbers load first (default 50).
+---@field _keymaps wk.Spec[] plugin keybindings.
 M.PluginSpec = {}
 M.PluginSpec.__index = M.PluginSpec
 
@@ -134,7 +135,15 @@ end
 ---@param mappings wk.Spec
 ---@return PluginSpecFactory
 function M.Plugin:keymaps(mappings)
-	lze.apply({ name = self.name, keymaps = { mappings } })
+	self._keymaps = self._keymaps or {}
+	if type(mappings[1]) == "string" then
+		table.insert(self._keymaps, mappings)
+	else
+		for _, map in ipairs(mappings) do
+			table.insert(self._keymaps, map)
+		end
+	end
+	lze.apply({ name = self.name, keymaps = { self._keymaps } })
 	return self
 end
 
@@ -142,8 +151,9 @@ end
 ---@param key string
 ---@param action string | function
 ---@param desc string
-function M.Plugin:kmap(mode, key, action, desc)
-	return self:keymaps(kmap(mode, key, action, desc))
+---@param opts kmapOpts
+function M.Plugin:kmap(mode, key, action, desc, opts)
+	return self:keymaps(kmap(mode, key, action, desc, opts))
 end
 
 ---@param key string

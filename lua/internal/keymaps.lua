@@ -17,12 +17,14 @@ function M.kmap(mode, key, action, desc, opts)
 	end
 
 	opts = opts or {}
-	return vim.tbl_deep_extend("keep", {
+	local map = vim.tbl_deep_extend("keep", {
 		key,
 		action,
 		mode = mode,
 		desc = desc,
 	}, opts)
+
+	return map
 end
 
 ---@return wk.Spec
