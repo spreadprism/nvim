@@ -101,17 +101,13 @@ function M.Plugin:opts(opts)
 	return self
 end
 
+---@alias NvimEvent "DeferredUIEnter"|"UIEnter"|"BufReadPre"|"BufRead"|"BufNewFile"|"BufWinEnter"|"BufEnter"|"BufLeave"|"BufWinLeave"|"WinEnter"|"WinLeave"|"TabEnter"|"TabLeave"|"VimEnter"|"VimLeavePre"|"VimLeave"|"InsertEnter"|"InsertLeave"|"CursorHold"|"CursorHoldI"|"CursorMoved"|"CursorMovedI"|"CmdlineEnter"|"CmdlineLeave"|"CmdlineChanged"|"TextChanged"|"TextChangedI"|"FocusGained"|"FocusLost"|"TermOpen"|"TermClose"|"TermEnter"|"TermLeave"|"ColorScheme"
+
 ---Lazy-load on event. Events can be specified as BufEnter or with a pattern like BufEnter *.lua.
----@param event string | {event?:string|string[], pattern?:string|string[]} | string[]
+---@param event NvimEvent | NvimEvent[]
 ---@return PluginSpecFactory
 function M.Plugin:event(event)
 	lze.apply({ name = self.name, event = event })
-	return self
-end
-
----Lazy-load on VimEnter.
-function M.Plugin:defer()
-	lze.apply({ name = self.name, event = "DeferredUIEnter" })
 	return self
 end
 
@@ -151,7 +147,7 @@ end
 ---@param key string
 ---@param action string | function
 ---@param desc string
----@param opts kmapOpts
+---@param opts? kmapOpts
 function M.Plugin:kmap(mode, key, action, desc, opts)
 	return self:keymaps(kmap(mode, key, action, desc, opts))
 end

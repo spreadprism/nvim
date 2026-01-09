@@ -11,9 +11,14 @@
     ++ (with nvim_pkgs; [
       tokyonight
       which-key
+      oil
     ]);
 
-  optionalPlugins = with nvim_pkgs; [
-    snacks
-  ];
+  optionalPlugins = with nvim_pkgs;
+    [
+      snacks
+    ]
+    ++ (with vim_pkgs; [
+      nvim-treesitter.withAllGrammars
+    ]);
 }

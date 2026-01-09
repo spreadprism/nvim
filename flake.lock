@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "dropbar": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1759678642,
+        "narHash": "sha256-FzJXZcbwk3kEqmRFwKVavL1umPugdbJVYvaBZwiEK0I=",
+        "owner": "Bekaboo",
+        "repo": "dropbar.nvim",
+        "rev": "ce202248134e3949aac375fd66c28e5207785b10",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Bekaboo",
+        "repo": "dropbar.nvim",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -18,6 +34,22 @@
       "original": {
         "owner": "hercules-ci",
         "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "heirline": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1747961315,
+        "narHash": "sha256-kHoaeULWI+NrLp0am0DSKRKeA1vZIg4pt5NxZuFUDvY=",
+        "owner": "rebelot",
+        "repo": "heirline.nvim",
+        "rev": "fae936abb5e0345b85c3a03ecf38525b0828b992",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rebelot",
+        "repo": "heirline.nvim",
         "type": "github"
       }
     },
@@ -106,11 +138,30 @@
         "type": "github"
       }
     },
+    "oil": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767244978,
+        "narHash": "sha256-gIOCy8JM14OrWG133rKPujm3WBqahYYGE6Ibrm3lHqU=",
+        "owner": "stevearc",
+        "repo": "oil.nvim",
+        "rev": "81b8a91735ad5cd24a6b3137f14a89f19176364f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stevearc",
+        "repo": "oil.nvim",
+        "type": "github"
+      }
+    },
     "plugins": {
       "inputs": {
+        "dropbar": "dropbar",
+        "heirline": "heirline",
         "nixpkgs": [
           "nixpkgs-unstable"
         ],
+        "oil": "oil",
         "snacks": "snacks",
         "tokyonight": "tokyonight",
         "which-key": "which-key"

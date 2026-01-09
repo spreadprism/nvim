@@ -13,6 +13,18 @@
       url = "github:folke/which-key.nvim";
       flake = false;
     };
+    heirline = {
+      url = "github:rebelot/heirline.nvim";
+      flake = false;
+    };
+    dropbar = {
+      url = "github:Bekaboo/dropbar.nvim";
+      flake = false;
+    };
+    oil = {
+      url = "github:stevearc/oil.nvim";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;
