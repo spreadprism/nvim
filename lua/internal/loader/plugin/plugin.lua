@@ -101,8 +101,6 @@ function M.Plugin:opts(opts)
 	return self
 end
 
----@alias NvimEvent "DeferredUIEnter"|"UIEnter"|"BufReadPre"|"BufRead"|"BufNewFile"|"BufWinEnter"|"BufEnter"|"BufLeave"|"BufWinLeave"|"WinEnter"|"WinLeave"|"TabEnter"|"TabLeave"|"VimEnter"|"VimLeavePre"|"VimLeave"|"InsertEnter"|"InsertLeave"|"CursorHold"|"CursorHoldI"|"CursorMoved"|"CursorMovedI"|"CmdlineEnter"|"CmdlineLeave"|"CmdlineChanged"|"TextChanged"|"TextChangedI"|"FocusGained"|"FocusLost"|"TermOpen"|"TermClose"|"TermEnter"|"TermLeave"|"ColorScheme"
-
 ---Lazy-load on event. Events can be specified as BufEnter or with a pattern like BufEnter *.lua.
 ---@param event NvimEvent | NvimEvent[]
 ---@return PluginSpecFactory

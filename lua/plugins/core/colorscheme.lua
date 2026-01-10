@@ -6,8 +6,8 @@ require("tokyonight").setup({
 	transparent = true,
 	on_colors = function(colors) end,
 	on_highlights = function(highlights, colors)
-		highlights.WhichKeyNormal = { fg = highlights.WhichKeyNormal.fg, bg = colors.none }
-		highlights.DropBarFileName = { fg = colors.fg }
+		highlights.WhichKeyNormal = { bg = colors.none }
+		highlights.WinBar = { bg = colors.none }
 	end,
 	-- INFO: grab all installed plugins, filters out `self` then does { plugin = true } for each of them
 	plugins = vim.tbl_deep_extend(

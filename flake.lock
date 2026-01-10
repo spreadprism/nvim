@@ -138,6 +138,22 @@
         "type": "github"
       }
     },
+    "nvim-web-devicons": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1766287594,
+        "narHash": "sha256-ZdFRd0//C0Lle4cYIoAHBdz/yvQqmeylLNwvSifaWm4=",
+        "owner": "nvim-tree",
+        "repo": "nvim-web-devicons",
+        "rev": "6788013bb9cb784e606ada44206b0e755e4323d7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-tree",
+        "repo": "nvim-web-devicons",
+        "type": "github"
+      }
+    },
     "oil": {
       "flake": false,
       "locked": {
@@ -161,6 +177,7 @@
         "nixpkgs": [
           "nixpkgs-unstable"
         ],
+        "nvim-web-devicons": "nvim-web-devicons",
         "oil": "oil",
         "snacks": "snacks",
         "tokyonight": "tokyonight",

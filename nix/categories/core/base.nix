@@ -1,8 +1,12 @@
 {
+  pkgs,
   vim_pkgs,
   nvim_pkgs,
   ...
 }: {
+  lspsAndRuntimeDeps = with pkgs; [
+    sqlite
+  ];
   startupPlugins = with vim_pkgs;
     [
       lze
