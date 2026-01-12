@@ -5,7 +5,7 @@
   ...
 }: {
   lspsAndRuntimeDeps = with pkgs; [
-    lua-language-server
+    unstable.lua-language-server
     stylua
   ];
   optionalPlugins = with vim_pkgs;
