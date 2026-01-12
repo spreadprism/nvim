@@ -1,73 +1,142 @@
-local M = {}
+local K = {}
 
----@class kmapOpts: vim.keymap.set.Opts
----@field cond? boolean|fun():boolean
----@field hidden? boolean
----@field icon? string|wk.Icon|fun():(wk.Icon|string)
+---@alias KeymapSpec wk.Spec
 
----@return wk.Spec
+---@class Keymap
+---@field spec KeymapSpec
+K.Keymap = {}
+K.Keymap.__index = K.Keymap
+
+---@param spec KeymapSpec
+local function Keymap(spec)
+	return setmetatable({ spec = spec }, K.Keymap)
+end
+
+---@param cond boolean|fun():boolean
+---@return Keymap
+function K.Keymap:cond(cond)
+	self.spec.cond = cond
+	return self
+end
+
+---@return Keymap
+function K.Keymap:hidden()
+	self.spec.hidden = true
+	return self
+end
+
+---@param icon string|wk.Icon|fun():(wk.Icon|string)
+---@return Keymap
+function K.Keymap:icon(icon)
+	self.spec.icon = icon
+	return self
+end
+
+---@param buffer number
+---@return Keymap
+function K.Keymap:buffer(buffer)
+	self.spec.buffer = buffer
+	return self
+end
+
+---@return Keymap
+function K.Keymap:silent()
+	self.spec.silent = true
+	return self
+end
+
+---@return Keymap
+function K.Keymap:noremap()
+	self.spec.noremap = true
+	return self
+end
+
+---@return Keymap
+function K.Keymap:nowait()
+	self.spec.nowait = true
+	return self
+end
+
+---@return Keymap
+function K.Keymap:expr()
+	self.spec.expr = true
+	return self
+end
+
+---@return Keymap
+function K.Keymap:remap()
+	self.spec.remap = true
+	return self
+end
+
+function K.Keymap:add()
+	require("which-key").add({ self.spec })
+end
+
 ---@param mode string | string[]
 ---@param key string
 ---@param action string | function
 ---@param desc string
----@param opts? kmapOpts
-function M.kmap(mode, key, action, desc, opts)
+---@return Keymap
+function K:map(mode, key, action, desc)
 	if type(mode) == "string" then
 		mode = vim.split(mode, "")
 	end
 
-	opts = opts or {}
-	local map = vim.tbl_deep_extend("keep", {
+	return Keymap({
 		key,
 		action,
 		mode = mode,
 		desc = desc,
-	}, opts)
-
-	return map
+	})
 end
 
----@return wk.Spec
----@param key string
 ---@param name string
----@param mapping wk.Spec | wk.Spec[]
-function M.kgroup(name, key, mapping)
-	if type(mapping[1]) ~= "table" then
-		mapping = { mapping }
+---@param key string
+---@param keymaps Keymap | Keymap[]
+---@return Keymap
+function K:group(name, key, keymaps)
+	return Keymap({
+		key,
+		group = name,
+		expand = function()
+			if keymaps.__index == K.Keymap then
+				keymaps = { keymaps }
+			end
+			return vim.tbl_map(function(keymap)
+				return keymap.spec
+			end, keymaps)
+		end,
+	})
+end
+---@param keymaps Keymap | Keymap[]
+---@return Keymap
+function K:opts(keymaps)
+	if keymaps.__index == K.Keymap then
+		keymaps = { keymaps }
 	end
-	local group = { key, group = name }
-
-	for _, map in ipairs(mapping) do
-		map[1] = key .. map[1]
-	end
-
-	return {
-		group,
-		unpack(mapping),
-	}
+	return Keymap({ unpack(keymaps) })
 end
 
----@return wk.Spec
----@param opts kmapOpts
----@param mapping wk.Spec | wk.Spec[]
-function M.kopts(opts, mapping)
-	if type(mapping[1]) ~= "table" then
-		mapping = { mapping }
+function K:add(keymap)
+	if keymap.__index == K.Keymap then
+		keymap:add()
+	else
+		for _, k in ipairs(keymap) do
+			K:add(k)
+		end
 	end
-
-	local map = {}
-	for _, m in ipairs(mapping) do
-		table.insert(opts, m)
-	end
-
-	for k, v in pairs(opts) do
-		map[k] = v
-	end
-
-	return map
 end
 
-function M.klazy(module)
+K.act = {}
+
+function K.act:cmd(cmd)
+	return function()
+		vim.cmd(cmd)
+	end
+end
+
+function K.act:lazy(module)
 	return setmetatable({}, {
 		__index = function(_, key)
 			return function(...)
@@ -80,20 +149,4 @@ function M.klazy(module)
 	})
 end
 
----@param ft string | string[]
----@param mapping wk.Spec | wk.Spec[]
-function M.kfiletype(ft, mapping)
-	if type(ft) ~= "table" then
-		ft = { ft }
-	end
-	vim.api.nvim_create_autocmd("FileType", {
-		pattern = ft,
-		callback = function(args)
-			require("which-key").add(kopts({
-				buffer = args.buf,
-			}, mapping))
-		end,
-	})
-end
-
-return M
+return K

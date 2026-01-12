@@ -10,13 +10,7 @@ local M = {}
 
 -- plugins definition
 _G.plugin = require("internal.loader.plugin").plugin
-
--- keymaps definition
-local keymaps = require("internal.keymaps")
-_G.kmap = keymaps.kmap
-_G.kgroup = keymaps.kgroup
-_G.klazy = keymaps.klazy
-_G.kopts = keymaps.kopts
+_G.k = require("internal.keymaps")
 
 -- symbols definition
 _G.Symbols = {

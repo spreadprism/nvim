@@ -1,7 +1,4 @@
-local wk = require("which-key")
-
--- keybindings initialization
-wk.setup({
+require("which-key").setup({
 	win = {
 		border = "rounded",
 	},
@@ -19,7 +16,4 @@ wk.setup({
 	end,
 })
 
--- core keybindings
-wk.add({
-	kmap("iv", ";;", "<Esc>", "Escape"),
-})
+k:map("iv", ";;", "<Esc>", "Escape"):add()

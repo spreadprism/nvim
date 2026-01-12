@@ -53,13 +53,7 @@ M.keymaps = {
 		if plugin.keymaps == nil then
 			return plugin
 		end
-
-		plugin.keys = plugin.keys or {}
-
-		for _, k in ipairs(plugin.keymaps) do
-			table.insert(plugin.keys, k[1])
-		end
-		require("which-key").add(plugin.keymaps)
+		require("internal.keymaps"):add(plugin.keymaps)
 		return plugin
 	end,
 }

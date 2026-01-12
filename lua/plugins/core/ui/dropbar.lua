@@ -1,6 +1,21 @@
 plugin("dropbar")
 	:event("UIEnter")
-	:kmap("n", "<M-->", klazy("dropbar.api").pick(), "pick symbols in winbar")
+	:keymaps(k:map("n", "<M-->", k.act:lazy("dropbar.api").pick(), "pick symbols in winbar"))
+	:after(function()
+		-- INFO: hide cursor on dropbar_menu
+		vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter" }, {
+			callback = function(data)
+				local hl = vim.api.nvim_get_hl(0, { name = "Cursor", link = false })
+				if vim.bo[data.buf].ft == "dropbar_menu" then
+					vim.api.nvim_set_hl(0, "Cursor", { blend = 100, fg = hl.fg, bg = hl.bg })
+					vim.opt_local.guicursor:append("a:Cursor/lCursor")
+				else
+					vim.api.nvim_set_hl(0, "Cursor", { blend = 0, fg = hl.fg, bg = hl.bg })
+					vim.opt_local.guicursor:remove("a:Cursor/lCursor")
+				end
+			end,
+		})
+	end)
 	:opts(function()
 		local bar = require("dropbar.bar")
 		local sources = require("dropbar.sources")

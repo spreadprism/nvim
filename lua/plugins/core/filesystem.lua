@@ -1,4 +1,3 @@
--- TODO: oil or fyler
 plugin("oil")
 	:opts({
 		use_default_keymaps = false,
@@ -22,10 +21,10 @@ plugin("oil")
 			signcolumn = "number",
 		},
 	})
-	:kmap("n", "-", function()
-		vim.cmd("Oil")
-	end, "Open filesystem")
-	:kmap("n", "_", function()
-		vim.cmd("Oil " .. vim.fn.getcwd())
-	end, "Open current working directory")
+	:keymaps({
+		k:map("n", "-", k.act:cmd("Oil"), "Open filesystem"),
+		k:map("n", "_", function()
+			vim.cmd("Oil " .. vim.fn.getcwd())
+		end, "Open current working directory"),
+	})
 	:lazy(false)

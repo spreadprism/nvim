@@ -126,17 +126,19 @@ function M.Plugin:ft(ft)
 end
 
 ---plugin keybindings.
----@param mappings wk.Spec
+---@param mappings Keymap | Keymap[]
 ---@return PluginSpecFactory
 function M.Plugin:keymaps(mappings)
 	self._keymaps = self._keymaps or {}
-	if type(mappings[1]) == "string" then
-		table.insert(self._keymaps, mappings)
-	else
+
+	if mappings.__index == nil then
 		for _, map in ipairs(mappings) do
 			table.insert(self._keymaps, map)
 		end
+	else
+		table.insert(self._keymaps, mappings)
 	end
+
 	lze.apply({ name = self.name, keymaps = { self._keymaps } })
 	return self
 end
@@ -147,7 +149,7 @@ end
 ---@param desc string
 ---@param opts? kmapOpts
 function M.Plugin:kmap(mode, key, action, desc, opts)
-	return self:keymaps(kmap(mode, key, action, desc, opts))
+	return self:keymaps(k:map(mode, key, action, desc))
 end
 
 ---@param key string
