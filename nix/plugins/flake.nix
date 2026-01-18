@@ -17,6 +17,10 @@
       url = "github:rebelot/heirline.nvim";
       flake = false;
     };
+    heirline-components = {
+      url = "github:Zeioth/heirline-components.nvim";
+      flake = false;
+    };
     dropbar = {
       url = "github:Bekaboo/dropbar.nvim";
       flake = false;
@@ -25,8 +29,24 @@
       url = "github:stevearc/oil.nvim";
       flake = false;
     };
+    oil-vcs = {
+      url = "github:spreadprism/oil-vcs";
+      flake = false;
+    };
+    git-oil = {
+      url = "github:spreadprism/git-oil.nvim";
+      flake = false;
+    };
     nvim-web-devicons = {
       url = "github:nvim-tree/nvim-web-devicons";
+      flake = false;
+    };
+    tmux-navigation = {
+      url = "github:christoomey/vim-tmux-navigator";
+      flake = false;
+    };
+    neogit = {
+      url = "github:NeogitOrg/neogit";
       flake = false;
     };
   };

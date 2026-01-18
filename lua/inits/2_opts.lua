@@ -1,6 +1,10 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.wo.number = true
+vim.o.cmdheight = 0
+-- vim.o.cursorline = true
+-- vim.o.cursorlineopt = "number"
+
 vim.o.expandtab = true
 vim.o.autoindent = true
 vim.opt.autoread = true
@@ -12,8 +16,7 @@ vim.o.scl = "yes"
 vim.o.timeout = true
 vim.o.timeoutlen = 200
 vim.opt.splitright = true
-vim.o.updatetime = 250
-vim.o.cmdheight = 0
+vim.o.updatetime = 750
 vim.opt.undofile = true -- INFO: Save undo history
 
 vim.deprecate = function() end

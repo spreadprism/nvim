@@ -20,6 +20,7 @@ plugin("dropbar")
 		local bar = require("dropbar.bar")
 		local sources = require("dropbar.sources")
 		local configs = require("dropbar.configs")
+		local utils = require("dropbar.utils")
 
 		local root = {
 			get_symbols = function(buf, win, _)
@@ -47,7 +48,7 @@ plugin("dropbar")
 					return symbols
 				end
 
-				symbols[#symbols].name = symbols[#symbols].name .. " " .. internal.Symbols.modified
+				symbols[#symbols].name = symbols[#symbols].name .. " " .. Symbols.modified
 
 				return symbols
 			end,
@@ -77,7 +78,12 @@ plugin("dropbar")
 						return false
 					end
 
-					return vim.tbl_contains({ "markdown", "oil" }, vim.bo[buf].ft)
+					local ft = vim.bo[buf].ft
+					if ft == "" and vim.api.nvim_buf_get_name(buf) == "" then
+						return false
+					end
+
+					return vim.tbl_contains({ "markdown", "oil", "" }, ft)
 						or pcall(vim.treesitter.get_parser, buf)
 						or not vim.tbl_isempty(vim.lsp.get_clients({
 							bufnr = buf,
@@ -85,7 +91,7 @@ plugin("dropbar")
 						}))
 				end,
 				sources = function(buf, _)
-					local bt = vim.bo[buf].buftype
+					local bt = vim.bo[buf].filetype
 					local s = {
 						terminal = { sources.terminal },
 						oil = { root, sources.path },
@@ -109,6 +115,8 @@ plugin("dropbar")
 
 						if vim.bo[buf].ft == "oil" then
 							buf_path = require("oil").get_current_dir(buf) or ""
+							-- strip /
+							buf_path = buf_path:gsub("/$", "")
 						else
 							buf_path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":h")
 						end

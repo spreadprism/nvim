@@ -4,10 +4,19 @@ require("tokyonight").setup({
 		floats = "transparent",
 	},
 	transparent = true,
-	on_colors = function(colors) end,
+	on_colors = function(colors)
+		_G.colors = colors
+	end,
 	on_highlights = function(highlights, colors)
 		highlights.WhichKeyNormal = { bg = colors.none }
 		highlights.WinBar = { bg = colors.none }
+		highlights.WinBarNC = { bg = colors.none }
+
+		highlights.OilGitAdded = { link = "SnacksPickerGitStatusAdded" }
+		highlights.OilGitModified = { link = "SnacksPickerGitStatusModified" }
+		highlights.OilGitRenamed = { link = "SnacksPickerGitStatusRenamed" }
+		highlights.OilGitUntracked = { link = "SnacksPickerGitStatusUntracked" }
+		highlights.OilGitIgnored = { link = "SnacksPickerGitStatusIgnored" }
 	end,
 	-- INFO: grab all installed plugins, filters out `self` then does { plugin = true } for each of them
 	plugins = vim.tbl_deep_extend(

@@ -37,6 +37,22 @@
         "type": "github"
       }
     },
+    "git-oil": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768673690,
+        "narHash": "sha256-pMK1yf+gE/AplB+kyn/cVaMTYEab52vtOgPeKi0GJAo=",
+        "owner": "spreadprism",
+        "repo": "git-oil.nvim",
+        "rev": "81d9c4e93a0e28eeab6ae29a3130615fd2944a73",
+        "type": "github"
+      },
+      "original": {
+        "owner": "spreadprism",
+        "repo": "git-oil.nvim",
+        "type": "github"
+      }
+    },
     "heirline": {
       "flake": false,
       "locked": {
@@ -50,6 +66,38 @@
       "original": {
         "owner": "rebelot",
         "repo": "heirline.nvim",
+        "type": "github"
+      }
+    },
+    "heirline-components": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1763396340,
+        "narHash": "sha256-1HwAQ8TRVHMGz92Nta3948RrN0hIuRFIBk5lVpAHy+s=",
+        "owner": "Zeioth",
+        "repo": "heirline-components.nvim",
+        "rev": "65ff6844a6d911bd8977a106b761649d7df9a5e1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Zeioth",
+        "repo": "heirline-components.nvim",
+        "type": "github"
+      }
+    },
+    "neogit": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1765556139,
+        "narHash": "sha256-BBre2HyecQp1TlhJEWbkUpeu5Y4urZVgVf4dqU7RQT0=",
+        "owner": "NeogitOrg",
+        "repo": "neogit",
+        "rev": "d8bf9102692250193b855acd9025a826f1af2729",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NeogitOrg",
+        "repo": "neogit",
         "type": "github"
       }
     },
@@ -141,11 +189,11 @@
     "nvim-web-devicons": {
       "flake": false,
       "locked": {
-        "lastModified": 1766287594,
-        "narHash": "sha256-ZdFRd0//C0Lle4cYIoAHBdz/yvQqmeylLNwvSifaWm4=",
+        "lastModified": 1768089403,
+        "narHash": "sha256-x1ujwUXnRolP9SRUD7/Pb4/AZu+3YpC6CfGuq3Bn6Ew=",
         "owner": "nvim-tree",
         "repo": "nvim-web-devicons",
-        "rev": "6788013bb9cb784e606ada44206b0e755e4323d7",
+        "rev": "803353450c374192393f5387b6a0176d0972b848",
         "type": "github"
       },
       "original": {
@@ -157,11 +205,11 @@
     "oil": {
       "flake": false,
       "locked": {
-        "lastModified": 1767244978,
-        "narHash": "sha256-gIOCy8JM14OrWG133rKPujm3WBqahYYGE6Ibrm3lHqU=",
+        "lastModified": 1768626079,
+        "narHash": "sha256-eMruZSMi72A74LqtSsyJSI3WY595aKO9n2XxJ3Du/9Y=",
         "owner": "stevearc",
         "repo": "oil.nvim",
-        "rev": "81b8a91735ad5cd24a6b3137f14a89f19176364f",
+        "rev": "f55b25e493a7df76371cfadd0ded5004cb9cd48a",
         "type": "github"
       },
       "original": {
@@ -170,16 +218,37 @@
         "type": "github"
       }
     },
+    "oil-vcs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768775343,
+        "narHash": "sha256-60ZRqrk1Httytxh2x7WsFdLE4zZT7DW1QOY3fkFm+xQ=",
+        "owner": "spreadprism",
+        "repo": "oil-vcs",
+        "rev": "cae3e5e19f795dca4bc3712f96f02eeb9fdcc6e4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "spreadprism",
+        "repo": "oil-vcs",
+        "type": "github"
+      }
+    },
     "plugins": {
       "inputs": {
         "dropbar": "dropbar",
+        "git-oil": "git-oil",
         "heirline": "heirline",
+        "heirline-components": "heirline-components",
+        "neogit": "neogit",
         "nixpkgs": [
           "nixpkgs-unstable"
         ],
         "nvim-web-devicons": "nvim-web-devicons",
         "oil": "oil",
+        "oil-vcs": "oil-vcs",
         "snacks": "snacks",
+        "tmux-navigation": "tmux-navigation",
         "tokyonight": "tokyonight",
         "which-key": "which-key"
       },
@@ -215,6 +284,22 @@
       "original": {
         "owner": "folke",
         "repo": "snacks.nvim",
+        "type": "github"
+      }
+    },
+    "tmux-navigation": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1752544267,
+        "narHash": "sha256-IEPnr/GdsAnHzdTjFnXCuMyoNLm3/Jz4cBAM0AJBrj8=",
+        "owner": "christoomey",
+        "repo": "vim-tmux-navigator",
+        "rev": "c45243dc1f32ac6bcf6068e5300f3b2b237e576a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "christoomey",
+        "repo": "vim-tmux-navigator",
         "type": "github"
       }
     },

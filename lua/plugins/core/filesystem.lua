@@ -1,4 +1,4 @@
-plugin("oil")
+local oil = plugin("oil")
 	:opts({
 		use_default_keymaps = false,
 		experimental_watch_for_changes = true,
@@ -28,3 +28,4 @@ plugin("oil")
 		end, "Open current working directory"),
 	})
 	:lazy(false)
+plugin("oil-vcs"):dep_on(oil):lazy(false)

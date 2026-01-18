@@ -11,16 +11,20 @@
     [
       lze
       lzextras
+      plenary-nvim
     ]
     ++ (with nvim_pkgs; [
       tokyonight
       which-key
       oil
+      oil-vcs
     ]);
 
   optionalPlugins = with nvim_pkgs;
     [
       snacks
+      tmux-navigation
+      neogit
     ]
     ++ (with vim_pkgs; [
       nvim-treesitter.withAllGrammars

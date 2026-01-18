@@ -8,15 +8,16 @@ end
 
 local M = {}
 
--- plugins definition
 _G.plugin = require("internal.loader.plugin").plugin
 _G.k = require("internal.keymaps")
+_G.on = require("internal.on_event")
 
 -- symbols definition
 _G.Symbols = {
 	modified = "󱇧",
 	new_file = "󰝒",
 	added = "󰈖",
+	untracked = "?",
 	copied = "",
 	updated = "󰚰",
 	deleted = "󰮘",
@@ -25,6 +26,16 @@ _G.Symbols = {
 	warn = "",
 	hint = "󰌵",
 	info = "",
+	separators = {
+		angle = {
+			left = "",
+			right = "",
+		},
+		splitter = {
+			left = "",
+			right = "",
+		},
+	},
 }
 
 for k, v in pairs(_G) do

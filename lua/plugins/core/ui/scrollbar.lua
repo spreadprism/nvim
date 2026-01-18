@@ -1,0 +1,1 @@
+-- TODO: https://github.com/petertriho/nvim-scrollbar

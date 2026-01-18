@@ -12,7 +12,7 @@ local load_fn = require("internal.loader.plugin.load").load
 ---@field after? fun(PluginSpec) Executed after a plugin is loaded.
 ---@field load? fun(PluginSpec) Custom load function. If provided, this function is called instead of the default loading mechanism.
 ---@field allow_again? boolean | fun(): boolean When a plugin has ALREADY BEEN LOADED, true would allow you to add it again.
----@field opts? table | fun(): table
+---@field opts? boolean | table | fun(): table
 ---@field event? string | {event?:string|string[], pattern?:string|string[]} | string[] Lazy-load on event. Events can be specified as BufEnter or with a pattern like BufEnter *.lua.
 ---@field cmd? string | string[] Lazy-load on command.
 ---@field ft? string | string[] Lazy-load on filetype.
@@ -94,7 +94,7 @@ function M.Plugin:allow_again(allow)
 end
 
 ---Plugin options table or function that returns options.
----@param opts table | fun(): table
+---@param opts boolean | table | fun(): table
 ---@return PluginSpecFactory
 function M.Plugin:opts(opts)
 	lze.apply({ name = self.name, opts = opts })
@@ -168,10 +168,32 @@ function M.Plugin:colorscheme(colorscheme)
 end
 
 ---Lazy-load before another plugin but after its before hook.
----@param dep_of string | string[]
+---@param dep_of string | string[] | PluginSpecFactory | PluginSpecFactory[]
 ---@return PluginSpecFactory
 function M.Plugin:dep_of(dep_of)
-	lze.apply({ name = self.name, dep_of = dep_of })
+	if type(dep_of) == "string" or (type(dep_of) == "table" and dep_of.__index == M.Plugin) then
+		dep_of = { dep_of }
+	end
+
+	local dep = vim.tbl_map(function(dep)
+		return type(dep) == "string" and dep or dep.name
+	end, dep_of)
+	lze.apply({ name = self.name, dep_of = dep })
+	return self
+end
+
+---@param dep_on string | string[] | PluginSpecFactory | PluginSpecFactory[]
+---@return PluginSpecFactory
+function M.Plugin:dep_on(dep_on)
+	if type(dep_on) == "string" or (type(dep_on) == "table" and dep_on.__index == M.Plugin) then
+		dep_on = { dep_on }
+	end
+
+	for _, dep in ipairs(dep_on) do
+		local name = type(dep) == "string" and dep or dep.name
+		lze.apply({ name = name, dep_of = { self.name } })
+	end
+
 	return self
 end
 
@@ -204,6 +226,11 @@ end
 ---@return PluginSpecFactory
 function M.Plugin:priority(priority)
 	lze.apply({ name = self.name, priority = priority, lazy = false })
+	return self
+end
+
+function M.Plugin:vim(vim)
+	lze.apply({ name = self.name, vim = vim })
 	return self
 end
 
