@@ -12,11 +12,8 @@ require("tokyonight").setup({
 		highlights.WinBar = { bg = colors.none }
 		highlights.WinBarNC = { bg = colors.none }
 
-		highlights.OilGitAdded = { link = "SnacksPickerGitStatusAdded" }
-		highlights.OilGitModified = { link = "SnacksPickerGitStatusModified" }
-		highlights.OilGitRenamed = { link = "SnacksPickerGitStatusRenamed" }
-		highlights.OilGitUntracked = { link = "SnacksPickerGitStatusUntracked" }
-		highlights.OilGitIgnored = { link = "SnacksPickerGitStatusIgnored" }
+		highlights.OilDirHidden = { link = "OilDir" }
+		highlights.OilFileHidden = { link = "OilFile" }
 	end,
 	-- INFO: grab all installed plugins, filters out `self` then does { plugin = true } for each of them
 	plugins = vim.tbl_deep_extend(
