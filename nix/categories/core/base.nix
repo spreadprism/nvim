@@ -25,6 +25,8 @@
       snacks
       tmux-navigation
       neogit
+      gitsigns
+      mini_diff
     ]
     ++ (with vim_pkgs; [
       nvim-treesitter.withAllGrammars

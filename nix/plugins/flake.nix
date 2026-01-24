@@ -49,6 +49,22 @@
       url = "github:NeogitOrg/neogit";
       flake = false;
     };
+    gitsigns = {
+      url = "github:lewis6991/gitsigns.nvim";
+      flake = false;
+    };
+    mini_diff = {
+      url = "github:echasnovski/mini.diff";
+      flake = false;
+    };
+    nui = {
+      url = "github:MunifTanjim/nui.nvim";
+      flake = false;
+    };
+    noice = {
+      url = "github:folke/noice.nvim";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

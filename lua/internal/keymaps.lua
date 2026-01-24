@@ -91,22 +91,34 @@ function K:map(mode, key, action, desc)
 	})
 end
 
+---@param mode string | string[]
+---@param key string
+function K:del(mode, key)
+	if type(mode) == "string" then
+		mode = vim.split(mode, "")
+	end
+	return Keymap({
+		key,
+		"<Nop>",
+		mode = mode,
+	})
+end
+
 ---@param name string
 ---@param key string
 ---@param keymaps Keymap | Keymap[]
 ---@return Keymap
 function K:group(name, key, keymaps)
+	if keymaps.__index == K.Keymap then
+		keymaps = { keymaps }
+	end
 	return Keymap({
 		key,
 		group = name,
-		expand = function()
-			if keymaps.__index == K.Keymap then
-				keymaps = { keymaps }
-			end
-			return vim.tbl_map(function(keymap)
-				return keymap.spec
-			end, keymaps)
-		end,
+		unpack(vim.tbl_map(function(keymap)
+			keymap.spec[1] = key .. keymap.spec[1]
+			return keymap.spec
+		end, keymaps)),
 	})
 end
 ---@param keymaps Keymap | Keymap[]

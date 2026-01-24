@@ -16,9 +16,7 @@ plugin("snacks")
 			},
 		},
 	})
-	:allow_again(function()
-		return vim.env.PROF
-	end)
+	:allow_again(vim.env.PROF)
 	:keymaps({
 		k:map("n", "<leader><leader>", k.act:lazy("snacks.picker").files(), "find files"):hidden(),
 		k:group("find", "<leader>f", {

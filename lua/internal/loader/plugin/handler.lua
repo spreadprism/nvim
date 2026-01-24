@@ -26,7 +26,7 @@ M.setup = {
 			opts = opts(plugin)
 		end
 
-		local ok, module = pcall(require, name)
+		local ok, module = pcall(require, plugin.on_require)
 		if not ok then
 			print("Error loading plugin module: " .. name .. " (cause=" .. module .. ")")
 			return

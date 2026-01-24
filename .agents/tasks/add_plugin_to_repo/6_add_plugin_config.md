@@ -1,11 +1,18 @@
 # Step 6: Add plugin config file
 
-Create a basic config file at `lua/plugins/{category}/{plugin}.lua` using the template:
+Add a minimal plugin call to the appropriate file in `lua/plugins/`.
+
+**Only add the plugin call with the plugin name:**
 
 ```lua
-local M = {}
-
-return M
+plugin("PLUGIN_NAME")
 ```
 
-Replace {category} with the specified category (e.g., "core") and {plugin} with the plugin name (e.g., "snacks").
+Replace `PLUGIN_NAME` with the actual plugin name (e.g., `gitsigns`, `neogit`).
+
+**Example locations:**
+- Git-related: `lua/plugins/git.lua`
+- Core UI: `lua/plugins/core/ui/icons.lua`
+- Core editing: `lua/plugins/core/editing/blink.lua`
+
+**Do not** add any configuration options (`:opts()`, `:event()`, etc.) unless explicitly requested. Keep it minimal.

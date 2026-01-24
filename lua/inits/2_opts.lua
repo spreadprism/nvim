@@ -7,6 +7,7 @@ vim.o.cmdheight = 0
 
 vim.o.expandtab = true
 vim.o.autoindent = true
+vim.o.cedit = "<C-r>"
 vim.opt.autoread = true
 vim.o.smartindent = true
 vim.o.tabstop = 2

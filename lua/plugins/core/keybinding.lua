@@ -14,6 +14,9 @@ require("which-key").setup({
 		end
 		return false
 	end,
+	plugins = {
+		registers = false,
+	},
 })
 
 k:map("iv", ";;", "<Esc>", "Escape"):add()
