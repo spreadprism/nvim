@@ -1,10 +1,3 @@
-local component = require("heirline-components.all").component
-local AlignSplit = {
-	provider = function()
-		return "%="
-	end,
-}
-
 local statusline = {
 	init = function(self)
 		self.bufnr = vim.api.nvim_get_current_buf()

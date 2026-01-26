@@ -8,9 +8,13 @@ plugin("heirline")
 		return {
 			statusline = require("internal.ui.statusline"),
 			statuscolumn = require("internal.ui.statuscolumn"),
+			winbar = require("internal.ui.winbar"),
 			opts = {
 				disable_winbar_cb = function(args)
-					return true
+					return require("heirline.conditions").buffer_matches({
+						buftype = { "nofile", "prompt", "help", "quickfix" },
+						filetype = { "^git.*", "fugitive", "Trouble", "dashboard" },
+					}, args.buf)
 				end,
 			},
 		}
