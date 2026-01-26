@@ -1,3 +1,79 @@
+--- A winbar component that shows the current file location in a breadcrumb style.
+
+local function separate(self, elements)
+	local separator = {
+		provider = self.symbols.separator,
+	}
+	local result = {}
+	for i, child in ipairs(elements) do
+		table.insert(result, child)
+		if i < #elements then
+			table.insert(result, separator)
+		end
+	end
+
+	return result
+end
+
+local function get_symbol_hl(self, path)
+	if vim.fn.isdirectory(path) == 1 then
+		return self.symbols.directory, { link = "Directory" }
+	else
+		local icon, hl = self.get_icon(path)
+		if icon == nil then
+			icon, hl = self.get_icon_filetype(vim.fn.fnamemodify(path, ":e"))
+		end
+		return icon, hl
+	end
+end
+
+local function element(self, path)
+	local icon, hl = get_symbol_hl(self, path)
+
+	local element_name
+	if path == self.root then
+		if self.root == "/" then
+			element_name = self.root
+		elseif self.root == vim.env.HOME then
+			element_name = "~"
+		else
+			element_name = vim.fn.fnamemodify(self.root, ":t")
+		end
+	else
+		element_name = vim.fn.fnamemodify(path, ":t")
+	end
+
+	return {
+		{
+			hl = hl,
+			provider = icon .. " ",
+		},
+		{
+			hl = self.path == path and { fg = colors.fg } or nil,
+			provider = element_name,
+		},
+	}
+end
+
+local function assemble_location(self)
+	local elements = {}
+	local path = self.path
+	while path ~= self.root and path ~= "" and path ~= "/" do
+		table.insert(elements, element(self, path))
+
+		local new_path = vim.fn.fnamemodify(path, ":h")
+		if new_path == path then
+			break
+		end
+		path = new_path
+	end
+
+	table.insert(elements, element(self, self.root))
+	elements = separate(self, elements)
+
+	return vim.fn.reverse(elements)
+end
+
 return {
 	static = {
 		symbols = {
@@ -26,86 +102,8 @@ return {
 			self.root = "/"
 		end
 
-		local path = self.path
-		local childs = {}
-		while path ~= self.root and path ~= "" and path ~= "/" do
-			local is_dir = vim.fn.isdirectory(path) == 1
-			local element = {}
-			if path == self.path then
-				local icon, hl
-				if is_dir then
-					icon = self.symbols.directory
-					hl = { link = "Directory" }
-				else
-					icon, hl = self.get_icon(self.path)
-					if icon == nil then
-						icon, hl = self.get_icon_filetype(self.ft)
-					end
-				end
-
-				if icon then
-					table.insert(element, {
-						hl = hl,
-						provider = icon .. " ",
-					})
-				end
-
-				table.insert(element, {
-					hl = { fg = colors.fg },
-					provider = vim.fn.fnamemodify(path, ":t"),
-				})
-			else
-				table.insert(element, {
-					provider = self.symbols.directory .. " ",
-				})
-				table.insert(element, {
-					provider = vim.fn.fnamemodify(path, ":t"),
-				})
-			end
-
-			table.insert(childs, element)
-			local new_path = vim.fn.fnamemodify(path, ":h")
-			if new_path == path then
-				break
-			end
-			path = new_path
-		end
-
-		local root_name
-
-		if self.root == "/" then
-			root_name = self.root
-		elseif self.root == vim.env.HOME then
-			root_name = "~"
-		else
-			root_name = vim.fn.fnamemodify(self.root, ":t")
-		end
-
-		table.insert(childs, {
-			{
-				provider = self.symbols.directory .. " ",
-				hl = { link = "Directory" },
-			},
-			{
-				provider = root_name,
-			},
-		})
-
-		local separator = {
-			provider = self.symbols.separator,
-		}
-		childs = vim.fn.reverse(childs)
-
-		-- Insert separator between each element
-		local result = {}
-		for i, child in ipairs(childs) do
-			table.insert(result, child)
-			if i < #childs then
-				table.insert(result, separator)
-			end
-		end
-
-		self.child = self:new(result, 1)
+		local location = assemble_location(self)
+		self.child = self:new(location, 1)
 	end,
 	provider = function(self)
 		return self.child:eval()

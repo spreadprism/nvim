@@ -285,11 +285,11 @@
     "oil-vcs": {
       "flake": false,
       "locked": {
-        "lastModified": 1769271080,
-        "narHash": "sha256-G0JhXkhmNtkJ80rvhx7cMDAVs6fBmO/BiyOHhZ6bCIw=",
+        "lastModified": 1769451427,
+        "narHash": "sha256-fJWsjWnpHpxx+PAdKkbq4dV9ef4AQCSC9uTOidrbO64=",
         "owner": "spreadprism",
         "repo": "oil-vcs",
-        "rev": "29f1adfa302806aabad1a0d096a0a58717da5611",
+        "rev": "2f935aa7fb7063126f1ea0dfc0009783b246cf19",
         "type": "github"
       },
       "original": {
