@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "dropbar": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1759678642,
-        "narHash": "sha256-FzJXZcbwk3kEqmRFwKVavL1umPugdbJVYvaBZwiEK0I=",
-        "owner": "Bekaboo",
-        "repo": "dropbar.nvim",
-        "rev": "ce202248134e3949aac375fd66c28e5207785b10",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Bekaboo",
-        "repo": "dropbar.nvim",
-        "type": "github"
-      }
-    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -285,11 +269,11 @@
     "oil-vcs": {
       "flake": false,
       "locked": {
-        "lastModified": 1769451427,
-        "narHash": "sha256-fJWsjWnpHpxx+PAdKkbq4dV9ef4AQCSC9uTOidrbO64=",
+        "lastModified": 1769271080,
+        "narHash": "sha256-G0JhXkhmNtkJ80rvhx7cMDAVs6fBmO/BiyOHhZ6bCIw=",
         "owner": "spreadprism",
         "repo": "oil-vcs",
-        "rev": "2f935aa7fb7063126f1ea0dfc0009783b246cf19",
+        "rev": "29f1adfa302806aabad1a0d096a0a58717da5611",
         "type": "github"
       },
       "original": {
@@ -300,7 +284,6 @@
     },
     "plugins": {
       "inputs": {
-        "dropbar": "dropbar",
         "git-oil": "git-oil",
         "gitsigns": "gitsigns",
         "heirline": "heirline",

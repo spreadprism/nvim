@@ -21,10 +21,6 @@
       url = "github:Zeioth/heirline-components.nvim";
       flake = false;
     };
-    dropbar = {
-      url = "github:Bekaboo/dropbar.nvim";
-      flake = false;
-    };
     oil = {
       url = "github:stevearc/oil.nvim";
       flake = false;
