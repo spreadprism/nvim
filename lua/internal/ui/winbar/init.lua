@@ -10,4 +10,11 @@ return {
 	end,
 	{ provider = " " },
 	require("internal.ui.winbar.location"),
+	{
+		provider = " " .. Symbols.modified,
+		hl = { fg = colors.fg },
+		condition = function(self)
+			return vim.bo[self.buf].modified
+		end,
+	},
 }

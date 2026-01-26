@@ -23,6 +23,7 @@ local statusline = {
 		end,
 	},
 	require("internal.ui.statusline.mode"),
+	require("internal.ui.statusline.git"),
 }
 
 return statusline
