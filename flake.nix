@@ -53,10 +53,7 @@
     };
     base_categories = {...}: {
       core = true;
-      language = {
-        lua = true;
-        nix = true;
-      };
+      language = true; # enable every languages
       ai = true;
       requests = true;
       plugins = {

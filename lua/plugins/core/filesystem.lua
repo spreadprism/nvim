@@ -22,7 +22,7 @@ local oil = plugin("oil")
 		},
 	})
 	:keymaps({
-		k:map("n", "-", k.act:cmd("Oil"), "Open filesystem"),
+		k:map("n", "-", k:cmd("Oil"), "Open filesystem"),
 		k:map("n", "_", function()
 			vim.cmd("Oil " .. vim.fn.getcwd())
 		end, "Open current working directory"),

@@ -18,6 +18,7 @@
       which-key
       oil
       oil-vcs
+      lspconfig
     ]);
 
   optionalPlugins = with nvim_pkgs;

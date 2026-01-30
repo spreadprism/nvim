@@ -140,15 +140,20 @@ function K:add(keymap)
 	end
 end
 
-K.act = {}
-
-function K.act:cmd(cmd)
+---@param cmd string
+---@param ignore_error? boolean
+function K:cmd(cmd, ignore_error)
 	return function()
-		vim.cmd(cmd)
+		if ignore_error then
+			---@diagnostic disable-next-line: param-type-mismatch
+			pcall(vim.cmd, cmd)
+		else
+			vim.cmd(cmd)
+		end
 	end
 end
 
-function K.act:lazy(module)
+function K:lazy(module)
 	return setmetatable({}, {
 		__index = function(_, key)
 			return function(...)

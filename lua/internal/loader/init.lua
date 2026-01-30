@@ -1,6 +1,6 @@
 local M = {}
 
-function M.read_cfg()
+function M.read_plugins()
 	local modules = nixcats.cats.plugins.paths
 
 	local filtered = {}
@@ -56,8 +56,25 @@ function M.read_cfg()
 	end
 end
 
-function M.load_cfg()
+function M.load_plugins()
 	require("lze").h.merge.trigger()
+end
+
+function M.read_languages()
+	for _, path in ipairs(vim.api.nvim_get_runtime_file("*/language/*.lua", true)) do
+		local name = vim.fn.fnamemodify(path, ":t:r")
+		local module_path = "language." .. name
+		if nixCats(module_path) then
+			local ok, msg = pcall(require, module_path)
+			if not ok then
+				print("Error loading plugins: " .. module_path .. " (cause=" .. msg .. ")")
+			end
+		end
+	end
+end
+
+function M.load_lsp()
+	require("internal.loader.lsp").load_lsp()
 end
 
 return M

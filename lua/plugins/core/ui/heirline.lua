@@ -5,6 +5,11 @@ plugin("heirline")
 		vim.o.laststatus = 3
 	end)
 	:opts(function()
+		local heirline = require("heirline")
+		local heirline_components = require("heirline-components.all")
+
+		heirline_components.init.subscribe_to_events()
+		heirline.load_colors(heirline_components.hl.get_colors())
 		return {
 			statusline = require("internal.ui.statusline"),
 			statuscolumn = require("internal.ui.statuscolumn"),

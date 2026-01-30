@@ -61,6 +61,14 @@
       url = "github:folke/noice.nvim";
       flake = false;
     };
+    lspconfig = {
+      url = "github:neovim/nvim-lspconfig";
+      flake = false;
+    };
+    lazydev = {
+      url = "github:folke/lazydev.nvim";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

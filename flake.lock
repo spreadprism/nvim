@@ -85,6 +85,38 @@
         "type": "github"
       }
     },
+    "lazydev": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1762423570,
+        "narHash": "sha256-1g1PLFR3bc++NimbrRpoOMZyqYWHeX6pDoxsiuoJHus=",
+        "owner": "folke",
+        "repo": "lazydev.nvim",
+        "rev": "5231c62aa83c2f8dc8e7ba957aa77098cda1257d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "lazydev.nvim",
+        "type": "github"
+      }
+    },
+    "lspconfig": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1769722634,
+        "narHash": "sha256-zpBf8EEax+3Cy49ZjO0//pvtGJjnGFIu1AHyl1tL4d4=",
+        "owner": "neovim",
+        "repo": "nvim-lspconfig",
+        "rev": "79c9a15be5731bc8694840a8fb0c9141c20a80c0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "neovim",
+        "repo": "nvim-lspconfig",
+        "type": "github"
+      }
+    },
     "mini_diff": {
       "flake": false,
       "locked": {
@@ -288,6 +320,8 @@
         "gitsigns": "gitsigns",
         "heirline": "heirline",
         "heirline-components": "heirline-components",
+        "lazydev": "lazydev",
+        "lspconfig": "lspconfig",
         "mini_diff": "mini_diff",
         "neogit": "neogit",
         "nixpkgs": [

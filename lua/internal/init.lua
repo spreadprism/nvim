@@ -11,6 +11,7 @@ local M = {}
 _G.plugin = require("internal.loader.plugin").plugin
 _G.k = require("internal.keymaps")
 _G.on = require("internal.on_event")
+_G.lsp = require("internal.loader.lsp").lsp
 
 -- symbols definition
 _G.Symbols = {
