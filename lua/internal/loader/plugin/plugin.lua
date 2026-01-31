@@ -234,4 +234,16 @@ function M.Plugin:vim(vim)
 	return self
 end
 
+---@param fn fun(highlights: tokyonight.Highlights, colors: ColorScheme)
+function M.Plugin:on_highlights(fn)
+	require("internal.loader.highlight").plugins_highlight(fn)
+	return self
+end
+
+---@param fn fun(colors: ColorScheme)
+function M.Plugin:on_colors(fn)
+	require("internal.loader.highlight").plugins_color(fn)
+	return self
+end
+
 return M

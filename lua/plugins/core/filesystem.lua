@@ -27,6 +27,10 @@ local oil = plugin("oil")
 			vim.cmd("Oil " .. vim.fn.getcwd())
 		end, "Open current working directory"),
 	})
+	:on_highlights(function(highlights, _)
+		highlights.OilDirHidden = "OilDir"
+		highlights.OilFileHidden = "OilFile"
+	end)
 	:lazy(false)
 
 plugin("oil-vcs")

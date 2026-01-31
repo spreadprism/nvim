@@ -14,15 +14,15 @@
       plenary-nvim
     ]
     ++ (with nvim_pkgs; [
-      tokyonight
       which-key
-      oil
-      oil-vcs
       lspconfig
     ]);
 
   optionalPlugins = with nvim_pkgs;
     [
+      oil
+      oil-vcs
+      tokyonight
       snacks
       tmux-navigation
       neogit
