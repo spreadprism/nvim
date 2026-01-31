@@ -46,7 +46,7 @@ function M.NewPluginFactory(name)
 end
 
 ---When false, or if the function returns nil or false, then this plugin will not be included in the spec.
----@param enabled boolean | fun():boolean
+---@param enabled boolean | fun():boolean | any
 ---@return PluginSpecFactory
 function M.Plugin:enabled(enabled)
 	lze.apply({ name = self.name, enabled = enabled })

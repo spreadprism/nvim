@@ -1,0 +1,3 @@
+-- TODO: hop
+-- TODO: flash nvim
+-- TODO: harpoon or alternatives (with row marks)

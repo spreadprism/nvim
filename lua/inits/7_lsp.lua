@@ -70,7 +70,7 @@ vim.diagnostic.config({
 		--support diagnostic severity / diagnostic type name
 		text = {
 			[vim.diagnostic.severity.ERROR] = Symbols.error,
-			[vim.diagnostic.severity.WARN] = Symbols.warn,
+			[vim.diagnostic.severity.WARN] = Symbols.warning,
 			[vim.diagnostic.severity.HINT] = Symbols.hint,
 			[vim.diagnostic.severity.INFO] = Symbols.info,
 		},

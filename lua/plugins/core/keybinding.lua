@@ -19,8 +19,7 @@ require("which-key").setup({
 	},
 })
 
-for _, k in ipairs({
-	-- CORE
+k:add({
 	k:map("iv", ";;", "<Esc>", "Escape"),
 	k:map("t", ";;", "<C-\\><C-n>", "Escape"),
 	k:map("n", "<C-q>", k:cmd("q"), "Quit"),
@@ -51,6 +50,4 @@ for _, k in ipairs({
 	k:map("n", "<M-&>", k:cmd("tabn 7", true), "Go to tab 7"),
 	k:map("n", "<M-*>", k:cmd("tabn 8", true), "Go to tab 8"),
 	k:map("n", "<M-(>", k:cmd("tabn 9", true), "Go to tab 9"),
-}) do
-	k:add()
-end
+})

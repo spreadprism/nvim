@@ -25,7 +25,10 @@ local statusline = {
 	require("internal.ui.statusline.mode"),
 	require("internal.ui.statusline.git"),
 	{ provider = "%=" },
+	require("internal.ui.statusline.lsp"),
+	require("internal.ui.statusline.diagnostics"),
 	require("internal.ui.statusline.tab"),
+	require("internal.ui.statusline.wc"),
 }
 
 return statusline

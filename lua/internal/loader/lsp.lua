@@ -1,12 +1,24 @@
 local M = {}
 
 local on_attach_fn = {}
+local lsp_display = {}
 
 function M.on_attach(client, buf)
 	local fn = on_attach_fn[client.name]
 	if fn ~= nil then
 		fn(client, buf)
 	end
+end
+
+function M.display(client, buf)
+	local display = lsp_display[client.name]
+	if display then
+		if type(display) == "function" then
+			display = display(client, buf)
+		end
+		return display
+	end
+	return nil
 end
 
 ---@class Lsp
@@ -35,6 +47,7 @@ function M.lsp(name)
 	end
 	local lsp = setmetatable({ name = name, opts = {} }, Lsp)
 	table.insert(lsps, lsp)
+	lsp:display(lsp.name)
 	return lsp
 end
 
@@ -48,6 +61,12 @@ end
 ---@param on_attach fun(client: vim.lsp.Client, buf: number)
 function Lsp:on_attach(on_attach)
 	on_attach_fn[self.name] = on_attach
+end
+
+---@param display string | fun(client: vim.lsp.Client, buf: number): string
+function Lsp:display(display)
+	lsp_display[self.name] = display
+	return self
 end
 
 function Lsp:configure()

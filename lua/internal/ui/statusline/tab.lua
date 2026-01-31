@@ -7,8 +7,7 @@ return {
 
 		for i, tab in ipairs(self.tabs) do
 			local hl = tab == self.tabnr and {
-				fg = colors.black,
-				bg = self.mode_color(),
+				fg = self.mode_color(),
 			} or {
 				fg = colors.fg_gutter,
 			}

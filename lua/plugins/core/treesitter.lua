@@ -7,3 +7,7 @@ plugin("nvim-treesitter"):event("DeferredUIEnter"):opts(false):after(function()
 		},
 	})
 end)
+
+-- TODO: nvim-treesitter-endwise
+-- TODO: nvim-treesitter-textobjects
+-- TODO: treesitter-context

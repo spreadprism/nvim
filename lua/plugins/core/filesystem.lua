@@ -31,20 +31,7 @@ local oil = plugin("oil")
 
 plugin("oil-vcs")
 	:dep_on(oil)
-	:opts(function()
-		local status = require("oil-vcs").Status
-		return {
-			symbols_on_dir = false,
-			symbols = {
-				[status.Added] = Symbols.added,
-				[status.Modified] = Symbols.modified,
-				[status.Untracked] = Symbols.untracked,
-				[status.Ignored] = "",
-				[status.Deleted] = Symbols.deleted,
-				[status.Renamed] = Symbols.moved,
-				[status.Conflict] = Symbols.conflict,
-				[status.PartialStage] = Symbols.partial_stage,
-			},
-		}
-	end)
+	:opts({
+		symbols_on_dir = false,
+	})
 	:lazy(false)
