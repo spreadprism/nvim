@@ -115,11 +115,7 @@ function K:del(mode, key)
 	if type(mode) == "string" then
 		mode = vim.split(mode, "")
 	end
-	return Keymap({
-		key,
-		"<Nop>",
-		mode = mode,
-	})
+	vim.keymap.del(mode, key)
 end
 
 ---@param name string
@@ -184,24 +180,28 @@ function K:cmd(cmd, ignore_error)
 	end
 end
 
---- TODO: add a way to be recursive, currently can only do k:require("module").foo(...)
---- would like to be able to do k:require("module").submodule.func(...)
-
 --- Generates a lazy loader for a module's functions
---- for example instead of require("module").func(args)
---- you can do k:lazy("module").func(args)
---- @param module string
+--- you can do k:require("module").func(args)
+--- or k:require("module").foo.bar.func(args)
 function K:require(module)
-	return setmetatable({}, {
-		__index = function(_, key)
-			return function(...)
+	local function proxy(index)
+		return setmetatable({}, {
+			__index = function(_, key)
+				return proxy(vim.list_extend(index, { key }))
+			end,
+			__call = function(_, ...)
 				local args = { ... }
 				return function()
-					return require(module)[key](unpack(args))
+					local element = require(module)
+					for _, key in ipairs(index) do
+						element = element[key]
+					end
+					element(unpack(args))
 				end
-			end
-		end,
-	})
+			end,
+		})
+	end
+	return proxy({})
 end
 
 return K

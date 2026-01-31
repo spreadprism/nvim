@@ -40,12 +40,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
--- TODO: replace with k:del
-vim.keymap.del("n", "gra")
-vim.keymap.del("n", "grn")
-vim.keymap.del("n", "gri")
-vim.keymap.del("n", "grr")
-vim.keymap.del("n", "grt")
+k:del("n", "gra")
+k:del("n", "grn")
+k:del("n", "gri")
+k:del("n", "grr")
+k:del("n", "grt")
 
 vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
 vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
