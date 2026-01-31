@@ -12,10 +12,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		if client ~= nil then
 			require("internal.loader.lsp").on_attach(client, args.buf)
 			k:opts({
-				k:map("nv", "gd", k:lazy("snacks.picker").lsp_definitions(), "go to definition"),
-				k:map("nv", "gt", k:lazy("snacks.picker").lsp_type_definitions(), "go to definition"),
-				k:map("nv", "gr", k:lazy("snacks.picker").lsp_references(), "go to references"),
-				k:map("nv", "gi", k:lazy("snacks.picker").lsp_implementations(), "go to implementation"),
+				k:map("nv", "gd", k:require("snacks.picker").lsp_definitions(), "go to definition"),
+				k:map("nv", "gt", k:require("snacks.picker").lsp_type_definitions(), "go to definition"),
+				k:map("nv", "gr", k:require("snacks.picker").lsp_references(), "go to references"),
+				k:map("nv", "gi", k:require("snacks.picker").lsp_implementations(), "go to implementation"),
 				k:map("n", "<F2>", vim.lsp.buf.rename, "rename"),
 				k:group("lsp", "<leader>l", {
 					k:map({ "n", "v" }, "a", vim.lsp.buf.code_action, "code actions"),

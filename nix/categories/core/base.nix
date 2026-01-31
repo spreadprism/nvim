@@ -28,6 +28,7 @@
       neogit
       gitsigns
       mini_diff
+      hop
     ]
     ++ (with vim_pkgs; [
       nvim-treesitter.withAllGrammars

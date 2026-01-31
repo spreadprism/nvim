@@ -29,8 +29,8 @@ k:add({
 	k:map("nvo", "H", "^", "Move cursor to first non-whitespace character"),
 	k:map("n", "<C-w>t", "<C-w>v<C-w>T", "Open tab on current file"),
 	k:map("nvo", "<M-o>", "%", "Move cursor to matching"),
-	k:map("n", "<M-n>", k:lazy("which-key").show({ keys = "]" }), "next ..."),
-	k:map("n", "<M-p>", k:lazy("which-key").show({ keys = "[" }), "previous ..."),
+	k:map("n", "<M-n>", k:require("which-key").show({ keys = "]" }), "next ..."),
+	k:map("n", "<M-p>", k:require("which-key").show({ keys = "[" }), "previous ..."),
 	-- Code manipulation
 	k:map("v", "Y", '"+y', "Yank to clipboard"),
 	k:map("n", "<M-J>", "Vyp", "Duplicate line down"),

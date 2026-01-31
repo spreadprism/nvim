@@ -2,8 +2,8 @@ plugin("noice")
 	:event("DeferredUIEnter")
 	:keymaps({
 		k:group("notification", "<leader>n", {
-			k:map("n", "d", k:lazy("noice").cmd("dismiss"), "Dismiss"),
-			k:map("n", "l", k:lazy("noice").cmd("last"), "Last"),
+			k:map("n", "d", k:require("noice").cmd("dismiss"), "Dismiss"),
+			k:map("n", "l", k:require("noice").cmd("last"), "Last"),
 		}),
 	})
 	:opts({

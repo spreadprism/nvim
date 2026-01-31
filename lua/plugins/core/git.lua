@@ -39,7 +39,7 @@ plugin("gitsigns"):event("BufRead"):opts({
 	current_line_blame_formatter = "<author>, <author_time:%R>",
 	on_attach = function(bufnr)
 		k:group("git", "<leader>g", {
-			k:map("n", "w", k:lazy("gitsigns").toggle_current_line_blame(), "Toggle current line blame"),
+			k:map("n", "w", k:require("gitsigns").toggle_current_line_blame(), "Toggle current line blame"),
 		})
 			:buffer(bufnr)
 			:add()

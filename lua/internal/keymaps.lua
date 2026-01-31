@@ -4,12 +4,13 @@ local K = {}
 
 ---@class Keymap
 ---@field spec KeymapSpec
+---@field lazy boolean
 K.Keymap = {}
 K.Keymap.__index = K.Keymap
 
 ---@param spec KeymapSpec
 local function Keymap(spec)
-	return setmetatable({ spec = spec }, K.Keymap)
+	return setmetatable({ spec = spec, lazy = false }, K.Keymap)
 end
 
 ---@param cond boolean|fun():boolean
@@ -36,6 +37,23 @@ end
 ---@return Keymap
 function K.Keymap:buffer(buffer)
 	self.spec.buffer = buffer
+	return self
+end
+
+---@param ft string|string[]
+---@return Keymap
+function K.Keymap:ft(ft)
+	self.lazy = true
+	vim.api.nvim_create_autocmd("BufEnter", {
+		callback = function(args)
+			if type(ft) == "string" then
+				ft = { ft }
+			end
+			if vim.tbl_contains(ft, vim.bo[args.buf].filetype) then
+				self:buffer(args.buf):add()
+			end
+		end,
+	})
 	return self
 end
 
@@ -136,12 +154,16 @@ function K:opts(keymaps)
 	end, keymaps)) })
 end
 
-function K:add(keymap)
+---@param keymap Keymap | Keymap[]
+---@param lazy? boolean Wheter to add lazy keymaps
+function K:add(keymap, lazy)
 	if keymap.__index == K.Keymap then
-		keymap:add()
+		if not keymap.lazy or lazy then
+			keymap:add()
+		end
 	else
 		for _, k in ipairs(keymap) do
-			K:add(k)
+			K:add(k, lazy)
 		end
 	end
 end
@@ -162,11 +184,14 @@ function K:cmd(cmd, ignore_error)
 	end
 end
 
+--- TODO: add a way to be recursive, currently can only do k:require("module").foo(...)
+--- would like to be able to do k:require("module").submodule.func(...)
+
 --- Generates a lazy loader for a module's functions
 --- for example instead of require("module").func(args)
 --- you can do k:lazy("module").func(args)
 --- @param module string
-function K:lazy(module)
+function K:require(module)
 	return setmetatable({}, {
 		__index = function(_, key)
 			return function(...)

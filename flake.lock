@@ -85,6 +85,22 @@
         "type": "github"
       }
     },
+    "hop": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1755878401,
+        "narHash": "sha256-gHRKkqAMrQmpPHEWGETj3KG0NqwCnlTT8z/cNmug/Xc=",
+        "owner": "smoka7",
+        "repo": "hop.nvim",
+        "rev": "707049feaca9ae65abb3696eff9aefc7879e66aa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "smoka7",
+        "repo": "hop.nvim",
+        "type": "github"
+      }
+    },
     "lazydev": {
       "flake": false,
       "locked": {
@@ -104,11 +120,11 @@
     "lspconfig": {
       "flake": false,
       "locked": {
-        "lastModified": 1769722634,
-        "narHash": "sha256-zpBf8EEax+3Cy49ZjO0//pvtGJjnGFIu1AHyl1tL4d4=",
+        "lastModified": 1769817685,
+        "narHash": "sha256-vFbimjYoXkjvzq/QyzwOnIs0Q9KeXOwLiy7InRZdrSw=",
         "owner": "neovim",
         "repo": "nvim-lspconfig",
-        "rev": "79c9a15be5731bc8694840a8fb0c9141c20a80c0",
+        "rev": "3f58aeca0c6ece8a9fb8782ea3fcb6024f285be3",
         "type": "github"
       },
       "original": {
@@ -301,11 +317,11 @@
     "oil-vcs": {
       "flake": false,
       "locked": {
-        "lastModified": 1769821979,
-        "narHash": "sha256-UM8ihEj5KCKSKFrTPZnQAvOmbQDMiA1pR3tBRfKdl2c=",
+        "lastModified": 1769271080,
+        "narHash": "sha256-G0JhXkhmNtkJ80rvhx7cMDAVs6fBmO/BiyOHhZ6bCIw=",
         "owner": "spreadprism",
         "repo": "oil-vcs",
-        "rev": "792ab01c5d137188b5a5bb9bf99a026fa8faa600",
+        "rev": "29f1adfa302806aabad1a0d096a0a58717da5611",
         "type": "github"
       },
       "original": {
@@ -320,6 +336,7 @@
         "gitsigns": "gitsigns",
         "heirline": "heirline",
         "heirline-components": "heirline-components",
+        "hop": "hop",
         "lazydev": "lazydev",
         "lspconfig": "lspconfig",
         "mini_diff": "mini_diff",

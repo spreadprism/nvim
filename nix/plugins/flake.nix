@@ -69,6 +69,10 @@
       url = "github:folke/lazydev.nvim";
       flake = false;
     };
+    hop = {
+      url = "github:smoka7/hop.nvim";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

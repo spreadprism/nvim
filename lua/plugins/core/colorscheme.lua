@@ -14,6 +14,10 @@ require("tokyonight").setup({
 
 		highlights.OilDirHidden = { link = "OilDir" }
 		highlights.OilFileHidden = { link = "OilFile" }
+
+		highlights.HopNextKey = { fg = colors.orange, bold = true, underline = true }
+		highlights.HopNextKey1 = { fg = colors.orange, bold = true, underline = true }
+		highlights.HopNextKey2 = { fg = colors.orange, bold = true }
 	end,
 	-- INFO: grab all installed plugins, filters out `self` then does { plugin = true } for each of them
 	plugins = vim.tbl_deep_extend(
