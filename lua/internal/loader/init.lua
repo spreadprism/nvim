@@ -73,7 +73,7 @@ function M.read_languages()
 	end
 end
 
-function M.load_lsp()
+function M.load_lsp_config()
 	require("internal.loader.lsp").load_lsp()
 end
 

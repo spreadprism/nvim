@@ -16,28 +16,18 @@ lsp("lua_ls"):root_markers({
 		},
 		signatureHelp = { enabled = true },
 		diagnostics = {
-			globals = {
+			globals = vim.list_extend({
 				"nixCats",
-				"lsp",
-				"plugin",
-			},
+				"internal",
+			}, vim.tbl_keys(internal)),
 			disable = { "missing-fields", "different-requires" },
 		},
 		telemetry = { enabled = false },
 	},
 })
 
-local opt_plugins = nixCats.pawsible.allPlugins.opt
-local start_plugins = nixCats.pawsible.allPlugins.start
-
-local all_plugins = vim.list_extend(start_plugins, opt_plugins)
-local names = {}
-for k, _ in pairs(all_plugins) do
-	table.insert(names, k)
-end
-
 plugin("lazydev"):ft("lua"):opts({
-	library = names,
+	library = vim.tbl_values(vim.list_extend(nixCats.pawsible.allPlugins.start, nixCats.pawsible.allPlugins.opt)),
 	integrations = {
 		cmp = false,
 	},

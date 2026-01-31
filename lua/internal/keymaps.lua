@@ -121,13 +121,19 @@ function K:group(name, key, keymaps)
 		end, keymaps)),
 	})
 end
+
+--- creates a which-key opts table from keymaps
+--- allowing the user to apply options to multiple keymaps at once
+--- for example k:opts({...}):buffer(5):add() would add the buffer option to all keymaps in the table
 ---@param keymaps Keymap | Keymap[]
 ---@return Keymap
 function K:opts(keymaps)
 	if keymaps.__index == K.Keymap then
 		keymaps = { keymaps }
 	end
-	return Keymap({ unpack(keymaps) })
+	return Keymap({ unpack(vim.tbl_map(function(map)
+		return map.spec
+	end, keymaps)) })
 end
 
 function K:add(keymap)
@@ -140,6 +146,9 @@ function K:add(keymap)
 	end
 end
 
+--- Generates a command function for use in keymaps
+--- instead of <cmd>SomeCommand<cr>
+--- you can do k:cmd("SomeCommand")
 ---@param cmd string
 ---@param ignore_error? boolean
 function K:cmd(cmd, ignore_error)
@@ -153,6 +162,10 @@ function K:cmd(cmd, ignore_error)
 	end
 end
 
+--- Generates a lazy loader for a module's functions
+--- for example instead of require("module").func(args)
+--- you can do k:lazy("module").func(args)
+--- @param module string
 function K:lazy(module)
 	return setmetatable({}, {
 		__index = function(_, key)

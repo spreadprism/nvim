@@ -301,11 +301,11 @@
     "oil-vcs": {
       "flake": false,
       "locked": {
-        "lastModified": 1769271080,
-        "narHash": "sha256-G0JhXkhmNtkJ80rvhx7cMDAVs6fBmO/BiyOHhZ6bCIw=",
+        "lastModified": 1769821979,
+        "narHash": "sha256-UM8ihEj5KCKSKFrTPZnQAvOmbQDMiA1pR3tBRfKdl2c=",
         "owner": "spreadprism",
         "repo": "oil-vcs",
-        "rev": "29f1adfa302806aabad1a0d096a0a58717da5611",
+        "rev": "792ab01c5d137188b5a5bb9bf99a026fa8faa600",
         "type": "github"
       },
       "original": {

@@ -1,5 +1,14 @@
 local M = {}
 
+local on_attach_fn = {}
+
+function M.on_attach(client, buf)
+	local fn = on_attach_fn[client.name]
+	if fn ~= nil then
+		fn(client, buf)
+	end
+end
+
 ---@class Lsp
 ---@field name string
 ---@field opts vim.lsp.Config
@@ -34,6 +43,11 @@ end
 function Lsp:for_cat(cat)
 	self.cat = cat
 	return self
+end
+
+---@param on_attach fun(client: vim.lsp.Client, buf: number)
+function Lsp:on_attach(on_attach)
+	on_attach_fn[self.name] = on_attach
 end
 
 function Lsp:configure()
