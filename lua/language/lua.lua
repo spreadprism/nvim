@@ -26,9 +26,19 @@ lsp("lua_ls"):root_markers({
 	},
 })
 
-plugin("lazydev"):ft("lua"):opts({
-	library = vim.tbl_values(vim.list_extend(nixCats.pawsible.allPlugins.start, nixCats.pawsible.allPlugins.opt)),
-	integrations = {
-		cmp = false,
-	},
-})
+plugin("lazydev"):ft("lua"):opts(function()
+	local libs = {}
+	local plugins = nixCats.pawsible.allPlugins
+	for _, v in pairs(plugins.start) do
+		table.insert(libs, v)
+	end
+	for _, v in pairs(plugins.opt) do
+		table.insert(libs, v)
+	end
+	return {
+		library = libs,
+		integrations = {
+			cmp = false,
+		},
+	}
+end)

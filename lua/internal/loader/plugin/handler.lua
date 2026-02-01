@@ -53,7 +53,15 @@ M.keymaps = {
 		if plugin.keymaps == nil then
 			return plugin
 		end
-		require("internal.keymaps"):add(plugin.keymaps)
+		vim.api.nvim_create_autocmd("User", {
+			pattern = {
+				"DeferredUIEnter",
+			},
+			callback = function(_)
+				require("internal.keymaps"):add(plugin.keymaps)
+			end,
+		})
+
 		return plugin
 	end,
 }

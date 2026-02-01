@@ -14,12 +14,12 @@
       plenary-nvim
     ]
     ++ (with nvim_pkgs; [
-      which-key
-      lspconfig
-    ]);
+      ]);
 
   optionalPlugins = with nvim_pkgs;
     [
+      which-key
+      lspconfig
       oil
       oil-vcs
       tokyonight
