@@ -1,3 +1,5 @@
+-- TODO: convert to plugin(...) form
+-- BUG: can't convert for now, something is calling `require`
 require("which-key").setup({
 	win = {
 		border = "rounded",
