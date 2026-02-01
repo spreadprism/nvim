@@ -7,18 +7,16 @@ M.hop_char_line = function(after, offset)
 		after = true
 	end
 	offset = offset or 0
-	return function()
-		local directions = require("hop.hint").HintDirection
-		local direction = directions.BEFORE_CURSOR
-		if after then
-			direction = directions.AFTER_CURSOR
-		end
-		require("hop").hint_char1({
-			direction = direction,
-			current_line_only = true,
-			hint_offset = offset,
-		})
+	local directions = require("hop.hint").HintDirection
+	local direction = directions.BEFORE_CURSOR
+	if after then
+		direction = directions.AFTER_CURSOR
 	end
+	require("hop").hint_char1({
+		direction = direction,
+		current_line_only = true,
+		hint_offset = offset,
+	})
 end
 
 return M
