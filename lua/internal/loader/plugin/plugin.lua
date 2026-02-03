@@ -126,10 +126,14 @@ function M.Plugin:ft(ft)
 end
 
 ---plugin keybindings.
----@param mappings Keymap | Keymap[]
+---@param mappings Keymap | Keymap[] | fun(): Keymap | fun(): Keymap[]
 ---@return PluginSpecFactory
 function M.Plugin:keymaps(mappings)
 	self._keymaps = self._keymaps or {}
+
+	if type(mappings) == "function" then
+		mappings = mappings()
+	end
 
 	if mappings.__index == nil then
 		for _, map in ipairs(mappings) do

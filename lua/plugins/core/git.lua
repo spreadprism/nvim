@@ -29,7 +29,7 @@ plugin("neogit")
 
 -- TODO: hunk management (stage/unstage, next/prev hunk)
 plugin("mini_diff"):event("BufRead"):on_require("mini.diff")
-plugin("gitsigns"):event("BufRead"):opts({
+plugin("gitsigns"):lazy(false):opts({
 	current_line_blame_opts = {
 		delay = 10,
 	},

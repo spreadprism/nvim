@@ -1,6 +1,9 @@
 return {
 	init = function(self)
-		self.branch = vim.b.gitsigns_head or require("neogit.lib.git.branch").current()
+		self.branch = vim.b.gitsigns_head or vim.g.gitsigns_head
+	end,
+	condition = function()
+		return vim.b.gitsigns_head or vim.g.gitsigns_head
 	end,
 	hl = function(self)
 		return { fg = self.mode_color() }
@@ -9,6 +12,7 @@ return {
 		provider = function(self)
 			return "  " .. self.branch
 		end,
+		-- update = { "BufEnter", "TextChanged", "TextChangedI" },
 		hl = { bold = true },
 	},
 	{
