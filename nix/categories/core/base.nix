@@ -24,13 +24,16 @@
       tmux-navigation
       neogit
       gitsigns
-      mini_diff
       hop
       blink-compat
       blink-cmp-git
       blink-cmp-conventional-commits
       tabout
       nvim-surround
+      mini-ai
+      mini-move
+      mini-diff
+      mini-git
     ]
     ++ (with vim_pkgs; [
       pkgs.unstable.vimPlugins.blink-cmp

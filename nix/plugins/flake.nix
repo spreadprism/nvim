@@ -29,10 +29,6 @@
       url = "github:spreadprism/oil-vcs";
       flake = false;
     };
-    git-oil = {
-      url = "github:spreadprism/git-oil.nvim";
-      flake = false;
-    };
     nvim-web-devicons = {
       url = "github:nvim-tree/nvim-web-devicons";
       flake = false;
@@ -47,10 +43,6 @@
     };
     gitsigns = {
       url = "github:lewis6991/gitsigns.nvim";
-      flake = false;
-    };
-    mini_diff = {
-      url = "github:echasnovski/mini.diff";
       flake = false;
     };
     nui = {
@@ -91,6 +83,22 @@
     };
     nvim-surround = {
       url = "github:kylechui/nvim-surround";
+      flake = false;
+    };
+    mini-ai = {
+      url = "github:nvim-mini/mini.ai";
+      flake = false;
+    };
+    mini-move = {
+      url = "github:nvim-mini/mini.move";
+      flake = false;
+    };
+    mini-git = {
+      url = "github:nvim-mini/mini-git";
+      flake = false;
+    };
+    mini-diff = {
+      url = "github:echasnovski/mini.diff";
       flake = false;
     };
   };

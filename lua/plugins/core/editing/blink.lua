@@ -4,6 +4,10 @@ plugin("blink.indent")
 		highlights.BlinkIndentScope = { fg = colors.comment }
 	end)
 	:opts({
+		mappings = {
+			object_scope = "",
+			object_scope_with_border = "",
+		},
 		static = {
 			enabled = false,
 		},
@@ -68,7 +72,6 @@ plugin("blink.cmp")
 				end,
 			},
 		}
-		local default = { "lsp", "path", "buffer" }
 		return {
 			-- TODO: once we add snippets
 			-- snippets = { preset = "luasnip" },

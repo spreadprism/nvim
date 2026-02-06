@@ -1,5 +1,7 @@
 -- TODO: https://github.com/esmuellert/codediff.nvim
 
+plugin("mini-git"):event("BufEnter"):on_require("mini.git")
+plugin("mini-diff"):event("BufEnter"):on_require("mini.diff")
 plugin("neogit")
 	:opts({
 		auto_refresh = true,
@@ -27,8 +29,6 @@ plugin("neogit")
 		}),
 	})
 
--- TODO: hunk management (stage/unstage, next/prev hunk)
-plugin("mini_diff"):event("BufRead"):on_require("mini.diff")
 plugin("gitsigns"):lazy(false):opts({
 	current_line_blame_opts = {
 		delay = 10,

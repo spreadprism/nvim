@@ -69,30 +69,14 @@
         "type": "github"
       }
     },
-    "git-oil": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1768673690,
-        "narHash": "sha256-pMK1yf+gE/AplB+kyn/cVaMTYEab52vtOgPeKi0GJAo=",
-        "owner": "spreadprism",
-        "repo": "git-oil.nvim",
-        "rev": "81d9c4e93a0e28eeab6ae29a3130615fd2944a73",
-        "type": "github"
-      },
-      "original": {
-        "owner": "spreadprism",
-        "repo": "git-oil.nvim",
-        "type": "github"
-      }
-    },
     "gitsigns": {
       "flake": false,
       "locked": {
-        "lastModified": 1768948049,
-        "narHash": "sha256-J9BvYVydeeoBj5Op+jGcI+i3IppdpoZ9jHbod0X1JFo=",
+        "lastModified": 1770198234,
+        "narHash": "sha256-O19lGIz+KSEpiKDRercANcqpJgxzfQWCNsyU9his5qg=",
         "owner": "lewis6991",
         "repo": "gitsigns.nvim",
-        "rev": "abf82a65f185bd54adc0679f74b7d6e1ada690c9",
+        "rev": "1ce96a464fdbc24208e24c117e2021794259005d",
         "type": "github"
       },
       "original": {
@@ -181,7 +165,23 @@
         "type": "github"
       }
     },
-    "mini_diff": {
+    "mini-ai": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768672839,
+        "narHash": "sha256-Ehib6aeth855q4DKgdVxDXZ+Cgp0qFBa5Nr7E0LogcU=",
+        "owner": "nvim-mini",
+        "repo": "mini.ai",
+        "rev": "9eae720f2b20f6ad28cbfa0ddc524e10dc2c3201",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-mini",
+        "repo": "mini.ai",
+        "type": "github"
+      }
+    },
+    "mini-diff": {
       "flake": false,
       "locked": {
         "lastModified": 1767024095,
@@ -194,6 +194,38 @@
       "original": {
         "owner": "echasnovski",
         "repo": "mini.diff",
+        "type": "github"
+      }
+    },
+    "mini-git": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767543044,
+        "narHash": "sha256-+7F2aq0GayK0Q+UstjmQ7QYpbu+FElAfolhqFVGgUzM=",
+        "owner": "nvim-mini",
+        "repo": "mini-git",
+        "rev": "df3881fec1d2fd7f8b9334821861de511e71f69e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-mini",
+        "repo": "mini-git",
+        "type": "github"
+      }
+    },
+    "mini-move": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1762188608,
+        "narHash": "sha256-ZW/ZcsPoOwe8l7VQIR7I43MT55r34X1SJHpcYl1TqUI=",
+        "owner": "nvim-mini",
+        "repo": "mini.move",
+        "rev": "4d214202d71e0a4066b6288176bbe88f268f9777",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-mini",
+        "repo": "mini.move",
         "type": "github"
       }
     },
@@ -349,11 +381,11 @@
     "nvim-web-devicons": {
       "flake": false,
       "locked": {
-        "lastModified": 1768089403,
-        "narHash": "sha256-x1ujwUXnRolP9SRUD7/Pb4/AZu+3YpC6CfGuq3Bn6Ew=",
+        "lastModified": 1770191286,
+        "narHash": "sha256-jXWBPcfLwSkWQ/eRbxVDWC7kFOODSsCRmzC3rHKQLhQ=",
         "owner": "nvim-tree",
         "repo": "nvim-web-devicons",
-        "rev": "803353450c374192393f5387b6a0176d0972b848",
+        "rev": "746ffbb17975ebd6c40142362eee1b0249969c5c",
         "type": "github"
       },
       "original": {
@@ -381,11 +413,11 @@
     "oil-vcs": {
       "flake": false,
       "locked": {
-        "lastModified": 1769271080,
-        "narHash": "sha256-G0JhXkhmNtkJ80rvhx7cMDAVs6fBmO/BiyOHhZ6bCIw=",
+        "lastModified": 1769821979,
+        "narHash": "sha256-UM8ihEj5KCKSKFrTPZnQAvOmbQDMiA1pR3tBRfKdl2c=",
         "owner": "spreadprism",
         "repo": "oil-vcs",
-        "rev": "29f1adfa302806aabad1a0d096a0a58717da5611",
+        "rev": "792ab01c5d137188b5a5bb9bf99a026fa8faa600",
         "type": "github"
       },
       "original": {
@@ -399,14 +431,16 @@
         "blink-cmp-conventional-commits": "blink-cmp-conventional-commits",
         "blink-cmp-git": "blink-cmp-git",
         "blink-compat": "blink-compat",
-        "git-oil": "git-oil",
         "gitsigns": "gitsigns",
         "heirline": "heirline",
         "heirline-components": "heirline-components",
         "hop": "hop",
         "lazydev": "lazydev",
         "lspconfig": "lspconfig",
-        "mini_diff": "mini_diff",
+        "mini-ai": "mini-ai",
+        "mini-diff": "mini-diff",
+        "mini-git": "mini-git",
+        "mini-move": "mini-move",
         "neogit": "neogit",
         "nixpkgs": [
           "nixpkgs-unstable"
@@ -477,11 +511,11 @@
     "tmux-navigation": {
       "flake": false,
       "locked": {
-        "lastModified": 1752544267,
-        "narHash": "sha256-IEPnr/GdsAnHzdTjFnXCuMyoNLm3/Jz4cBAM0AJBrj8=",
+        "lastModified": 1769370258,
+        "narHash": "sha256-efqiRffnidYx+qjgsHyWshCFWgZp/ZrHl+Clt04pfpM=",
         "owner": "christoomey",
         "repo": "vim-tmux-navigator",
-        "rev": "c45243dc1f32ac6bcf6068e5300f3b2b237e576a",
+        "rev": "e41c431a0c7b7388ae7ba341f01a0d217eb3a432",
         "type": "github"
       },
       "original": {
