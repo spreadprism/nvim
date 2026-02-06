@@ -1,3 +1,15 @@
+plugin("tabout"):event({ "InsertEnter", "CmdlineEnter" }):opts({
+	act_as_shift_tab = true,
+	tabouts = {
+		{ open = "'", close = "'" },
+		{ open = '"', close = '"' },
+		{ open = "`", close = "`" },
+		{ open = "(", close = ")" },
+		{ open = "[", close = "]" },
+		{ open = "{", close = "}" },
+		{ open = "<", close = ">" },
+	},
+})
 local BEFORE, AFTER = 1, 2
 plugin("hop")
 	:event("DeferredUIEnter")

@@ -73,6 +73,26 @@
       url = "github:smoka7/hop.nvim";
       flake = false;
     };
+    blink-compat = {
+      url = "github:saghen/blink.compat";
+      flake = false;
+    };
+    blink-cmp-git = {
+      url = "github:Kaiser-Yang/blink-cmp-git";
+      flake = false;
+    };
+    blink-cmp-conventional-commits = {
+      url = "github:disrupted/blink-cmp-conventional-commits";
+      flake = false;
+    };
+    tabout = {
+      url = "github:abecodes/tabout.nvim";
+      flake = false;
+    };
+    nvim-surround = {
+      url = "github:kylechui/nvim-surround";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

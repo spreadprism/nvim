@@ -1,3 +1,185 @@
--- TODO: blink.cmp
--- TODO: blink.indent
--- TODO: blink.autopair
+plugin("blink.indent")
+	:event("BufEnter")
+	:on_highlights(function(highlights, colors)
+		highlights.BlinkIndentScope = { fg = colors.comment }
+	end)
+	:opts({
+		static = {
+			enabled = false,
+		},
+		scope = {
+			char = "¦",
+			highlights = { "BlinkIndentScope" },
+		},
+	})
+plugin("blink.pairs"):event("DeferredUIEnter"):opts({
+	highlights = {
+		enabled = false,
+	},
+})
+plugin("blink.cmp")
+	:event({ "InsertEnter", "CmdlineEnter" })
+	:dep_on({
+		plugin("blink-compat"):on_require("blink.compat"),
+		plugin("blink-cmp-git"):opts(false),
+		plugin("blink-cmp-conventional-commits"):opts(false),
+	})
+	:opts(function()
+		local cmp_kinds = {
+			Text = "",
+			Method = "",
+			Function = "",
+			Constructor = "",
+			Field = "",
+			Variable = "",
+			Class = "",
+			Interface = "",
+			Module = "",
+			Property = "",
+			Unit = "",
+			Value = "",
+			Enum = "",
+			Keyword = "",
+			Snippet = "",
+			Color = "",
+			File = "",
+			Reference = "",
+			Folder = "",
+			EnumMember = "",
+			Constant = "",
+			Struct = "",
+			Event = "",
+			Operator = "",
+			TypeParameter = "",
+			Copilot = "",
+		}
+		local base_keymap = {
+			["<M-a>"] = { "select_and_accept", "fallback" },
+			["<M-j>"] = { "show", "select_next", "fallback" },
+			["<M-k>"] = { "show", "select_prev" },
+			["<M-x>"] = { "cancel" },
+			["<M-h>"] = {
+				function(cmp)
+					if cmp.is_visible() then
+						cmp.hide()
+					else
+						cmp.show()
+					end
+				end,
+			},
+		}
+		local default = { "lsp", "path", "buffer" }
+		return {
+			-- TODO: once we add snippets
+			-- snippets = { preset = "luasnip" },
+			sources = {
+				default = { "lsp", "path", "buffer", "git", "conventional_commits" },
+				providers = {
+					lazydev = {
+						name = "LazyDev",
+						enabled = function()
+							return vim.bo.filetype == "lua"
+						end,
+						module = "lazydev.integrations.blink",
+						score_offset = 100,
+					},
+					git = {
+						name = "Git",
+						module = "blink-cmp-git",
+						enabled = function()
+							vim.tbl_contains({ "gitcommit", "markdown" }, vim.bo.filetype)
+						end,
+					},
+					conventional_commits = {
+						name = "Conventional Commits",
+						module = "blink-cmp-conventional-commits",
+						enabled = function()
+							return vim.bo.filetype == "gitcommit"
+						end,
+					},
+				},
+			},
+			keymap = vim.tbl_deep_extend("keep", {
+				preset = "none",
+				["<M-d>"] = { "show_documentation", "hide_documentation" },
+				["<M-s>"] = { "show_signature", "hide_signature" },
+				["<M-l>"] = {
+					function(cmp)
+						if cmp.is_visible() then
+							cmp.hide()
+						end
+						require("copilot.suggestion").next()
+					end,
+				},
+				["<M-n>"] = { "snippet_forward", "fallback" },
+				["<M-p>"] = { "snippet_backward" },
+			}, base_keymap),
+			signature = { enabled = true, window = {
+				border = "rounded",
+				show_documentation = true,
+			} },
+			completion = {
+				list = {
+					selection = { preselect = true, auto_insert = false },
+				},
+				accept = {
+					auto_brackets = {
+						enabled = true,
+					},
+				},
+				documentation = {
+					auto_show = true,
+					auto_show_delay_ms = 100,
+					window = {
+						border = "rounded",
+					},
+				},
+				ghost_text = {
+					enabled = true,
+				},
+				menu = {
+					border = "rounded",
+					auto_show = true,
+					scrollbar = false,
+					draw = {
+						columns = {
+							{ "kind_icon", "label", gap = 2 },
+							{ "kind" },
+						},
+						components = {
+							kind_icon = {
+								text = function(ctx)
+									return (cmp_kinds[ctx.kind] or ctx.kind_icon) .. ctx.icon_gap
+								end,
+							},
+							kind = {
+								text = function(ctx)
+									return "(" .. ctx.kind .. ")"
+								end,
+								highlight = function(_)
+									return "Comment"
+								end,
+							},
+						},
+					},
+				},
+			},
+			cmdline = {
+				keymap = vim.tbl_deep_extend("force", base_keymap, {
+					["<M-h>"] = {
+						function(cmp)
+							if cmp.is_ghost_text_visible() then
+								cmp.show()
+							else
+								if cmp.is_visible() then
+									cmp.hide()
+								else
+									cmp.show()
+								end
+							end
+						end,
+					},
+				}),
+			},
+		}
+	end)
