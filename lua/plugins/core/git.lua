@@ -27,6 +27,7 @@ plugin("neogit")
 		diff_viewer = "codediff",
 		graph_style = "unicode",
 	})
+	:cmd("Neogit")
 	:keymaps({
 		k:group("git", "<leader>g", {
 			k:map("n", "b", k:cmd("Neogit branch"), "branch"),
