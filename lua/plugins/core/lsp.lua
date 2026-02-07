@@ -13,6 +13,13 @@ plugin("lspconfig")
 				if client ~= nil then
 					require("internal.loader.lsp").on_attach(client, args.buf)
 					k:opts({
+						k:map("n", "<M-s>", k:require("snacks.picker").lsp_symbols(), "lsp symbols"),
+						k:map(
+							"n",
+							"<M-S>",
+							k:require("snacks.picker").lsp_workspace_symbols(),
+							"workspace lsp symbols"
+						),
 						k:map("nv", "gd", k:require("snacks.picker").lsp_definitions(), "go to definition"),
 						k:map("nv", "gt", k:require("snacks.picker").lsp_type_definitions(), "go to definition"),
 						k:map("nv", "gr", k:require("snacks.picker").lsp_references(), "go to references"),

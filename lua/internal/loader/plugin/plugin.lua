@@ -147,22 +147,6 @@ function M.Plugin:keymaps(mappings)
 	return self
 end
 
----@param mode string | string[]
----@param key string
----@param action string | function
----@param desc string
----@param opts? kmapOpts
-function M.Plugin:kmap(mode, key, action, desc, opts)
-	return self:keymaps(k:map(mode, key, action, desc))
-end
-
----@param key string
----@param name string
----@param mapping wk.Spec[]
-function M.Plugin:kgroup(name, key, mapping)
-	return self:keymaps(kgroup(name, key, mapping))
-end
-
 ---Lazy-load on colorscheme.
 ---@param colorscheme string | string[]
 ---@return PluginSpecFactory
