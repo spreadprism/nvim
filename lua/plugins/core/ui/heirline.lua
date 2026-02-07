@@ -1,6 +1,9 @@
 plugin("heirline")
 	:event("UIEnter")
-	:dep_on(plugin("heirline-components"))
+	:dep_on({
+		plugin("heirline-components"),
+		"gitsigns",
+	})
 	:before(function()
 		vim.o.laststatus = 3
 	end)

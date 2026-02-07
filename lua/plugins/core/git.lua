@@ -1,20 +1,37 @@
--- TODO: https://github.com/esmuellert/codediff.nvim
+plugin("mini-git"):on_require("mini.git"):cmd("Git")
 
-plugin("mini-git"):event("DeferredUIEnter"):on_require("mini.git")
+local codediff = plugin("codediff.nvim"):on_require("codediff"):cmd("CodeDiff"):opts({
+	explorer = {
+		initial_focus = "modified",
+	},
+	keymaps = {
+		view = {
+			quit = "<C-q>",
+			prev_file = "<Up>",
+			next_file = "<Down>",
+			prev_hunk = "<Left>",
+			next_hunk = "<Right>",
+		},
+	},
+})
+
 plugin("neogit")
+	:dep_on(codediff)
 	:opts({
 		auto_refresh = true,
 		disable_hint = true,
 		integrations = {
 			snacks = true,
+			codediff = true,
 		},
+		diff_viewer = "codediff",
 		graph_style = "unicode",
 	})
 	:keymaps({
 		k:group("git", "<leader>g", {
+			k:map("n", "l", k:require("snacks.picker").git_log(), "git logs"),
 			k:map("n", "g", function()
-				-- TODO: make sure the tab is opened in last, currently 1, 2 would create 1, (neogit), 3
-				-- I want 1, 2, (neogit)
+				vim.cmd("tablast")
 				local ft = vim.bo.filetype
 
 				local cwd = "%:p:h"
@@ -28,13 +45,7 @@ plugin("neogit")
 		}),
 	})
 
-plugin("blame")
-	:event("BufEnter")
-	:opts({
-		virtual_style = "float",
-	})
-	:keymaps(k:map("n", "<M-B>", k:require("internal.plugins.blame").buffer_blame(), "Toggle buffer blame"))
-plugin("gitsigns"):lazy(false):opts({
+plugin("gitsigns"):event("BufEnter"):opts({
 	signcolumn = true,
 	numhl = true,
 	current_line_blame_opts = {
@@ -53,3 +64,11 @@ plugin("gitsigns"):lazy(false):opts({
 			:add()
 	end,
 })
+
+plugin("blame")
+	:event("BufEnter")
+	:opts({
+		virtual_style = "float",
+		focus_blame = false,
+	})
+	:keymaps(k:map("n", "<M-B>", k:require("internal.plugins.blame").buffer_blame(), "Toggle buffer blame"))

@@ -14,6 +14,11 @@ lsp("lua_ls"):root_markers({
 		formatters = {
 			ignoreComments = true,
 		},
+		workspace = {
+			library = {
+				vim.env.VIMRUNTIME,
+			},
+		},
 		signatureHelp = { enabled = true },
 		diagnostics = {
 			globals = vim.list_extend({

@@ -22,8 +22,6 @@
       tokyonight
       snacks
       tmux-navigation
-      neogit
-      gitsigns
       hop
       blink-compat
       blink-cmp-git
@@ -32,8 +30,6 @@
       nvim-surround
       mini-ai
       mini-move
-      mini-git
-      blame
     ]
     ++ (with vim_pkgs; [
       pkgs.unstable.vimPlugins.blink-cmp

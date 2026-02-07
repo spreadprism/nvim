@@ -1,0 +1,16 @@
+{
+  pkgs,
+  nvim_pkgs,
+  ...
+}: {
+  startupPlugins = with nvim_pkgs; [
+    nui
+  ];
+  optionalPlugins = with nvim_pkgs; [
+    neogit
+    gitsigns
+    mini-git
+    blame
+    pkgs.unstable.vimPlugins.codediff-nvim
+  ];
+}

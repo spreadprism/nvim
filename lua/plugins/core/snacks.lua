@@ -14,6 +14,11 @@ plugin("snacks")
 			matcher = {
 				frecency = true,
 			},
+			actions = {
+				git_log = function(picker, item)
+					vim.print(item)
+				end,
+			},
 		},
 	})
 	:allow_again(vim.env.PROF)
