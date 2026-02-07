@@ -9,7 +9,6 @@
   optionalPlugins = with nvim_pkgs; [
     neogit
     gitsigns
-    mini-git
     blame
     pkgs.unstable.vimPlugins.codediff-nvim
   ];

@@ -1,5 +1,3 @@
-plugin("mini-git"):on_require("mini.git"):cmd("Git")
-
 local codediff = plugin("codediff.nvim"):on_require("codediff"):cmd("CodeDiff"):opts({
 	explorer = {
 		initial_focus = "modified",

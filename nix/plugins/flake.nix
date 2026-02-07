@@ -97,10 +97,6 @@
       url = "github:nvim-mini/mini.move";
       flake = false;
     };
-    mini-git = {
-      url = "github:nvim-mini/mini-git";
-      flake = false;
-    };
     blame = {
       url = "github:FabijanZulj/blame.nvim";
       flake = false;
