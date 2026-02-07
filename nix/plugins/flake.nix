@@ -97,8 +97,8 @@
       url = "github:nvim-mini/mini-git";
       flake = false;
     };
-    mini-diff = {
-      url = "github:echasnovski/mini.diff";
+    blame = {
+      url = "github:FabijanZulj/blame.nvim";
       flake = false;
     };
   };

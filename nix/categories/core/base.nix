@@ -32,8 +32,8 @@
       nvim-surround
       mini-ai
       mini-move
-      mini-diff
       mini-git
+      blame
     ]
     ++ (with vim_pkgs; [
       pkgs.unstable.vimPlugins.blink-cmp
