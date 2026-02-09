@@ -1,3 +1,5 @@
+-- TODO: add ast_grep
+
 local function get_client()
 	local clients = vim.lsp.get_clients({ bufnr = 0 })
 
