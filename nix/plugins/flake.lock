@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "blame": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1761041286,
+        "narHash": "sha256-CY768BvqU8zJ2qZKVC9s1lLctBzam1GeZD7UnD7nBBc=",
+        "owner": "FabijanZulj",
+        "repo": "blame.nvim",
+        "rev": "f3f6153ea94e1120f2776f22bbbd63c4aeebaf32",
+        "type": "github"
+      },
+      "original": {
+        "owner": "FabijanZulj",
+        "repo": "blame.nvim",
+        "type": "github"
+      }
+    },
     "blink-cmp-conventional-commits": {
       "flake": false,
       "locked": {
@@ -45,22 +61,6 @@
       "original": {
         "owner": "saghen",
         "repo": "blink.compat",
-        "type": "github"
-      }
-    },
-    "git-oil": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1768673690,
-        "narHash": "sha256-pMK1yf+gE/AplB+kyn/cVaMTYEab52vtOgPeKi0GJAo=",
-        "owner": "spreadprism",
-        "repo": "git-oil.nvim",
-        "rev": "81d9c4e93a0e28eeab6ae29a3130615fd2944a73",
-        "type": "github"
-      },
-      "original": {
-        "owner": "spreadprism",
-        "repo": "git-oil.nvim",
         "type": "github"
       }
     },
@@ -165,13 +165,13 @@
       "locked": {
         "lastModified": 1768672839,
         "narHash": "sha256-Ehib6aeth855q4DKgdVxDXZ+Cgp0qFBa5Nr7E0LogcU=",
-        "owner": "echasnovski",
+        "owner": "nvim-mini",
         "repo": "mini.ai",
         "rev": "9eae720f2b20f6ad28cbfa0ddc524e10dc2c3201",
         "type": "github"
       },
       "original": {
-        "owner": "echasnovski",
+        "owner": "nvim-mini",
         "repo": "mini.ai",
         "type": "github"
       }
@@ -181,45 +181,30 @@
       "locked": {
         "lastModified": 1762188608,
         "narHash": "sha256-ZW/ZcsPoOwe8l7VQIR7I43MT55r34X1SJHpcYl1TqUI=",
-        "owner": "echasnovski",
+        "owner": "nvim-mini",
         "repo": "mini.move",
         "rev": "4d214202d71e0a4066b6288176bbe88f268f9777",
         "type": "github"
       },
       "original": {
-        "owner": "echasnovski",
+        "owner": "nvim-mini",
         "repo": "mini.move",
-        "type": "github"
-      }
-    },
-    "mini_diff": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1767024095,
-        "narHash": "sha256-Sfc6yat/L0C+vGcavQ9gbL8/3TpWif/f++OtEjBXcuE=",
-        "owner": "echasnovski",
-        "repo": "mini.diff",
-        "rev": "6010e588e9ed14724880f244d7fa3df8f0be3f46",
-        "type": "github"
-      },
-      "original": {
-        "owner": "echasnovski",
-        "repo": "mini.diff",
         "type": "github"
       }
     },
     "neogit": {
       "flake": false,
       "locked": {
-        "lastModified": 1769255787,
-        "narHash": "sha256-tvIJEHv/R8I1W3FBAwZHmn92JgiibqQtR75V9wQFSsE=",
-        "owner": "NeogitOrg",
+        "lastModified": 1767951279,
+        "narHash": "sha256-umqGyXNqS7qDwl8qZrbv+pNMZhO9sI/0uWxteVBgtNo=",
+        "owner": "sotte",
         "repo": "neogit",
-        "rev": "73870229977fdd8747025820e15e98cfde787b9c",
+        "rev": "f6664d4bc73bec65c0ec0df49f1873061dff08b0",
         "type": "github"
       },
       "original": {
-        "owner": "NeogitOrg",
+        "owner": "sotte",
+        "ref": "support-vscode-diff",
         "repo": "neogit",
         "type": "github"
       }
@@ -286,6 +271,22 @@
         "type": "github"
       }
     },
+    "nvim-treesitter-endwise": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767007663,
+        "narHash": "sha256-5l2XF8/sk94IWAauP1VDh4ylLcR5gXnoWCT01TjmHBc=",
+        "owner": "RRethy",
+        "repo": "nvim-treesitter-endwise",
+        "rev": "8fe8a95630f4f2c72a87ba1927af649e0bfaa244",
+        "type": "github"
+      },
+      "original": {
+        "owner": "RRethy",
+        "repo": "nvim-treesitter-endwise",
+        "type": "github"
+      }
+    },
     "nvim-web-devicons": {
       "flake": false,
       "locked": {
@@ -336,10 +337,10 @@
     },
     "root": {
       "inputs": {
+        "blame": "blame",
         "blink-cmp-conventional-commits": "blink-cmp-conventional-commits",
         "blink-cmp-git": "blink-cmp-git",
         "blink-compat": "blink-compat",
-        "git-oil": "git-oil",
         "gitsigns": "gitsigns",
         "heirline": "heirline",
         "heirline-components": "heirline-components",
@@ -348,12 +349,12 @@
         "lspconfig": "lspconfig",
         "mini-ai": "mini-ai",
         "mini-move": "mini-move",
-        "mini_diff": "mini_diff",
         "neogit": "neogit",
         "nixpkgs": "nixpkgs",
         "noice": "noice",
         "nui": "nui",
         "nvim-surround": "nvim-surround",
+        "nvim-treesitter-endwise": "nvim-treesitter-endwise",
         "nvim-web-devicons": "nvim-web-devicons",
         "oil": "oil",
         "oil-vcs": "oil-vcs",

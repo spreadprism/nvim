@@ -12,7 +12,6 @@
       },
       "original": {
         "owner": "FabijanZulj",
-
         "repo": "blame.nvim",
         "type": "github"
       }
@@ -198,22 +197,6 @@
         "type": "github"
       }
     },
-    "mini-git": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1767543044,
-        "narHash": "sha256-+7F2aq0GayK0Q+UstjmQ7QYpbu+FElAfolhqFVGgUzM=",
-        "owner": "nvim-mini",
-        "repo": "mini-git",
-        "rev": "df3881fec1d2fd7f8b9334821861de511e71f69e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nvim-mini",
-        "repo": "mini-git",
-        "type": "github"
-      }
-    },
     "mini-move": {
       "flake": false,
       "locked": {
@@ -380,6 +363,38 @@
         "type": "github"
       }
     },
+    "nvim-treesitter-endwise": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767007663,
+        "narHash": "sha256-5l2XF8/sk94IWAauP1VDh4ylLcR5gXnoWCT01TjmHBc=",
+        "owner": "RRethy",
+        "repo": "nvim-treesitter-endwise",
+        "rev": "8fe8a95630f4f2c72a87ba1927af649e0bfaa244",
+        "type": "github"
+      },
+      "original": {
+        "owner": "RRethy",
+        "repo": "nvim-treesitter-endwise",
+        "type": "github"
+      }
+    },
+    "nvim-treesitter-textobjects": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1769600306,
+        "narHash": "sha256-J3D+nbalJqZ4aeFBD7veW6TuI0BEU2jbx5pMEew4dkA=",
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter-textobjects",
+        "rev": "a0e182ae21fda68c59d1f36c9ed45600aef50311",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter-textobjects",
+        "type": "github"
+      }
+    },
     "nvim-web-devicons": {
       "flake": false,
       "locked": {
@@ -441,7 +456,6 @@
         "lazydev": "lazydev",
         "lspconfig": "lspconfig",
         "mini-ai": "mini-ai",
-        "mini-git": "mini-git",
         "mini-move": "mini-move",
         "neogit": "neogit",
         "nixpkgs": [
@@ -450,6 +464,8 @@
         "noice": "noice",
         "nui": "nui",
         "nvim-surround": "nvim-surround",
+        "nvim-treesitter-endwise": "nvim-treesitter-endwise",
+        "nvim-treesitter-textobjects": "nvim-treesitter-textobjects",
         "nvim-web-devicons": "nvim-web-devicons",
         "oil": "oil",
         "oil-vcs": "oil-vcs",

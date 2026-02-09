@@ -30,6 +30,8 @@
       nvim-surround
       mini-ai
       mini-move
+      nvim-treesitter-endwise
+      nvim-treesitter-textobjects
     ]
     ++ (with vim_pkgs; [
       pkgs.unstable.vimPlugins.blink-cmp

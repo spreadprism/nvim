@@ -101,6 +101,14 @@
       url = "github:FabijanZulj/blame.nvim";
       flake = false;
     };
+    nvim-treesitter-endwise = {
+      url = "github:RRethy/nvim-treesitter-endwise";
+      flake = false;
+    };
+    nvim-treesitter-textobjects = {
+      url = "github:nvim-treesitter/nvim-treesitter-textobjects";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;
