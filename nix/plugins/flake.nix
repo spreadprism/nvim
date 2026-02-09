@@ -137,6 +137,10 @@
       url = "github:petertriho/nvim-scrollbar";
       flake = false;
     };
+    undotree = {
+      url = "github:jiaoshijie/undotree";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

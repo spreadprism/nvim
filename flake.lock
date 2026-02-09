@@ -528,6 +528,7 @@
         "tokyonight": "tokyonight",
         "treesitter-context": "treesitter-context",
         "treesj": "treesj",
+        "undotree": "undotree",
         "which-key": "which-key"
       },
       "locked": {
@@ -674,6 +675,22 @@
       "original": {
         "owner": "Wansmer",
         "repo": "treesj",
+        "type": "github"
+      }
+    },
+    "undotree": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1769420158,
+        "narHash": "sha256-Bd/T38JTiEvApxCT+gY5npjxJk3+J9KBsZGA1Ty4sfE=",
+        "owner": "jiaoshijie",
+        "repo": "undotree",
+        "rev": "f68aed28c8ff1294b012dfadaced2084dc045870",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jiaoshijie",
+        "repo": "undotree",
         "type": "github"
       }
     },

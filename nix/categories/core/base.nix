@@ -39,6 +39,7 @@
       smart-paste
       treesj
       scrollbar
+      undotree
     ]
     ++ (with vim_pkgs; [
       pkgs.unstable.vimPlugins.blink-cmp

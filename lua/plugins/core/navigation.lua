@@ -37,5 +37,3 @@ plugin("hop")
 		highlights.HopNextKey1 = { fg = colors.orange, bold = true, underline = true }
 		highlights.HopNextKey2 = { fg = colors.orange, bold = true }
 	end)
-
--- TODO: harpoon or alternatives (with row marks)
