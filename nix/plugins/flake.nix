@@ -117,6 +117,10 @@
       url = "github:stevearc/conform.nvim";
       flake = false;
     };
+    lint = {
+      url = "github:mfussenegger/nvim-lint";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

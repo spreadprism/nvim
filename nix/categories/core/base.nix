@@ -34,6 +34,7 @@
       nvim-treesitter-textobjects
       treesitter-context
       conform
+      lint
     ]
     ++ (with vim_pkgs; [
       pkgs.unstable.vimPlugins.blink-cmp

@@ -12,6 +12,7 @@ _G.plugin = require("internal.loader.plugin").plugin
 _G.k = require("internal.loader.keymaps")
 _G.lsp = require("internal.loader.lsp").lsp
 _G.formatter = require("internal.loader.formatter").formatter
+_G.linter = require("internal.loader.linter").linter
 
 -- symbols definition
 _G.Symbols = {
