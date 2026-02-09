@@ -133,6 +133,10 @@
       url = "github:Wansmer/treesj";
       flake = false;
     };
+    scrollbar = {
+      url = "github:petertriho/nvim-scrollbar";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

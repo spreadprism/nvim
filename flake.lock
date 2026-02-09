@@ -520,6 +520,7 @@
         "oil": "oil",
         "oil-vcs": "oil-vcs",
         "osc52": "osc52",
+        "scrollbar": "scrollbar",
         "smart-paste": "smart-paste",
         "snacks": "snacks",
         "tabout": "tabout",
@@ -546,6 +547,22 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "plugins": "plugins"
+      }
+    },
+    "scrollbar": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1763377567,
+        "narHash": "sha256-g+gJp7noNdLKfvp+QbnTFE++PI3FcJG7reDenkg15k0=",
+        "owner": "petertriho",
+        "repo": "nvim-scrollbar",
+        "rev": "f8e87b96cd6362ef8579be456afee3b38fd7e2a8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "petertriho",
+        "repo": "nvim-scrollbar",
+        "type": "github"
       }
     },
     "smart-paste": {

@@ -38,6 +38,7 @@
       osc52
       smart-paste
       treesj
+      scrollbar
     ]
     ++ (with vim_pkgs; [
       pkgs.unstable.vimPlugins.blink-cmp
