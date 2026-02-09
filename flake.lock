@@ -473,6 +473,7 @@
         "tabout": "tabout",
         "tmux-navigation": "tmux-navigation",
         "tokyonight": "tokyonight",
+        "treesitter-context": "treesitter-context",
         "which-key": "which-key"
       },
       "locked": {
@@ -555,6 +556,22 @@
       "original": {
         "owner": "folke",
         "repo": "tokyonight.nvim",
+        "type": "github"
+      }
+    },
+    "treesitter-context": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1765030629,
+        "narHash": "sha256-3NtwOA9d2ezLoo7qnzKAr6gwEdcpUqLc7ou4QI+9rDY=",
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter-context",
+        "rev": "64dd4cf3f6fd0ab17622c5ce15c91fc539c3f24a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter-context",
         "type": "github"
       }
     },

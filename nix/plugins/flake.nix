@@ -109,6 +109,10 @@
       url = "github:nvim-treesitter/nvim-treesitter-textobjects";
       flake = false;
     };
+    treesitter-context = {
+      url = "github:nvim-treesitter/nvim-treesitter-context";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

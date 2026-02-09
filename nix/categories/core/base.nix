@@ -32,6 +32,7 @@
       mini-move
       nvim-treesitter-endwise
       nvim-treesitter-textobjects
+      treesitter-context
     ]
     ++ (with vim_pkgs; [
       pkgs.unstable.vimPlugins.blink-cmp
