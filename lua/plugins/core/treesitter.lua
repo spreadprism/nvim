@@ -1,4 +1,11 @@
-local treesitter = plugin("nvim-treesitter"):event("DeferredUIEnter"):opts(false)
+local treesitter = plugin("nvim-treesitter"):event("DeferredUIEnter"):opts(false):after(function()
+	require("nvim-treesitter.configs").setup({
+		highlight = {
+			enable = true,
+		},
+	})
+end)
+
 plugin("nvim-treesitter-endwise"):on_plugin(treesitter):opts(false):event("DeferredUIEnter")
 plugin("nvim-treesitter-textobjects")
 	:on_plugin(treesitter)
