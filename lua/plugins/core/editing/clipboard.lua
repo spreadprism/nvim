@@ -1,2 +1,3 @@
 -- TODO: nvim-osc52
 -- TODO: yanky.nvim
+-- TODO: https://github.com/nemanjamalesija/smart-paste.nvim
