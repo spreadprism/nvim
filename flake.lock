@@ -64,6 +64,22 @@
         "type": "github"
       }
     },
+    "conform": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768760646,
+        "narHash": "sha256-M2mGNF8iARiQ6MzIFSSE/2BRDSj1+XEP/C44dwg8MQ8=",
+        "owner": "stevearc",
+        "repo": "conform.nvim",
+        "rev": "c2526f1cde528a66e086ab1668e996d162c75f4f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stevearc",
+        "repo": "conform.nvim",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -449,6 +465,7 @@
         "blink-cmp-conventional-commits": "blink-cmp-conventional-commits",
         "blink-cmp-git": "blink-cmp-git",
         "blink-compat": "blink-compat",
+        "conform": "conform",
         "gitsigns": "gitsigns",
         "heirline": "heirline",
         "heirline-components": "heirline-components",

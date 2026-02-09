@@ -1,3 +1,4 @@
+formatter("lua", "stylua")
 lsp("lua_ls"):root_markers({
 	".luarc.json",
 	".luarc.jsonc",

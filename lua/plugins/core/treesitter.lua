@@ -1,7 +1,5 @@
 local treesitter = plugin("nvim-treesitter"):event("DeferredUIEnter"):opts(false)
-
 plugin("nvim-treesitter-endwise"):on_plugin(treesitter):opts(false):event("DeferredUIEnter")
-
 plugin("nvim-treesitter-textobjects")
 	:on_plugin(treesitter)
 	:event("DeferredUIEnter")
@@ -56,6 +54,9 @@ plugin("nvim-treesitter-textobjects")
 			-- parameter
 			k:map("nxo", "]p", goto_next_start("@parameter.inner", "textobjects", true), "next parameter"),
 			k:map("nxo", "[p", goto_prev_start("@parameter.inner", "textobjects", true), "previous parameter"),
+			-- function
+			k:map("nxo", "]f", goto_next_start("@function.outer", "textobjects"), "next function"),
+			k:map("nxo", "[f", goto_prev_start("@function.outer", "textobjects"), "previous function"),
 			-- repeat
 			k:map("nxo", ";", rlm_next(), "repeat last move next"),
 			k:map("nxo", ",", rlm_prev(), "repeat last move previous"),

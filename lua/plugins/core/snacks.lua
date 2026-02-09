@@ -50,7 +50,7 @@ plugin("snacks")
 		k:map("n", "<M-f>", k:require("snacks.picker").lines(), "find in buffer"),
 		k:group("find", "<leader>f", {
 			k:map("n", "h", k:require("snacks.picker").highlights(), "highlights"),
-			k:map("n", "l", k:require("snacks.picker").resume(), "lsp references"),
+			k:map("n", "l", k:require("snacks.picker").resume(), "reopen last search"),
 		}),
 	})
 	:lazy(false)

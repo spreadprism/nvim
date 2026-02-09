@@ -9,9 +9,9 @@ end
 local M = {}
 
 _G.plugin = require("internal.loader.plugin").plugin
-_G.k = require("internal.keymaps")
-_G.on = require("internal.on_event")
+_G.k = require("internal.loader.keymaps")
 _G.lsp = require("internal.loader.lsp").lsp
+_G.formatter = require("internal.loader.formatter").formatter
 
 -- symbols definition
 _G.Symbols = {

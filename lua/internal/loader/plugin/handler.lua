@@ -58,7 +58,7 @@ M.keymaps = {
 				"DeferredUIEnter",
 			},
 			callback = function(_)
-				require("internal.keymaps"):add(plugin.keymaps)
+				require("internal.loader.keymaps"):add(plugin.keymaps)
 			end,
 		})
 

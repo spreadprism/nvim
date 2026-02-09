@@ -113,6 +113,10 @@
       url = "github:nvim-treesitter/nvim-treesitter-context";
       flake = false;
     };
+    conform = {
+      url = "github:stevearc/conform.nvim";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;
