@@ -35,6 +35,9 @@
       treesitter-context
       conform
       lint
+      osc52
+      smart-paste
+      treesj
     ]
     ++ (with vim_pkgs; [
       pkgs.unstable.vimPlugins.blink-cmp

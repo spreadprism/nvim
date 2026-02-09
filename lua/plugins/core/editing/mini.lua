@@ -1,15 +1,4 @@
-plugin("mini-move"):on_require("mini.move"):event("DeferredUIEnter"):opts({
-	mapings = {
-		up = "<M-k>",
-		down = "<M-j>",
-		right = "",
-		left = "",
-		line_left = "",
-		line_right = "",
-		line_down = "<M-j>",
-		line_up = "<M-k>",
-	},
-})
+plugin("mini-move"):on_require("mini.move"):event("DeferredUIEnter")
 plugin("mini-ai"):on_require("mini.ai"):event("UIEnter"):opts(function()
 	local spec_treesitter = require("mini.ai").gen_spec.treesitter
 	return {

@@ -1,3 +1,24 @@
--- TODO: nvim-osc52
--- TODO: yanky.nvim
--- TODO: https://github.com/nemanjamalesija/smart-paste.nvim
+plugin("osc52")
+	:opts({
+		silent = true,
+		trim = true,
+		tmux_passthrough = true,
+	})
+	:enabled(vim.env.SSH_CLIENT or vim.env.SSH_TTY)
+	:event("DeferredUIEnter")
+	:before(function()
+		local function copy(lines, _)
+			require("osc52").copy(table.concat(lines, "\n"))
+		end
+
+		local function paste()
+			return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
+		end
+
+		vim.g.clipboard = {
+			name = "osc52",
+			copy = { ["+"] = copy, ["*"] = copy },
+			paste = { ["+"] = paste, ["*"] = paste },
+		}
+	end)
+plugin("smart-paste"):event("DeferredUIEnter")

@@ -21,3 +21,9 @@ vim.o.updatetime = 750
 vim.opt.undofile = true -- INFO: Save undo history
 
 vim.deprecate = function() end
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		vim.hl.on_yank({ timeout = 100 })
+	end,
+})

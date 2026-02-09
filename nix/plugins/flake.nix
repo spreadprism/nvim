@@ -121,6 +121,18 @@
       url = "github:mfussenegger/nvim-lint";
       flake = false;
     };
+    osc52 = {
+      url = "github:ojroques/nvim-osc52";
+      flake = false;
+    };
+    smart-paste = {
+      url = "github:nemanjamalesija/smart-paste.nvim";
+      flake = false;
+    };
+    treesj = {
+      url = "github:Wansmer/treesj";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

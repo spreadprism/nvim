@@ -15,6 +15,7 @@ plugin("hop")
 	:event("DeferredUIEnter")
 	:keymaps({
 		k:map("nx", "<M-w>", k:require("hop").hint_words(), "hop to word"),
+		k:map("nx", "<M-r>", k:require("hop").hint_lines(), "hop to row"),
 		k:map("nx", "<M-w>", k:require("hop").hint_lines(), "hop to line"):ft("oil"),
 		k:map("nx", "f", k:require("hop").hint_char1({ current_line_only = true, direction = AFTER }), "hop to char"),
 		k:map("nx", "F", k:require("hop").hint_char1({ current_line_only = true, direction = BEFORE }), "hop to char"),
