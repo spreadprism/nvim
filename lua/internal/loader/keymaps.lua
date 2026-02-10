@@ -185,9 +185,10 @@ end
 --- or k:require("module").foo.bar.func(args)
 function K:require(module)
 	local function proxy(index)
+		index = index or {}
 		return setmetatable({}, {
 			__index = function(_, key)
-				return proxy(vim.list_extend(index, { key }))
+				return proxy(vim.deepcopy(vim.list_extend(index, { key })))
 			end,
 			__call = function(_, ...)
 				local args = { ... }
@@ -201,7 +202,7 @@ function K:require(module)
 			end,
 		})
 	end
-	return proxy({})
+	return proxy()
 end
 
 return K

@@ -11,6 +11,7 @@
     lze
     lzextras
     plenary-nvim
+    nvim-nio
   ];
 
   optionalPlugins = with nvim_pkgs;
@@ -40,6 +41,9 @@
       treesj
       scrollbar
       undotree
+      nvim-dap
+      nvim-dap-ui
+      nvim-dap-virtual-text
     ]
     ++ (with vim_pkgs; [
       pkgs.unstable.vimPlugins.blink-cmp
