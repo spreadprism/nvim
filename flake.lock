@@ -80,6 +80,22 @@
         "type": "github"
       }
     },
+    "copilot": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1770403820,
+        "narHash": "sha256-pZjz2W9DERdHHNJS6ilLsfnCIdB7N0NaDYxjcyOvTKU=",
+        "owner": "zbirenbaum",
+        "repo": "copilot.lua",
+        "rev": "3faffefbd6ddeb52578535ec6b730e0b72d7fd1a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zbirenbaum",
+        "repo": "copilot.lua",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -523,6 +539,22 @@
         "type": "github"
       }
     },
+    "opencode": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1770752216,
+        "narHash": "sha256-OdwknqKwRRkHqLPk7clbRUHwwvYWyaA/FGTr8Z8Wvr4=",
+        "owner": "sudo-tee",
+        "repo": "opencode.nvim",
+        "rev": "954123c9d93b91616eeb49718feea85c32fd21e6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sudo-tee",
+        "repo": "opencode.nvim",
+        "type": "github"
+      }
+    },
     "osc52": {
       "flake": false,
       "locked": {
@@ -546,6 +578,7 @@
         "blink-cmp-git": "blink-cmp-git",
         "blink-compat": "blink-compat",
         "conform": "conform",
+        "copilot": "copilot",
         "gitsigns": "gitsigns",
         "heirline": "heirline",
         "heirline-components": "heirline-components",
@@ -570,6 +603,7 @@
         "nvim-web-devicons": "nvim-web-devicons",
         "oil": "oil",
         "oil-vcs": "oil-vcs",
+        "opencode": "opencode",
         "osc52": "osc52",
         "scrollbar": "scrollbar",
         "smart-paste": "smart-paste",

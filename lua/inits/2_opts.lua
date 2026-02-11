@@ -2,8 +2,6 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.wo.number = true
 vim.o.cmdheight = 0
--- vim.o.cursorline = true
--- vim.o.cursorlineopt = "number"
 
 vim.o.expandtab = true
 vim.o.autoindent = true

@@ -26,6 +26,10 @@ function _G.get_height(modifier)
 	return vim.fn.floor(tonumber(vim.api.nvim_command_output("echo &lines")) * (modifier or 1))
 end
 
+function _G.plugin_loaded(name)
+	return require("lze").state(name) == false
+end
+
 -- symbols definition
 _G.Symbols = {
 	modified = "󱇧",

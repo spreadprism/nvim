@@ -17,7 +17,7 @@ end
 
 local function get_symbol_hl(self, path)
 	if vim.fn.isdirectory(path) == 1 then
-		return self.symbols.directory, { link = "Directory" }
+		return self.symbols.directory, { fg = colors.blue }
 	else
 		local icon, hl = self.get_icon(path)
 		if icon == nil then
@@ -49,7 +49,7 @@ local function element(self, path)
 			provider = icon .. " ",
 		},
 		{
-			hl = self.path == path and { fg = colors.fg } or nil,
+			hl = self.path == path and { fg = colors.fg } or hl,
 			provider = element_name,
 		},
 	}

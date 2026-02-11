@@ -153,6 +153,14 @@
       url = "github:theHamsta/nvim-dap-virtual-text";
       flake = false;
     };
+    copilot = {
+      url = "github:zbirenbaum/copilot.lua";
+      flake = false;
+    };
+    opencode = {
+      url = "github:sudo-tee/opencode.nvim";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

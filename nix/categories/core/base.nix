@@ -44,6 +44,8 @@
       nvim-dap
       nvim-dap-ui
       nvim-dap-virtual-text
+      copilot
+      opencode
     ]
     ++ (with vim_pkgs; [
       pkgs.unstable.vimPlugins.blink-cmp
