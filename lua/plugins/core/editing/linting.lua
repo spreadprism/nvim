@@ -10,7 +10,7 @@ local function get_client()
 	return clients[1] or {}
 end
 
-plugin("lint"):event("DeferredUIEnter"):after(function()
+plugin("lint"):event("DeferredUIEnter"):opts(false):after(function()
 	local lint = require("lint")
 	lint.linters_by_ft =
 		vim.tbl_deep_extend("force", lint.linters_by_ft, require("internal.loader.linter").linters_by_ft)

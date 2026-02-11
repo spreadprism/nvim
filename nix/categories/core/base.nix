@@ -46,6 +46,7 @@
       nvim-dap-virtual-text
       copilot
       opencode
+      todo-comments
     ]
     ++ (with vim_pkgs; [
       pkgs.unstable.vimPlugins.blink-cmp

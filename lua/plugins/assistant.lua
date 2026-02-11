@@ -29,5 +29,6 @@ plugin("opencode")
 	:keymaps({
 		k:group("assistant", "<leader>a", {
 			k:map("n", "a", k:require("opencode.api").open_input(), "open "),
+			k:map("nv", "p", k:require("opencode.api").quick_chat(), "prompt"),
 		}),
 	})

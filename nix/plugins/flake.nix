@@ -161,6 +161,14 @@
       url = "github:sudo-tee/opencode.nvim";
       flake = false;
     };
+    render-markdown = {
+      url = "github:MeanderingProgrammer/render-markdown.nvim";
+      flake = false;
+    };
+    todo-comments = {
+      url = "github:folke/todo-comments.nvim";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

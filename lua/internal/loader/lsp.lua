@@ -86,10 +86,13 @@ function Lsp:cmd(cmd)
 	return self
 end
 
----@param ... string
+---@param ft string | string[]
 ---@return Lsp
-function Lsp:ft(...)
-	self.opts.filetypes = { ... }
+function Lsp:ft(ft)
+	if type(ft) == "string" then
+		ft = { ft }
+	end
+	self.opts.filetypes = ft
 	return self
 end
 

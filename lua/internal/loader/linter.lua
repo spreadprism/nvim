@@ -12,7 +12,7 @@ function M.linter(ft, ...)
 	end
 
 	for _, filetype in ipairs(ft) do
-		M.formatters_by_ft[filetype] = linters
+		M.linters_by_ft[filetype] = linters
 	end
 end
 
