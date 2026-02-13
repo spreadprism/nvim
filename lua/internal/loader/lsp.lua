@@ -25,6 +25,7 @@ end
 ---@field name string
 ---@field opts vim.lsp.Config
 ---@field cat? string
+---@field enable boolean | fun(): boolean
 Lsp = {}
 Lsp.__index = Lsp
 
@@ -45,7 +46,7 @@ function M.lsp(name)
 	if loaded then
 		error("LSPs have already been loaded; cannot add new LSP: " .. name)
 	end
-	local lsp = setmetatable({ name = name, opts = {} }, Lsp)
+	local lsp = setmetatable({ name = name, opts = {}, enable = true }, Lsp)
 	table.insert(lsps, lsp)
 	lsp:display(lsp.name)
 	return lsp
@@ -72,11 +73,15 @@ end
 function Lsp:configure()
 	vim.lsp.config(self.name, self.opts)
 	local opts = vim.lsp.config[self.name]
-	if opts.cmd == nil then
+
+	if opts and opts.cmd == nil then
 		opts.cmd = { self.name }
-		vim.lsp.config(self.name, opts)
 	end
-	vim.lsp.enable(self.name, true)
+
+	vim.lsp.config(self.name, opts)
+	if type(self.enable) == "function" and self.enable() or self.enable then
+		vim.lsp.enable(self.name, true)
+	end
 end
 
 ---@param cmd function | string[]
@@ -114,6 +119,12 @@ end
 ---@return Lsp
 function Lsp:init_options(opts)
 	self.opts.init_options = opts
+	return self
+end
+
+---@param enable boolean | fun(): boolean
+function Lsp:enable(enable)
+	self.enable = enable
 	return self
 end
 

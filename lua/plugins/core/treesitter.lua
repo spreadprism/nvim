@@ -1,5 +1,5 @@
 local treesitter = plugin("nvim-treesitter"):event("DeferredUIEnter"):opts(false):after(function()
-	require("nvim-treesitter.configs").setup({
+	require("nvim-treesitter.config").setup({
 		highlight = {
 			enable = true,
 		},

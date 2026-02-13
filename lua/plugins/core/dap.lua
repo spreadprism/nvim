@@ -23,11 +23,22 @@ plugin("nvim-dap")
 		k:group("dap", "<leader>d", {
 			k:map("n", "b", k:require("dap").toggle_breakpoint(), "toggle breakpoint"),
 			k:map("n", "g", k:require("dap").run_to_cursor(), "go to cursor"),
-			k:map("n", "s", k:require("dap").terminate(), "go to cursor"),
+			k:map("n", "s", k:require("dap").terminate(), "stop current session"),
 			k:map("n", "l", k:require("dap").run_last(), "run last test"),
-			k:map("n", "t", k:require("neotest").run.run({ strategy = "dap" }), "dap test"),
+			k:map("n", "t", k:require("neotest").run.run({ strategy = "dap" }), "dap test"), -- TODO: this should be moved to neotest
 		}),
 	})
+
+local function dap_open(element)
+	return function()
+		require("dapui").float_element(element, {
+			width = get_width(0.9),
+			height = get_height(0.8),
+			enter = true,
+			position = "center",
+		})
+	end
+end
 
 plugin("nvim-dap-ui")
 	:on_require("dapui")
@@ -40,26 +51,8 @@ plugin("nvim-dap-ui")
 	})
 	:keymaps({
 		k:map("n", "<leader>de", k:require("dapui").eval(), "eval"),
-		k:map(
-			"n",
-			"<M-d>",
-			k:require("dapui").float_element("repl", {
-				width = get_width(0.9),
-				height = get_height(0.9),
-				enter = true,
-				position = "center",
-			})
-		),
-		k:map(
-			"n",
-			"<M-D>",
-			k:require("dapui").float_element("console", {
-				width = get_width(0.9),
-				height = get_height(0.9),
-				enter = true,
-				position = "center",
-			})
-		),
+		k:map("n", "<M-d>", dap_open("repl"), "repl"),
+		k:map("n", "<M-D>", dap_open("console"), "console"),
 	})
 	:after(function()
 		local elements = require("dapui").elements
