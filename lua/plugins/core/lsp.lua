@@ -2,13 +2,22 @@
 ---@param client vim.lsp.Client
 ---@param buf integer
 local function on_attach(client, buf)
-	if client.name == "lua_ls" then
-		require("neoconf")
-	else
-		if client.name == "ruff" then
+	local actions = {
+		["lua_ls"] = function()
+			require("neoconf")
+		end,
+		ruff = function()
 			client.server_capabilities.hoverProvider = false
-		end
+		end,
+		terraformls = function()
+			client.server_capabilities.semanticTokensProvider = nil
+		end,
+	}
+
+	if actions[client.name] ~= nil then
+		actions[client.name]()
 	end
+
 	if client.server_capabilities.inlayHintProvider then
 		vim.lsp.inlay_hint.enable(true, {
 			bufnr = buf,
