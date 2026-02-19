@@ -101,10 +101,14 @@ function Lsp:ft(ft)
 	return self
 end
 
----@param ... string | table
+---@param root_markers string | table
 ---@return Lsp
-function Lsp:root_markers(...)
-	self.opts.root_markers = { ... }
+function Lsp:root_markers(root_markers)
+	if type(root_markers) == "string" then
+		root_markers = { root_markers }
+	end
+
+	self.opts.root_markers = root_markers
 	return self
 end
 

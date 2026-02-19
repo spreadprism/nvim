@@ -43,6 +43,7 @@ end
 ---@param ft string|string[]
 ---@return Keymap
 function K.Keymap:ft(ft)
+	-- BUG: this doesn't work if the keymap is inside a group
 	self.lazy = true
 	vim.api.nvim_create_autocmd("BufEnter", {
 		callback = function(args)
@@ -120,9 +121,10 @@ end
 
 ---@param name string
 ---@param key string
----@param keymaps Keymap | Keymap[]
+---@param keymaps? Keymap | Keymap[]
 ---@return Keymap
 function K:group(name, key, keymaps)
+	keymaps = keymaps or {}
 	if keymaps.__index == K.Keymap then
 		keymaps = { keymaps }
 	end

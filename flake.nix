@@ -49,7 +49,7 @@
     };
     base_settings = {pkgs, ...}: {
       wrapRc = true;
-      neovim-unwrapped = inputs.neovim.packages.${pkgs.system}.neovim;
+      # neovim-unwrapped = inputs.neovim.packages.${pkgs.system}.neovim; # BUG: bug with blink.cmp
     };
     base_categories = {...}: {
       core = true;

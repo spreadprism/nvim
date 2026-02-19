@@ -66,4 +66,12 @@ M.keymaps = {
 	end,
 }
 
+---@type lze.Handler
+M.event = {
+	spec_field = "name",
+	after = function(name)
+		vim.api.nvim_exec_autocmds("User", { pattern = "PluginLoaded", data = { name = name } })
+	end,
+}
+
 return M

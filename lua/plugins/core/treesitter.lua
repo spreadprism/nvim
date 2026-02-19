@@ -1,8 +1,8 @@
 local treesitter = plugin("nvim-treesitter"):event("DeferredUIEnter"):opts(false):after(function()
-	require("nvim-treesitter.config").setup({
-		highlight = {
-			enable = true,
-		},
+	vim.api.nvim_create_autocmd("FileType", {
+		callback = function()
+			pcall(vim.treesitter.start)
+		end,
 	})
 end)
 

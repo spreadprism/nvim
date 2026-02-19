@@ -11,10 +11,6 @@ local function get_client()
 end
 
 plugin("lint"):event("DeferredUIEnter"):opts(false):after(function()
-	local lint = require("lint")
-	lint.linters_by_ft =
-		vim.tbl_deep_extend("force", lint.linters_by_ft, require("internal.loader.linter").linters_by_ft)
-
 	vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 		callback = function()
 			local client = get_client()

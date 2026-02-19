@@ -8,13 +8,6 @@ end
 
 local M = {}
 
---
-_G.plugin = require("internal.loader.plugin").plugin
-_G.k = require("internal.loader.keymaps")
-_G.lsp = require("internal.loader.lsp").lsp
-_G.formatter = require("internal.loader.formatter").formatter
-_G.linter = require("internal.loader.linter").linter
-
 -- funcs
 function _G.get_width(modifier)
 	---@diagnostic disable-next-line: deprecated
@@ -29,6 +22,31 @@ end
 function _G.plugin_loaded(name)
 	return require("lze").state(name) == false
 end
+
+--- exec callback when a plugin is loaded
+--- ```lua
+--- on_plugin("nvim-treesitter", function() print("treesitter loaded") end)
+---@param name string
+---@param callback fun()
+function _G.on_plugin(name, callback)
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "PluginLoaded",
+		callback = function(args)
+			if args and args.data and args.data.name == name then
+				callback()
+			end
+		end,
+	})
+end
+
+-- core loaders
+_G.plugin = require("internal.loader.plugin").plugin
+_G.lsp = require("internal.loader.lsp").lsp
+_G.k = require("internal.loader.keymaps")
+-- plugin loaders
+_G.formatter = require("internal.loader.formatter")
+_G.linter = require("internal.loader.linter")
+_G.d = require("internal.loader.dap")
 
 -- symbols definition
 _G.Symbols = {

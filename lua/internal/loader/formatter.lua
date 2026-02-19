@@ -1,10 +1,14 @@
-local M = {}
+---@type table<string, string[]>
+local formatters_ft = {}
 
-M.formatters_by_ft = {}
+on_plugin("conform", function()
+	local conform = require("conform")
+	conform.formatters_by_ft = vim.tbl_deep_extend("force", conform.formatters_by_ft, formatters_ft)
+end)
 
 ---@param ft string | string[]
 ---@param ... string
-function M.formatter(ft, ...)
+return function(ft, ...)
 	local formatters = { ... }
 
 	if type(ft) == "string" then
@@ -12,8 +16,6 @@ function M.formatter(ft, ...)
 	end
 
 	for _, filetype in ipairs(ft) do
-		M.formatters_by_ft[filetype] = formatters
+		formatters_ft[filetype] = formatters
 	end
 end
-
-return M

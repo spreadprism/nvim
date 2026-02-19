@@ -50,6 +50,9 @@ plugin("which-key")
 		k:map("n", "<M-&>", k:cmd("tabn 7", true), "Go to tab 7"),
 		k:map("n", "<M-*>", k:cmd("tabn 8", true), "Go to tab 8"),
 		k:map("n", "<M-(>", k:cmd("tabn 9", true), "Go to tab 9"),
+		-- Dev
+		k:group("dev", "<leader>="),
+		k:map("n", "<leader>=s", ":source %<CR>", "source current file"):ft("lua"),
 	})
 	:priority(1000)
 	:lazy(false)

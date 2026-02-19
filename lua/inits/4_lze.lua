@@ -5,6 +5,7 @@ for _, handler in ipairs({
 	require("nixCats.utils").for_cat,
 	custom_handlers.setup,
 	custom_handlers.keymaps,
+	custom_handlers.event,
 }) do
 	require("lze").register_handlers(handler)
 end

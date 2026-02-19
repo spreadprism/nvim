@@ -1,10 +1,14 @@
-local M = {}
+---@type table<string, string[]>
+local linters_ft = {}
 
-M.linters_by_ft = {}
+on_plugin("lint", function()
+	local lint = require("lint")
+	lint.linters_by_ft = vim.tbl_deep_extend("force", lint.linters_by_ft, linters_ft)
+end)
 
 ---@param ft string | string[]
 ---@param ... string
-function M.linter(ft, ...)
+return function(ft, ...)
 	local linters = { ... }
 
 	if type(ft) == "string" then
@@ -12,8 +16,6 @@ function M.linter(ft, ...)
 	end
 
 	for _, filetype in ipairs(ft) do
-		M.linters_by_ft[filetype] = linters
+		linters_ft[filetype] = linters
 	end
 end
-
-return M
