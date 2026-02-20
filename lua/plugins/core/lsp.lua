@@ -9,7 +9,7 @@ local function on_attach(client, buf)
 		ruff = function()
 			client.server_capabilities.hoverProvider = false
 		end,
-		terraformls = function()
+		tofu_ls = function()
 			client.server_capabilities.semanticTokensProvider = nil
 		end,
 	}
