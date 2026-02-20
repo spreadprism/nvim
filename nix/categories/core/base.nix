@@ -46,6 +46,7 @@
     copilot
     opencode
     todo-comments
+    exrc
     pkgs.unstable.vimPlugins.blink-cmp
     pkgs.unstable.vimPlugins.blink-pairs
     pkgs.unstable.vimPlugins.blink-indent

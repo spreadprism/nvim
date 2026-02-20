@@ -47,6 +47,8 @@ _G.k = require("internal.loader.keymaps")
 _G.formatter = require("internal.loader.formatter")
 _G.linter = require("internal.loader.linter")
 _G.d = require("internal.loader.dap")
+-- others
+_G.workspace = require("internal.workspace")
 
 -- symbols definition
 _G.Symbols = {

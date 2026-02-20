@@ -169,6 +169,10 @@
       url = "github:folke/todo-comments.nvim";
       flake = false;
     };
+    exrc = {
+      url = "github:jedrzejboczar/exrc.nvim";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

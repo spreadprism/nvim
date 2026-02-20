@@ -6,6 +6,7 @@ plugin("snacks")
 		inputs = {
 			enabled = true,
 		},
+		---@type snacks.picker.Config
 		picker = {
 			main = {
 				file = false,
@@ -14,6 +15,12 @@ plugin("snacks")
 			matcher = {
 				frecency = true,
 			},
+			on_show = function(_)
+				vim.api.nvim_exec_autocmds("User", { pattern = "PickerOnShowClose" })
+			end,
+			on_close = function(_)
+				vim.api.nvim_exec_autocmds("User", { pattern = "PickerOnShowClose" })
+			end,
 			sources = {
 				files = {
 					layout = {
