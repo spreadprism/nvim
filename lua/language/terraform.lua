@@ -1,4 +1,4 @@
 if nixCats("language.terraform") then
-	lsp("terraformls")
+	lsp("tofu_ls")
 	formatter("terraform", "terraform_fmt")
 end

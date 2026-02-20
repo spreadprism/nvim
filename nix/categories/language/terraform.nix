@@ -7,6 +7,7 @@ in {
   lspsAndRuntimeDeps = with pkgs; [
     terraform
     terraform-ls
+    unstable.tofu-ls
   ];
   optionalPlugins = with vim_pkgs; [
     (nvim-treesitter.withPlugins (
