@@ -17,19 +17,19 @@ return {
 	end,
 	{
 		provider = function(self)
-			return Symbols.error .. " " .. self.count[ERROR] .. " "
+			return symbols.error .. " " .. self.count[ERROR] .. " "
 		end,
 		hl = { fg = colors.error },
 	},
 	{
 		provider = function(self)
-			return Symbols.warning .. " " .. self.count[WARN] .. " "
+			return symbols.warning .. " " .. self.count[WARN] .. " "
 		end,
 		hl = { fg = colors.warning },
 	},
 	{
 		provider = function(self)
-			return Symbols.info .. " " .. self.count[INFO] .. " "
+			return symbols.info .. " " .. self.count[INFO] .. " "
 		end,
 		hl = { fg = colors.info },
 	},

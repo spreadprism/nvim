@@ -1,5 +1,5 @@
 -- symbols definition
-_G.Symbols = {
+return {
 	modified = "󱇧",
 	new_file = "󰝒",
 	added = "󰝒",

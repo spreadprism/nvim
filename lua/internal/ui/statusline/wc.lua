@@ -20,7 +20,7 @@ return {
 	update = { "CursorMoved", "ModeChanged" },
 	-- {
 	-- 	provider = function(_)
-	-- 		return Symbols.separators.angle.right
+	-- 		return symbols.separators.angle.right
 	-- 	end,
 	-- 	hl = function(self)
 	-- 		return { fg = self.mode_color(), bold = true }

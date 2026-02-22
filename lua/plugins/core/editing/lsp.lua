@@ -68,10 +68,10 @@ plugin("lspconfig")
 			signs = {
 				--support diagnostic severity / diagnostic type name
 				text = {
-					[vim.diagnostic.severity.ERROR] = Symbols.error,
-					[vim.diagnostic.severity.WARN] = Symbols.warning,
-					[vim.diagnostic.severity.HINT] = Symbols.hint,
-					[vim.diagnostic.severity.INFO] = Symbols.info,
+					[vim.diagnostic.severity.ERROR] = symbols.error,
+					[vim.diagnostic.severity.WARN] = symbols.warning,
+					[vim.diagnostic.severity.HINT] = symbols.hint,
+					[vim.diagnostic.severity.INFO] = symbols.info,
 				},
 			},
 		})

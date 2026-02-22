@@ -59,7 +59,7 @@ return {
 	},
 	{
 		provider = function(_)
-			return Symbols.separators.angle.left
+			return symbols.separators.angle.left
 		end,
 		hl = function(self)
 			return { fg = self.mode_color(), bold = true }

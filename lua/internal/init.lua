@@ -37,8 +37,8 @@ _G.d = require("internal.loader.dap")
 _G.workspace = require("internal.workspace")
 _G.env = vim.env
 
-require("internal.direnv")
-require("internal.symbols")
+_G.direnv = require("internal.direnv"):new(vim.fn.getcwd())
+_G.symbols = require("internal.symbols")
 
 for k, v in pairs(_G) do
 	if not vim.tbl_contains(old_keys, k) then

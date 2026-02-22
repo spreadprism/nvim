@@ -11,7 +11,7 @@ return {
 	{ provider = " " },
 	require("internal.ui.winbar.location"),
 	{
-		provider = " " .. Symbols.modified,
+		provider = " " .. symbols.modified,
 		hl = { fg = colors.fg },
 		condition = function(self)
 			return vim.bo[self.buf].modified
