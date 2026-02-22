@@ -1,19 +1,24 @@
-plugin("copilot"):event("DeferredUIEnter"):opts({
-	filetypes = {
-		markdown = true,
-		yaml = true,
-	},
-	suggestion = {
-		enabled = true,
-		auto_trigger = false,
-		keymap = {
-			accept = "<M-a>",
-			dismiss = "<M-d>",
-			next = false,
+plugin("copilot")
+	:event("DeferredUIEnter")
+	:opts({
+		filetypes = {
+			markdown = true,
+			yaml = true,
 		},
-	},
-	panel = { enabled = false },
-})
+		suggestion = {
+			enabled = true,
+			auto_trigger = false,
+			keymap = {
+				accept = "<M-a>",
+				dismiss = "<M-d>",
+				next = false,
+			},
+		},
+		panel = { enabled = false },
+	})
+	:after(function()
+		require("internal.loader.lsp").display_blacklist("copilot")
+	end)
 
 plugin("opencode")
 	:dep_on({

@@ -23,7 +23,7 @@ plugin("heirline")
 			end,
 		})
 
-		on_plugin("snacks", function()
+		event.on_plugin("snacks", function()
 			pickers = require("snacks.picker").get()
 		end)
 

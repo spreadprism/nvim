@@ -83,11 +83,11 @@
     "copilot": {
       "flake": false,
       "locked": {
-        "lastModified": 1771165572,
-        "narHash": "sha256-0aPy0GE51H3HzhlX5eT4y/0BaFVRPY6kk5qMh/yY0+E=",
+        "lastModified": 1771779701,
+        "narHash": "sha256-c5pz5hNKdTHBRGxE27eO3CQ5ckrYnSoQM5yStyUeA48=",
         "owner": "zbirenbaum",
         "repo": "copilot.lua",
-        "rev": "dd3e345d59051464573d821b042f0a0c82410b5d",
+        "rev": "5c01badd42049a63ac9e5d6c8ea85aaf66cb940f",
         "type": "github"
       },
       "original": {
@@ -558,11 +558,11 @@
     "opencode": {
       "flake": false,
       "locked": {
-        "lastModified": 1771451307,
-        "narHash": "sha256-xnKRRVEysf9mg2m0ZfqqjrrY0HxhcMdeYBz42PmVbq8=",
+        "lastModified": 1771697472,
+        "narHash": "sha256-87Zm+NEp+ei4D81rZ5s0DOQ79P3F04sW+G3li8lxNxQ=",
         "owner": "sudo-tee",
         "repo": "opencode.nvim",
-        "rev": "1b5938805ff3220f07a446e629d6e41d32efe3ac",
+        "rev": "67078fa17f8914dbc84109b152272bf533a410cf",
         "type": "github"
       },
       "original": {
@@ -689,11 +689,11 @@
     "smart-paste": {
       "flake": false,
       "locked": {
-        "lastModified": 1771463530,
-        "narHash": "sha256-Abf+VC1jlJsQUtnYLJj7VUvXOi21WTH46rEEU4w6Hm8=",
+        "lastModified": 1771692641,
+        "narHash": "sha256-aJIiei3YCFKKD9KzytifOjO+KIhhL5EFdfVkpAv2hJc=",
         "owner": "nemanjamalesija",
         "repo": "smart-paste.nvim",
-        "rev": "64e77245e8caa97ed3c78996465d0087fba008bf",
+        "rev": "328f90f7f4535f58d5bd987edb48588836efdecc",
         "type": "github"
       },
       "original": {

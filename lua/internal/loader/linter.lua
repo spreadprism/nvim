@@ -1,7 +1,7 @@
 ---@type table<string, string[]>
 local linters_ft = {}
 
-on_plugin("lint", function()
+event.on_plugin("lint", function()
 	local lint = require("lint")
 	lint.linters_by_ft = vim.tbl_deep_extend("force", lint.linters_by_ft, linters_ft)
 end)

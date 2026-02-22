@@ -2,9 +2,6 @@
 plugin("lspconfig")
 	:opts(false)
 	:after(function()
-		local loader = require("internal.loader")
-
-		loader.load_lsp_config()
 		vim.lsp.config("*", {
 			root_markers = { ".nvim.lua", ".git" },
 		})
@@ -12,7 +9,6 @@ plugin("lspconfig")
 			callback = function(args)
 				local client = vim.lsp.get_client_by_id(args.data.client_id)
 				if client ~= nil then
-					require("internal.loader.lsp").on_attach(client, args.buf)
 					k:opts({
 						k:map("n", "<M-s>", k:require("snacks.picker").lsp_symbols(), "lsp symbols"),
 						k:map(
@@ -84,6 +80,7 @@ plugin("lspconfig")
 	:keymaps(k:group("lsp", "<leader>l", {
 		k:map("n", "i", k:cmd("LspInfo"), "Info"),
 		k:map("n", "r", function()
+			-- TODO: replace with enabled = false, enabled = true
 			local bufnr = vim.fn.bufnr()
 			local clients = vim.lsp.get_clients({ bufnr = bufnr })
 			for _, client in ipairs(clients) do

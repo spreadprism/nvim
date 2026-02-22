@@ -1,4 +1,4 @@
-lsp("gopls"):ft({ "go", "gomod", "gosum", "gowork" }):root_markers({ "go.work", "go.mod", ".git" }):settings({
+lsp("gopls"):root_markers({ "go.work", "go.mod" }):settings({
 	gopls = {
 		directoryFilters = {
 			"-/nix/**",

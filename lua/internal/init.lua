@@ -23,21 +23,7 @@ function _G.plugin_loaded(name)
 	return require("lze").state(name) == false
 end
 
---- exec callback when a plugin is loaded
---- ```lua
---- on_plugin("nvim-treesitter", function() print("treesitter loaded") end)
----@param name string
----@param callback fun()
-function _G.on_plugin(name, callback)
-	vim.api.nvim_create_autocmd("User", {
-		pattern = "PluginLoaded",
-		callback = function(args)
-			if args and args.data and args.data.name == name then
-				callback()
-			end
-		end,
-	})
-end
+_G.event = require("internal.events")
 
 -- core loaders
 _G.plugin = require("internal.loader.plugin").plugin
@@ -49,36 +35,10 @@ _G.linter = require("internal.loader.linter")
 _G.d = require("internal.loader.dap")
 -- others
 _G.workspace = require("internal.workspace")
+_G.env = vim.env
 
--- symbols definition
-_G.Symbols = {
-	modified = "󱇧",
-	new_file = "󰝒",
-	added = "󰝒",
-	untracked = "󰡯",
-	moved = "󰪹",
-	ignored = "󰩋",
-	copied = "",
-	updated = "󰚰",
-	deleted = "󱪡",
-	conflict = "󰮘",
-	readonly = "󰷊",
-	partial_stage = "󰈝",
-	error = "",
-	warning = "",
-	hint = "󰌵",
-	info = "",
-	separators = {
-		angle = {
-			left = "",
-			right = "",
-		},
-		splitter = {
-			left = "",
-			right = "",
-		},
-	},
-}
+require("internal.direnv")
+require("internal.symbols")
 
 for k, v in pairs(_G) do
 	if not vim.tbl_contains(old_keys, k) then

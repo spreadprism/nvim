@@ -5,7 +5,7 @@ local adapters = {}
 ---@type table<string, string[]>
 local links = {}
 
-on_plugin("nvim-dap", function()
+event.on_plugin("nvim-dap", function()
 	local dap = require("dap")
 
 	dap.adapters = vim.tbl_deep_extend("force", dap.adapters, adapters)

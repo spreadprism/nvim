@@ -1,7 +1,7 @@
 ---@type table<string, string[]>
 local formatters_ft = {}
 
-on_plugin("conform", function()
+event.on_plugin("conform", function()
 	local conform = require("conform")
 	conform.formatters_by_ft = vim.tbl_deep_extend("force", conform.formatters_by_ft, formatters_ft)
 end)

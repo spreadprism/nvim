@@ -18,4 +18,6 @@ function M:ft_link(ft, ...)
 	require("internal.loader.dap.config").link(ft, ...)
 end
 
+function M:enrich_config(config) end
+
 return M

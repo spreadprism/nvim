@@ -4,7 +4,7 @@ local configs = {}
 ---@type table<string, string[]>
 local links = {}
 
-on_plugin("nvim-dap", function()
+event.on_plugin("nvim-dap", function()
 	local dap = require("dap")
 	dap.configurations = vim.tbl_deep_extend("force", dap.configurations, configs)
 
@@ -42,6 +42,17 @@ function M.link(type, ...)
 
 	for _, alias in ipairs({ ... }) do
 		table.insert(links[type], alias)
+	end
+end
+
+---@param config dap.Configuration|dap.Configuration[]
+function M.enrich_config(config)
+	if type(config) == "table" and not vim.islist(config) then
+		config = { config }
+	end
+
+	for _, cfg in ipairs(config) do
+		-- TODO: implement
 	end
 end
 
