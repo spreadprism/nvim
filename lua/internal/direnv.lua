@@ -26,7 +26,7 @@
 
 ---@class Direnv
 ---@field cwd string
----@field reallow boolean
+---@field allowed boolean
 local Direnv = {}
 
 function Direnv:new(cwd)
@@ -40,26 +40,23 @@ function Direnv:setup_autocmd()
 
 	local path = vim.fs.joinpath(self.cwd, ".envrc")
 	vim.api.nvim_create_autocmd("BufWritePre", {
-		pattern = path,
 		group = group,
 		callback = function(args)
-			local status = self:status()
-			if status and status.state.foundRC.allowed == 0 then
-				self.reallow = true
-			else
-				self.reallow = false
+      local current_path = vim.fs.normalize(args.file)
+			if current_path == ".envrc" then
+				local status = self:status()
+				self.allowed = status and status.state.foundRC.allowed == 0
 			end
 		end,
 	})
 	vim.api.nvim_create_autocmd("BufWritePost", {
-		pattern = path,
 		group = group,
 		callback = function(args)
-			if self.reallow then
-				self.reallow = false
+      local current_path = vim.fs.normalize(args.file)
+			if current_path == ".envrc" then
 				self:allow()
-				self:reload()
 			end
+			self:reload()
 		end,
 	})
 end
