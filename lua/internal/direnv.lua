@@ -1,77 +1,92 @@
----"state": {
--- "foundRC": {
--- 			"allowed": 0,
--- 			"path": "/home/avalon/Projects/Public/nvim/.envrc"
--- 		},
--- 		"loadedRC": {
--- 			"allowed": 0,
--- 			"path": "/home/avalon/Projects/Public/nvim/.envrc"
--- 		}
--- 	}
-
----@class Direnv.Status
----@field config.ConfigDir string
----@field config.SelfPath string
----
----@field state table
----@field state.foundRC table
----@field state.foundRC.allowed number
----@field state.foundRC.path string
----
----@field state.loadedRC table
----@field state.loadedRC.allowed number
----@field state.loadedRC.path string
-
----@alias Direnv.Export table<string, string>
+---@enum EnvrcStatus
+local EnvrcStatus = {
+	ALLOWED = 0,
+	UNSET = 1,
+	DENIED = 2,
+}
 
 ---@class Direnv
----@field cwd string
----@field allowed boolean
-local Direnv = {}
+---@field refresh boolean
+---@field envrc table<string, EnvrcStatus>
+local Direnv = {
+	refresh = false,
+	envrc = {},
+}
 
-function Direnv:new(cwd)
-	local instance = setmetatable({ cwd = cwd, reallow = false }, { __index = self })
-	instance:setup_autocmd()
-	return instance
-end
+local group = vim.api.nvim_create_augroup("Direnv", { clear = true })
 
-function Direnv:setup_autocmd()
-	local group = vim.api.nvim_create_augroup("Direnv", { clear = true })
+vim.api.nvim_create_autocmd("BufEnter", {
+	group = group,
+	callback = function(args)
+		local path = vim.api.nvim_buf_get_name(args.buf)
+		local basename = vim.fs.basename(path)
+		if basename == ".envrc" then
+			Direnv:status(path)
+		end
+	end,
+})
 
-	local path = vim.fs.joinpath(self.cwd, ".envrc")
-	vim.api.nvim_create_autocmd("BufWritePre", {
-		group = group,
-		callback = function(args)
-      local current_path = vim.fs.normalize(args.file)
-			if current_path == ".envrc" then
-				local status = self:status()
-				self.allowed = status and status.state.foundRC.allowed == 0
+vim.api.nvim_create_autocmd("BufWritePost", {
+	group = group,
+	callback = function(args)
+		local path = vim.api.nvim_buf_get_name(args.buf)
+		local basename = vim.fs.basename(path)
+		if basename == ".envrc" then
+			if Direnv.envrc[path] == EnvrcStatus.ALLOWED then
+				Direnv:allow()
 			end
-		end,
-	})
-	vim.api.nvim_create_autocmd("BufWritePost", {
-		group = group,
-		callback = function(args)
-      local current_path = vim.fs.normalize(args.file)
-			if current_path == ".envrc" then
-				self:allow()
-			end
-			self:reload()
-		end,
-	})
-end
-
-function Direnv:set_cwd(cwd)
-	self.cwd = cwd
-	self:setup_autocmd()
-end
+		end
+		Direnv:reload()
+	end,
+})
 
 function Direnv:allow()
-	vim.system({ "direnv", "allow" }, { cwd = self.cwd }):wait()
+	local path = vim.api.nvim_buf_get_name(0)
+	local basename = vim.fs.basename(path)
+
+	if basename ~= ".envrc" then
+		return
+	end
+
+	local dir = vim.fs.dirname(path)
+
+	self.envrc[path] = EnvrcStatus.ALLOWED
+	vim.system({ "direnv", "allow" }, { cwd = dir }):wait()
+end
+
+function Direnv:deny()
+	local path = vim.api.nvim_buf_get_name(0)
+	local basename = vim.fs.basename(path)
+
+	if basename ~= ".envrc" then
+		return
+	end
+
+	local dir = vim.fs.dirname(path)
+	self.envrc[path] = EnvrcStatus.DENIED
+	vim.system({ "direnv", "deny" }, { cwd = dir }):wait()
 end
 
 function Direnv:reload()
-	self:export(function(export)
+	if self.refresh then
+		return
+	end
+	self.refresh = true
+	local path = vim.api.nvim_buf_get_name(0)
+	local dir = vim.fs.dirname(path)
+
+	vim.system({ "direnv", "export", "json" }, { cwd = dir }, function(out)
+		self.refresh = false
+		if out.code ~= 0 then
+			return
+		end
+		local stdout = out.stdout
+
+		local ok, export = pcall(vim.json.decode, stdout)
+		if not ok then
+			return
+		end
+
 		vim.schedule(function()
 			for k, v in pairs(export) do
 				vim.fn.setenv(k, v)
@@ -80,38 +95,21 @@ function Direnv:reload()
 	end)
 end
 
-function Direnv:deny()
-	vim.system({ "direnv", "deny" }, { cwd = self.cwd }):wait()
-end
-
----@return Direnv.Status?
-function Direnv:status()
-	local res = vim.system({ "direnv", "status", "--json" }, { cwd = self.cwd }):wait()
-
-	if res.code == 0 then
-		local ok, status = pcall(vim.json.decode, res.stdout)
-		if ok then
-			return status
-		end
+---@param path string
+function Direnv:status(path)
+	if self.refresh then
+		return
 	end
-
-	return nil
-end
-
----@param on_export fun(export: Direnv.Export)
-function Direnv:export(on_export)
-	vim.system({ "direnv", "export", "json" }, { cwd = self.cwd }, function(out)
-		if out.code ~= 0 then
-			on_export({})
+	self.refresh = true
+	local dir = vim.fs.dirname(path)
+	vim.system({ "direnv", "status", "--json" }, { cwd = dir }, function(out)
+		if out.code == 0 then
+			local ok, status = pcall(vim.json.decode, out.stdout)
+			if ok then
+				self.envrc[path] = status.state.foundRC.allowed
+			end
 		end
-		local stdout = out.stdout
-
-		local ok, export = pcall(vim.json.decode, stdout)
-		if not ok then
-			on_export({})
-		else
-			on_export(export)
-		end
+		self.refresh = false
 	end)
 end
 

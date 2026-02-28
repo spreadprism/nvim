@@ -37,7 +37,7 @@ _G.d = require("internal.loader.dap")
 _G.workspace = require("internal.workspace")
 _G.env = vim.env
 
-_G.direnv = require("internal.direnv"):new(vim.fn.getcwd())
+_G.direnv = require("internal.direnv")
 _G.symbols = require("internal.symbols")
 
 for k, v in pairs(_G) do
