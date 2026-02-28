@@ -46,14 +46,20 @@ function M.link(type, ...)
 end
 
 ---@param config dap.Configuration|dap.Configuration[]
+---@return dap.Configuration[]
 function M.enrich_config(config)
+	local new_configs = {}
 	if type(config) == "table" and not vim.islist(config) then
 		config = { config }
 	end
 
-	for _, cfg in ipairs(config) do
-		-- TODO: implement
+	for i, cfg in ipairs(config) do
+		new_configs[i] = vim.tbl_deep_extend("force", {
+			request = "launch",
+		}, cfg)
 	end
+
+	return new_configs
 end
 
 return M
