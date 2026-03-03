@@ -2,21 +2,21 @@
 ---@type table<string, dap.Adapter|dap.AdapterFactory>
 local adapters = {}
 
+local M = {}
+
 ---@type table<string, string[]>
-local links = {}
+M.links = {}
 
 event.on_plugin("nvim-dap", function()
 	local dap = require("dap")
 
 	dap.adapters = vim.tbl_deep_extend("force", dap.adapters, adapters)
-	for name, aliases in pairs(links) do
+	for name, aliases in pairs(M.links) do
 		for _, alias in ipairs(aliases) do
 			dap.adapters[alias] = dap.adapters[name]
 		end
 	end
 end)
-
-local M = {}
 
 ---@param name string
 ---@param opts dap.Adapter|dap.AdapterFactory
@@ -33,12 +33,12 @@ function M.adapter(name, opts)
 end
 
 function M.link(name, ...)
-	if not links[name] then
-		links[name] = {}
+	if not M.links[name] then
+		M.links[name] = {}
 	end
 
 	for _, alias in ipairs({ ... }) do
-		table.insert(links[name], alias)
+		table.insert(M.links[name], alias)
 	end
 end
 

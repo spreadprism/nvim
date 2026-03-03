@@ -27,7 +27,7 @@ return {
 		symbol = function(self)
 			return self.disabled
 		end,
-		provider = " ",
+		provider = "",
 		hl = { fg = colors.comment },
 	},
 	{
@@ -46,7 +46,7 @@ return {
 
 			self.loading = api.status.data.status == "InProgress"
 		end,
-		provider = " ",
+		provider = "",
 		hl = function(self)
 			if self.loading then
 				return { fg = colors.blue }

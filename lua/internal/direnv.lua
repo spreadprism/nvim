@@ -29,6 +29,9 @@ vim.api.nvim_create_autocmd("BufEnter", {
 vim.api.nvim_create_autocmd("BufWritePost", {
 	group = group,
 	callback = function(args)
+		if vim.bo.ft == "oil" then
+			return
+		end
 		local path = vim.api.nvim_buf_get_name(args.buf)
 		local basename = vim.fs.basename(path)
 		if basename == ".envrc" then

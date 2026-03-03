@@ -34,5 +34,5 @@ return {
 		)
 	end,
 	hl = { fg = colors.fg_dark },
-	{ provider = " | " },
+	{ provider = " | ", hl = { fg = colors.fg_dark } },
 }

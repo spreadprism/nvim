@@ -47,6 +47,7 @@
     opencode
     todo-comments
     exrc
+    overseer
     pkgs.unstable.vimPlugins.blink-cmp
     pkgs.unstable.vimPlugins.blink-pairs
     pkgs.unstable.vimPlugins.blink-indent

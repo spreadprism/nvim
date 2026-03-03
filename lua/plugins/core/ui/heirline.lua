@@ -14,19 +14,6 @@ plugin("heirline")
 		heirline_components.init.subscribe_to_events()
 		heirline.load_colors(heirline_components.hl.get_colors())
 
-		local pickers = {}
-
-		vim.api.nvim_create_autocmd("User", {
-			pattern = "PickerOnShowClose",
-			callback = function(args)
-				pickers = require("snacks.picker").get()
-			end,
-		})
-
-		event.on_plugin("snacks", function()
-			pickers = require("snacks.picker").get()
-		end)
-
 		return {
 			statusline = require("internal.ui.statusline"),
 			statuscolumn = require("internal.ui.statuscolumn"),
@@ -34,7 +21,7 @@ plugin("heirline")
 			opts = {
 				disable_winbar_cb = function(args)
 					local win = vim.api.nvim_get_current_win()
-					for _, picker in ipairs(pickers) do
+					for _, picker in ipairs(require("snacks.picker").get()) do
 						if picker and picker.preview and picker.preview.win and picker.preview.win.win == win then
 							return true
 						end
@@ -48,6 +35,7 @@ plugin("heirline")
 							"dashboard",
 							"^$",
 							"terminal",
+							"OverseerOutput",
 						},
 					}, args.buf)
 				end,

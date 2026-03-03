@@ -173,6 +173,10 @@
       url = "github:jedrzejboczar/exrc.nvim";
       flake = false;
     };
+    overseer = {
+      url = "github:stevearc/overseer.nvim";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

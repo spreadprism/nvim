@@ -45,8 +45,21 @@ function Workspace:enrich_config(config)
 
 	for i, cfg in ipairs(config) do
 		new_configs[i] = vim.tbl_deep_extend("force", {
+			request = "launch",
 			cwd = self.workspaceFolder,
 		}, cfg)
+
+		local type = cfg.type
+		for original, links in pairs(require("internal.loader.dap.adapter").links) do
+			if vim.tbl_contains(links, cfg.type) then
+				type = original
+				break
+			end
+		end
+		local exists, enrich = pcall(require, "internal.workspace.dap.type." .. type)
+		if exists then
+			new_configs[i] = enrich(new_configs[i])
+		end
 	end
 
 	return require("internal.loader.dap.config").enrich_config(new_configs)
@@ -90,21 +103,6 @@ function Workspace:lsp(handlers)
 	self.ctx:lsp_setup(handlers)
 end
 
----@param configs dap.Configuration[]
-function Workspace:launch_configs(configs)
-	local dap = require("dap")
-
-	if not dap.providers.configs[self.workspaceFolder] then
-		dap.providers.configs[self.workspaceFolder] = function(_)
-			return self:enrich_config(self.dap_configs)
-		end
-	end
-
-	for _, config in ipairs(configs) do
-		table.insert(self.dap_configs, config)
-	end
-end
-
 ---@param name string
 ---@param callback fun()
 function Workspace:on_plugin(name, callback)
@@ -115,6 +113,24 @@ end
 ---@param callback fun()
 function Workspace:on_save(pattern, callback)
 	event.on_save(pattern, callback, self.group)
+end
+
+---@param configs dap.Configuration|dap.Configuration[]
+function Workspace:dap(configs)
+	local dap = require("dap")
+
+	if not vim.islist(configs) then
+		configs = { configs }
+	end
+
+	dap.providers.configs[self.workspaceFolder] = function(_)
+		local cfg = self:enrich_config(self.dap_configs)
+		return cfg
+	end
+
+	for _, config in ipairs(configs) do
+		table.insert(self.dap_configs, config)
+	end
 end
 
 return M

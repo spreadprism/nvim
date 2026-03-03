@@ -1,7 +1,7 @@
 return {
 	fallthrough = false,
 	{
-		provider = " ",
+		provider = "",
 		condition = function()
 			return not (vim.b.gitsigns_head or vim.g.gitsigns_head)
 		end,
