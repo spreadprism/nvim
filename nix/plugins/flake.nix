@@ -177,6 +177,10 @@
       url = "github:stevearc/overseer.nvim";
       flake = false;
     };
+    ufo = {
+      url = "github:kevinhwang91/nvim-ufo";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

@@ -12,6 +12,7 @@
     lzextras
     plenary-nvim
     nvim-nio
+    promise-async
   ];
 
   optionalPlugins = with nvim_pkgs; [
@@ -48,6 +49,7 @@
     todo-comments
     exrc
     overseer
+    ufo
     pkgs.unstable.vimPlugins.blink-cmp
     pkgs.unstable.vimPlugins.blink-pairs
     pkgs.unstable.vimPlugins.blink-indent

@@ -7,7 +7,7 @@ plugin("todo-comments"):event("DeferredUIEnter"):opts({
 		pattern = [[.*<((KEYWORDS)%(\(.{-1,}\))?):]],
 	},
 	keywords = {
-		TODO = { icon = " ", color = "todo" },
+		TODO = { color = "todo" },
 	},
 	colors = {
 		todo = { "@comment.todo", "#7AA2F7" },
