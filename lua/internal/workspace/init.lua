@@ -124,8 +124,7 @@ function Workspace:dap(configs)
 	end
 
 	dap.providers.configs[self.workspaceFolder] = function(_)
-		local cfg = self:enrich_config(self.dap_configs)
-		return cfg
+		return self:enrich_config(self.dap_configs)
 	end
 
 	for _, config in ipairs(configs) do

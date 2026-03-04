@@ -8,8 +8,9 @@ end
 
 ---@param ft string
 ---@param config dap.Configuration
+---@return dap.Configuration
 function M:config(ft, config)
-	return require("internal.loader.dap.adapter")(ft, config)
+	return {}
 end
 
 ---@param ft string

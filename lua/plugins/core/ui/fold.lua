@@ -1,0 +1,1 @@
+-- TODO: add folding support for markdown files

@@ -12,7 +12,7 @@ lsp("gopls"):root_markers({ "go.work", "go.mod" }):settings({
 })
 linter("go", "golangcilint")
 formatter("go", "gofumpt")
-d:adapter("delve", function(callback, config)
+dap:adapter("delve", function(callback, config)
 	---@type dap.ServerAdapter
 	local adapter = {
 		type = "server",

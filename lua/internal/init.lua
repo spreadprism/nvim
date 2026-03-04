@@ -29,10 +29,10 @@ _G.event = require("internal.events")
 _G.plugin = require("internal.loader.plugin").plugin
 _G.lsp = require("internal.loader.lsp").lsp
 _G.k = require("internal.loader.keymaps")
--- plugin loaders
+-- plugin definition loader
 _G.formatter = require("internal.loader.formatter")
 _G.linter = require("internal.loader.linter")
-_G.d = require("internal.loader.dap")
+_G.dap = require("internal.loader.dap")
 -- others
 _G.workspace = require("internal.workspace")
 _G.env = vim.env
