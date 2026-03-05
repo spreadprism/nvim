@@ -50,6 +50,8 @@
     exrc
     overseer
     ufo
+    cutlass
+    multicursor-nvim
     pkgs.unstable.vimPlugins.blink-cmp
     pkgs.unstable.vimPlugins.blink-pairs
     pkgs.unstable.vimPlugins.blink-indent

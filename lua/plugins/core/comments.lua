@@ -1,2 +1,1 @@
--- TODO: comment.nvim
 -- TODO: neogen

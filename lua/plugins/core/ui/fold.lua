@@ -1,4 +1,3 @@
--- TODO: add folding support for markdown files
 plugin("ufo")
 	:event("DeferredUIEnter")
 	:before(function()

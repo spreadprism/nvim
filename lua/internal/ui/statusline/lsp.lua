@@ -34,5 +34,10 @@ return {
 		)
 	end,
 	hl = { fg = colors.fg_dark },
-	{ provider = " | ", hl = { fg = colors.fg_dark } },
+	{
+		provider = " ┃ ",
+		hl = function(self)
+			return { fg = self.mode_color() }
+		end,
+	},
 }

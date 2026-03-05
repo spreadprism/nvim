@@ -181,6 +181,14 @@
       url = "github:kevinhwang91/nvim-ufo";
       flake = false;
     };
+    cutlass = {
+      url = "github:gbprod/cutlass.nvim";
+      flake = false;
+    };
+    multicursor-nvim = {
+      url = "github:jake-stewart/multicursor.nvim";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

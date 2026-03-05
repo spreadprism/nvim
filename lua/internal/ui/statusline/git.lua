@@ -1,7 +1,7 @@
 return {
 	fallthrough = false,
 	{
-		provider = "",
+		provider = " ",
 		condition = function()
 			return not (vim.b.gitsigns_head or vim.g.gitsigns_head)
 		end,
@@ -17,9 +17,12 @@ return {
 		hl = function(self)
 			return { fg = self.mode_color() }
 		end,
+		{
+			provider = " ",
+		},
 		{ -- git branch name
 			provider = function(self)
-				return " " .. self.branch
+				return self.branch
 			end,
 			-- update = { "BufEnter", "TextChanged", "TextChangedI" },
 			hl = { bold = true },
@@ -74,6 +77,12 @@ return {
 					return self.has_added or self.has_removed or self.has_changed
 				end,
 				provider = ")",
+			},
+			{
+				provider = " ┃ ",
+				hl = function(self)
+					return { fg = self.mode_color() }
+				end,
 			},
 		},
 	},

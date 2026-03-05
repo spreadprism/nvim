@@ -51,18 +51,19 @@ return {
 	},
 	{
 		provider = function(self)
-			return " " .. self.mode_names[self.mode] .. " "
+			return " "
+			-- return " " .. self.mode_names[self.mode] .. " "
 		end,
 		hl = function(self)
 			return { fg = colors.black, bg = self.mode_color(), bold = true }
 		end,
 	},
-	{
-		provider = function(_)
-			return symbols.separators.angle.left
-		end,
-		hl = function(self)
-			return { fg = self.mode_color(), bold = true }
-		end,
-	},
+	-- {
+	-- 	provider = function(_)
+	-- 		return symbols.separators.angle.left
+	-- 	end,
+	-- 	hl = function(self)
+	-- 		return { fg = self.mode_color(), bold = true }
+	-- 	end,
+	-- },
 }
