@@ -14,6 +14,8 @@ plugin("tokyonight")
 			highlights.WhichKeyNormal = { bg = colors.none }
 			highlights.WinBar = { bg = colors.none }
 			highlights.WinBarNC = { bg = colors.none }
+
+			highlights.MultiCursorCursor = { fg = colors.black, bg = colors.orange }
 		end,
 		plugins = { all = true },
 	})
