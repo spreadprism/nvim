@@ -44,7 +44,6 @@
     nvim-dap
     nvim-dap-ui
     nvim-dap-virtual-text
-    dap-view
     copilot
     opencode
     todo-comments

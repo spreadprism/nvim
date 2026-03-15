@@ -209,10 +209,6 @@
       url = "github:fredrikaverpil/neotest-golang";
       flake = false;
     };
-    dap-view = {
-      url = "github:igorlfs/nvim-dap-view";
-      flake = false;
-    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

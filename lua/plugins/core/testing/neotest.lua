@@ -20,6 +20,7 @@ plugin("neotest")
 		}
 	end)
 	:keymaps({
+		k:map("n", "<leader>dt", k:require("neotest").run.run({ strategy = "dap" }), "dap test"),
 		k:group("unit-testing", "<leader>u", {
 			k:map("n", "e", k:cmd("Neotest summary"), "tests explorer"),
 			k:map("n", "c", k:cmd("lua require('neotest').run.run()"), "test current function"),

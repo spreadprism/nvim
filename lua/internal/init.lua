@@ -1,4 +1,4 @@
----@alias NvimEvent "DeferredUIEnter"|vim.api.keyset.events|vim.api.keyset.events[]
+---@alias NvimEvent "DeferredUIEnter"|"BufReadPre"| "BufReadPost"| "BufWritePre"| "BufWritePost"| "BufNewFile"| "BufAdd"| "BufDelete"| "BufEnter"| "BufLeave"| "BufWinEnter"| "BufWinLeave"| "TabEnter"| "TabLeave"| "WinEnter"| "WinLeave"| "VimEnter"| "VimLeave"| "VimResized"| "ColorScheme"|"FileType"|"CursorHold"|"CursorMoved"|"InsertEnter"|"InsertLeave"|"TextYankPost"|"LspAttach"|"LspDetach"|"LspProgress"|"LspProgressStatus"|"LspPublishDiagnostics"|"LspServerStarted"|"LspServerStopped"|"LspTokenUpdate"
 
 -- HACK: this is to help lua-ls find out the types
 local old_keys = {}
