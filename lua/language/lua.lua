@@ -32,10 +32,13 @@ lsp("lua_ls"):root_markers({
 	},
 })
 
-plugin("lazydev"):ft("lua"):opts(function()
-	return {
-		integrations = {
-			cmp = false,
-		},
-	}
-end)
+plugin("lazydev")
+	:ft("lua")
+	:opts(function()
+		return {
+			integrations = {
+				cmp = false,
+			},
+		}
+	end)
+	:lazydev({ words = { "lazydev" } })

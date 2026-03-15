@@ -1,4 +1,5 @@
 plugin("which-key")
+	:lazydev({ words = { "wk" } })
 	:opts({
 		win = {
 			border = "rounded",

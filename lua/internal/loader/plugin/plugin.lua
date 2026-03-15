@@ -234,4 +234,49 @@ function M.Plugin:on_colors(fn)
 	return self
 end
 
+local lazydev_libs = {}
+
+event.on_plugin("lazydev", function()
+	local cfg = require("lazydev.config")
+	local libs, words, mods, files = cfg.libs, cfg.words, cfg.mods, cfg.files
+
+	for _, lib in pairs(lazydev_libs) do
+		table.insert(libs, {
+			path = type(lib) == "table" and lib.path or lib,
+			words = type(lib) == "table" and lib.words or {},
+			mods = type(lib) == "table" and lib.mods or {},
+			files = type(lib) == "table" and lib.files or {},
+		})
+	end
+
+	for _, lib in ipairs(libs) do
+		for _, word in ipairs(lib.words) do
+			words[word] = words[word] or {}
+			table.insert(words[word], lib.path)
+		end
+		for _, mod in ipairs(lib.mods) do
+			mods[mod] = mods[mod] or {}
+			table.insert(mods[mod], lib.path)
+		end
+		for _, file in ipairs(lib.files) do
+			files[file] = files[file] or {}
+			table.insert(files[file], lib.path)
+		end
+	end
+end)
+
+---@param libs lazydev.Library | lazydev.Library[]
+function M.Plugin:lazydev(libs)
+	if not vim.islist(libs) then
+		libs = { libs }
+	end
+
+	for _, lib in ipairs(libs) do
+		lib.path = self.name
+		table.insert(lazydev_libs, lib)
+	end
+
+	return self
+end
+
 return M

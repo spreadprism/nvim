@@ -1,5 +1,6 @@
 plugin("nvim-dap")
 	:on_require("dap")
+	:lazydev({ words = { "dap" } })
 	:event("DeferredUIEnter")
 	:opts(false)
 	:after(function()
@@ -51,14 +52,7 @@ plugin("nvim-dap-ui")
 	:keymaps({
 		k:map("n", "<leader>de", k:require("dapui").eval(), "eval"),
 	})
--- 	:after(function()
--- 		local elements = require("dapui").elements
--- 		---@diagnostic disable-next-line: inject-field
--- 		elements.repl.allow_without_session = true
--- 		---@diagnostic disable-next-line: inject-field
--- 		elements.console.allow_without_session = true
--- 	end)
---
+
 plugin("dap-view")
 	:opts({
 		winbar = {

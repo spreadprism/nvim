@@ -19,6 +19,7 @@ plugin("tokyonight")
 		end,
 		plugins = { all = true },
 	})
+	:lazydev({ words = { "colors", "on_highlights", "on_colors" } })
 	:after(function(specs)
 		_G.colors = require("tokyonight.colors").setup(specs.opts)
 		vim.cmd.colorscheme("tokyonight")
