@@ -44,6 +44,7 @@
     nvim-dap
     nvim-dap-ui
     nvim-dap-virtual-text
+    dap-view
     copilot
     opencode
     todo-comments
@@ -52,6 +53,11 @@
     ufo
     cutlass
     multicursor-nvim
+    live-command
+    quicker
+    smart-splits
+    neotest
+    neotest-golang
     pkgs.unstable.vimPlugins.blink-cmp
     pkgs.unstable.vimPlugins.blink-pairs
     pkgs.unstable.vimPlugins.blink-indent

@@ -7,31 +7,34 @@ local M = {}
 
 ---@class Workspace
 ---
----@private
----@field ctx exrc.Context
----@field config exrc.Config
+---@field protected ctx exrc.Context
+---@field private config exrc.Config
 ---@field workspaceFolder string
----@field dap_configs dap.Configuration[]
----@field group integer|string
+---@field private dap_configs dap.Configuration[]
+---@field private group integer|string
 local Workspace = {}
 Workspace.__index = Workspace
 
 function M:ctx()
-	local ctx = setmetatable({
-		ctx = require("exrc").init(),
+	local ctx = require("exrc").init()
+	local workspace = setmetatable({
+		ctx = ctx,
+		workspaceFolder = ctx.exrc_dir,
+		group = vim.api.nvim_create_augroup(ctx.exrc_path, { clear = true }),
 		config = require("exrc.config"),
 		dap_configs = {},
 	}, Workspace)
 
-	ctx.group = vim.api.nvim_create_augroup(ctx.ctx.exrc_path, { clear = true })
-	ctx.workspaceFolder = ctx.ctx.exrc_dir
-
-	ctx.ctx:on_unload(function()
-		ctx.group = vim.api.nvim_create_augroup(ctx.ctx.exrc_path, { clear = true })
-		self.dap_configs = {}
+	ctx:on_unload(function()
+		workspace:unload()
 	end)
 
-	return ctx
+	return workspace
+end
+
+function Workspace:unload()
+	self.group = vim.api.nvim_create_augroup(self.ctx.exrc_path, { clear = true })
+	self.dap_configs = {}
 end
 
 ---@private

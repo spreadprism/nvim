@@ -7,13 +7,6 @@ function M:adapter(name, opts)
 end
 
 ---@param ft string
----@param config dap.Configuration
----@return dap.Configuration
-function M:config(ft, config)
-	return {}
-end
-
----@param ft string
 ---@param ... string
 function M:ft_link(ft, ...)
 	require("internal.loader.dap.config").link(ft, ...)

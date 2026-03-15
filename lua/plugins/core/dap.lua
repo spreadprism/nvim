@@ -29,21 +29,20 @@ plugin("nvim-dap")
 		}),
 	})
 
-local function dap_open(element)
-	return function()
-		require("dapui").float_element(element, {
-			width = get_width(0.9),
-			height = get_height(0.8),
-			enter = true,
-			position = "center",
-		})
-	end
-end
-
+-- local function dap_open(element)
+-- 	return function()
+-- 		require("dapui").float_element(element, {
+-- 			width = get_width(0.9),
+-- 			height = get_height(0.8),
+-- 			enter = true,
+-- 			position = "center",
+-- 		})
+-- 	end
+-- end
+--
 plugin("nvim-dap-ui")
 	:on_require("dapui")
 	:dep_on("nvim-dap")
-	:event("DeferredUIEnter")
 	:opts({
 		floating = {
 			border = "rounded",
@@ -51,16 +50,29 @@ plugin("nvim-dap-ui")
 	})
 	:keymaps({
 		k:map("n", "<leader>de", k:require("dapui").eval(), "eval"),
-		k:map("n", "<M-d>", dap_open("repl"), "repl"),
-		k:map("n", "<M-D>", dap_open("console"), "console"),
 	})
-	:after(function()
-		local elements = require("dapui").elements
-		---@diagnostic disable-next-line: inject-field
-		elements.repl.allow_without_session = true
-		---@diagnostic disable-next-line: inject-field
-		elements.console.allow_without_session = true
-	end)
+-- 	:after(function()
+-- 		local elements = require("dapui").elements
+-- 		---@diagnostic disable-next-line: inject-field
+-- 		elements.repl.allow_without_session = true
+-- 		---@diagnostic disable-next-line: inject-field
+-- 		elements.console.allow_without_session = true
+-- 	end)
+--
+plugin("dap-view")
+	:opts({
+		winbar = {
+			sections = { "repl", "console" },
+			default_section = "repl",
+		},
+		windows = {
+			position = "right",
+		},
+	})
+	:keymaps({
+		k:map("n", "<M-d>", k:require("dap-view").toggle(), "toggle dap view"),
+		k:map("n", "<leader>de", k:require("dap.ui.widgets").hover(), "eval"),
+	})
 
 plugin("nvim-dap-virtual-text"):dep_on("nvim-dap"):event("DeferredUIEnter"):opts({
 	only_first_definition = false,

@@ -189,6 +189,30 @@
       url = "github:jake-stewart/multicursor.nvim";
       flake = false;
     };
+    live-command = {
+      url = "github:smjonas/live-command.nvim";
+      flake = false;
+    };
+    quicker = {
+      url = "github:stevearc/quicker.nvim";
+      flake = false;
+    };
+    smart-splits = {
+      url = "github:mrjones2014/smart-splits.nvim";
+      flake = false;
+    };
+    neotest = {
+      url = "github:nvim-neotest/neotest";
+      flake = false;
+    };
+    neotest-golang = {
+      url = "github:fredrikaverpil/neotest-golang";
+      flake = false;
+    };
+    dap-view = {
+      url = "github:igorlfs/nvim-dap-view";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

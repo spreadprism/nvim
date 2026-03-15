@@ -13,6 +13,9 @@ M.setup = {
 		end
 		return plugin
 	end,
+	cleanup = function()
+		M.keymaps.plugins = nil
+	end,
 	after = function(name)
 		local plugin = M.setup.plugins[name]
 
@@ -48,6 +51,9 @@ M.keymaps = {
 	set_lazy = true,
 	add = function(plugin)
 		M.keymaps.plugins[plugin.name] = plugin
+	end,
+	cleanup = function()
+		M.keymaps.plugins = nil
 	end,
 	modify = function(plugin)
 		if plugin.keymaps == nil then

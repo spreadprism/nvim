@@ -24,12 +24,15 @@ function _G.plugin_loaded(name)
 end
 
 _G.event = require("internal.events")
+---@type ColorScheme
+_G.colors = {}
 
 -- core loaders
 _G.plugin = require("internal.loader.plugin").plugin
 _G.lsp = require("internal.loader.lsp").lsp
 _G.k = require("internal.loader.keymaps")
 -- plugin definition loader
+_G.neotest = require("internal.loader.neotest").adapter
 _G.formatter = require("internal.loader.formatter")
 _G.linter = require("internal.loader.linter")
 _G.dap = require("internal.loader.dap")

@@ -8,6 +8,13 @@ plugin("overseer")
 		task_win = {
 			border = "rounded",
 		},
+		component_aliases = {
+			default = {
+				"on_exit_set_status",
+				{ "on_complete_notify", statuses = { "FAILURE" } },
+				{ "on_complete_dispose", require_view = { "SUCCESS", "FAILURE" } },
+			},
+		},
 		task_list = {
 			direction = "right",
 			keymaps = {
