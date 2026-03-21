@@ -3,10 +3,7 @@
 return function(config)
 	local new_configs = {}
 
-	new_configs = vim.tbl_deep_extend("force", {
-		mode = "exec",
-		outputMode = "remote",
-	}, config)
+	new_configs = vim.tbl_deep_extend("force", {}, config)
 
 	if new_configs.program:match("%.go$") or (new_configs.autobuild == nil or new_configs.autobuild) then
 		local program_no_filetype = new_configs.program:gsub("%.go$", "")
@@ -16,7 +13,13 @@ return function(config)
 		local cwd = vim.fn.getcwd()
 
 		local input = new_configs.program
-		local out = vim.fs.joinpath(cwd, "dist", "dev", basename)
+
+		local out
+		if basename ~= "main" then
+			out = vim.fs.joinpath(cwd, "dist", "dev", basename)
+		else
+			out = vim.fs.joinpath(cwd, "dist", "dev", vim.fn.fnamemodify(input, ":h:t"))
+		end
 
 		require("overseer").register_template({
 			name = name,

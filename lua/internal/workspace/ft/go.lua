@@ -15,7 +15,21 @@ end
 function Go:cmd_configs(dir)
 	dir = dir or vim.fs.joinpath(self.workspace.workspaceFolder, "cmd")
 
-	return {}
+	local configs = {}
+	-- for each dir in dir we need to generate a config
+	for name, type in vim.fs.dir(dir) do
+		if type == "directory" then
+			local program = vim.fs.joinpath(dir, name, "main.go")
+
+			table.insert(configs, {
+				name = "cmd:" .. name,
+				type = "go",
+				program = program,
+			})
+		end
+	end
+
+	return configs
 end
 
 return M

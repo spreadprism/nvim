@@ -12,6 +12,7 @@ local M = {}
 ---@field workspaceFolder string
 ---@field private dap_configs dap.Configuration[]
 ---@field private group integer|string
+---@field go Go
 local Workspace = {}
 Workspace.__index = Workspace
 
@@ -28,6 +29,8 @@ function M:ctx()
 	ctx:on_unload(function()
 		workspace:unload()
 	end)
+
+	workspace.go = require("internal.workspace.ft.go"):go(workspace)
 
 	return workspace
 end
@@ -118,13 +121,28 @@ function Workspace:on_save(pattern, callback)
 	event.on_save(pattern, callback, self.group)
 end
 
----@param configs dap.Configuration|dap.Configuration[]
-function Workspace:dap(configs)
+---@param configs dap.Configuration|dap.Configuration[]|(dap.Configuration|dap.Configuration[])[]
+---@return dap.Configuration[]
+local function flatten(configs)
+	local result = {}
+	local function helper(v)
+		if type(v) == "table" and vim.islist(v) then
+			for _, value in ipairs(v) do
+				helper(value)
+			end
+		else
+			table.insert(result, v)
+		end
+	end
+	helper(configs)
+	return result
+end
+
+---@param configs dap.Configuration|dap.Configuration[]|(dap.Configuration|dap.Configuration[])[]
+function Workspace:debug_config(configs)
 	local dap = require("dap")
 
-	if not vim.islist(configs) then
-		configs = { configs }
-	end
+	configs = flatten(configs)
 
 	dap.providers.configs[self.workspaceFolder] = function(_)
 		return self:enrich_config(self.dap_configs)

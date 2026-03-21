@@ -35,7 +35,16 @@ lsp("lua_ls"):root_markers({
 plugin("lazydev")
 	:ft("lua")
 	:opts(function()
+		local paths = {
+			vim.env.VIMRUNTIME,
+			(nixCats.nixCatsPath or "") .. "/lua",
+		}
+		local s = vim.split(vim.fn.getcwd(), "/", { trimempty = true })
+		if s[#s] ~= "nvim" then
+			table.insert(paths, (nixCats.configDir or "") .. "/lua/internal")
+		end
 		return {
+			library = paths,
 			integrations = {
 				cmp = false,
 			},

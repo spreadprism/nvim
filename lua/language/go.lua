@@ -12,7 +12,6 @@ lsp("gopls"):root_markers({ "go.work", "go.mod" }):settings({
 })
 linter("go", "golangcilint")
 formatter("go", "gofumpt")
-
 neotest("neotest-golang")({
 	dap_mode = "manual",
 	dap_manual_config = {
@@ -23,8 +22,7 @@ neotest("neotest-golang")({
 		outputMode = "remote",
 	},
 })
-
-dap:adapter("delve", function(callback, config)
+dap.adapter("delve", function(callback, config)
 	---@type dap.ServerAdapter
 	local adapter = {
 		type = "server",
