@@ -1,46 +1,42 @@
----@class Configuration : dap.Configuration
----@field args? string[]
----@field env? table<string, string>
----@field cwd? string
-
----@class GoConfiguration : Configuration
----@field program string
----@field mode? "debug"|"test"|"exec"|"remote"
----@field outputMode? "remote"
-
 local M = {}
 
+local function base(opts)
+	return vim.tbl_deep_extend("force", {
+		request = "launch",
+		cwd = vim.fn.getcwd(),
+	}, opts)
+end
 ---@param opts GoConfiguration
 ---@return GoConfiguration
 function M.go(opts)
 	return vim.tbl_deep_extend("force", {
 		mode = "exec",
 		outputMode = "remote",
-	}, opts)
-end
-
-for lang, fn in pairs(M) do
-	M[lang] = function(opts)
-		opts = fn(opts)
-
-		opts = vim.tbl_deep_extend("keep", opts, {
-			request = "launch",
-			cwd = vim.fn.getcwd(),
-		})
-
-		return opts
-	end
+	}, base(opts))
 end
 
 ---@param lang string
 ---@param opts table
----@return dap.Configuration
----@overload fun(lang: "go", opts: GoConfiguration|GoConfiguration[]): dap.Configuration[]
+---@return dap.Configuration|dap.Configuration[]
+---@overload fun(lang: "go", opts: GoConfiguration|GoConfiguration[]): dap.Configuration|dap.Configuration[]
 function M.launch(lang, opts)
-	if M[lang] then
-		opts = M[lang](opts)
+	if not vim.islist(opts) then
+		opts = { opts }
 	end
-	return opts
+
+	local new_opts = {}
+	for _, opt in ipairs(opts) do
+		opt.type = lang
+		if M[lang] then
+			opt = M[lang](opt)
+		end
+
+		table.insert(new_opts, opt)
+	end
+
+	return new_opts
 end
+
+-- launch()
 
 return M
