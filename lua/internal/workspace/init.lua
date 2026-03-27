@@ -9,7 +9,8 @@ local M = {}
 ---
 ---@field protected ctx exrc.Context
 ---@field private config exrc.Config
----@field workspaceFolder string
+---@field workspaceDir string
+---@field buildDir string
 ---@field private dap_configs dap.Configuration[]
 ---@field private group integer|string
 local Workspace = {}
@@ -20,6 +21,7 @@ function M:ctx()
 	local workspace = setmetatable({
 		ctx = ctx,
 		workspaceFolder = ctx.exrc_dir,
+		buildDir = vim.fs.joinpath(ctx.exrc_dir, "dist"),
 		group = vim.api.nvim_create_augroup(ctx.exrc_path, { clear = true }),
 		config = require("exrc.config"),
 		dap_configs = {},
@@ -49,7 +51,7 @@ function Workspace:enrich_config(config)
 	for i, cfg in ipairs(config) do
 		new_configs[i] = vim.tbl_deep_extend("force", {
 			request = "launch",
-			cwd = self.workspaceFolder,
+			cwd = self.workspaceDir,
 		}, cfg)
 
 		local type = cfg.type
@@ -83,7 +85,7 @@ function Workspace:source_workspace(dirs)
 	end
 
 	for _, dir in ipairs(dirs) do
-		local path = vim.fs.joinpath(self.workspaceFolder, dir, self.config.exrc_name)
+		local path = vim.fs.joinpath(self.workspaceDir, dir, self.config.exrc_name)
 
 		if vim.fn.filereadable(path) == 1 then
 			self.ctx.loader.load(path)
@@ -118,20 +120,25 @@ function Workspace:on_save(pattern, callback)
 	event.on_save(pattern, callback, self.group)
 end
 
----@param configs dap.Configuration|dap.Configuration[]|(dap.Configuration|dap.Configuration[])[]
-function Workspace:debug_config(configs)
+---@param ft string
+---@param configs Configuration|Configuration[]
+---@overload fun(self, ft: "go", configs: GoConfiguration|GoConfiguration[])
+function Workspace:dap(ft, configs)
 	local dap = require("dap")
+	dap.providers.configs[self.workspaceDir] = function(_)
+		return self.dap_configs
+	end
 
 	if not vim.islist(configs) then
 		configs = { configs }
 	end
 
-	dap.providers.configs[self.workspaceFolder] = function(_)
-		return self:enrich_config(self.dap_configs)
-	end
+	for _, cfg in ipairs(configs) do
+		if ft then
+			cfg.type = ft
+		end
 
-	for _, config in ipairs(configs) do
-		table.insert(self.dap_configs, config)
+		table.insert(self.dap_configs, require("internal.workspace.dap.enrich")(self, cfg))
 	end
 end
 

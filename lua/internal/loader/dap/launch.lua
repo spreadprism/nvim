@@ -18,7 +18,7 @@ end
 ---@param lang string
 ---@param opts table
 ---@return dap.Configuration|dap.Configuration[]
----@overload fun(lang: "go", opts: GoConfiguration|GoConfiguration[]): dap.Configuration|dap.Configuration[]
+---@overload fun(lang: "go", opts: GoConfiguration|GoConfiguration[]): dap.Configuration[]
 function M.launch(lang, opts)
 	if not vim.islist(opts) then
 		opts = { opts }

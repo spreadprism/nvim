@@ -1,31 +1,36 @@
----@class Configuration : dap.Configuration
----@field args? string[]
----@field env? table<string, string>
----@field cwd? string
-
----@class LaunchConfigurator
-local LaunchConfigurator = {}
-LaunchConfigurator.__index = LaunchConfigurator
-
+---
+---@generic T
 ---@class LaunchConfiguratorFt<T>
 ---@field ft string
 local LaunchConfiguratorFt = {}
 LaunchConfiguratorFt.__index = LaunchConfiguratorFt
 
----@param ft string
----@overload fun(ft: "go"): LaunchConfiguratorFt<GoConfiguration>
-function LaunchConfigurator.__call(ft)
-	return setmetatable({ ft = ft }, LaunchConfiguratorFt)
+---@class LaunchConfigurator
+local LaunchConfigurator = {}
+LaunchConfigurator.__index = LaunchConfigurator
+
+---@generic T
+---@param ft `T`
+---@param opts `T`Configurator | `T`Configurator[]
+function LaunchConfigurator:launch(ft, opts)
+	return {}
 end
 
----@param ft string
----@param opts table
----@overload fun(lang: "go", opts: GoConfiguration|GoConfiguration[]): dap.Configuration|dap.Configuration[]
-function LaunchConfigurator:launch(ft, opts) end
-
----@param opts T
+---@generic T
+---@param opts T | T[]
 function LaunchConfiguratorFt:launch(opts)
-	return LaunchConfigurator.launch(self.ft, opts)
+	return LaunchConfigurator:launch(self.ft, opts)
+end
+
+---Create a filetype-specific launch configurator
+---@generic T
+---@param ft `T`
+---@return T
+local function new(ft) end
+
+---@param ft string
+local function newConfiguration(ft)
+	return new(ft)
 end
 
 return LaunchConfigurator
