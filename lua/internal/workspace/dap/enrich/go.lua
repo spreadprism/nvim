@@ -54,6 +54,10 @@ end
 ---@param config GoConfiguration
 ---@return GoConfiguration|GoConfiguration[]
 return function(workspace, config)
+	if config.program == nil or config.program == "" then
+		vim.notify("DAP: No program specified for " .. config.name, vim.log.levels.ERROR, { title = "Go DAP" })
+		return {}
+	end
 	config = vim.tbl_deep_extend("force", {
 		mode = "exec",
 		outputMode = "remote",

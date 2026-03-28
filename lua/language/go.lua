@@ -22,7 +22,7 @@ neotest("neotest-golang")({
 		outputMode = "remote",
 	},
 })
-dap.adapter("delve", function(callback, config)
+dap.adapter({ "go", "delve" }, function(callback, config)
 	---@type dap.ServerAdapter
 	local adapter = {
 		type = "server",
@@ -40,4 +40,4 @@ dap.adapter("delve", function(callback, config)
 		}
 	end
 	callback(adapter)
-end):link("go")
+end)
