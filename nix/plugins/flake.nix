@@ -193,6 +193,10 @@
       url = "github:smjonas/live-command.nvim";
       flake = false;
     };
+    grug-far = {
+      url = "github:MagicDuck/grug-far.nvim";
+      flake = false;
+    };
     quicker = {
       url = "github:stevearc/quicker.nvim";
       flake = false;

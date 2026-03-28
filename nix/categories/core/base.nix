@@ -53,6 +53,7 @@
     cutlass
     multicursor-nvim
     live-command
+    grug-far
     quicker
     smart-splits
     neotest

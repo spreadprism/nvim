@@ -35,6 +35,12 @@ plugin("opencode")
 				min_height = 0.15,
 			},
 		},
+		keymap = {
+			input_window = {
+				["<S-cr>"] = false,
+				["<cr>"] = { "submit_input_prompt", mode = { "n", "i" } },
+			},
+		},
 	})
 	:keymaps({
 		k:group("assistant", "<leader>a", {
