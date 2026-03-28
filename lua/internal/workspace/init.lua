@@ -10,7 +10,6 @@ local M = {}
 ---@field protected ctx exrc.Context
 ---@field private config exrc.Config
 ---@field workspaceDir string
----@field buildDir string
 ---@field private dap_configs dap.Configuration[]
 ---@field private group integer|string
 local Workspace = {}
@@ -20,8 +19,7 @@ function M:ctx()
 	local ctx = require("exrc").init()
 	local workspace = setmetatable({
 		ctx = ctx,
-		workspaceFolder = ctx.exrc_dir,
-		buildDir = vim.fs.joinpath(ctx.exrc_dir, "dist"),
+		workspaceDir = ctx.exrc_dir,
 		group = vim.api.nvim_create_augroup(ctx.exrc_path, { clear = true }),
 		config = require("exrc.config"),
 		dap_configs = {},
@@ -125,6 +123,7 @@ end
 ---@overload fun(self, ft: "go", configs: GoConfiguration|GoConfiguration[])
 function Workspace:dap(ft, configs)
 	local dap = require("dap")
+
 	dap.providers.configs[self.workspaceDir] = function(_)
 		return self.dap_configs
 	end
@@ -138,7 +137,12 @@ function Workspace:dap(ft, configs)
 			cfg.type = ft
 		end
 
-		table.insert(self.dap_configs, require("internal.workspace.dap.enrich")(self, cfg))
+		local nconfigs = require("internal.workspace.dap.enrich")(self, cfg)
+		if vim.islist(nconfigs) then
+			vim.list_extend(self.dap_configs, nconfigs)
+		else
+			table.insert(self.dap_configs, nconfigs)
+		end
 	end
 end
 

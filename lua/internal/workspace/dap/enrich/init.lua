@@ -6,7 +6,7 @@
 
 ---@param workspace Workspace
 ---@param config Configuration
----@return Configuration
+---@return Configuration|Configuration[]
 return function(workspace, config)
 	config = vim.tbl_deep_extend("force", {
 		request = "launch",

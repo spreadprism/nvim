@@ -26,15 +26,15 @@ local function enrich_build(workspace, config)
 			return config
 		end
 	else
-		dirname = vim.fs.dirname(program)
+		dirname = vim.fs.basename(vim.fs.dirname(program))
 	end
 
 	local input = program
-	local output = vim.fs.joinpath(workspace.buildDir, config.profile, dirname)
+	local output = vim.fs.joinpath(workspace.workspaceDir, "dist", config.profile, dirname)
 	local task_name = "build(" .. input .. ")"
 
 	require("overseer").register_template({
-		name = input,
+		name = task_name,
 		hide = true,
 		builder = function()
 			return {
@@ -52,7 +52,7 @@ end
 
 ---@param workspace Workspace
 ---@param config GoConfiguration
----@return GoConfiguration
+---@return GoConfiguration|GoConfiguration[]
 return function(workspace, config)
 	config = vim.tbl_deep_extend("force", {
 		mode = "exec",
