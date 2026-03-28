@@ -753,6 +753,7 @@
         "tokyonight": "tokyonight",
         "treesitter-context": "treesitter-context",
         "treesj": "treesj",
+        "trouble": "trouble",
         "ufo": "ufo",
         "undotree": "undotree",
         "which-key": "which-key"
@@ -965,6 +966,22 @@
       "original": {
         "owner": "Wansmer",
         "repo": "treesj",
+        "type": "github"
+      }
+    },
+    "trouble": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1761919011,
+        "narHash": "sha256-6U/KWjvRMxWIxcsI2xNU/ltfgkaFG4E3BdzC7brK/DI=",
+        "owner": "folke",
+        "repo": "trouble.nvim",
+        "rev": "bd67efe408d4816e25e8491cc5ad4088e708a69a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "trouble.nvim",
         "type": "github"
       }
     },

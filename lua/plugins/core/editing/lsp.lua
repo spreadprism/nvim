@@ -1,4 +1,3 @@
--- TODO: trouble
 plugin("lspconfig")
 	:opts(false)
 	:after(function()

@@ -54,6 +54,7 @@
     multicursor-nvim
     live-command
     grug-far
+    trouble
     quicker
     smart-splits
     neotest

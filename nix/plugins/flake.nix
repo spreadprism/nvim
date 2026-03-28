@@ -197,6 +197,10 @@
       url = "github:MagicDuck/grug-far.nvim";
       flake = false;
     };
+    trouble = {
+      url = "github:folke/trouble.nvim";
+      flake = false;
+    };
     quicker = {
       url = "github:stevearc/quicker.nvim";
       flake = false;
