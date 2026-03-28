@@ -146,4 +146,11 @@ function Workspace:dap(ft, configs)
 	end
 end
 
+---@param type string
+---@param conn Connection
+---@overload fun(type: "mysql", conn: MysqlConnection)
+function Workspace:db(type, conn)
+	require("internal.workspace.db").add_connection(self, type, conn)
+end
+
 return M

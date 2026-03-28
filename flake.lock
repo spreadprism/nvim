@@ -790,6 +790,7 @@
         "trouble": "trouble",
         "ufo": "ufo",
         "undotree": "undotree",
+        "visual-whitespace": "visual-whitespace",
         "which-key": "which-key"
       },
       "locked": {
@@ -1048,6 +1049,22 @@
       "original": {
         "owner": "jiaoshijie",
         "repo": "undotree",
+        "type": "github"
+      }
+    },
+    "visual-whitespace": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1771715155,
+        "narHash": "sha256-svKfA9p6WC6k3kbxG4TJxe2r0xpRPdbNTVk2PZcPAiY=",
+        "owner": "mcauley-penney",
+        "repo": "visual-whitespace.nvim",
+        "rev": "49ff2b1c572ed7033a584381fa23aad2bf3bb258",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mcauley-penney",
+        "repo": "visual-whitespace.nvim",
         "type": "github"
       }
     },

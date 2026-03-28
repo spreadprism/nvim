@@ -79,7 +79,6 @@ plugin("lspconfig")
 	:keymaps(k:group("lsp", "<leader>l", {
 		k:map("n", "i", k:cmd("LspInfo"), "Info"),
 		k:map("n", "r", function()
-			-- TODO: replace with enabled = false, enabled = true
 			local bufnr = vim.fn.bufnr()
 			local clients = vim.lsp.get_clients({ bufnr = bufnr })
 			for _, client in ipairs(clients) do

@@ -225,6 +225,10 @@
       url = "github:L3MON4D3/LuaSnip";
       flake = false;
     };
+    visual-whitespace = {
+      url = "github:mcauley-penney/visual-whitespace.nvim";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

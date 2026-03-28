@@ -61,9 +61,11 @@
     neotest-golang
     neogen
     luasnip
+    visual-whitespace
     pkgs.unstable.vimPlugins.blink-cmp
     pkgs.unstable.vimPlugins.blink-pairs
     pkgs.unstable.vimPlugins.blink-indent
     pkgs.unstable.vimPlugins.nvim-treesitter.withAllGrammars
+    pkgs.unstable.vimPlugins.nvim-dbee
   ];
 }
