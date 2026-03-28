@@ -217,6 +217,14 @@
       url = "github:fredrikaverpil/neotest-golang";
       flake = false;
     };
+    neogen = {
+      url = "github:danymat/neogen";
+      flake = false;
+    };
+    luasnip = {
+      url = "github:L3MON4D3/LuaSnip";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

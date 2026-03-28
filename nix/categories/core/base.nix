@@ -59,6 +59,8 @@
     smart-splits
     neotest
     neotest-golang
+    neogen
+    luasnip
     pkgs.unstable.vimPlugins.blink-cmp
     pkgs.unstable.vimPlugins.blink-pairs
     pkgs.unstable.vimPlugins.blink-indent

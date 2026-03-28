@@ -73,10 +73,9 @@ plugin("blink.cmp")
 			},
 		}
 		return {
-			-- TODO: once we add snippets
-			-- snippets = { preset = "luasnip" },
+			snippets = { preset = "luasnip" },
 			sources = {
-				default = { "lsp", "path", "buffer", "git", "conventional_commits" },
+				default = { "lsp", "path", "snippets", "buffer", "git", "conventional_commits" },
 				providers = {
 					lazydev = {
 						name = "LazyDev",
