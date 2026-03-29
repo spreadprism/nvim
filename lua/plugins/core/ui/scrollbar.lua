@@ -4,4 +4,7 @@ plugin("scrollbar"):event("UIEnter"):opts({
 		cursor = false,
 		gitsigns = true,
 	},
+	excluded_filetypes = {
+		"blame",
+	},
 })

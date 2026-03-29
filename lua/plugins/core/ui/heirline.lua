@@ -26,6 +26,7 @@ plugin("heirline")
 							return true
 						end
 					end
+
 					return require("heirline.conditions").buffer_matches({
 						buftype = { "nofile", "prompt", "help", "quickfix" },
 						filetype = {
@@ -36,6 +37,7 @@ plugin("heirline")
 							"^$",
 							"terminal",
 							"OverseerOutput",
+							"gitsigns-blame",
 						},
 					}, args.buf)
 				end,

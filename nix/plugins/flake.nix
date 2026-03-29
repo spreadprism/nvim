@@ -97,10 +97,6 @@
       url = "github:nvim-mini/mini.move";
       flake = false;
     };
-    blame = {
-      url = "github:FabijanZulj/blame.nvim";
-      flake = false;
-    };
     nvim-treesitter-endwise = {
       url = "github:RRethy/nvim-treesitter-endwise";
       flake = false;

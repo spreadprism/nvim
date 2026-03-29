@@ -48,7 +48,7 @@ plugin("neogit")
 		}),
 	})
 
-plugin("gitsigns"):event("BufEnter"):opts({
+plugin("gitsigns"):cmd("Gitsigns"):event("BufEnter"):opts({
 	signcolumn = true,
 	numhl = true,
 	current_line_blame_opts = {
@@ -60,18 +60,10 @@ plugin("gitsigns"):event("BufEnter"):opts({
 	current_line_blame_formatter = "<author>, <author_time:%R>",
 	on_attach = function(bufnr)
 		k:opts({
-			k:map("n", "<M-b>", k:require("internal.plugins.blame").line_blame(), "Toggle line blame"),
-			k:group("git", "<leader>g", {}),
+			k:map("n", "<M-b>", k:cmd("Gitsigns toggle_current_line_blame"), "Toggle line blame"),
+			k:map("n", "<M-B>", k:cmd("Gitsigns blame"), "open blame window"),
 		})
 			:buffer(bufnr)
 			:add()
 	end,
 })
-
-plugin("blame")
-	:event("BufEnter")
-	:opts({
-		virtual_style = "float",
-		focus_blame = false,
-	})
-	:keymaps(k:map("n", "<M-B>", k:require("internal.plugins.blame").buffer_blame(), "Toggle buffer blame"))
