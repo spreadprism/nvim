@@ -37,14 +37,14 @@
       url = "github:christoomey/vim-tmux-navigator";
       flake = false;
     };
-    # neogit = {
-    #   url = "github:NeogitOrg/neogit";
-    #   flake = false;
-    # };
     neogit = {
-      url = "github:sotte/neogit?ref=support-vscode-diff";
+      url = "github:NeogitOrg/neogit";
       flake = false;
     };
+    # neogit = {
+    #   url = "github:sotte/neogit?ref=support-vscode-diff";
+    #   flake = false;
+    # };
     gitsigns = {
       url = "github:lewis6991/gitsigns.nvim";
       flake = false;

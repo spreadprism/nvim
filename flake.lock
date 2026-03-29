@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "blame": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1761041286,
-        "narHash": "sha256-CY768BvqU8zJ2qZKVC9s1lLctBzam1GeZD7UnD7nBBc=",
-        "owner": "FabijanZulj",
-        "repo": "blame.nvim",
-        "rev": "f3f6153ea94e1120f2776f22bbbd63c4aeebaf32",
-        "type": "github"
-      },
-      "original": {
-        "owner": "FabijanZulj",
-        "repo": "blame.nvim",
-        "type": "github"
-      }
-    },
     "blink-cmp-conventional-commits": {
       "flake": false,
       "locked": {
@@ -83,11 +67,11 @@
     "copilot": {
       "flake": false,
       "locked": {
-        "lastModified": 1774314527,
-        "narHash": "sha256-RzHCniW/n796uYdVA1LtHWBI3XxoPgmdw2N8RpUjPJQ=",
+        "lastModified": 1774727135,
+        "narHash": "sha256-p32hL8OGeIxoyD9Vup2XLfuF2tGi+67Ya5LCloMo8mg=",
         "owner": "zbirenbaum",
         "repo": "copilot.lua",
-        "rev": "538f15c4eaad8661389a4a0d1ace2d6e079fac29",
+        "rev": "0a3e09122cfd21e62a1e9d183c61aa1cacdd7da6",
         "type": "github"
       },
       "original": {
@@ -376,16 +360,15 @@
     "neogit": {
       "flake": false,
       "locked": {
-        "lastModified": 1767951279,
-        "narHash": "sha256-umqGyXNqS7qDwl8qZrbv+pNMZhO9sI/0uWxteVBgtNo=",
-        "owner": "sotte",
+        "lastModified": 1774635160,
+        "narHash": "sha256-bukT8lrKlWSLoTQrwuG48KIvzKJYNjX+gy7vDPMarw4=",
+        "owner": "NeogitOrg",
         "repo": "neogit",
-        "rev": "f6664d4bc73bec65c0ec0df49f1873061dff08b0",
+        "rev": "4681c1fdac1b730592ae195576e87406f7255750",
         "type": "github"
       },
       "original": {
-        "owner": "sotte",
-        "ref": "support-vscode-diff",
+        "owner": "NeogitOrg",
         "repo": "neogit",
         "type": "github"
       }
@@ -733,7 +716,6 @@
     },
     "plugins": {
       "inputs": {
-        "blame": "blame",
         "blink-cmp-conventional-commits": "blink-cmp-conventional-commits",
         "blink-cmp-git": "blink-cmp-git",
         "blink-compat": "blink-compat",
