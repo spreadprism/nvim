@@ -1,7 +1,5 @@
 local M = {}
 
--- TODO: sql connections
-
 ---@class exrc.Config
 ---@field exrc_name string
 
@@ -11,6 +9,7 @@ local M = {}
 ---@field private config exrc.Config
 ---@field workspaceDir string
 ---@field private dap_configs dap.Configuration[]
+---@field private db_connections ConnectionParams[]
 ---@field private group integer|string
 local Workspace = {}
 Workspace.__index = Workspace
@@ -35,6 +34,12 @@ end
 function Workspace:unload()
 	self.group = vim.api.nvim_create_augroup(self.ctx.exrc_path, { clear = true })
 	self.dap_configs = {}
+	self.db_connections = {}
+end
+
+---@param fn fun()
+function Workspace:on_unload(fn)
+	self.ctx:on_unload(fn)
 end
 
 ---@private
@@ -148,9 +153,28 @@ end
 
 ---@param type string
 ---@param conn Connection
----@overload fun(type: "mysql", conn: MysqlConnection)
+---@overload fun(type: "mysql", conn: MysqlConnection|MysqlConnection[])
 function Workspace:db(type, conn)
-	require("internal.workspace.db").add_connection(self, type, conn)
+	local source = require("internal.workspace.db").source
+	source:register(self.workspaceDir, function()
+		return self.db_connections
+	end)
+
+	if #self.db_connections == 0 then
+		self:on_unload(function()
+			source:clear(self.workspaceDir)
+		end)
+	end
+
+	if not vim.islist(conn) then
+		conn = { conn }
+	end
+
+	local provider = require("internal.workspace.db." .. type)
+	for _, c in ipairs(conn) do
+		conn.type = conn.type or type
+		table.insert(self.db_connections, provider(self, c))
+	end
 end
 
 return M

@@ -6,45 +6,48 @@ local M = {}
 ---@field type string
 ---@field url string
 
----@type Connection[]
-local conns = {}
-
----@class WorkspaceSource
-local WorkspaceSource = {}
+---@class WorkspaceSource : Source
+---@field providers table<string, fun(): Connection[]>
+---@field refreshing boolean
+local WorkspaceSource = {
+	refreshing = false,
+}
 
 function WorkspaceSource:name()
 	return "workspace"
 end
 
+---@return ConnectionParams[]
 function WorkspaceSource:load()
-	return conns
+	---@type ConnectionParams[]
+	local conn = {}
+
+	for _, provider in pairs(self.providers) do
+		vim.list_extend(conn, provider())
+	end
+
+	return conn
 end
 
-function M.clear_connections()
-	conns = {}
-end
-
-local trigger_update = true
-
----@param workspace Workspace
----@param type string
----@param conn Connection
----@overload fun(type: "mysql", conn: MysqlConnection)
-function M.add_connection(workspace, type, conn)
-	conn = require("internal.workspace.db." .. type)(workspace, conn)
-	conn.type = type
-	conn.id = conn.name
-	table.insert(conns, conn)
-	vim.defer_fn(function()
-		if trigger_update then
-			trigger_update = false
+function WorkspaceSource:refresh()
+	if not self.refreshing then
+		self.refreshing = true
+		vim.defer_fn(function()
 			require("dbee.api").core.source_reload("workspace")
+			self.refreshing = false
+		end, 300)
+	end
+end
 
-			vim.defer_fn(function()
-				trigger_update = true
-			end, 300)
-		end
-	end, 300)
+---@param load fun(): Connection[]
+---@param name string
+function WorkspaceSource:register(name, load)
+	self.providers[name] = load
+end
+
+---@param name string
+function WorkspaceSource:clear(name)
+	self.providers[name] = nil
 end
 
 M.source = WorkspaceSource
