@@ -225,6 +225,10 @@
       url = "github:mcauley-penney/visual-whitespace.nvim";
       flake = false;
     };
+    yaml_nvim = {
+      url = "git+https://tangled.org/cuducos.me/yaml.nvim";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

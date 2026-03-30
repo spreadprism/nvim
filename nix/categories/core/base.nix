@@ -6,6 +6,13 @@
 }: {
   lspsAndRuntimeDeps = with pkgs; [
     sqlite
+    unstable.nodePackages_latest.vscode-json-languageserver
+    unstable.yaml-language-server
+    unstable.helm-ls
+    unstable.prettierd
+    unstable.tofu-ls
+    unstable.tflint
+    unstable.docker-language-server
   ];
   startupPlugins = with vim_pkgs; [
     lze
@@ -13,6 +20,7 @@
     plenary-nvim
     nvim-nio
     promise-async
+    pkgs.unstable.vimPlugins.SchemaStore-nvim
   ];
 
   optionalPlugins = with nvim_pkgs; [
@@ -62,6 +70,7 @@
     neogen
     luasnip
     visual-whitespace
+    yaml_nvim
     pkgs.unstable.vimPlugins.blink-cmp
     pkgs.unstable.vimPlugins.blink-pairs
     pkgs.unstable.vimPlugins.blink-indent

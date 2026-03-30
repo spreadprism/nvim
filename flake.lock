@@ -525,11 +525,11 @@
     "nvim-dap": {
       "flake": false,
       "locked": {
-        "lastModified": 1774516809,
-        "narHash": "sha256-GWET5o6+GEUVyv4vgobc9DDniKBv9ZD212zydZ1OH44=",
+        "lastModified": 1774520032,
+        "narHash": "sha256-H3LML3FgqvD4xI4IljAp2E3dxAdFx/As+nzjC+jPzyc=",
         "owner": "mfussenegger",
         "repo": "nvim-dap",
-        "rev": "2a8799ad91a1495c6bdf753f9b2179b3ff0f5bba",
+        "rev": "4f5deb110d9ff8994d96c21df95e2271d11214f9",
         "type": "github"
       },
       "original": {
@@ -773,7 +773,8 @@
         "ufo": "ufo",
         "undotree": "undotree",
         "visual-whitespace": "visual-whitespace",
-        "which-key": "which-key"
+        "which-key": "which-key",
+        "yaml_nvim": "yaml_nvim"
       },
       "locked": {
         "path": "nix/plugins",
@@ -1064,6 +1065,22 @@
         "owner": "folke",
         "repo": "which-key.nvim",
         "type": "github"
+      }
+    },
+    "yaml_nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767560584,
+        "narHash": "sha256-MKRtbr70vdkGuByUl5+8M64Ki6ylESUNxb39Na9nlGI=",
+        "ref": "refs/heads/main",
+        "rev": "b6eaf919fb0a2a254ce20ae657787d67e6b9300e",
+        "revCount": 108,
+        "type": "git",
+        "url": "https://tangled.org/cuducos.me/yaml.nvim"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://tangled.org/cuducos.me/yaml.nvim"
       }
     }
   },
