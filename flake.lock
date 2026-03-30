@@ -213,6 +213,22 @@
         "type": "github"
       }
     },
+    "jdtls": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1770754908,
+        "narHash": "sha256-ySaJ/eKtYmFoTWEKoFiiNWf+B8YIwUEqg/tKUOTcFfI=",
+        "owner": "mfussenegger",
+        "repo": "nvim-jdtls",
+        "rev": "77ccaeb422f8c81b647605da5ddb4a7f725cda90",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mfussenegger",
+        "repo": "nvim-jdtls",
+        "type": "github"
+      }
+    },
     "lazydev": {
       "flake": false,
       "locked": {
@@ -728,6 +744,7 @@
         "heirline": "heirline",
         "heirline-components": "heirline-components",
         "hop": "hop",
+        "jdtls": "jdtls",
         "lazydev": "lazydev",
         "lint": "lint",
         "live-command": "live-command",

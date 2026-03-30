@@ -35,19 +35,34 @@ plugin("noice")
 				},
 			},
 		},
-		routes = vim.tbl_map(function(msg)
-			return {
-				filter = {
-					event = "msg_show",
-					find = msg,
+		routes = vim.list_extend(
+			vim.tbl_map(function(msg)
+				return {
+					filter = {
+						event = "msg_show",
+						find = msg,
+					},
+					opts = { skip = true },
+				}
+			end, { -- filter out these messages
+				"No information available",
+				"written",
+				"No diagnostics found",
+				"No results for",
+				"Hop",
+			}),
+			{
+				{
+					filter = {
+						event = "lsp",
+						kind = "progress",
+						cond = function(message)
+							local client = vim.tbl_get(message.opts, "progress", "client")
+							return client == "jdtls"
+						end,
+					},
+					opts = { skip = true },
 				},
-				opts = { skip = true },
 			}
-		end, { -- filter out these messages
-			"No information available",
-			"written",
-			"No diagnostics found",
-			"No results for",
-			"Hop",
-		}),
+		),
 	})

@@ -229,6 +229,10 @@
       url = "git+https://tangled.org/cuducos.me/yaml.nvim";
       flake = false;
     };
+    jdtls = {
+      url = "github:mfussenegger/nvim-jdtls";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

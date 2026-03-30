@@ -13,6 +13,7 @@
     unstable.tofu-ls
     unstable.tflint
     unstable.docker-language-server
+    unstable.jdt-language-server
   ];
   startupPlugins = with vim_pkgs; [
     lze
@@ -71,6 +72,7 @@
     luasnip
     visual-whitespace
     yaml_nvim
+    jdtls
     pkgs.unstable.vimPlugins.blink-cmp
     pkgs.unstable.vimPlugins.blink-pairs
     pkgs.unstable.vimPlugins.blink-indent
