@@ -60,10 +60,10 @@ function M.load_plugins()
 	require("lze").h.merge.trigger()
 end
 
-function M.read_languages()
-	for _, path in ipairs(vim.api.nvim_get_runtime_file("*/language/*.lua", true)) do
+function M.read_langs()
+	for _, path in ipairs(vim.api.nvim_get_runtime_file("*/langs/*.lua", true)) do
 		local name = vim.fn.fnamemodify(path, ":t:r")
-		local module_path = "language." .. name
+		local module_path = "langs." .. name
 		if nixCats(module_path) then
 			local ok, msg = pcall(require, module_path)
 			if not ok then
