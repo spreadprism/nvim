@@ -4,20 +4,21 @@
   nvim_pkgs,
   ...
 }: {
-  lspsAndRuntimeDeps = with pkgs; [
-    unstable.sqlite
-    unstable.nodePackages_latest.vscode-json-languageserver
-    unstable.yaml-language-server
-    unstable.helm-ls
-    unstable.prettierd
-    unstable.tofu-ls
-    unstable.tflint
-    unstable.docker-language-server
-    unstable.jdt-language-server
-    unstable.ty
-    unstable.uv
-    unstable.fd
-    unstable.ruff
+  lspsAndRuntimeDeps = with pkgs.unstable; [
+    sqlite
+    nodePackages_latest.vscode-json-languageserver
+    yaml-language-server
+    helm-ls
+    prettierd
+    tofu-ls
+    tflint
+    docker-language-server
+    jdt-language-server
+    ty
+    uv
+    fd
+    ruff
+    just-lsp
   ];
   startupPlugins = with vim_pkgs; [
     lze
