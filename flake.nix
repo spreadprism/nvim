@@ -53,7 +53,7 @@
     };
     base_categories = {...}: {
       core = true;
-      language = true; # enable every languages
+      langs = true; # enable every languages
       ai = true;
       requests = true;
       plugins = {
@@ -85,7 +85,7 @@
         categories =
           base_categories misc
           // {
-            language = true;
+            langs = true;
             remote = true;
             tmux = true;
             dev = true;

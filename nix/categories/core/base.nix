@@ -4,18 +4,20 @@
   nvim_pkgs,
   ...
 }: {
-  lspsAndRuntimeDeps = with pkgs.unstable; [
+  lspsAndRuntimeDeps = with pkgs; [
     sqlite
     nodePackages_latest.vscode-json-languageserver
     yaml-language-server
     helm-ls
     prettierd
-    tofu-ls
+    unstable.tofu-ls
     tflint
-    dockerfile-language-server
-    docker-language-server
-    docker-compose-language-service
+    unstable.dockerfile-language-server
+    unstable.docker-language-server
+    unstable.docker-compose-language-service
     jdt-language-server
+    java-debug
+    codelldb
     ty
     uv
     fd

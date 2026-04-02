@@ -9,6 +9,17 @@ end
 local M = {}
 
 -- funcs
+function _G.exec(cmd)
+	local handle, err = io.popen(cmd)
+	---@type string
+	---@diagnostic disable-next-line: need-check-nil
+	local result = handle:read("*a")
+	---@diagnostic disable-next-line: need-check-nil
+	handle:close()
+
+	return result:gsub("\n$", ""), err
+end
+
 function _G.get_width(modifier)
 	---@diagnostic disable-next-line: deprecated
 	return vim.fn.floor(tonumber(vim.api.nvim_command_output("echo &columns")) * (modifier or 1))
