@@ -5,7 +5,7 @@
   ...
 }: {
   lspsAndRuntimeDeps = with pkgs; [
-    sqlite
+    unstable.sqlite
     unstable.nodePackages_latest.vscode-json-languageserver
     unstable.yaml-language-server
     unstable.helm-ls
@@ -14,6 +14,10 @@
     unstable.tflint
     unstable.docker-language-server
     unstable.jdt-language-server
+    unstable.ty
+    unstable.uv
+    unstable.fd
+    unstable.ruff
   ];
   startupPlugins = with vim_pkgs; [
     lze
@@ -73,6 +77,8 @@
     visual-whitespace
     yaml_nvim
     jdtls
+    venv-selector
+    dap-python
     pkgs.unstable.vimPlugins.blink-cmp
     pkgs.unstable.vimPlugins.blink-pairs
     pkgs.unstable.vimPlugins.blink-indent

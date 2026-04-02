@@ -233,6 +233,14 @@
       url = "github:mfussenegger/nvim-jdtls";
       flake = false;
     };
+    venv-selector = {
+      url = "github:linux-cultist/venv-selector.nvim";
+      flake = false;
+    };
+    dap-python = {
+      url = "github:mfussenegger/nvim-dap-python";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

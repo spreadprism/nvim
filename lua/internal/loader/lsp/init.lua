@@ -3,16 +3,16 @@ local M = {}
 local blacklist = {}
 function M.display(client, buf)
 	if vim.tbl_contains(blacklist, client.name) then
-		return nil
+		return false
 	end
 
 	local lsp = lsp(client.name)
 
 	if lsp then
 		if lsp.display == false then
-			return nil
+			return false
 		end
-		display = lsp.display or client.name
+		local display = lsp.display_fn or client.name
 		if type(display) == "function" then
 			display = display(client, buf)
 		end

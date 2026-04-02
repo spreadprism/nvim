@@ -20,14 +20,18 @@ end)
 ---@class Lsp
 ---@field name string
 ---@field opts vim.lsp.Config
----@field display string | fun(client: vim.lsp.Client, buf: number): string
+---@field display_fn false | string | fun(client: vim.lsp.Client, buf: number): string
 Lsp = {}
 Lsp.__index = Lsp
 
----@param display string | fun(client: vim.lsp.Client, buf: number): string
+---@param display false | string | fun(client: vim.lsp.Client, buf: number): string
 ---@return Lsp
 function Lsp:display(display)
-	self.display = display
+	if display == false then
+		require("internal.loader.lsp").display_blacklist(self.name)
+	else
+		self.display_fn = display
+	end
 	return self
 end
 
@@ -64,6 +68,11 @@ end
 ---@return Lsp
 function Lsp:settings(settings)
 	self.opts.settings = settings
+	return self
+end
+
+function Lsp:init_options(opts)
+	self.opts.init_options = opts
 	return self
 end
 
