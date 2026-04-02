@@ -12,7 +12,9 @@
     prettierd
     tofu-ls
     tflint
+    dockerfile-language-server
     docker-language-server
+    docker-compose-language-service
     jdt-language-server
     ty
     uv
