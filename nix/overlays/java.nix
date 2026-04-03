@@ -6,14 +6,18 @@ final: prev: {
 
       # Copy the server directory
       cp ${prev.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/*.jar $out/share/java-debug.jar
-
-      # Create a wrapper script that outputs the path
-      cat > $out/bin/java-debug-path <<EOF
-      #!/bin/sh
-      echo "$out/share/java-debug.jar"
-      EOF
-
-      chmod +x $out/bin/java-debug-path
     '';
   });
+
+  # Metadata for this overlay
+  overlayMeta =
+    (prev.overlayMeta or {})
+    // {
+      java-debug = {
+        type = "debug-adapter";
+        sourcePackage = "vscode-extensions.vscjava.vscode-java-debug";
+        languages = ["java"];
+        path = "${final.java-debug}/share/java-debug.jar";
+      };
+    };
 }

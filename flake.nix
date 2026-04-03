@@ -26,7 +26,17 @@
     extra_pkg_config = {
       allowUnfree = true;
     };
-    overlays = import ./nix/overlays {inherit inputs;};
+    overlays = let
+      overlayFiles = builtins.attrNames (builtins.readDir ./nix/overlays);
+      loadOverlay = file: import (./nix/overlays + "/${file}");
+    in
+      builtins.listToAttrs (
+        builtins.map (file: {
+          name = builtins.replaceStrings [".nix"] [""] file;
+          value = loadOverlay file;
+        })
+        overlayFiles
+      );
     dependencyOverlays =
       [
         plugins.overlay
@@ -50,7 +60,7 @@
       wrapRc = true;
       neovim-unwrapped = inputs.neovim.packages.${pkgs.system}.neovim; # BUG: blink.cmp
     };
-    base_categories = {...}: {
+    base_categories = {pkgs, ...}: {
       core = true;
       langs = true; # enable every languages
       ai = true;
@@ -59,6 +69,7 @@
         paths = plugins.paths;
         names = plugins.names;
       };
+      overlays = pkgs.overlayMeta or {};
     };
     base_extra = {pkgs, ...}: {
       nixdExtras.nixpkgs = ''import ${pkgs.path} {}'';
@@ -104,9 +115,14 @@
       defaultPackage = nixCatsBuilder defaultPackageName;
       pkgs = import nixpkgs {
         inherit system;
+        config = extra_pkg_config;
+        overlays = dependencyOverlays;
       };
     in {
       packages = utils.mkAllWithDefault defaultPackage;
+
+      # Expose overlay metadata
+      overlayMeta = pkgs.overlayMeta or {};
 
       # choose your package for devShell
       # and add whatever else you want in it.

@@ -28,4 +28,16 @@ final: prev: {
       mainProgram = "commit-lsp";
     };
   };
+
+  # Metadata for this overlay
+  overlayMeta =
+    (prev.overlayMeta or {})
+    // {
+      commit-lsp = {
+        type = "language-server";
+        sourceType = "github";
+        languages = ["git" "gitcommit"];
+        version = "0.2.0";
+      };
+    };
 }
