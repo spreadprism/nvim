@@ -4,10 +4,8 @@
   ...
 }: {
   lspsAndRuntimeDeps = with pkgs; [
-    unstable.lua-language-server
-    unstable.stylua
+    helm-ls
   ];
   optionalPlugins = with nvim_pkgs; [
-    lazydev
   ];
 }

@@ -6,24 +6,7 @@
 }: {
   lspsAndRuntimeDeps = with pkgs; [
     sqlite
-    vscode-json-languageserver
-    yaml-language-server
-    helm-ls
-    prettierd
-    tofu-ls
-    tflint
-    dockerfile-language-server
-    docker-language-server
-    docker-compose-language-service
-    jdt-language-server
-    java-debug
-    codelldb
-    commit-lsp
-    ty
-    uv
     fd
-    ruff
-    just-lsp
   ];
   startupPlugins = with vim_pkgs; [
     lze
@@ -31,7 +14,7 @@
     plenary-nvim
     nvim-nio
     promise-async
-    pkgs.unstable.vimPlugins.SchemaStore-nvim
+    SchemaStore-nvim
   ];
 
   optionalPlugins = with nvim_pkgs; [
@@ -77,18 +60,13 @@
     quicker
     smart-splits
     neotest
-    neotest-golang
     neogen
     luasnip
     visual-whitespace
-    yaml_nvim
-    jdtls
-    venv-selector
-    dap-python
-    pkgs.unstable.vimPlugins.blink-cmp
-    pkgs.unstable.vimPlugins.blink-pairs
-    pkgs.unstable.vimPlugins.blink-indent
-    pkgs.unstable.vimPlugins.nvim-treesitter.withAllGrammars
-    pkgs.unstable.vimPlugins.nvim-dbee
+    vim_pkgs.blink-cmp
+    vim_pkgs.blink-pairs
+    vim_pkgs.blink-indent
+    vim_pkgs.nvim-treesitter.withAllGrammars
+    vim_pkgs.nvim-dbee
   ];
 }

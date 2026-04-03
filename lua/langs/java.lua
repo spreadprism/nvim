@@ -3,9 +3,9 @@ plugin("jdtls"):opts(false)
 local java_debug = nil
 
 event.on_filetype("java", function()
-  if java_debug == nil then
-    java_debug = exec("java-debug-path")
-  end
+	if java_debug == nil then
+		java_debug = exec("java-debug-path")
+	end
 
 	require("jdtls").start_or_attach({
 		cmd = { "jdtls" },
@@ -15,8 +15,8 @@ event.on_filetype("java", function()
 		},
 		init_options = {
 			bundles = {
-        java_debug
-      },
+				java_debug,
+			},
 		},
 	})
 end)

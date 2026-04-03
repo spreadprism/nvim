@@ -1,8 +1,7 @@
-success:
-  echo yay
+set quiet := true
 
-wait:
-  sleep 3
+update:
+  NIX_CONFIG="extra-access-tokens = github.com=$(gh auth token)" nix flake update
 
-fail:
-  exit 1
+update_plugins:
+	NIX_CONFIG="extra-access-tokens = github.com=$(gh auth token)" nix flake update plugins

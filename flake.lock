@@ -442,7 +442,7 @@
         "flake-parts": "flake-parts",
         "neovim-src": "neovim-src",
         "nixpkgs": [
-          "nixpkgs-unstable"
+          "nixpkgs"
         ]
       },
       "locked": {
@@ -506,22 +506,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-unstable": {
-      "locked": {
-        "lastModified": 1774610258,
-        "narHash": "sha256-HaThtroVD9wRdx7KQk0B75JmFcXlMUoEdDFNOMOlsOs=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "832efc09b4caf6b4569fbf9dc01bec3082a00611",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "noice": {
       "flake": false,
       "locked": {
@@ -573,11 +557,11 @@
     "nvim-dap-ui": {
       "flake": false,
       "locked": {
-        "lastModified": 1774252867,
-        "narHash": "sha256-vK311E7N3woU6yE+2KR0425EPFaMzx78YubsmMGBws0=",
+        "lastModified": 1775201113,
+        "narHash": "sha256-p/yOHqyRIpwJ9fSswalXtOqfIaxe+m8ELUXI6SYGuMw=",
         "owner": "rcarriga",
         "repo": "nvim-dap-ui",
-        "rev": "f5b6673f374626515401c5bc51b005f784a4f252",
+        "rev": "d9770a55188bb34c2bdce7d90a6151181beb6966",
         "type": "github"
       },
       "original": {
@@ -775,7 +759,7 @@
         "neotest": "neotest",
         "neotest-golang": "neotest-golang",
         "nixpkgs": [
-          "nixpkgs-unstable"
+          "nixpkgs"
         ],
         "noice": "noice",
         "nui": "nui",
@@ -858,7 +842,6 @@
         "neovim": "neovim",
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-unstable": "nixpkgs-unstable",
         "plugins": "plugins"
       }
     },
@@ -897,11 +880,11 @@
     "smart-splits": {
       "flake": false,
       "locked": {
-        "lastModified": 1774629084,
-        "narHash": "sha256-IIDUedURO9QI26v7vuKFJR/5w198lMDuCF1ChjPVWzY=",
+        "lastModified": 1775236663,
+        "narHash": "sha256-Jg4/opFVFMfDFjcoBTvuOyWdONAjBTc25jsP4ksopL8=",
         "owner": "mrjones2014",
         "repo": "smart-splits.nvim",
-        "rev": "12426763591f06b865c20990d8423345ea96d44f",
+        "rev": "0bd02161ee5c5378bf4133fcedf53d1fc4179e1d",
         "type": "github"
       },
       "original": {

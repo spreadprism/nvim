@@ -4,9 +4,8 @@
   ...
 }: {
   lspsAndRuntimeDeps = with pkgs; [
-    unstable.marksman
+    commit-lsp
   ];
   optionalPlugins = with nvim_pkgs; [
-    render-markdown
   ];
 }

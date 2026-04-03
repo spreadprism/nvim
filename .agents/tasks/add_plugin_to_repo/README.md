@@ -6,7 +6,7 @@ This task outlines the process for adding a new plugin to the repository.
 
 When adding a new plugin, always run from the repository root:
 ```bash
-nix flake update plugins
+just update_plugins
 ```
 
 ## Steps
@@ -15,5 +15,5 @@ nix flake update plugins
 2. [Derive name if needed](2_derive_name.md)
 3. [Add input to flake.nix](3_add_input_to_flake.nix.md)
 4. [Add plugin to category](4_add_plugin_to_category.md)
-5. [Run nix flake update](5_run_nix_flake_update.md) - **Important: Use `nix flake update plugins`**
+5. [Run nix flake update](5_run_nix_flake_update.md) - **Important: Use `just update_plugins`**
 6. [Add plugin config file](6_add_plugin_config.md)

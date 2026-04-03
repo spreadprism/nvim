@@ -4,10 +4,7 @@
   ...
 }: {
   lspsAndRuntimeDeps = with pkgs; [
-    unstable.gopls
-    unstable.delve
-    unstable.golangci-lint
-    unstable.gofumpt
+    just-lsp
   ];
   optionalPlugins = with nvim_pkgs; [
   ];
