@@ -10,11 +10,11 @@
     yaml-language-server
     helm-ls
     prettierd
-    unstable.tofu-ls
+    tofu-ls
     tflint
-    unstable.dockerfile-language-server
-    unstable.docker-language-server
-    unstable.docker-compose-language-service
+    dockerfile-language-server
+    docker-language-server
+    docker-compose-language-service
     jdt-language-server
     java-debug
     codelldb

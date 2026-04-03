@@ -1,3 +1,5 @@
 lsp("dockerls")
-lsp("docker_language_server")
-lsp("docker_compose_language_service")
+lsp("docker_language_server"):display(false)
+lsp("docker_compose_language_service"):display(false)
+linter("dockerfile")
+formatter("dockerfile", "dockerfmt")
