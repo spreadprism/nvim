@@ -31,7 +31,7 @@
       loadOverlay = file: import (./nix/overlays + "/${file}");
     in
       builtins.listToAttrs (
-        builtins.map (file: {
+        map (file: {
           name = builtins.replaceStrings [".nix"] [""] file;
           value = loadOverlay file;
         })
@@ -58,7 +58,7 @@
     };
     base_settings = {pkgs, ...}: {
       wrapRc = true;
-      neovim-unwrapped = inputs.neovim.packages.${pkgs.system}.neovim; # BUG: blink.cmp
+      neovim-unwrapped = inputs.neovim.packages.${pkgs.stdenv.hostPlatform.system}.neovim; # BUG: blink.cmp
     };
     base_categories = {pkgs, ...}: {
       core = true;
