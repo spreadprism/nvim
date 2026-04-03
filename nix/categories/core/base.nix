@@ -6,7 +6,7 @@
 }: {
   lspsAndRuntimeDeps = with pkgs; [
     sqlite
-    nodePackages_latest.vscode-json-languageserver
+    vscode-json-languageserver
     yaml-language-server
     helm-ls
     prettierd
