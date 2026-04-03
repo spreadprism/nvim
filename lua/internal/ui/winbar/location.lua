@@ -19,9 +19,15 @@ local function get_symbol_hl(self, path)
 	if vim.fn.isdirectory(path) == 1 then
 		return self.symbols.directory, { fg = colors.blue }
 	else
-		local icon, hl = self.get_icon(path)
+		local icon, hl = self.get_icon(vim.fs.basename(path))
 		if icon == nil then
-			icon, hl = self.get_icon_filetype(vim.fn.fnamemodify(path, ":e"))
+			local ext = vim.fn.fnamemodify(path, ":e")
+			if ext ~= "" then
+				icon, hl = self.get_icon_filetype(ext)
+			else
+				local ft = vim.bo.filetype
+				icon, hl = self.get_icon_filetype(ft)
+			end
 		end
 		return icon, hl
 	end
