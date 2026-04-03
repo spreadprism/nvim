@@ -18,6 +18,7 @@
     jdt-language-server
     java-debug
     codelldb
+    commit-lsp
     ty
     uv
     fd
