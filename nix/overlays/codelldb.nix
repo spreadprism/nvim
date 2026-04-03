@@ -11,9 +11,6 @@ final: prev: {
     (prev.overlayMeta or {})
     // {
       codelldb = {
-        type = "debug-adapter";
-        sourcePackage = "vscode-extensions.vadimcn.vscode-lldb";
-        languages = ["rust" "c" "cpp"];
       };
     };
 }

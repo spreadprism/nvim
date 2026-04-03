@@ -14,9 +14,6 @@ final: prev: {
     (prev.overlayMeta or {})
     // {
       java-debug = {
-        type = "debug-adapter";
-        sourcePackage = "vscode-extensions.vscjava.vscode-java-debug";
-        languages = ["java"];
         path = "${final.java-debug}/share/java-debug.jar";
       };
     };
