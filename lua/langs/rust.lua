@@ -1,3 +1,6 @@
+linter("rust", "clippy")
+formatter("rust", "rustfmt")
+-- setups lsp, dap, neotest
 plugin("rustaceanvim")
 	:lazy(false)
 	:priority(49)
@@ -10,8 +13,23 @@ plugin("rustaceanvim")
 				enable_clippy = false,
 			},
 			dap = {
-				adapter = false,
-				configuration = false,
+				adapter = function()
+					---@type dap.Adapter
+					---@diagnostic disable-next-line: return-type-mismatch
+					return {
+						type = "server",
+						host = "127.0.0.1",
+						port = "${port}",
+						executable = {
+							command = "codelldb",
+							args = { "--port", "${port}" },
+						},
+						enrich_config = function(config, on_config)
+							config.console = "internalConsole"
+							on_config(config)
+						end,
+					}
+				end,
 				autoload_configurations = false,
 			},
 		}
@@ -19,13 +37,3 @@ plugin("rustaceanvim")
 	:lazydev({
 		words = { "rustaceanvim" },
 	})
-dap.adapter({ "rust", "codelldb" }, {
-	type = "server",
-	port = "13000",
-	executable = {
-		command = "codelldb",
-		args = { "--port", "13000" },
-	},
-})
-linter("rust", "clippy")
-formatter("rust", "rustfmt")

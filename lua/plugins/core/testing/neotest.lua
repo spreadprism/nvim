@@ -2,8 +2,10 @@ plugin("neotest")
 	:dep_on("overseer")
 	:cmd("Neotest")
 	:opts(function()
+		local adapters = require("internal.loader.neotest").adapters()
+		table.insert(adapters, require("rustaceanvim.neotest"))
 		return {
-			adapters = require("internal.loader.neotest").adapters(),
+			adapters = adapters,
 			consumers = {
 				---@diagnostic disable-next-line: assign-type-mismatch
 				overseer = require("neotest.consumers.overseer"),
