@@ -2,6 +2,7 @@
 ---@field program string
 ---@field mode? "debug"|"test"|"exec"|"remote"
 ---@field outputMode? "remote"
+---@field profile "dev"|"prod"|string
 
 ---@param workspace Workspace
 ---@param config GoConfiguration
@@ -61,6 +62,7 @@ return function(workspace, config)
 	config = vim.tbl_deep_extend("force", {
 		mode = "exec",
 		outputMode = "remote",
+		profile = "dev",
 	}, config)
 
 	config = enrich_build(workspace, config)

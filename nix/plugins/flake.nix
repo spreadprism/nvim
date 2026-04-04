@@ -225,6 +225,10 @@
       url = "github:mcauley-penney/visual-whitespace.nvim";
       flake = false;
     };
+    rustaceanvim = {
+      url = "github:mrcjkb/rustaceanvim";
+      flake = false;
+    };
     yaml_nvim = {
       url = "git+https://tangled.org/cuducos.me/yaml.nvim";
       flake = false;

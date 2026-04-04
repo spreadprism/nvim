@@ -67,11 +67,11 @@
     "copilot": {
       "flake": false,
       "locked": {
-        "lastModified": 1774916559,
-        "narHash": "sha256-K3jeiJGyvT8dNtPNjd2cMwTjAewd9d6NB7akkdTl4Yk=",
+        "lastModified": 1775262308,
+        "narHash": "sha256-clZ8jq3OFAHOKC7q/SVgfBj1V1lfyEkeTE0lDzpEveY=",
         "owner": "zbirenbaum",
         "repo": "copilot.lua",
-        "rev": "faa347cef2a9429eec14dada549e000a3b8d0fc9",
+        "rev": "07aa57148ac28986bab9f55e87ee3d929e2726b1",
         "type": "github"
       },
       "original": {
@@ -777,6 +777,7 @@
         "overseer": "overseer",
         "quicker": "quicker",
         "render-markdown": "render-markdown",
+        "rustaceanvim": "rustaceanvim",
         "scrollbar": "scrollbar",
         "smart-paste": "smart-paste",
         "smart-splits": "smart-splits",
@@ -843,6 +844,22 @@
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs",
         "plugins": "plugins"
+      }
+    },
+    "rustaceanvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1775263049,
+        "narHash": "sha256-93ixXOX3Komwl7dTq6U93vxxBJkH94v5+WdmTRyyaq8=",
+        "owner": "mrcjkb",
+        "repo": "rustaceanvim",
+        "rev": "6563b3e06bcd214dc999f7791d04176ad1af1402",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mrcjkb",
+        "repo": "rustaceanvim",
+        "type": "github"
       }
     },
     "scrollbar": {

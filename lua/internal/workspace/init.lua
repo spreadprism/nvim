@@ -126,6 +126,7 @@ end
 ---@param ft string
 ---@param configs Configuration|Configuration[]
 ---@overload fun(self, ft: "go", configs: GoConfiguration|GoConfiguration[])
+---@overload fun(self, ft: "rust", configs: RustConfiguration|RustConfiguration[])
 function Workspace:dap(ft, configs)
 	local dap = require("dap")
 

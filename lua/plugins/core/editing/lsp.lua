@@ -9,7 +9,7 @@ plugin("lspconfig")
 				local client = vim.lsp.get_client_by_id(args.data.client_id)
 				if client ~= nil then
 					k:opts({
-						k:map("n", "<M-s>", k:require("snacks.picker").lsp_symbols(), "lsp symbols"),
+						k:map("n", "<leader>fs", k:require("snacks.picker").lsp_symbols(), "lsp symbols"),
 						k:map(
 							"n",
 							"<M-S>",
