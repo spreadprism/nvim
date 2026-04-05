@@ -37,3 +37,8 @@ plugin("rustaceanvim")
 	:lazydev({
 		words = { "rustaceanvim" },
 	})
+	:keymaps({
+		k:group("rust", "<localleader>", {
+			k:map("n", "c", k:cmd("RustLsp openCargo"), "open cargo.toml"),
+		}):ft("rust"),
+	})
