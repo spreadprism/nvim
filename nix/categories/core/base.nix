@@ -8,6 +8,8 @@
     sqlite
     fd
     ast-grep
+    curl
+    grpcurl
   ];
   startupPlugins = with vim_pkgs; [
     lze
@@ -69,5 +71,6 @@
     vim_pkgs.blink-indent
     vim_pkgs.nvim-treesitter.withAllGrammars
     vim_pkgs.nvim-dbee
+    vim_pkgs.kulala-nvim
   ];
 }

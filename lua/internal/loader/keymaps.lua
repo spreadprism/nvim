@@ -43,7 +43,6 @@ end
 ---@param ft string|string[]
 ---@return Keymap
 function K.Keymap:ft(ft)
-	-- BUG: this doesn't work if the keymap is inside a group
 	self.lazy = true
 	vim.api.nvim_create_autocmd("BufEnter", {
 		callback = function(args)
@@ -53,6 +52,20 @@ function K.Keymap:ft(ft)
 			if vim.tbl_contains(ft, vim.bo[args.buf].filetype) then
 				self:buffer(args.buf):add()
 			end
+		end,
+	})
+	return self
+end
+
+---@param pattern string|string[]
+---@return Keymap
+--- Adds the keymap to buffers matching the pattern
+function K.Keymap:pattern(pattern)
+	self.lazy = true
+	vim.api.nvim_create_autocmd("BufEnter", {
+		pattern = pattern,
+		callback = function(args)
+			self:buffer(args.buf):add()
 		end,
 	})
 	return self
