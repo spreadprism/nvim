@@ -1,5 +1,3 @@
--- TODO: add ast_grep
-
 local function get_client()
 	local clients = vim.lsp.get_clients({ bufnr = 0 })
 
@@ -25,3 +23,13 @@ plugin("lint"):event("DeferredUIEnter"):opts(false):after(function()
 		end,
 	})
 end)
+
+lsp("ast_grep")
+	:cmd({
+		"ast-grep",
+		"lsp",
+		"--config",
+		vim.fs.joinpath(nixCats.configDir, "lua", "ast_grep_rules", "sgconfig.yml"),
+	})
+	:root_markers({ vim.fn.getcwd(), ".git", "sgconfig.yaml", "sgconfig.yml" })
+	:display(false)

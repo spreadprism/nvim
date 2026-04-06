@@ -7,6 +7,7 @@
   lspsAndRuntimeDeps = with pkgs; [
     sqlite
     fd
+    ast-grep
   ];
   startupPlugins = with vim_pkgs; [
     lze
