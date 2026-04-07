@@ -1,4 +1,4 @@
 lsp("tofu_ls")
-linter("tf", "tflint")
-formatter("tf", "tofu_fmt")
+linter("terraform", "tflint")
+formatter("terraform", "tofu_fmt")
 formatter("hcl", "terragrunt_hclfmt")
