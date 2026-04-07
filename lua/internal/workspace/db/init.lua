@@ -10,6 +10,7 @@ local M = {}
 ---@field providers table<string, fun(): Connection[]>
 ---@field refreshing boolean
 local WorkspaceSource = {
+	providers = {},
 	refreshing = false,
 }
 
