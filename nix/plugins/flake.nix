@@ -237,6 +237,10 @@
       url = "git+https://tangled.org/cuducos.me/yaml.nvim";
       flake = false;
     };
+    yaml-companion = {
+      url = "github:mosheavni/yaml-companion.nvim";
+      flake = false;
+    };
     jdtls = {
       url = "github:mfussenegger/nvim-jdtls";
       flake = false;

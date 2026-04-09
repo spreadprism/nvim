@@ -812,6 +812,7 @@
         "vim-helm": "vim-helm",
         "visual-whitespace": "visual-whitespace",
         "which-key": "which-key",
+        "yaml-companion": "yaml-companion",
         "yaml_nvim": "yaml_nvim"
       },
       "locked": {
@@ -1149,6 +1150,22 @@
       "original": {
         "owner": "folke",
         "repo": "which-key.nvim",
+        "type": "github"
+      }
+    },
+    "yaml-companion": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1769014925,
+        "narHash": "sha256-ybPhiajpjpHGDnQCqLFLWEtYaUJS3tZY5Zi1Ykk706Y=",
+        "owner": "mosheavni",
+        "repo": "yaml-companion.nvim",
+        "rev": "cd354bfe05727d0f8150fab0e4ce373adcd849b1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mosheavni",
+        "repo": "yaml-companion.nvim",
         "type": "github"
       }
     },
