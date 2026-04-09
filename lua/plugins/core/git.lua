@@ -61,9 +61,57 @@ plugin("gitsigns"):cmd("Gitsigns"):event("BufEnter"):opts({
 	on_attach = function(bufnr)
 		k:opts({
 			k:map("n", "<M-b>", k:cmd("Gitsigns toggle_current_line_blame"), "Toggle line blame"),
-			k:map("n", "<M-B>", k:cmd("Gitsigns blame"), "open blame window"),
+			-- k:map("n", "<M-B>", k:cmd("Gitsigns blame"), "open blame window"),
 		})
 			:buffer(bufnr)
 			:add()
 	end,
 })
+
+plugin("blame")
+	:cmd("BlameToggle")
+	:opts({
+		mappings = {},
+	})
+	:keymaps({
+		k:map("n", "<M-B>", k:cmd("BlameToggle"), "Toggle blame"),
+	})
+	:after(function()
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "BlameViewOpened",
+			callback = function(event)
+				local blame_type = event.data
+				local get_hash = function()
+					local window = require("blame").last_opened_view
+					local row, _ = unpack(vim.api.nvim_win_get_cursor(window.blame_window))
+					local commit = window.blamed_lines[row]
+					return commit.hash
+				end
+				if blame_type == "window" then
+					vim.defer_fn(function()
+						local buf = vim.api.nvim_get_current_buf()
+						k:opts({
+							k:map("n", "<CR>", function()
+								local hash = get_hash()
+								if hash then
+									require("blame").last_opened_view:close()
+									local NeogitCommitView = require("neogit.buffers.commit_view")
+									local view = NeogitCommitView.new(hash)
+									view:open("tab")
+								end
+							end, "open commit"),
+							k:map("n", "d", function()
+								local hash = get_hash()
+								if hash then
+									require("blame").last_opened_view:close()
+									vim.cmd(":CodeDiff history " .. hash .. "^.." .. hash)
+								end
+							end, "open commit"),
+						})
+							:buffer(buf)
+							:add()
+					end, 50)
+				end
+			end,
+		})
+	end)

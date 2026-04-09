@@ -49,6 +49,10 @@
       url = "github:lewis6991/gitsigns.nvim";
       flake = false;
     };
+    blame = {
+      url = "github:FabijanZulj/blame.nvim";
+      flake = false;
+    };
     nui = {
       url = "github:MunifTanjim/nui.nvim";
       flake = false;

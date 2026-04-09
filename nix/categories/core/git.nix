@@ -9,6 +9,7 @@
   optionalPlugins = with nvim_pkgs; [
     neogit
     gitsigns
+    blame
     pkgs.vimPlugins.codediff-nvim
   ];
 }

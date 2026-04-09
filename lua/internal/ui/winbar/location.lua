@@ -88,6 +88,10 @@ return {
 			directory = "",
 		},
 	},
+	condition = function()
+		local ft = vim.bo.filetype
+		return ft ~= "blame"
+	end,
 	init = function(self)
 		if self.ft == "oil" then
 			self.path = require("oil").get_current_dir(self.buf) or ""
