@@ -249,6 +249,10 @@
       url = "github:mfussenegger/nvim-dap-python";
       flake = false;
     };
+    vim-helm = {
+      url = "github:towolf/vim-helm";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

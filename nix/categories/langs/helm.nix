@@ -7,5 +7,6 @@
     helm-ls
   ];
   optionalPlugins = with nvim_pkgs; [
+    vim-helm
   ];
 }
