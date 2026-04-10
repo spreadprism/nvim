@@ -1,5 +1,5 @@
 plugin("yaml_nvim"):ft({ "yaml", "helm" }):keymaps({
-	k:map("n", "<localleader>fk", k:require("yaml_nvim").snacks(), "key"):ft({ "yaml", "helm" }),
+	k:map("n", "<localleader>fk", k:require("yaml_nvim").snacks(), "key"):ft({ "yaml", "helm", "yaml.helm-values" }),
 })
 plugin("helm-ls"):event("DeferredUIEnter"):opts({
 	conceal_templates = {
