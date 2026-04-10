@@ -1,5 +1,13 @@
-plugin("yaml_nvim"):ft("yaml"):keymaps({
-	k:map("n", "<localleader>fk", k:require("yaml_nvim").snacks(), "key"):ft("yaml"),
+plugin("yaml_nvim"):ft({ "yaml", "helm" }):keymaps({
+	k:map("n", "<localleader>fk", k:require("yaml_nvim").snacks(), "key"):ft({ "yaml", "helm" }),
+})
+plugin("helm-ls"):event("DeferredUIEnter"):opts({
+	conceal_templates = {
+		enabled = false, -- this might change to false in the future
+	},
+	indent_hints = {
+		only_for_current_line = false,
+	},
 })
 plugin("yaml-companion")
 	:event("DeferredUIEnter")
@@ -29,13 +37,13 @@ plugin("yaml-companion")
 		vim.lsp.enable("yamlls")
 	end)
 	:keymaps({
-		k:group("yaml", "<localleader>", {
-			k:map("n", "d", k:require("yaml-companion").add_crd_modelines(0, {}), "detect crds"),
-			k:map("n", "c", k:require("yaml-companion").fetch_cluster_crd(0, {}), "fetch cluster crd"),
-			k:group("find", "f", {
-				k:map("n", "s", k:require("yaml-companion").open_ui_select(), "schemas"),
-				k:map("n", "d", k:require("yaml-companion").open_datree_crd_select("modeline"), "datree crd"),
-				k:map("n", "c", k:require("yaml-companion").open_cluster_crd_select("modeline"), "cluster crd"),
-			}),
-		}):ft("yaml"),
+		k:map("n", "<localleader>d", k:require("yaml-companion").add_crd_modelines(0, {}), "detect crds")
+			:ft({ "yaml", "helm" }),
+		k:map("n", "<localleader>c", k:require("yaml-companion").fetch_cluster_crd(0, {}), "fetch cluster crd")
+			:ft({ "yaml", "helm" }),
+		k:map("n", "<localleader>fs", k:require("yaml-companion").open_ui_select(), "schemas"):ft({ "yaml", "helm" }),
+		k:map("n", "<localleader>fd", k:require("yaml-companion").open_datree_crd_select("modeline"), "datree crd")
+			:ft({ "yaml", "helm" }),
+		k:map("n", "<localleader>fc", k:require("yaml-companion").open_cluster_crd_select("modeline"), "cluster crd")
+			:ft({ "yaml", "helm" }),
 	})

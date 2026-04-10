@@ -44,14 +44,13 @@ end
 ---@return Keymap
 function K.Keymap:ft(ft)
 	self.lazy = true
-	vim.api.nvim_create_autocmd("BufEnter", {
+	if type(ft) == "string" then
+		ft = { ft }
+	end
+	vim.api.nvim_create_autocmd("FileType", {
+		pattern = ft,
 		callback = function(args)
-			if type(ft) == "string" then
-				ft = { ft }
-			end
-			if vim.tbl_contains(ft, vim.bo[args.buf].filetype) then
-				self:buffer(args.buf):add()
-			end
+			self:buffer(args.buf):add()
 		end,
 	})
 	return self

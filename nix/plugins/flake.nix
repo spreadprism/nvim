@@ -253,8 +253,8 @@
       url = "github:mfussenegger/nvim-dap-python";
       flake = false;
     };
-    vim-helm = {
-      url = "github:towolf/vim-helm";
+    helm-ls = {
+      url = "github:qvalentin/helm-ls.nvim";
       flake = false;
     };
   };
