@@ -89,8 +89,7 @@ return {
 		},
 	},
 	condition = function()
-		local ft = vim.bo.filetype
-		return ft ~= "blame"
+		return not vim.tbl_contains({ "blame", "octo" }, vim.bo.filetype)
 	end,
 	init = function(self)
 		if self.ft == "oil" then

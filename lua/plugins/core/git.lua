@@ -83,6 +83,9 @@ plugin("blame")
 				local blame_type = event.data
 				local get_hash = function()
 					local window = require("blame").last_opened_view
+					if not window then
+						return nil
+					end
 					local row, _ = unpack(vim.api.nvim_win_get_cursor(window.blame_window))
 					local commit = window.blamed_lines[row]
 					return commit.hash
@@ -115,3 +118,16 @@ plugin("blame")
 			end,
 		})
 	end)
+
+plugin("octo")
+	:cmd("Octo")
+	:opts({
+		picker = "snacks",
+		enable_builtin = true,
+	})
+	:keymaps({
+		k:group("git", "<leader>g", {
+			k:map("n", "o", k:cmd("Octo"), "octo"),
+			k:map("n", "r", k:cmd("Octo repo view"), "octo"),
+		}),
+	})
