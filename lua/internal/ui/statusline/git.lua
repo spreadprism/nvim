@@ -9,7 +9,13 @@ return {
 	},
 	{
 		init = function(self)
-			self.branch = vim.b.gitsigns_head or vim.g.gitsigns_head
+			local ft = vim.bo.filetype
+
+			if ft == "NeogitStatus" then
+				self.branch = vim.g.gitsigns_head
+			else
+				self.branch = vim.b.gitsigns_head or vim.g.gitsigns_head
+			end
 		end,
 		condition = function()
 			return vim.b.gitsigns_head or vim.g.gitsigns_head
