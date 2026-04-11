@@ -128,6 +128,9 @@ plugin("octo")
 	:keymaps({
 		k:group("git", "<leader>g", {
 			k:map("n", "o", k:cmd("Octo"), "octo"),
-			k:map("n", "r", k:cmd("Octo repo view"), "octo"),
+			k:map("n", "r", k:cmd("Octo repo view"), "repository"),
 		}),
 	})
+	:after(function()
+		vim.treesitter.language.register("markdown", "octo")
+	end)
