@@ -233,6 +233,10 @@
       url = "github:mcauley-penney/visual-whitespace.nvim";
       flake = false;
     };
+    startuptime = {
+      url = "github:dstein64/vim-startuptime";
+      flake = false;
+    };
     rustaceanvim = {
       url = "github:mrcjkb/rustaceanvim";
       flake = false;
