@@ -59,5 +59,8 @@ plugin("snacks")
 			k:map("n", "h", k:require("snacks.picker").highlights(), "highlights"),
 			k:map("n", "l", k:require("snacks.picker").resume(), "reopen last search"),
 		}),
+		k:group("dev", "<leader>=", {
+			k:map("n", "p", k:require("snacks.profiler").toggle(), "toggle profile"),
+		}),
 	})
 	:lazy(false)
