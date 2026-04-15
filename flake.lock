@@ -717,11 +717,11 @@
     "opencode": {
       "flake": false,
       "locked": {
-        "lastModified": 1776178620,
-        "narHash": "sha256-hjRkEUg+UTSF0zl1izD9NySB40Hy44pN/42clTekQdY=",
+        "lastModified": 1776264457,
+        "narHash": "sha256-N24F+0PHKL6hZ1tYT1hxcgVDqDSTEWGMHYcxit71wF4=",
         "owner": "sudo-tee",
         "repo": "opencode.nvim",
-        "rev": "62b81d0952e87df8479323f594dc9627a73840cc",
+        "rev": "ad3a7b0300dfd5dac8113b7bbf1842918eb53bd8",
         "type": "github"
       },
       "original": {
@@ -884,11 +884,11 @@
     "rustaceanvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1776214117,
-        "narHash": "sha256-oBAlFtZlDrw3GS3jNEOPEUiYVnB8IBUS6kNIu478C+c=",
+        "lastModified": 1776259938,
+        "narHash": "sha256-5Lw7KcBvDropb7Km1ShUJ/rarj1+jA9nzNyRIZoIrU4=",
         "owner": "mrcjkb",
         "repo": "rustaceanvim",
-        "rev": "9f5b24c3f5e308da72d0dea62f73a7487b5744e7",
+        "rev": "2497c7b2a61d4eb5dad716371a64ea82fb068bee",
         "type": "github"
       },
       "original": {
