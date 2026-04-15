@@ -6,6 +6,7 @@ plugin("fyler")
 		},
 		views = {
 			finder = {
+				columns_order = { "link", "diagnostic", "git", "permission", "size" },
 				win = {
 					border = "rounded",
 				},
@@ -34,6 +35,14 @@ plugin("fyler")
 							Renamed = "→",
 							Conflict = "-",
 							PartialStage = "~",
+						},
+					},
+					diagnostic = {
+						symbols = {
+							Error = symbols.error,
+							Warn = symbols.warning,
+							Info = symbols.info,
+							Hint = symbols.hint,
 						},
 					},
 				},
