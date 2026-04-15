@@ -94,6 +94,8 @@ return {
 	init = function(self)
 		if self.ft == "oil" then
 			self.path = require("oil").get_current_dir(self.buf) or ""
+		elseif self.ft == "fyler" then
+			self.path = require("fyler.views.finder").instance().files.root_path
 		else
 			self.path = vim.api.nvim_buf_get_name(self.buf)
 		end
@@ -118,5 +120,4 @@ return {
 		return self.child:eval()
 	end,
 	hl = { fg = colors.comment },
-	update = "BufEnter",
 }

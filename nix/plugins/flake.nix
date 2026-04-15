@@ -29,6 +29,10 @@
       url = "github:spreadprism/oil-vcs";
       flake = false;
     };
+    fyler = {
+      url = "github:A7Lavinraj/fyler.nvim";
+      flake = false;
+    };
     nvim-web-devicons = {
       url = "github:nvim-tree/nvim-web-devicons";
       flake = false;

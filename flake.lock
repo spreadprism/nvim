@@ -165,6 +165,22 @@
         "type": "github"
       }
     },
+    "fyler": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1775381720,
+        "narHash": "sha256-zX0l3SnK/0HUZ8LhocmUlq3Yj6POHWeRQZdPcIzQC4Y=",
+        "owner": "A7Lavinraj",
+        "repo": "fyler.nvim",
+        "rev": "e87911e6c21d099225063f5aa672e00f6dbb5976",
+        "type": "github"
+      },
+      "original": {
+        "owner": "A7Lavinraj",
+        "repo": "fyler.nvim",
+        "type": "github"
+      }
+    },
     "gitsigns": {
       "flake": false,
       "locked": {
@@ -717,11 +733,11 @@
     "oil-vcs": {
       "flake": false,
       "locked": {
-        "lastModified": 1776206932,
-        "narHash": "sha256-bCNZHCndkvdwuu39TxumWyInUkUcUk79z5XyrX1+Gu4=",
+        "lastModified": 1769821979,
+        "narHash": "sha256-UM8ihEj5KCKSKFrTPZnQAvOmbQDMiA1pR3tBRfKdl2c=",
         "owner": "spreadprism",
         "repo": "oil-vcs",
-        "rev": "29c3804dee80ad488c2041f6679c1a00def6eac4",
+        "rev": "792ab01c5d137188b5a5bb9bf99a026fa8faa600",
         "type": "github"
       },
       "original": {
@@ -789,6 +805,7 @@
         "cutlass": "cutlass",
         "dap-python": "dap-python",
         "exrc": "exrc",
+        "fyler": "fyler",
         "gitsigns": "gitsigns",
         "grug-far": "grug-far",
         "heirline": "heirline",

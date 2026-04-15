@@ -25,6 +25,7 @@
     lspconfig
     oil
     oil-vcs
+    fyler
     tokyonight
     snacks
     tmux-navigation
