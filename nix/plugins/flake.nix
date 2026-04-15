@@ -21,14 +21,6 @@
       url = "github:Zeioth/heirline-components.nvim";
       flake = false;
     };
-    oil = {
-      url = "github:stevearc/oil.nvim";
-      flake = false;
-    };
-    oil-vcs = {
-      url = "github:spreadprism/oil-vcs";
-      flake = false;
-    };
     fyler = {
       url = "github:A7Lavinraj/fyler.nvim";
       flake = false;
@@ -245,12 +237,8 @@
       url = "github:mrcjkb/rustaceanvim";
       flake = false;
     };
-    yaml_nvim = {
-      url = "git+https://tangled.org/cuducos.me/yaml.nvim";
-      flake = false;
-    };
     yaml-companion = {
-      url = "github:mosheavni/yaml-companion.nvim";
+      url = "github:spreadprism/yaml-companion.nvim";
       flake = false;
     };
     jdtls = {

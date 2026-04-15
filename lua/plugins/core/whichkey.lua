@@ -41,7 +41,7 @@ plugin("which-key")
 		k:map("v", "<Tab>", ">gv", "Insert tab"),
 		k:map("v", "<S-Tab>", "<gv", "Remove tab"),
 		-- Tabs
-		k:map("n", "<M-Tab>", k:cmd("tabnew"), "New tab"),
+		k:map("n", "<M-Tab>", k:cmd("tab split"), "New tab with current buffer"),
 		k:map("n", "<M-!>", k:cmd("tabn 1", true), "Go to tab 2"),
 		k:map("n", "<M-@>", k:cmd("tabn 2", true), "Go to tab 2"),
 		k:map("n", "<M-#>", k:cmd("tabn 3", true), "Go to tab 3"),

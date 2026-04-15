@@ -50,7 +50,16 @@ plugin("fyler")
 		},
 	})
 	:keymaps({
-		k:map("n", "-", k:require("fyler").open({ dir = vim.fn.getcwd() }), "open filesystem"),
+		k:map("n", "-", function()
+			local fyler = require("fyler")
+			require("fyler.views.finder").instance():change_root(vim.fn.expand("%:p:h"))
+			fyler.open()
+		end, "open filesystem"),
+		k:map("n", "_", function()
+			local fyler = require("fyler")
+			require("fyler.views.finder").instance():change_root(vim.fn.getcwd())
+			fyler.open()
+		end, "open filesystem"),
 	})
 -- local oil = plugin("oil")
 -- 	:opts({

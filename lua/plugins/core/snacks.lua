@@ -15,6 +15,13 @@ plugin("snacks")
 			matcher = {
 				frecency = true,
 			},
+			win = {
+				input = {
+					keys = {
+						["<S-CR>"] = { "tab", mode = { "n", "i" } },
+					},
+				},
+			},
 			on_show = function(_)
 				vim.api.nvim_exec_autocmds("User", { pattern = "PickerOnShowClose" })
 			end,

@@ -23,8 +23,6 @@
   optionalPlugins = with nvim_pkgs; [
     which-key
     lspconfig
-    oil
-    oil-vcs
     fyler
     tokyonight
     snacks

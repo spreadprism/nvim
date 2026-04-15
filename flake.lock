@@ -714,38 +714,6 @@
         "type": "github"
       }
     },
-    "oil": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1768626079,
-        "narHash": "sha256-eMruZSMi72A74LqtSsyJSI3WY595aKO9n2XxJ3Du/9Y=",
-        "owner": "stevearc",
-        "repo": "oil.nvim",
-        "rev": "f55b25e493a7df76371cfadd0ded5004cb9cd48a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "stevearc",
-        "repo": "oil.nvim",
-        "type": "github"
-      }
-    },
-    "oil-vcs": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1769821979,
-        "narHash": "sha256-UM8ihEj5KCKSKFrTPZnQAvOmbQDMiA1pR3tBRfKdl2c=",
-        "owner": "spreadprism",
-        "repo": "oil-vcs",
-        "rev": "792ab01c5d137188b5a5bb9bf99a026fa8faa600",
-        "type": "github"
-      },
-      "original": {
-        "owner": "spreadprism",
-        "repo": "oil-vcs",
-        "type": "github"
-      }
-    },
     "opencode": {
       "flake": false,
       "locked": {
@@ -838,8 +806,6 @@
         "nvim-treesitter-textobjects": "nvim-treesitter-textobjects",
         "nvim-web-devicons": "nvim-web-devicons",
         "octo": "octo",
-        "oil": "oil",
-        "oil-vcs": "oil-vcs",
         "opencode": "opencode",
         "osc52": "osc52",
         "overseer": "overseer",
@@ -863,8 +829,7 @@
         "venv-selector": "venv-selector",
         "visual-whitespace": "visual-whitespace",
         "which-key": "which-key",
-        "yaml-companion": "yaml-companion",
-        "yaml_nvim": "yaml_nvim"
+        "yaml-companion": "yaml-companion"
       },
       "locked": {
         "path": "nix/plugins",
@@ -919,11 +884,11 @@
     "rustaceanvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1776127731,
-        "narHash": "sha256-EGqiWfdBM4GYF6LvUQ7i3RasImtEZAIlSUj+mOIPZTY=",
+        "lastModified": 1776214117,
+        "narHash": "sha256-oBAlFtZlDrw3GS3jNEOPEUiYVnB8IBUS6kNIu478C+c=",
         "owner": "mrcjkb",
         "repo": "rustaceanvim",
-        "rev": "f95309a90295be99644efc46fa8127336d21730c",
+        "rev": "9f5b24c3f5e308da72d0dea62f73a7487b5744e7",
         "type": "github"
       },
       "original": {
@@ -967,11 +932,11 @@
     "smart-splits": {
       "flake": false,
       "locked": {
-        "lastModified": 1775848939,
-        "narHash": "sha256-RKF0UuPqDSB6HEDbrvlFxZslva8UY02Y8FsKziFsbO8=",
+        "lastModified": 1776209328,
+        "narHash": "sha256-IuJNQT0bN68K5lnw0ixyU/heG8V1+zUwlvm0mNvvHOw=",
         "owner": "mrjones2014",
         "repo": "smart-splits.nvim",
-        "rev": "09796a7ad0776c92518e0afae8688ef8d7f720e6",
+        "rev": "ba2850ff3d3b09785a7105c69d06a12117d4b97d",
         "type": "github"
       },
       "original": {
@@ -1207,33 +1172,17 @@
     "yaml-companion": {
       "flake": false,
       "locked": {
-        "lastModified": 1769014925,
-        "narHash": "sha256-ybPhiajpjpHGDnQCqLFLWEtYaUJS3tZY5Zi1Ykk706Y=",
-        "owner": "mosheavni",
+        "lastModified": 1776218929,
+        "narHash": "sha256-kpft6k3QrAUX9B+lTpHo5qqj0imo+voByYgpJ0nu124=",
+        "owner": "spreadprism",
         "repo": "yaml-companion.nvim",
-        "rev": "cd354bfe05727d0f8150fab0e4ce373adcd849b1",
+        "rev": "67a30400af6a16b5238b6766bc43c48fe2a1610d",
         "type": "github"
       },
       "original": {
-        "owner": "mosheavni",
+        "owner": "spreadprism",
         "repo": "yaml-companion.nvim",
         "type": "github"
-      }
-    },
-    "yaml_nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1767560584,
-        "narHash": "sha256-MKRtbr70vdkGuByUl5+8M64Ki6ylESUNxb39Na9nlGI=",
-        "ref": "refs/heads/main",
-        "rev": "b6eaf919fb0a2a254ce20ae657787d67e6b9300e",
-        "revCount": 108,
-        "type": "git",
-        "url": "https://tangled.org/cuducos.me/yaml.nvim"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://tangled.org/cuducos.me/yaml.nvim"
       }
     }
   },

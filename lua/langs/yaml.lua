@@ -1,6 +1,3 @@
-plugin("yaml_nvim"):ft({ "yaml", "helm" }):keymaps({
-	k:map("n", "<localleader>fk", k:require("yaml_nvim").snacks(), "key"):ft({ "yaml", "helm", "yaml.helm-values" }),
-})
 plugin("helm-ls"):event("DeferredUIEnter"):opts({
 	conceal_templates = {
 		enabled = false, -- this might change to false in the future
@@ -21,6 +18,9 @@ plugin("yaml-companion")
 				},
 				notify = false,
 			},
+			keys = {
+				include_values = true,
+			},
 			lspconfig = {
 				settings = {
 					yaml = {
@@ -37,6 +37,8 @@ plugin("yaml-companion")
 		vim.lsp.enable("yamlls")
 	end)
 	:keymaps({
+		k:map("n", "<localleader>fk", k:require("yaml-companion.keys").snacks(), "key")
+			:ft({ "yaml", "helm", "yaml.helm-values" }),
 		k:map("n", "<localleader>d", k:require("yaml-companion").add_crd_modelines(0, {}), "detect crds")
 			:ft({ "yaml", "helm" }),
 		k:map("n", "<localleader>c", k:require("yaml-companion").fetch_cluster_crd(0, {}), "fetch cluster crd")

@@ -7,7 +7,6 @@
     yaml-language-server
   ];
   optionalPlugins = with nvim_pkgs; [
-    yaml_nvim
     yaml-companion
   ];
 }
