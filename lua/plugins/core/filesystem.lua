@@ -1,8 +1,14 @@
 plugin("fyler")
+	:lazy(false)
 	:opts({
 		integrations = {
 			icon = "nvim_web_devicons",
 			winpick = "snacks",
+		},
+		hooks = {
+			on_rename = function(src_path, destination_path)
+				require("snacks.rename").on_rename_file(src_path, destination_path)
+			end,
 		},
 		views = {
 			finder = {
@@ -10,6 +16,7 @@ plugin("fyler")
 				win = {
 					border = "rounded",
 				},
+				default_explorer = true,
 				mappings = {
 					["<C-q>"] = "CloseView",
 					["<S-CR>"] = "SelectTab",
