@@ -168,15 +168,15 @@
     "fyler": {
       "flake": false,
       "locked": {
-        "lastModified": 1775381720,
-        "narHash": "sha256-zX0l3SnK/0HUZ8LhocmUlq3Yj6POHWeRQZdPcIzQC4Y=",
-        "owner": "A7Lavinraj",
+        "lastModified": 1776368749,
+        "narHash": "sha256-MOL61g6GRx04eXCIq9teLdtXQzlbIc7Wsp9Dle9AAek=",
+        "owner": "spreadprism",
         "repo": "fyler.nvim",
-        "rev": "e87911e6c21d099225063f5aa672e00f6dbb5976",
+        "rev": "0d07c5229ae64781736e38d481c3bb38479724a8",
         "type": "github"
       },
       "original": {
-        "owner": "A7Lavinraj",
+        "owner": "spreadprism",
         "repo": "fyler.nvim",
         "type": "github"
       }

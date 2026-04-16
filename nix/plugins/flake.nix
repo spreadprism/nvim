@@ -22,7 +22,7 @@
       flake = false;
     };
     fyler = {
-      url = "github:A7Lavinraj/fyler.nvim";
+      url = "github:spreadprism/fyler.nvim";
       flake = false;
     };
     nvim-web-devicons = {
@@ -37,10 +37,6 @@
       url = "github:NeogitOrg/neogit";
       flake = false;
     };
-    # neogit = {
-    #   url = "github:sotte/neogit?ref=support-vscode-diff";
-    #   flake = false;
-    # };
     gitsigns = {
       url = "github:lewis6991/gitsigns.nvim";
       flake = false;
