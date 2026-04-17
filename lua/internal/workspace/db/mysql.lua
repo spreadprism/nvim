@@ -19,6 +19,7 @@ return function(workspace, conn)
 	---@type ConnectionParams
 	return {
 		name = conn.name,
+		type = "mysql",
 		id = conn.name,
 		url = string.format("%s:%s@tcp(%s:%d)/%s", conn.username, conn.password, conn.host, conn.port, conn.db),
 	}
