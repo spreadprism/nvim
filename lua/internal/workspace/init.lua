@@ -22,6 +22,7 @@ function M:ctx()
 		group = vim.api.nvim_create_augroup(ctx.exrc_path, { clear = true }),
 		config = require("exrc.config"),
 		dap_configs = {},
+		db_connections = {},
 	}, Workspace)
 
 	ctx:on_unload(function()
@@ -161,7 +162,7 @@ function Workspace:db(type, conn)
 		return self.db_connections
 	end)
 
-	if #self.db_connections == 0 then
+	if not #self.db_connections == 0 then
 		self:on_unload(function()
 			source:clear(self.workspaceDir)
 		end)

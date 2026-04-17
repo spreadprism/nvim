@@ -9,10 +9,8 @@ local M = {}
 ---@class WorkspaceSource : Source
 ---@field providers table<string, fun(): Connection[]>
 ---@field refreshing boolean
-local WorkspaceSource = {
-	providers = {},
-	refreshing = false,
-}
+local WorkspaceSource = {}
+local providers = {}
 
 function WorkspaceSource:name()
 	return "workspace"
@@ -23,7 +21,7 @@ function WorkspaceSource:load()
 	---@type ConnectionParams[]
 	local conn = {}
 
-	for _, provider in pairs(self.providers) do
+	for _, provider in pairs(providers) do
 		vim.list_extend(conn, provider())
 	end
 
@@ -40,15 +38,18 @@ function WorkspaceSource:refresh()
 	end
 end
 
----@param load fun(): Connection[]
 ---@param name string
+---@param load fun(): Connection[]
 function WorkspaceSource:register(name, load)
-	self.providers[name] = load
+	if name == nil then
+		return
+	end
+	providers[name] = load
 end
 
 ---@param name string
 function WorkspaceSource:clear(name)
-	self.providers[name] = nil
+	providers[name] = nil
 end
 
 M.source = WorkspaceSource
