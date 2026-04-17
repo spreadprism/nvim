@@ -37,9 +37,21 @@ plugin("neogit")
 				vim.cmd("tablast")
 				local ft = vim.bo.filetype
 
-				local cwd = "%:p:h"
+				local path
 				if ft == "oil" then
-					cwd = require("oil").get_current_dir() or cwd
+					path = require("oil").get_current_dir()
+				elseif ft == "fyler" then
+					path = require("fyler.views.finder").instance().files.root_path
+				else
+					path = "%:p:h"
+				end
+
+				local git_dirs = vim.fs.find(".git", { upward = true, path = path })
+				local cwd
+				if git_dirs and git_dirs[1] then
+					cwd = vim.fs.dirname(git_dirs[1])
+				else
+					cwd = vim.fn.getcwd()
 				end
 				require("neogit").open({
 					cwd = cwd,
