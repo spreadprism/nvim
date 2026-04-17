@@ -54,3 +54,6 @@ plugin("trouble")
 		k:map("n", "<M-d>", k:cmd("Trouble diagnostics toggle filter.buf=0"), "diagnostics (buffer)"),
 		k:map("n", "<M-D>", k:cmd("Trouble diagnostics toggle"), "diagnostics"),
 	})
+	:on_highlights(function(highlights, colors)
+		highlights.TroubleNormal = { bg = colors.none }
+	end)
