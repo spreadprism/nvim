@@ -4,6 +4,12 @@ plugin("blink.indent")
 		highlights.BlinkIndentScope = { fg = colors.comment }
 	end)
 	:opts({
+		blocked = {
+			filetypes = {
+				include_defaults = true,
+				"fyler",
+			},
+		},
 		mappings = {
 			object_scope = "",
 			object_scope_with_border = "",
