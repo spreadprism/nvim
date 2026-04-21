@@ -49,6 +49,7 @@ plugin("noice")
 				"written",
 				"No diagnostics found",
 				"No results for",
+				"No textobject",
 				"Hop",
 			}),
 			{
