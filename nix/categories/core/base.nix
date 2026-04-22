@@ -28,6 +28,7 @@
     snacks
     tmux-navigation
     hop
+    marks
     blink-compat
     blink-cmp-git
     blink-cmp-conventional-commits

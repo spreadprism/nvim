@@ -21,8 +21,8 @@ plugin("multicursor-nvim")
 		k:map("nx", "<C-Down>", k:require("multicursor-nvim").lineAddCursor(1), "add cursor under"),
 		k:map("nx", "<C-Left>", k:require("multicursor-nvim").lineSkipCursor(-1), "skip cursor top"),
 		k:map("nx", "<C-Right>", k:require("multicursor-nvim").lineSkipCursor(1), "skip cursor under"),
-		k:map("nx", "<M-m>", k:require("multicursor-nvim").toggleCursor(), "toggle multicursor"),
-		k:map("nx", "<M-M>", k:require("multicursor-nvim").matchAllAddCursors(), "toggle multicursor"),
+		-- k:map("nx", "<M-m>", k:require("multicursor-nvim").toggleCursor(), "toggle multicursor"),
+		-- k:map("nx", "<M-M>", k:require("multicursor-nvim").matchAllAddCursors(), "toggle multicursor"),
 	})
 	:after(function()
 		local mc = require("multicursor-nvim")

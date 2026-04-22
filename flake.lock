@@ -373,6 +373,22 @@
         "type": "github"
       }
     },
+    "marks": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1747179163,
+        "narHash": "sha256-ho2b2Ulh+GTqY0QvW7zjFOSlF5g/kaxWyOjKWhTFq7c=",
+        "owner": "chentoast",
+        "repo": "marks.nvim",
+        "rev": "f353e8c08c50f39e99a9ed474172df7eddd89b72",
+        "type": "github"
+      },
+      "original": {
+        "owner": "chentoast",
+        "repo": "marks.nvim",
+        "type": "github"
+      }
+    },
     "mini-ai": {
       "flake": false,
       "locked": {
@@ -786,6 +802,7 @@
         "live-command": "live-command",
         "lspconfig": "lspconfig",
         "luasnip": "luasnip",
+        "marks": "marks",
         "mini-ai": "mini-ai",
         "mini-move": "mini-move",
         "multicursor-nvim": "multicursor-nvim",

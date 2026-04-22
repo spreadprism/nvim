@@ -69,6 +69,10 @@
       url = "github:smoka7/hop.nvim";
       flake = false;
     };
+    marks = {
+      url = "github:chentoast/marks.nvim";
+      flake = false;
+    };
     blink-compat = {
       url = "github:saghen/blink.compat";
       flake = false;

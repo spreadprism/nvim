@@ -37,3 +37,7 @@ plugin("hop")
 		highlights.HopNextKey1 = { fg = colors.orange, bold = true, underline = true }
 		highlights.HopNextKey2 = { fg = colors.orange, bold = true }
 	end)
+
+plugin("marks"):event("DeferredUIEnter"):after(function()
+	vim.api.nvim_set_hl(0, "MarkSignNumHL", {})
+end)
