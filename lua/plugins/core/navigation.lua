@@ -9,6 +9,7 @@ plugin("tabout"):event({ "InsertEnter", "CmdlineEnter" }):opts({
 		{ open = "{", close = "}" },
 		{ open = "<", close = ">" },
 	},
+	exclude = { "fyler" },
 })
 local BEFORE, AFTER = 1, 2
 plugin("hop")
