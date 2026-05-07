@@ -45,10 +45,7 @@
       url = "github:FabijanZulj/blame.nvim";
       flake = false;
     };
-    octo = {
-      url = "github:pwntester/octo.nvim";
-      flake = false;
-    };
+
     nui = {
       url = "github:MunifTanjim/nui.nvim";
       flake = false;

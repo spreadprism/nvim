@@ -10,7 +10,6 @@
     neogit
     gitsigns
     blame
-    octo
     pkgs.vimPlugins.codediff-nvim
   ];
 }
