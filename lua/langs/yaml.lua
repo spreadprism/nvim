@@ -13,8 +13,8 @@ plugin("yaml-companion")
 		local cfg = require("yaml-companion").setup({
 			modeline = {
 				auto_add = {
-					on_attach = true,
-					on_save = true,
+					on_attach = false,
+					on_save = false,
 				},
 				notify = false,
 			},
