@@ -20,6 +20,7 @@ lsp("helm_ls"):settings({
 	["helm-ls"] = {
 		yamlls = {
 			path = "yaml-language-server",
+			diagnosticsLimit = 0,
 		},
 	},
 })
