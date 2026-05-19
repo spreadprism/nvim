@@ -1,6 +1,10 @@
 {
   description = "Neovim plugins";
   inputs = {
+    atlas = {
+      url = "github:emrearmagan/atlas.nvim";
+      flake = false;
+    };
     snacks = {
       url = "github:folke/snacks.nvim";
       flake = false;

@@ -24,6 +24,7 @@
   ];
 
   optionalPlugins = with nvim_pkgs; [
+    atlas
     which-key
     lspconfig
     fyler
