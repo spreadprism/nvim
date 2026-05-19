@@ -32,24 +32,45 @@ function WorkspaceSource:refresh()
 	if not self.refreshing then
 		self.refreshing = true
 		vim.defer_fn(function()
-			require("dbee.api").core.source_reload("workspace")
 			self.refreshing = false
 		end, 300)
 	end
 end
 
 ---@param name string
----@param load fun(): Connection[]
-function WorkspaceSource:register(name, load)
+---@param conn Dbab.Connection
+function WorkspaceSource:register(name, conn)
 	if name == nil then
 		return
 	end
-	providers[name] = load
+
+	local connections = require("dbab.config").options.connections
+
+	---@type Dbab.Connection
+	vim.print(conn.url)
+	local new_conn = {
+		name = conn.name,
+		url = conn.url,
+		workspace = name,
+	}
+
+	table.insert(connections, new_conn)
+
+	require("dbab.config").options.connections = connections
 end
 
 ---@param name string
 function WorkspaceSource:clear(name)
-	providers[name] = nil
+	local connections = require("dbab.config").options.connections
+	local new = {}
+
+	for _, conn in ipairs(connections) do
+		if conn.workspace ~= name then
+			table.insert(new, conn)
+		end
+	end
+
+	require("dbab.config").options.connections = new
 end
 
 M.source = WorkspaceSource

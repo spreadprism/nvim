@@ -8,7 +8,7 @@
 
 ---@param workspace Workspace
 ---@param conn MysqlConnection
----@return ConnectionParams
+---@return Dbab.Connection
 return function(workspace, conn)
 	conn = vim.tbl_deep_extend("force", {
 		host = "127.0.0.1",
@@ -16,11 +16,9 @@ return function(workspace, conn)
 		db = "",
 	}, conn)
 
-	---@type ConnectionParams
+	---@type Dbab.Connection
 	return {
 		name = conn.name,
-		type = "mysql",
-		id = conn.name,
-		url = string.format("%s:%s@tcp(%s:%d)/%s", conn.username, conn.password, conn.host, conn.port, conn.db),
+		url = string.format("mysql://%s:%s@%s:%d/%s", conn.username, conn.password, conn.host, conn.port, conn.db),
 	}
 end

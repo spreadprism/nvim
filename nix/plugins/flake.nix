@@ -182,6 +182,14 @@
       url = "github:gbprod/cutlass.nvim";
       flake = false;
     };
+    dadbod = {
+      url = "github:tpope/vim-dadbod";
+      flake = false;
+    };
+    dbab = {
+      url = "github:zerochae/dbab.nvim";
+      flake = false;
+    };
     multicursor-nvim = {
       url = "github:jake-stewart/multicursor.nvim";
       flake = false;

@@ -153,14 +153,11 @@ function Workspace:dap(ft, configs)
 	end
 end
 
+---@overload fun(self: Workspace, type: "mysql", conn: MysqlConnection|MysqlConnection[])
 ---@param type string
----@param conn Connection
----@overload fun(type: "mysql", conn: MysqlConnection|MysqlConnection[])
+---@param conn Connection|Connection[]
 function Workspace:db(type, conn)
 	local source = require("internal.workspace.db").source
-	source:register(self.workspaceDir, function()
-		return self.db_connections
-	end)
 
 	if not #self.db_connections == 0 then
 		self:on_unload(function()
@@ -174,8 +171,7 @@ function Workspace:db(type, conn)
 
 	local provider = require("internal.workspace.db." .. type)
 	for _, c in ipairs(conn) do
-		conn.type = conn.type or type
-		table.insert(self.db_connections, provider(self, c))
+		source:register(self.workspaceDir, provider(self, c))
 	end
 end
 

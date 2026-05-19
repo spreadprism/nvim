@@ -10,6 +10,9 @@
     ast-grep
     curl
     grpcurl
+
+    # db cli
+    mysql84
   ];
   startupPlugins = with vim_pkgs; [
     lze
@@ -56,6 +59,8 @@
     overseer
     ufo
     cutlass
+    dadbod
+    dbab
     multicursor-nvim
     live-command
     grug-far
@@ -71,7 +76,6 @@
     vim_pkgs.blink-pairs
     vim_pkgs.blink-indent
     vim_pkgs.nvim-treesitter.withAllGrammars
-    vim_pkgs.nvim-dbee
     vim_pkgs.kulala-nvim
   ];
 }
