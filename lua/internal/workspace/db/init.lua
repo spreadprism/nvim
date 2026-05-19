@@ -47,7 +47,6 @@ function WorkspaceSource:register(name, conn)
 	local connections = require("dbab.config").options.connections
 
 	---@type Dbab.Connection
-	vim.print(conn.url)
 	local new_conn = {
 		name = conn.name,
 		url = conn.url,
