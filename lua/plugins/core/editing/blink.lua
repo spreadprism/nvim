@@ -81,7 +81,7 @@ plugin("blink.cmp")
 		return {
 			snippets = { preset = "luasnip" },
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "git", "conventional_commits" },
+				default = { "lsp", "path", "snippets", "buffer", "git", "conventional_commits", "dbab" },
 				providers = {
 					lazydev = {
 						name = "LazyDev",
@@ -104,6 +104,10 @@ plugin("blink.cmp")
 						enabled = function()
 							return vim.bo.filetype == "gitcommit"
 						end,
+					},
+					dbab = {
+						name = "dbab",
+						module = "blink_dbab",
 					},
 				},
 			},
