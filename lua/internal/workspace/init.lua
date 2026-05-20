@@ -154,6 +154,7 @@ function Workspace:dap(ft, configs)
 end
 
 ---@overload fun(self: Workspace, type: "mysql", conn: MysqlConnection|MysqlConnection[])
+---@overload fun(self: Workspace, type: "postgres", conn: PostgresConnection|PostgresConnection[])
 ---@param type string
 ---@param conn Connection|Connection[]
 function Workspace:db(type, conn)

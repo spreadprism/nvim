@@ -23,6 +23,9 @@ plugin("dbab")
 			},
 		},
 	})
+	:lazydev({
+		words = { "Dbab" },
+	})
 	:cmd({ "Dbab" })
 	:dep_on(plugin("dadbod"):opts(false))
 	:keymaps(k:group("db", "<leader>b", {
