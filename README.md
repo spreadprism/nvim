@@ -1,6 +1,1 @@
 # nvim
-
-
-### TODO
-
-- [] replace dbee
