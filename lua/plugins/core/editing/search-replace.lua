@@ -3,8 +3,8 @@ plugin("grug-far")
 	:keymaps({
 		k:map("n", "<M-r>", k:require("grug-far").open(), "open replace window"),
 		k:map("n", "<M-r>", function()
-			require("grug-far").open({ prefills = { paths = require("fyler.views.finder").instance().files.root_path } })
-		end, "open replace window"):ft("fyler"),
+			require("grug-far").open({ prefills = { paths = require("oil").get_current_dir() } })
+		end, "open replace window"):ft("oil"),
 		k:map("n", "<M-R>", function()
 			require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } })
 		end, "open replace window"),

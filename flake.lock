@@ -778,19 +778,19 @@
         "type": "github"
       }
     },
-    "oil-vcs": {
+    "oil-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1779555119,
-        "narHash": "sha256-dr1o2IaljkLbITFH/ar7SpOLR4Zm8ERF9E4ZT0UMfCc=",
-        "owner": "spreadprism",
-        "repo": "oil-vcs",
-        "rev": "7fd58f5374c86c5ad8aa6a77eb38cfbc81b22f6e",
+        "lastModified": 1773786592,
+        "narHash": "sha256-2gySPDND0+P73ANLZJoVHy3Kk7P41OyoogXwEhtruAU=",
+        "owner": "malewicz1337",
+        "repo": "oil-git.nvim",
+        "rev": "85731c6e0deb6da473ca627f09b7de6ca0f07435",
         "type": "github"
       },
       "original": {
-        "owner": "spreadprism",
-        "repo": "oil-vcs",
+        "owner": "malewicz1337",
+        "repo": "oil-git.nvim",
         "type": "github"
       }
     },
@@ -890,7 +890,7 @@
         "nvim-treesitter-textobjects": "nvim-treesitter-textobjects",
         "nvim-web-devicons": "nvim-web-devicons",
         "oil": "oil",
-        "oil-vcs": "oil-vcs",
+        "oil-git": "oil-git",
         "opencode": "opencode",
         "osc52": "osc52",
         "overseer": "overseer",

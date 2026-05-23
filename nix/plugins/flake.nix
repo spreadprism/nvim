@@ -166,8 +166,8 @@
       url = "github:stevearc/oil.nvim";
       flake = false;
     };
-    oil-vcs = {
-      url = "github:spreadprism/oil-vcs";
+    oil-git = {
+      url = "github:malewicz1337/oil-git.nvim";
       flake = false;
     };
     render-markdown = {

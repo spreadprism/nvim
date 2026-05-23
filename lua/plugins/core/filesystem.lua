@@ -104,9 +104,28 @@ local oil = plugin("oil")
 	end)
 	:lazy(false)
 
-plugin("oil-vcs")
-	:dep_on(oil)
-	:opts({
-		symbols_on_dir = false,
-	})
-	:lazy(false)
+plugin("oil-git"):dep_on(oil):lazy(false):opts({
+	show_directory_symbols = false,
+	show_ignored_files = true,
+	show_ignored_directories = true,
+	symbols = {
+		file = {
+			added = "+",
+			modified = "~",
+			untracked = "?",
+			ignored = "!",
+			deleted = "-",
+			renamed = "→",
+			conflict = "!",
+		},
+	},
+	highlights = {
+		OilGitAdded = { fg = "#9ece6a" },
+		OilGitModified = { fg = "#e0af68" },
+		OilGitRenamed = { fg = "#cba6f7" },
+		OilGitUntracked = { fg = "#7aa2f7" },
+		OilGitIgnored = { fg = "#565F89" },
+		OilGitDeleted = { fg = "#f7768e" },
+		OilGitConflict = { fg = "#f7768e" },
+	},
+})

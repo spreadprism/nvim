@@ -56,7 +56,7 @@
     copilot
     opencode
     oil
-    oil-vcs
+    oil-git
     todo-comments
     exrc
     overseer
