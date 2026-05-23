@@ -42,7 +42,9 @@ M.Plugin.__index = M.Plugin
 
 ---@param name string The plugin's name
 function M.NewPluginFactory(name)
-	return setmetatable({ name = name }, M.Plugin):on_require(name):load(load_fn)
+	return setmetatable({ name = name }, M.Plugin):on_require(name):load(load_fn):lazydev({
+		words = { name },
+	})
 end
 
 ---When false, or if the function returns nil or false, then this plugin will not be included in the spec.
