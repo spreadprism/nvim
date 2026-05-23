@@ -23,6 +23,10 @@ plugin("copilot")
 
 			return true
 		end,
+		server = {
+			type = "binary",
+			custom_server_filepath = nixCats("overlays")["copilot-language-server"].path,
+		},
 	})
 	:after(function()
 		require("internal.loader.lsp").display_blacklist("copilot")

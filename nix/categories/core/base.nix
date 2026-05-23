@@ -11,6 +11,7 @@
     curl
     grpcurl
 
+    copilot-language-server
     # db cli
     mysql84
   ];
