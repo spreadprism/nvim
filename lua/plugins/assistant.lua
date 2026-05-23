@@ -9,7 +9,7 @@ plugin("copilot")
 			enabled = true,
 			auto_trigger = false,
 			keymap = {
-				accept = "<M-a>",
+				accept = false,
 				dismiss = "<M-d>",
 				next = false,
 			},

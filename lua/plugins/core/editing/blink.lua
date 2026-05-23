@@ -64,7 +64,15 @@ plugin("blink.cmp")
 			Copilot = "",
 		}
 		local base_keymap = {
-			["<M-a>"] = { "select_and_accept", "fallback" },
+			["<M-a>"] = {
+				function(cmp)
+					if cmp.is_visible() then
+						cmp.select_and_accept()
+					elseif require("copilot.suggestion").is_visible() then
+						require("copilot.suggestion").accept()
+					end
+				end,
+			},
 			["<M-j>"] = { "show", "select_next", "fallback" },
 			["<M-k>"] = { "show", "select_prev" },
 			["<M-x>"] = { "cancel" },
