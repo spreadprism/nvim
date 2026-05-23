@@ -78,10 +78,19 @@ plugin("blink.cmp")
 				end,
 			},
 		}
+		---@type blink.cmp.Config
 		return {
 			snippets = { preset = "luasnip" },
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "git", "conventional_commits", "dbab" },
+				default = {
+					"lsp",
+					"path",
+					"snippets",
+					"buffer",
+					"git",
+					"dbab",
+					"conventional_commits",
+				},
 				providers = {
 					lazydev = {
 						name = "LazyDev",
@@ -95,7 +104,7 @@ plugin("blink.cmp")
 						name = "Git",
 						module = "blink-cmp-git",
 						enabled = function()
-							vim.tbl_contains({ "gitcommit", "markdown" }, vim.bo.filetype)
+							return vim.tbl_contains({ "gitcommit", "markdown" }, vim.bo.filetype)
 						end,
 					},
 					conventional_commits = {
@@ -108,6 +117,9 @@ plugin("blink.cmp")
 					dbab = {
 						name = "dbab",
 						module = "blink_dbab",
+						enabled = function()
+							return vim.tbl_contains({ "sql", "mysql", "plsql", "postgresql" }, vim.bo.filetype)
+						end,
 					},
 				},
 			},

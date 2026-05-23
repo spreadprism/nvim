@@ -26,6 +26,7 @@ plugin("dbab")
 	:lazydev({
 		words = { "Dbab" },
 	})
+	:ft("sql")
 	:cmd({ "Dbab" })
 	:dep_on(plugin("dadbod"):opts(false))
 	:keymaps(k:group("db", "<leader>b", {
