@@ -86,18 +86,22 @@ plugin("blink.cmp")
 				end,
 			},
 		}
+		local default = {
+			"lsp",
+			"path",
+			"snippets",
+			"buffer",
+			"git",
+			"conventional_commits",
+		}
 		---@type blink.cmp.Config
 		return {
 			snippets = { preset = "luasnip" },
 			sources = {
-				default = {
-					"lsp",
-					"path",
-					"snippets",
-					"buffer",
-					"git",
-					"dbab",
-					"conventional_commits",
+				default = default,
+				per_filetype = {
+					oil = { "path", "buffer", "snippets" },
+					sql = vim.tbl_extend("force", default, { "dbab" }),
 				},
 				providers = {
 					lazydev = {
