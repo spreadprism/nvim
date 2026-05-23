@@ -16,6 +16,13 @@ plugin("copilot")
 			},
 		},
 		panel = { enabled = false },
+		should_attach = function(buf_id, bufname)
+			if vim.bo[buf_id].buftype ~= "" then
+				return false
+			end
+
+			return true
+		end,
 	})
 	:after(function()
 		require("internal.loader.lsp").display_blacklist("copilot")

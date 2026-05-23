@@ -13,10 +13,6 @@ local codediff = plugin("codediff.nvim"):on_require("codediff"):cmd("CodeDiff"):
 	},
 })
 
-event.on_filetype("gitcommit", function(args)
-	vim.bo[args.buf].buflisted = true
-end)
-
 plugin("neogit")
 	:dep_on(codediff)
 	:opts({
