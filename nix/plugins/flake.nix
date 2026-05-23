@@ -162,6 +162,14 @@
       url = "github:sudo-tee/opencode.nvim";
       flake = false;
     };
+    oil = {
+      url = "github:stevearc/oil.nvim";
+      flake = false;
+    };
+    oil-vcs = {
+      url = "github:spreadprism/oil-vcs";
+      flake = false;
+    };
     render-markdown = {
       url = "github:MeanderingProgrammer/render-markdown.nvim";
       flake = false;

@@ -55,6 +55,8 @@
     nvim-dap-virtual-text
     copilot
     opencode
+    oil
+    oil-vcs
     todo-comments
     exrc
     overseer
