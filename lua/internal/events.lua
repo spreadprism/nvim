@@ -34,7 +34,7 @@ function M.on_save(pattern, callback, group)
 end
 
 ---@param pattern string|string[] File type pattern(s) to match
----@param callback function Callback function to execute
+---@param callback fun(args: vim.api.keyset.create_autocmd.callback_args): boolean? Callback function to execute
 ---@param group number|string|nil Autocommand group
 function M.on_filetype(pattern, callback, group)
 	vim.api.nvim_create_autocmd("FileType", {

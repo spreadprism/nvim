@@ -4,6 +4,7 @@ plugin("copilot")
 		filetypes = {
 			markdown = true,
 			yaml = true,
+			gitcommit = true,
 		},
 		suggestion = {
 			enabled = true,
