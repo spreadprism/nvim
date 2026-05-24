@@ -92,6 +92,9 @@ local oil = plugin("oil")
 		win_options = {
 			signcolumn = "number",
 		},
+		confirmation = {
+			border = "rounded",
+		},
 	})
 	:keymaps({
 		k:map("n", "-", k:cmd("Oil"), "Open filesystem"),
