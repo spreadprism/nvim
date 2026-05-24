@@ -1,35 +1,41 @@
+local function get_branch(buf)
+	local ft = vim.bo.filetype
+
+	local branch = vim.b.gitsigns_head or vim.g.gitsigns_head
+
+	if ft == "NeogitStatus" then
+		branch = vim.g.gitsigns_head
+	elseif ft == "oil" then
+		local path = require("oil").get_current_dir(buf)
+		if path then
+			local root, _ = require("oil-git.git").get_root(path)
+			if root then
+				-- read .git/HEAD
+				local head_path = vim.fs.joinpath(root, ".git", "HEAD")
+				local ref = vim.fn.readfile(head_path)[1] or ""
+				local b = ref:match("ref: refs/heads/(.+)")
+				if b then
+					branch = b
+				end
+			end
+		end
+	end
+	vim.print(branch)
+	return branch
+end
+
 return {
 	fallthrough = false,
 	{
 		provider = " ",
-		condition = function()
-			return not (vim.b.gitsigns_head or vim.g.gitsigns_head)
+		condition = function(self)
+			return not (get_branch(self.buf))
 		end,
 		hl = { link = "Comment" },
 	},
 	{
 		init = function(self)
-			local ft = vim.bo.filetype
-
-			self.branch = vim.b.gitsigns_head or vim.g.gitsigns_head
-
-			if ft == "NeogitStatus" then
-				self.branch = vim.g.gitsigns_head
-			elseif ft == "oil" then
-				local path = require("oil").get_current_dir(self.buf)
-				if path then
-					local root = require("oil-git.git").get_root(path)
-					if root then
-						-- read .git/HEAD
-						local head_path = vim.fs.joinpath(root, ".git", "HEAD")
-						local ref = vim.fn.readfile(head_path)[1] or ""
-						local branch = ref:match("ref: refs/heads/(.+)")
-						if branch then
-							self.branch = branch
-						end
-					end
-				end
-			end
+			self.branch = get_branch(self.buf)
 		end,
 		condition = function()
 			return vim.b.gitsigns_head or vim.g.gitsigns_head
