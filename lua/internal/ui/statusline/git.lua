@@ -11,10 +11,24 @@ return {
 		init = function(self)
 			local ft = vim.bo.filetype
 
+			self.branch = vim.b.gitsigns_head or vim.g.gitsigns_head
+
 			if ft == "NeogitStatus" then
 				self.branch = vim.g.gitsigns_head
-			else
-				self.branch = vim.b.gitsigns_head or vim.g.gitsigns_head
+			elseif ft == "oil" then
+				local path = require("oil").get_current_dir(self.buf)
+				if path then
+					local root = require("oil-git.git").get_root(path)
+					if root then
+						-- read .git/HEAD
+						local head_path = vim.fs.joinpath(root, ".git", "HEAD")
+						local ref = vim.fn.readfile(head_path)[1] or ""
+						local branch = ref:match("ref: refs/heads/(.+)")
+						if branch then
+							self.branch = branch
+						end
+					end
+				end
 			end
 		end,
 		condition = function()
