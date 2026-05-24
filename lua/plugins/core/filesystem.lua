@@ -77,6 +77,7 @@ local oil = plugin("oil")
 		keymaps = {
 			["g?"] = "actions.show_help",
 			["<CR>"] = "actions.select",
+			["<S-CR>"] = "actions.select_tab",
 			["<M-CR>"] = "actions.select_vsplit",
 			["K"] = "actions.preview",
 			["-"] = "actions.parent",
