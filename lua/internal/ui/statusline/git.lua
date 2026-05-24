@@ -20,7 +20,6 @@ local function get_branch(buf)
 			end
 		end
 	end
-	vim.print(branch)
 	return branch
 end
 
@@ -37,8 +36,8 @@ return {
 		init = function(self)
 			self.branch = get_branch(self.buf)
 		end,
-		condition = function()
-			return vim.b.gitsigns_head or vim.g.gitsigns_head
+		condition = function(self)
+			return get_branch(self.buf)
 		end,
 		hl = function(self)
 			return { fg = self.mode_color() }
