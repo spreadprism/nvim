@@ -1,3 +1,4 @@
+-- PERF: this is called 3 times every update
 local function get_branch(buf)
 	local ft = vim.bo.filetype
 
