@@ -111,7 +111,7 @@ local oil = plugin("oil")
 plugin("oil-git"):dep_on(oil):lazy(false):opts({
 	show_directory_symbols = false,
 	show_ignored_files = true,
-	show_ignored_directories = true,
+	show_ignored_directories = false,
 	symbols = {
 		file = {
 			added = "+",
