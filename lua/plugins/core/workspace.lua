@@ -17,5 +17,4 @@ plugin("exrc")
 			end,
 		})
 		_G.workspace = require("internal.workspace")
-		require("exrc.loader").on_vim_enter()
 	end)

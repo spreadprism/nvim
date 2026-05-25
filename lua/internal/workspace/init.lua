@@ -9,13 +9,30 @@ local M = {}
 ---@field private config exrc.Config
 ---@field workspaceDir string
 ---@field private dap_configs dap.Configuration[]
----@field private db_connections ConnectionParams[]
 ---@field private group integer|string
 local Workspace = {}
 Workspace.__index = Workspace
 
 function M:ctx()
-	local ctx = require("exrc").init()
+	local utils = require("exrc.utils")
+	local Context = require("exrc.context")
+
+	local info = utils.get_load_info()
+	if #info == 0 then
+		error("Could not detect exrc information")
+	end
+
+	local exrc_path = info[1].path
+
+	if not Context.loader.is_loaded(exrc_path) then
+		Context.loader.mark_loaded(exrc_path)
+	end
+
+	local ctx = setmetatable({
+		load_info = info,
+		exrc_path = exrc_path,
+		exrc_dir = vim.fs.dirname(exrc_path),
+	}, Context)
 	local workspace = setmetatable({
 		ctx = ctx,
 		workspaceDir = ctx.exrc_dir,
@@ -35,7 +52,6 @@ end
 function Workspace:unload()
 	self.group = vim.api.nvim_create_augroup(self.ctx.exrc_path, { clear = true })
 	self.dap_configs = {}
-	self.db_connections = {}
 end
 
 ---@param fn fun()
