@@ -33,6 +33,10 @@
       url = "github:nvim-tree/nvim-web-devicons";
       flake = false;
     };
+    origami = {
+      url = "github:chrisgrieser/nvim-origami";
+      flake = false;
+    };
     tmux-navigation = {
       url = "github:christoomey/vim-tmux-navigator";
       flake = false;
@@ -184,10 +188,6 @@
     };
     overseer = {
       url = "github:stevearc/overseer.nvim";
-      flake = false;
-    };
-    ufo = {
-      url = "github:kevinhwang91/nvim-ufo";
       flake = false;
     };
     cutlass = {

@@ -43,6 +43,7 @@
     mini-move
     nvim-treesitter-endwise
     nvim-treesitter-textobjects
+    origami
     treesitter-context
     conform
     lint
@@ -61,7 +62,6 @@
     todo-comments
     exrc
     overseer
-    ufo
     cutlass
     dadbod
     dbab
