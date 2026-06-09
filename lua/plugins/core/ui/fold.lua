@@ -15,6 +15,10 @@ plugin("origami")
 			},
 			gitsignsCount = false,
 			diagnosticsCount = false,
+			disableOnFt = {
+				"snacks_picker_input",
+				"NeogitStatus",
+			},
 		},
 		autoFold = {
 			enabled = false,
