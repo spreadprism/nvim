@@ -8,6 +8,7 @@ local M = {}
 ---@field protected ctx exrc.Context
 ---@field private config exrc.Config
 ---@field workspaceDir string
+---@field clear_db boolean
 ---@field private dap_configs dap.Configuration[]
 ---@field private group integer|string
 local Workspace = {}
@@ -38,8 +39,8 @@ function M:ctx()
 		workspaceDir = ctx.exrc_dir,
 		group = vim.api.nvim_create_augroup(ctx.exrc_path, { clear = true }),
 		config = require("exrc.config"),
+		clear_db = false,
 		dap_configs = {},
-		db_connections = {},
 	}, Workspace)
 
 	ctx:on_unload(function()
@@ -176,9 +177,11 @@ end
 function Workspace:db(type, conn)
 	local source = require("internal.workspace.db").source
 
-	if not #self.db_connections == 0 then
+	if not self.clear_db then
+		self.clear_db = true
 		self:on_unload(function()
 			source:clear(self.workspaceDir)
+			self.clear_db = false
 		end)
 	end
 
@@ -190,6 +193,20 @@ function Workspace:db(type, conn)
 	for _, c in ipairs(conn) do
 		source:register(self.workspaceDir, provider(self, c))
 	end
+end
+
+---@param ft string
+---@param pattern string|string[]
+function Workspace:set_ft(ft, pattern)
+	vim.api.nvim_create_autocmd("BufEnter", {
+		group = self.group,
+		pattern = pattern,
+		callback = function(args)
+			if args and args.buf and vim.api.nvim_buf_is_valid(args.buf) then
+				vim.bo[args.buf].filetype = ft
+			end
+		end,
+	})
 end
 
 return M
