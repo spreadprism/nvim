@@ -52,6 +52,19 @@ plugin("opencode")
 			input_window = {
 				["<S-cr>"] = false,
 				["<cr>"] = { "submit_input_prompt", mode = { "n", "i" } },
+				["<tab>"] = { "switch_mode" },
+				["<M-m>"] = {
+					function()
+						require("opencode.api").configure_provider()
+					end,
+					mode = { "n", "i" },
+				},
+				["<M-a>"] = {
+					function()
+						require("opencode.api").select_agent()
+					end,
+					mode = { "n" },
+				},
 			},
 		},
 	})
