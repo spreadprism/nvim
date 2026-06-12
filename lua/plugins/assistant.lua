@@ -42,6 +42,7 @@ plugin("opencode")
 		preferred_picker = "snacks",
 		preferred_completion = "blink",
 		default_global_keymaps = false,
+		default_mode = "copilot",
 		ui = {
 			input = {
 				min_height = 0.15,
