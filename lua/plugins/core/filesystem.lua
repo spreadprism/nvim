@@ -1,74 +1,3 @@
--- plugin("fyler")
--- 	:lazy(false)
--- 	:opts({
--- 		integrations = {
--- 			icon = "nvim_web_devicons",
--- 			winpick = "snacks",
--- 		},
--- 		hooks = {
--- 			on_rename = function(src_path, destination_path)
--- 				require("snacks.rename").on_rename_file(src_path, destination_path)
--- 			end,
--- 		},
--- 		views = {
--- 			finder = {
--- 				columns_order = { "link", "diagnostic", "git", "permission", "size" },
--- 				win = {
--- 					border = "rounded",
--- 				},
--- 				default_explorer = true,
--- 				mappings = {
--- 					["<C-q>"] = "CloseView",
--- 					["<S-CR>"] = "SelectTab",
--- 					["<Left>"] = "CollapseNode",
--- 					["<S-Left>"] = "CollapseAll",
--- 					["_"] = "GotoCwd",
--- 					["-"] = "GotoParent",
--- 					["."] = "GotoNode",
--- 				},
--- 				icon = {
--- 					directory_collapsed = "",
--- 					directory_empty = "",
--- 					directory_expanded = "",
--- 				},
--- 				columns = {
--- 					git = {
--- 						symbols = {
--- 							Added = "+",
--- 							Modified = "~",
--- 							Untracked = "?",
--- 							Ignored = "!",
--- 							Deleted = "-",
--- 							Renamed = "→",
--- 							Conflict = "-",
--- 							PartialStage = "~",
--- 						},
--- 					},
--- 					diagnostic = {
--- 						symbols = {
--- 							Error = symbols.error,
--- 							Warn = symbols.warning,
--- 							Info = symbols.info,
--- 							Hint = symbols.hint,
--- 						},
--- 					},
--- 				},
--- 			},
--- 		},
--- 	})
--- 	:keymaps({
--- 		k:map("n", "-", function()
--- 			local fyler = require("fyler")
--- 			require("fyler.views.finder").instance():change_root(vim.fn.expand("%:p:h"))
--- 			fyler.open()
--- 		end, "open filesystem"),
--- 		k:map("n", "_", function()
--- 			local fyler = require("fyler")
--- 			require("fyler.views.finder").instance():change_root(vim.fn.getcwd())
--- 			fyler.open()
--- 		end, "open filesystem"),
--- 	})
-
 local oil = plugin("oil")
 	:opts({
 		use_default_keymaps = false,
@@ -111,7 +40,7 @@ local oil = plugin("oil")
 plugin("oil-git"):dep_on(oil):lazy(false):opts({
 	show_directory_symbols = false,
 	show_ignored_files = true,
-	show_ignored_directories = false,
+	show_ignored_directories = true,
 	symbols = {
 		file = {
 			added = "+",
