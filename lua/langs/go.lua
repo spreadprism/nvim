@@ -1,5 +1,6 @@
-lsp("gopls"):root_markers({ "go.work", "go.mod" }):settings({
+lsp("gopls"):settings({
 	gopls = {
+		semanticTokens = true,
 		directoryFilters = {
 			"-/nix/**",
 			string.format("-%s/**", os.getenv("GOPATH")),
