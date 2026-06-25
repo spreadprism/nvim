@@ -360,16 +360,17 @@
     "lint": {
       "flake": false,
       "locked": {
-        "lastModified": 1780724144,
-        "narHash": "sha256-c0LEEbbWHZAKk+dpLGOjKvS1miuYLsxUM3AUf/t9ti8=",
-        "owner": "mfussenegger",
+        "lastModified": 1781773874,
+        "narHash": "sha256-o1efO524sp9JKlECpkivEDd9/DcGDGePyZ1JiLayDKQ=",
+        "owner": "arieroos",
         "repo": "nvim-lint",
-        "rev": "99cbc3ca8a76845fca50e496be7212bebf907dd3",
+        "rev": "109c89f21e6e40bfc8837ddecf549337042dce6f",
         "type": "github"
       },
       "original": {
-        "owner": "mfussenegger",
+        "owner": "arieroos",
         "repo": "nvim-lint",
+        "rev": "109c89f21e6e40bfc8837ddecf549337042dce6f",
         "type": "github"
       }
     },

@@ -123,7 +123,7 @@
       flake = false;
     };
     lint = {
-      url = "github:mfussenegger/nvim-lint";
+      url = "github:arieroos/nvim-lint/109c89f21e6e40bfc8837ddecf549337042dce6f";
       flake = false;
     };
     osc52 = {
