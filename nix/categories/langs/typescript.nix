@@ -5,6 +5,8 @@
 }: {
   lspsAndRuntimeDeps = with pkgs; [
     typescript
+    prettierd
+    eslint_d
   ];
   optionalPlugins = with nvim_pkgs; [
     typescript-tools
