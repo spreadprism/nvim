@@ -274,6 +274,10 @@
       url = "github:qvalentin/helm-ls.nvim";
       flake = false;
     };
+    typescript-tools = {
+      url = "github:pmizio/typescript-tools.nvim";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;
