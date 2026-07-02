@@ -8,11 +8,9 @@ plugin("typescript-tools")
 		},
 	})
 	:keymaps({
-		k:group("typescript", "<localleader>", {
-			k:map("n", "o", k:cmd("TSToolsOrganizeImports"), "organize imports"),
-			k:map("n", "a", k:cmd("TSToolsAddMissingImports"), "add missing imports"),
-			k:map("n", "f", k:cmd("TSToolsFixAll"), "fix all"),
-		}):ft(ft),
+		k:map("n", "<localleader>o", k:cmd("TSToolsOrganizeImports"), "organize imports"):ft(ft),
+		k:map("n", "<localleader>a", k:cmd("TSToolsAddMissingImports"), "add missing imports"):ft(ft),
+		k:map("n", "<localleader>f", k:cmd("TSToolsFixAll"), "fix all"):ft(ft),
 	})
 
 formatter(ft, "prettierd")
