@@ -59,7 +59,44 @@ plugin("neogit")
 			end, "Neogit"),
 		}),
 	})
-	:after(function() end)
+	:after(function()
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = "NeogitStatus",
+			callback = function(args)
+				-- Resolve the git dir for the repo this status buffer belongs to.
+				local buf_path = vim.api.nvim_buf_get_name(args.buf)
+				local search_path = buf_path ~= "" and vim.fs.dirname(buf_path) or vim.fn.getcwd()
+
+				local git_dirs = vim.fs.find(".git", { upward = true, path = search_path })
+				if not (git_dirs and git_dirs[1]) then
+					return
+				end
+
+				local repo_root = vim.fs.dirname(git_dirs[1])
+
+				-- Look for an executable pre-commit hook in the repo.
+				local hook = vim.fs.joinpath(git_dirs[1], "hooks", "pre-commit")
+				if vim.fn.executable(hook) ~= 1 then
+					return
+				end
+
+				local overseer = require("overseer")
+				local task = overseer.new_task({
+					name = "pre-commit",
+					cmd = { hook },
+					cwd = repo_root,
+				})
+
+				task:subscribe("on_complete", function()
+					vim.defer_fn(function()
+						task:dispose()
+					end, 5000)
+					return false
+				end)
+				task:start()
+			end,
+		})
+	end)
 
 plugin("gitsigns"):cmd("Gitsigns"):event("BufEnter"):opts({
 	signcolumn = true,
