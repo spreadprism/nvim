@@ -4,7 +4,7 @@ plugin("exrc")
 		vim.g.workspace_file_name = ".nvim.lua"
 	end)
 	:keymaps({
-		k:map("n", "\\\\", function()
+		k:map("n", "<localleader><localleader>", function()
 			local fname = vim.g.workspace_file_name
 			local cwd = vim.fn.getcwd()
 

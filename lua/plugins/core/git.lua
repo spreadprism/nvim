@@ -59,6 +59,7 @@ plugin("neogit")
 			end, "Neogit"),
 		}),
 	})
+	:after(function() end)
 
 plugin("gitsigns"):cmd("Gitsigns"):event("BufEnter"):opts({
 	signcolumn = true,
