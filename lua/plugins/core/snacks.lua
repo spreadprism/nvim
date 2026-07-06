@@ -1,4 +1,4 @@
-plugin("snacks")
+local snacks = plugin("snacks")
 	:opts({
 		image = {
 			enabled = true,
@@ -72,3 +72,13 @@ plugin("snacks")
 		}),
 	})
 	:lazy(false)
+
+plugin("onoma")
+	:event("DeferredUIEnter")
+	:dep_on(snacks)
+	:opts({
+		picker = { "snacks" },
+	})
+	:keymaps({
+		k:map("n", "<M-s>", k:require("snacks.picker").get_symbols(), "find symbols"),
+	})

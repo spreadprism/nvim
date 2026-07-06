@@ -278,6 +278,10 @@
       url = "github:pmizio/typescript-tools.nvim";
       flake = false;
     };
+    onoma = {
+      url = "github:ryanmab/onoma.nvim";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

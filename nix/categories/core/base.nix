@@ -76,6 +76,7 @@
     luasnip
     visual-whitespace
     startuptime
+    onoma
     vim_pkgs.blink-cmp
     vim_pkgs.blink-pairs
     vim_pkgs.blink-indent
