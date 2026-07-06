@@ -1,55 +1,79 @@
-# Onoma.nvim ships a Rust "bridge" as a prebuilt dynamic library that the
-# plugin normally downloads from its GitHub release at runtime (via curl into
+# Onoma.nvim ships a Rust "bridge" that it normally downloads as a prebuilt
+# dynamic library from its GitHub release at runtime (via curl into
 # `bridge/target/release/`). That download can't work here because Nix builds
 # the plugin into the read-only store.
 #
-# Instead, we fetch the prebuilt library for the release tag below and place it
-# where the plugin's loader expects it:
+# Instead of grabbing a release binary, we build the bridge crate from source
+# (it lives in the `bridge/` subdirectory of the plugin) and place the resulting
+# library where the plugin's loader expects it:
 #   <plugin>/bridge/target/release/libonoma_bridge.<ext>
-# We also write the `tag` file so the plugin's version check is satisfied.
 #
-# To bump the version: update `release`, then update the hashes. Get a hash with:
-#   nix store prefetch-file --json \
-#     https://github.com/ryanmab/onoma.nvim/releases/download/<tag>/<asset>
+# The bridge is built from the *same* source as the `onoma` plugin flake input
+# (`neovimPlugins.onoma.src`), so the Lua frontend and the native bridge always
+# stay in lockstep. Bump both together with `just update_plugins`.
+#
+# The bridge is an mlua "module" cdylib linked against LuaJIT: Lua symbols are
+# resolved at load time from the host Neovim (macOS `-undefined dynamic_lookup`,
+# Linux `-C target-feature=-crt-static` via mlua), so LuaJIT is only needed at
+# build time for headers/pkg-config.
 final: prev: let
-  release = "v0.0.25";
-
-  # Maps Nix system -> { asset = release asset name; hash = sha256; }
-  # Release assets: https://github.com/ryanmab/onoma.nvim/releases
-  bySystem = {
-    "aarch64-darwin" = {
-      asset = "aarch64-apple-darwin.dylib";
-      hash = "sha256-XO/V1R0VopZnkhoKIeEcdPTLqjbqeCvzz8i83Fd65Vg=";
-      ext = "dylib";
-    };
-    "x86_64-darwin" = {
-      asset = "x86_64-apple-darwin.dylib";
-      hash = "sha256-jBXMoPJaM0qwMzunrYLNARctko4i6XEsTecFMoEAMc4=";
-      ext = "dylib";
-    };
-    "aarch64-linux" = {
-      asset = "aarch64-unknown-linux-gnu.so";
-      hash = "sha256-YqDu9SvUEv5RVJeIYEfRglcm9Z1pLpFCXt8VmjB1HHA=";
-      ext = "so";
-    };
-    "x86_64-linux" = {
-      asset = "x86_64-unknown-linux-gnu.so";
-      hash = "sha256-oOWLJvmKhzYBhnETqRPcfDNgw3LfhFr/aIePoSVUbRM=";
-      ext = "so";
-    };
-  };
-
-  system = prev.stdenv.hostPlatform.system;
-  target =
-    bySystem.${system}
-    or (throw "onoma.nvim: unsupported system '${system}'");
-
-  bridgeLib = prev.fetchurl {
-    url = "https://github.com/ryanmab/onoma.nvim/releases/download/${release}/${target.asset}";
-    inherit (target) hash;
-  };
-
   basePlugin = prev.neovimPlugins.onoma;
+
+  ext =
+    if prev.stdenv.hostPlatform.isDarwin
+    then "dylib"
+    else "so";
+
+  onoma-bridge = prev.rustPlatform.buildRustPackage {
+    pname = "onoma-bridge";
+    inherit (basePlugin) version;
+
+    # Same source as the plugin flake input; the crate is in `bridge/`.
+    src = basePlugin.src;
+
+    # The crate (Cargo.toml + Cargo.lock) lives in the `bridge/` subdirectory.
+    # `cargoRoot` points the vendoring/lock hooks at it; `buildAndTestSubdir`
+    # makes cargo build/test run there.
+    cargoRoot = "bridge";
+    buildAndTestSubdir = "bridge";
+
+    cargoLock = {
+      lockFile = "${basePlugin.src}/bridge/Cargo.lock";
+    };
+
+    nativeBuildInputs = with prev; [
+      pkg-config
+    ];
+
+    buildInputs = with prev; [
+      luajit
+    ];
+
+    # mlua "module" cdylibs resolve Lua symbols at load time from the host.
+    # On macOS, allow undefined symbols during linking.
+    env = prev.lib.optionalAttrs prev.stdenv.hostPlatform.isDarwin {
+      RUSTFLAGS = "-C link-arg=-undefined -C link-arg=dynamic_lookup";
+    };
+
+    # The crate produces the cdylib; there are no unit tests to run against a
+    # host-linked Lua module.
+    doCheck = false;
+
+    installPhase = ''
+      runHook preInstall
+      mkdir -p $out/lib
+      cp target/*/release/libonoma_bridge.${ext} $out/lib/ \
+        2>/dev/null || cp bridge/target/release/libonoma_bridge.${ext} $out/lib/
+      runHook postInstall
+    '';
+
+    meta = with prev.lib; {
+      description = "Rust bridge (native library) for onoma.nvim";
+      homepage = "https://github.com/ryanmab/onoma.nvim";
+      license = licenses.mit;
+      maintainers = [];
+    };
+  };
 in {
   neovimPlugins =
     (prev.neovimPlugins or {})
@@ -59,15 +83,9 @@ in {
           (old.postInstall or "")
           + ''
             plugindir="$out"
-            if [ -d "$out/share/vim-plugins/onoma" ]; then
-              plugindir="$out/share/vim-plugins/onoma"
-            fi
-
             mkdir -p "$plugindir/bridge/target/release"
-            cp ${bridgeLib} "$plugindir/bridge/target/release/libonoma_bridge.${target.ext}"
-
-            # Satisfy the plugin's release-tag check so it won't try to download.
-            printf '%s' "${release}" > "$plugindir/bridge/target/release/tag"
+            cp ${onoma-bridge}/lib/libonoma_bridge.${ext} \
+              "$plugindir/bridge/target/release/libonoma_bridge.${ext}"
           '';
       });
     };
