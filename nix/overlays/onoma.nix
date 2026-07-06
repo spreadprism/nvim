@@ -1,21 +1,4 @@
-# Onoma.nvim ships a Rust "bridge" that it normally downloads as a prebuilt
-# dynamic library from its GitHub release at runtime (via curl into
-# `bridge/target/release/`). That download can't work here because Nix builds
-# the plugin into the read-only store.
-#
-# Instead of grabbing a release binary, we build the bridge crate from source
-# (it lives in the `bridge/` subdirectory of the plugin) and place the resulting
-# library where the plugin's loader expects it:
-#   <plugin>/bridge/target/release/libonoma_bridge.<ext>
-#
-# The bridge is built from the *same* source as the `onoma` plugin flake input
-# (`neovimPlugins.onoma.src`), so the Lua frontend and the native bridge always
-# stay in lockstep. Bump both together with `just update_plugins`.
-#
-# The bridge is an mlua "module" cdylib linked against LuaJIT: Lua symbols are
-# resolved at load time from the host Neovim (macOS `-undefined dynamic_lookup`,
-# Linux `-C target-feature=-crt-static` via mlua), so LuaJIT is only needed at
-# build time for headers/pkg-config.
+# source: 100% llm, I have no idea how this works, but it does
 final: prev: let
   basePlugin = prev.neovimPlugins.onoma;
 
