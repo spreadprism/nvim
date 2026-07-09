@@ -505,11 +505,11 @@
     "neogit": {
       "flake": false,
       "locked": {
-        "lastModified": 1783587314,
-        "narHash": "sha256-37iNw57kC+fFk+hEgHKd07+NNDKP2g0YAmLwPYw6NyQ=",
+        "lastModified": 1783335752,
+        "narHash": "sha256-fJB5E05OJh01LNZ5wCv6GSymjB0GVia6nYP2ypIY7dM=",
         "owner": "NeogitOrg",
         "repo": "neogit",
-        "rev": "a0847c4bea5a5f92a36e3f3bf7da99d7d685d3ac",
+        "rev": "6fc2fa890bd2031ed999c074daab0fb4feff20a5",
         "type": "github"
       },
       "original": {
@@ -795,14 +795,30 @@
         "type": "github"
       }
     },
+    "onoma": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1783294061,
+        "narHash": "sha256-nms0/0K1YwzOXRY/51MN4xjUnR7o4NW1+hXINIBS0qA=",
+        "owner": "ryanmab",
+        "repo": "onoma.nvim",
+        "rev": "1c9c0e8313d0856336245169e16c522720302fa7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryanmab",
+        "repo": "onoma.nvim",
+        "type": "github"
+      }
+    },
     "opencode": {
       "flake": false,
       "locked": {
-        "lastModified": 1783599133,
-        "narHash": "sha256-sdKb2+u7O/6COHbLDKHf+mJ3xXE2rgNvSOGR7Vo8AfI=",
+        "lastModified": 1783347024,
+        "narHash": "sha256-hxjNAv6DKtVBByRg+6pPQjXL9GS1DQrP2kCnFF5qr8E=",
         "owner": "sudo-tee",
         "repo": "opencode.nvim",
-        "rev": "ba8885fc7022c9e528b2ae969cc6c546d05baa36",
+        "rev": "eebda20e320100c481ab33b87571481dbab99371",
         "type": "github"
       },
       "original": {
@@ -908,6 +924,7 @@
         "nvim-web-devicons": "nvim-web-devicons",
         "oil": "oil",
         "oil-git": "oil-git",
+        "onoma": "onoma",
         "opencode": "opencode",
         "origami": "origami",
         "osc52": "osc52",
@@ -987,11 +1004,11 @@
     "rustaceanvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1783558237,
-        "narHash": "sha256-82PPYcGv8dqunmzwYucLhDF/j5kmCg6I71SsIIglbVU=",
+        "lastModified": 1783337131,
+        "narHash": "sha256-6RJWG9WvFNOPWZ5JLjaoZhaT/IEkpYpfdRrXgbSlPrs=",
         "owner": "mrcjkb",
         "repo": "rustaceanvim",
-        "rev": "00ba659a6fe81d0e46281bd425dd3f38037a260a",
+        "rev": "aa71a54c52e66514211ad321cf3602562510f27b",
         "type": "github"
       },
       "original": {
