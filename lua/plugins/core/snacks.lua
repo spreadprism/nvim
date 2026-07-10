@@ -80,7 +80,6 @@ plugin("onoma")
 		local nvim_lua = vim.fs.joinpath(vim.fn.getcwd(), ".nvim.lua")
 		return vim.uv.fs_stat(nvim_lua) ~= nil
 	end)
-	:dep_on(snacks)
 	:opts({
 		picker = { "snacks" },
 	})
