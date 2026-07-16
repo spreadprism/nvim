@@ -73,11 +73,11 @@ local snacks = plugin("snacks")
 	})
 	:lazy(false)
 
--- plugin("onoma")
--- 	:event("DeferredUIEnter")
--- 	:opts({
--- 		picker = { "snacks" },
--- 	})
--- 	:keymaps({
--- 		k:map("n", "<M-s>", k:require("snacks.picker").get_symbols(), "find symbols"),
--- 	})
+plugin("onoma")
+	:event("DeferredUIEnter")
+	:opts({
+		picker = { "snacks" },
+	})
+	:keymaps({
+		k:map("n", "<M-s>", k:require("snacks.picker").get_symbols(), "find symbols"),
+	})

@@ -798,11 +798,11 @@
     "onoma": {
       "flake": false,
       "locked": {
-        "lastModified": 1783294061,
-        "narHash": "sha256-nms0/0K1YwzOXRY/51MN4xjUnR7o4NW1+hXINIBS0qA=",
+        "lastModified": 1783890677,
+        "narHash": "sha256-PaXOoSjQWccQvK6Nv+YH5wwJrD7+y/AF+ZghdFr8mx4=",
         "owner": "ryanmab",
         "repo": "onoma.nvim",
-        "rev": "1c9c0e8313d0856336245169e16c522720302fa7",
+        "rev": "5ce49db2a44d8d77d7e29fa1a7204cd86fa98625",
         "type": "github"
       },
       "original": {
