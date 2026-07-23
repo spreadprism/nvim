@@ -11,13 +11,15 @@
 -- 	return name
 -- end)
 
+--"/home/avalon/Projects/Personal/labyrinth/.venv"
 lsp("basedpyright"):display(function()
 	local name = "basedpyright"
 	local venv = require("venv-selector").venv()
 
 	if venv then
-		venv = vim.fs.basename(venv):gsub("^%.", "")
-		name = name .. "(" .. venv .. ")"
+		local label
+		label = vim.fs.basename(venv):gsub("^%.", "")
+		name = name .. "(" .. label .. ")"
 	end
 
 	return name

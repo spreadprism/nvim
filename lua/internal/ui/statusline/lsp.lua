@@ -23,8 +23,13 @@ return {
 					return display
 				end,
 				vim.tbl_map(function(client)
-					if require("internal.loader.lsp").display(client, self.bufnr) then
-						return client.name
+					local output = require("internal.loader.lsp").display(client, self.bufnr)
+					if output then
+						if type(output) == "boolean" then
+							return client.name
+						else
+							return output
+						end
 					else
 						return nil
 					end
