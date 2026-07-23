@@ -21,3 +21,5 @@ plugin("live-command")
 	:keymaps({
 		k:map("v", "<M-e>", k:cmd(""), "Multi-edits"),
 	})
+
+plugin("puppeteer"):event("DeferredUIEnter"):opts(false)

@@ -4,6 +4,50 @@ local treesitter = plugin("nvim-treesitter"):event("DeferredUIEnter"):opts(false
 			pcall(vim.treesitter.start)
 		end,
 	})
+
+	-- Color ONLY the string prefix letters (f, r, b, rb, ...) purple.
+	-- The python grammar's `string_start` node spans the whole `f"` opener, so
+	-- we place an extmark over just the leading letters (everything before the
+	-- opening quote) instead of using a treesitter capture.
+	local ns = vim.api.nvim_create_namespace("string_prefix_letters")
+	local function highlight_prefixes(buf)
+		if not vim.api.nvim_buf_is_valid(buf) or vim.bo[buf].filetype ~= "python" then
+			return
+		end
+		local ok, parser = pcall(vim.treesitter.get_parser, buf, "python")
+		if not ok or not parser then
+			return
+		end
+		vim.api.nvim_buf_clear_namespace(buf, ns, 0, -1)
+		local tree = parser:parse()[1]
+		if not tree then
+			return
+		end
+		local query = vim.treesitter.query.parse("python", "(string_start) @s")
+		for _, node in query:iter_captures(tree:root(), buf, 0, -1) do
+			local sr, sc, er, ec = node:range()
+			local text = vim.treesitter.get_node_text(node, buf)
+			-- leading letters before the quote (e.g. "f", "rb"); "" for plain quotes
+			local prefix = text:match("^%a+")
+			if prefix and sr == er then
+				vim.api.nvim_buf_set_extmark(buf, ns, sr, sc, {
+					end_row = sr,
+					end_col = sc + #prefix,
+					hl_group = "@string.prefix",
+					priority = 200,
+				})
+			end
+		end
+	end
+
+	vim.api.nvim_create_autocmd({ "FileType", "TextChanged", "TextChangedI", "InsertLeave" }, {
+		pattern = "python",
+		callback = function(args)
+			vim.schedule(function()
+				highlight_prefixes(args.buf)
+			end)
+		end,
+	})
 end)
 
 plugin("nvim-treesitter-endwise"):on_plugin(treesitter):opts(false):event("DeferredUIEnter")

@@ -282,6 +282,10 @@
       url = "github:ryanmab/onoma.nvim";
       flake = false;
     };
+    puppeteer = {
+      url = "github:chrisgrieser/nvim-puppeteer";
+      flake = false;
+    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

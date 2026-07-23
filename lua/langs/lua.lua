@@ -21,6 +21,10 @@ lsp("lua_ls"):root_markers({
 			},
 		},
 		signatureHelp = { enabled = true },
+		hint = {
+			enable = true,
+			paramName = "Literal", -- no inlay hints on function arguments
+		},
 		diagnostics = {
 			globals = vim.list_extend({
 				"nixCats",

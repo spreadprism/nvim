@@ -59,7 +59,7 @@ plugin("noice")
 						kind = "progress",
 						cond = function(message)
 							local client = vim.tbl_get(message.opts, "progress", "client")
-							return client == "jdtls"
+							return client == "jdtls" or client == "basedpyright"
 						end,
 					},
 					opts = { skip = true },

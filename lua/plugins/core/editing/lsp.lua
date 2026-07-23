@@ -8,6 +8,9 @@ plugin("lspconfig")
 			callback = function(args)
 				local client = vim.lsp.get_client_by_id(args.data.client_id)
 				if client ~= nil then
+					if client:supports_method("textDocument/inlayHint") then
+						vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+					end
 					k:opts({
 						-- k:map("n", "<leader>fs", k:require("snacks.picker").lsp_symbols(), "lsp symbols"),
 						-- k:map(
@@ -101,5 +104,6 @@ plugin("lspconfig")
 		highlights.DiagnosticDeprecated = { fg = colors.warning }
 		highlights.DiagnosticUnderlineInfo = { fg = colors.info, undercurl = true }
 		highlights.DiagnosticInfo = { fg = colors.info }
+		highlights.LspInlayHint = { fg = colors.purple, bg = "NONE" }
 	end)
 	:lazy(false)
