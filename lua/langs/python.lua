@@ -28,17 +28,17 @@ end):settings({
 			autoFormatStrings = true,
 			-- ruff owns lint rules that overlap with basedpyright; disable the
 			-- overlapping diagnostics so they aren't reported twice.
-			diagnosticSeverityOverrides = {
-				reportUnusedImport = "none", -- ruff F401
-				reportUnusedVariable = "none", -- ruff F841
-				reportUnusedClass = "none", -- ruff (unused private symbol)
-				reportUnusedFunction = "none", -- ruff (unused private symbol)
-				reportUndefinedVariable = "none", -- ruff F821
-				reportUnsupportedDunderAll = "none", -- ruff F822
-				reportRedeclaration = "none", -- ruff F811
-				reportDuplicateImport = "none", -- ruff F811
-				reportUnusedExpression = "none", -- ruff B018 / F-family
-			},
+			-- diagnosticSeverityOverrides = {
+			-- 	reportUnusedImport = "none", -- ruff F401
+			-- 	reportUnusedVariable = "none", -- ruff F841
+			-- 	reportUnusedClass = "none", -- ruff (unused private symbol)
+			-- 	reportUnusedFunction = "none", -- ruff (unused private symbol)
+			-- 	reportUndefinedVariable = "none", -- ruff F821
+			-- 	reportUnsupportedDunderAll = "none", -- ruff F822
+			-- 	reportRedeclaration = "none", -- ruff F811
+			-- 	reportDuplicateImport = "none", -- ruff F811
+			-- 	reportUnusedExpression = "none", -- ruff B018 / F-family
+			-- },
 		},
 	},
 })
