@@ -89,6 +89,60 @@ plugin("venv-selector")
 		}):ft("python"),
 	})
 
-plugin("py-requirements"):event("DeferredUIEnter"):opts({}):keymaps({
-	k:map("n", "K", k:require("py-requirements").show_description(), "show description"):pattern("pyproject.toml"),
-})
+plugin("py-requirements")
+	:event("DeferredUIEnter")
+	:after(function()
+		-- The plugin sets its diagnostics at col 0 with no end_col, so only the
+		-- first character is highlighted. Rewrite them to span just the package
+		-- spec (e.g. `pydantic>=2.13.4`) using the plugin's own parsed packs.
+		local ns = vim.api.nvim_create_namespace("py-requirements.nvim")
+		local patching = false
+		vim.api.nvim_create_autocmd("DiagnosticChanged", {
+			callback = function(args)
+				if patching then
+					return
+				end
+				local buf = args.buf
+				local diags = vim.diagnostic.get(buf, { namespace = ns })
+				if #diags == 0 then
+					return
+				end
+
+				-- map each line (row) to its parsed pack for exact column ranges
+				local ok, parser = pcall(require, "py-requirements.parser")
+				if not ok then
+					return
+				end
+				local by_row = {}
+				for _, pack in ipairs(parser.buf(buf)) do
+					by_row[pack.row] = pack
+				end
+
+				local changed = false
+				for _, d in ipairs(diags) do
+					local pack = by_row[d.lnum]
+					local line = vim.api.nvim_buf_get_lines(buf, d.lnum, d.lnum + 1, false)[1] or ""
+					if pack then
+						-- start = package name column, end = last version spec end
+						local name_start = line:find(vim.pesc(pack.name)) or 1
+						local spec = pack.specs and pack.specs[#pack.specs]
+						local end_col = spec and spec.cols and spec.cols[2] or #line
+						d.col = name_start - 1
+						d.end_lnum = d.lnum
+						d.end_col = end_col
+						changed = true
+					end
+				end
+				if changed then
+					patching = true
+					vim.diagnostic.set(ns, buf, diags)
+					patching = false
+				end
+			end,
+		})
+	end)
+	:keymaps({
+		k:map("n", "K", k:require("py-requirements").show_description(), "show description"):pattern("pyproject.toml"),
+		k:map("n", "<localleader>u", k:require("py-requirements").upgrade(), "upgrade dependency")
+			:pattern({ "requirements.txt", "pyproject.toml" }),
+	})
