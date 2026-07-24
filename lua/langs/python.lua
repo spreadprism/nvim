@@ -25,7 +25,6 @@ lsp("basedpyright"):display(function()
 end):settings({
 	basedpyright = {
 		analysis = {
-			diagnosticMode = "workspace",
 			autoFormatStrings = true,
 			-- ruff owns lint rules that overlap with basedpyright; disable the
 			-- overlapping diagnostics so they aren't reported twice.
