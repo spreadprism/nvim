@@ -39,6 +39,7 @@ lsp("ruff"):display(false):init_options({
 			ignore = {
 				"F401", -- unused import (basedpyright reportUnusedImport)
 				"F841", -- unused variable (reportUnusedVariable)
+				"F842", -- unused annotation (annotated but never used)
 				"F811", -- redefinition (reportRedeclaration / reportDuplicateImport)
 				"F821", -- undefined name (reportUndefinedVariable)
 				"F822", -- undefined name in __all__ (reportUnsupportedDunderAll)
