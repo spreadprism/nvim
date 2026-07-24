@@ -1,34 +1,34 @@
 -- -- missing feature: https://github.com/astral-sh/ty/issues/3561
--- lsp("ty"):display(function()
--- 	local name = "ty"
--- 	local venv = require("venv-selector").venv()
---
--- 	if venv then
--- 		venv = vim.fs.basename(venv):gsub("^%.", "")
--- 		name = name .. "(" .. venv .. ")"
--- 	end
---
--- 	return name
--- end)
-
-lsp("basedpyright"):display(function()
-	local name = "basedpyright"
+lsp("ty"):display(function()
+	local name = "ty"
 	local venv = require("venv-selector").venv()
 
 	if venv then
-		local label
-		label = vim.fs.basename(venv):gsub("^%.", "")
-		name = name .. "(" .. label .. ")"
+		venv = vim.fs.basename(venv):gsub("^%.", "")
+		name = name .. "(" .. venv .. ")"
 	end
 
 	return name
-end):settings({
-	basedpyright = {
-		analysis = {
-			autoFormatStrings = true,
-		},
-	},
-})
+end)
+
+-- lsp("basedpyright"):display(function()
+-- 	local name = "basedpyright"
+-- 	local venv = require("venv-selector").venv()
+--
+-- 	if venv then
+-- 		local label
+-- 		label = vim.fs.basename(venv):gsub("^%.", "")
+-- 		name = name .. "(" .. label .. ")"
+-- 	end
+--
+-- 	return name
+-- end):settings({
+-- 	basedpyright = {
+-- 		analysis = {
+-- 			autoFormatStrings = true,
+-- 		},
+-- 	},
+-- })
 
 lsp("ruff"):display(false):init_options({
 	settings = {
@@ -36,15 +36,15 @@ lsp("ruff"):display(false):init_options({
 		lint = {
 			-- basedpyright owns these checks; disable the overlapping ruff rules
 			-- so they aren't reported twice.
-			ignore = {
-				"F401", -- unused import (basedpyright reportUnusedImport)
-				"F841", -- unused variable (reportUnusedVariable)
-				"F842", -- unused annotation (annotated but never used)
-				"F811", -- redefinition (reportRedeclaration / reportDuplicateImport)
-				"F821", -- undefined name (reportUndefinedVariable)
-				"F822", -- undefined name in __all__ (reportUnsupportedDunderAll)
-				"B018", -- useless expression (reportUnusedExpression)
-			},
+			-- ignore = {
+			-- 	"F401", -- unused import (basedpyright reportUnusedImport)
+			-- 	"F841", -- unused variable (reportUnusedVariable)
+			-- 	"F842", -- unused annotation (annotated but never used)
+			-- 	"F811", -- redefinition (reportRedeclaration / reportDuplicateImport)
+			-- 	"F821", -- undefined name (reportUndefinedVariable)
+			-- 	"F822", -- undefined name in __all__ (reportUnsupportedDunderAll)
+			-- 	"B018", -- useless expression (reportUnusedExpression)
+			-- },
 		},
 	},
 })
