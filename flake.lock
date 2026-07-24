@@ -930,6 +930,7 @@
         "osc52": "osc52",
         "overseer": "overseer",
         "puppeteer": "puppeteer",
+        "py-requirements": "py-requirements",
         "quicker": "quicker",
         "render-markdown": "render-markdown",
         "rustaceanvim": "rustaceanvim",
@@ -975,6 +976,22 @@
       "original": {
         "owner": "chrisgrieser",
         "repo": "nvim-puppeteer",
+        "type": "github"
+      }
+    },
+    "py-requirements": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1775366025,
+        "narHash": "sha256-AnimDRFHlT518ASAU8c17fhBHJ0a2BwawwEZCO5qbZ4=",
+        "owner": "MeanderingProgrammer",
+        "repo": "py-requirements.nvim",
+        "rev": "025ba677503d2332b722ebefb10e82871ac8ef96",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MeanderingProgrammer",
+        "repo": "py-requirements.nvim",
         "type": "github"
       }
     },

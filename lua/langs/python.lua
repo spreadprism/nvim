@@ -75,5 +75,20 @@ plugin("venv-selector")
 	:keymaps({
 		k:group("python", "<localleader>", {
 			k:map("n", "e", k:cmd("VenvSelect"), "venv select"),
+			k:map("n", "p", function()
+				local file = fs.find_up("pyproject.toml")
+				if file then
+					vim.cmd.edit(file)
+				else
+					vim.notify("pyproject.toml not found", vim.log.levels.WARN)
+				end
+			end, "go to pyproject.toml"),
+			k:map("n", "r", function()
+				vim.cmd.edit(fs.find_up("requirements.txt", { create = true }))
+			end, "go to requirements.txt"),
 		}):ft("python"),
 	})
+
+plugin("py-requirements"):event("DeferredUIEnter"):opts({}):keymaps({
+	k:map("n", "K", k:require("py-requirements").show_description(), "show description"):pattern("pyproject.toml"),
+})

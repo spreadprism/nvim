@@ -8,24 +8,14 @@ plugin("exrc")
 			local fname = vim.g.workspace_file_name
 			local cwd = vim.fn.getcwd()
 
-			-- Start from the current file's directory, or cwd for unnamed buffers.
-			local start = vim.api.nvim_buf_get_name(0)
-			if start == "" then
-				start = cwd
-			else
-				start = vim.fs.dirname(start)
-			end
-
 			-- Walk up from the current file's directory looking for the
-			-- workspace file, stopping once we reach the cwd.
-			local found = vim.fs.find(fname, {
-				upward = true,
-				path = start,
-				stop = vim.fs.dirname(cwd),
+			-- workspace file, stopping once we reach the cwd. If none was
+			-- found, open (creating on save) one in the cwd.
+			local found = fs.find_up(fname, {
 				type = "file",
-			})[1]
+				stop = vim.fs.dirname(cwd),
+			})
 
-			-- If none was found, create one in the cwd.
 			vim.cmd.edit(found or vim.fs.joinpath(cwd, fname))
 		end, "go to workspace file"),
 	})

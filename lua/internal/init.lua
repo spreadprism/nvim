@@ -53,6 +53,7 @@ _G.env = vim.env
 
 _G.direnv = require("internal.direnv")
 _G.symbols = require("internal.symbols")
+_G.fs = require("internal.fs")
 
 for k, v in pairs(_G) do
 	if not vim.tbl_contains(old_keys, k) then
