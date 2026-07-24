@@ -286,10 +286,6 @@
       url = "github:chrisgrieser/nvim-puppeteer";
       flake = false;
     };
-    py-requirements = {
-      url = "github:MeanderingProgrammer/py-requirements.nvim";
-      flake = false;
-    };
   };
   outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib;

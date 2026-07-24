@@ -77,7 +77,6 @@
     visual-whitespace
     startuptime
     puppeteer
-    py-requirements
     onoma
     vim_pkgs.blink-cmp
     vim_pkgs.blink-pairs
