@@ -36,7 +36,10 @@ lsp("ruff"):display(false):init_options({
 		lint = {
 			-- basedpyright owns these checks; disable the overlapping ruff rules
 			-- so they aren't reported twice.
-			-- ignore = {
+			ignore = {
+				"F403",
+				"F405",
+			},
 			-- 	"F401", -- unused import (basedpyright reportUnusedImport)
 			-- 	"F841", -- unused variable (reportUnusedVariable)
 			-- 	"F842", -- unused annotation (annotated but never used)
