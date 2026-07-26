@@ -191,6 +191,25 @@ plugin("onoma")
 					end)
 				end
 			end,
+			actions = {
+				print_kind = function(_, item)
+					if item then
+						vim.notify(tostring(item.kind or "unknown"), vim.log.levels.INFO, { title = "Symbol kind" })
+					end
+				end,
+			},
+			win = {
+				input = {
+					keys = {
+						["K"] = "print_kind",
+					},
+				},
+				list = {
+					keys = {
+						["K"] = "print_kind",
+					},
+				},
+			},
 		})
 	end)
 	:keymaps({
