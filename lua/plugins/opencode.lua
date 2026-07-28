@@ -127,7 +127,7 @@ plugin("opencode")
 						prompt = "generate the commit message title only with @context, don't ask confirmation just output #git_diff",
 						agent = "gitcommit",
 					}),
-					"generate title"
+					"generate title with context"
 				),
 			})
 			:ft("gitcommit"),
