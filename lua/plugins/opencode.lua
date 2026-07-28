@@ -109,18 +109,28 @@ plugin("opencode")
 			k:map("n", "m", k:require("opencode.api").configure_provider(), "select model"),
 			k:map("n", "a", k:require("opencode.api").select_agent(), "select agent"),
 		}):ft("opencode"),
-		k:group("commit-assistant", "<localleader>a", {
-			k:map(
-				"n",
-				"a",
-				quick_chat({
-					prompt = "generate the commit message title only, don't ask confirmation just output #git_diff",
-					model = "anthropic/claude-haiku-4-5",
-					agent = "gitcommit",
-				}),
-				"generate title"
-			),
-		}):ft("gitcommit"),
+		k
+			:group("commit-assistant", "<localleader>a", {
+				k:map(
+					"n",
+					"a",
+					quick_chat({
+						prompt = "generate the commit message title only, don't ask confirmation just output #git_diff",
+						agent = "gitcommit",
+					}),
+					"generate title"
+				),
+				k:map(
+					"n",
+					"c",
+					quick_chat({
+						prompt = "generate the commit message title only with @context, don't ask confirmation just output #git_diff",
+						agent = "gitcommit",
+					}),
+					"generate title"
+				),
+			})
+			:ft("gitcommit"),
 		k:group("assistant", "<leader>a", {
 			k:map("n", "a", k:require("opencode.api").open_input(), "open"),
 			k:map("n", "A", k:require("opencode.api").open_input_new_session(), "open (new session)"),
