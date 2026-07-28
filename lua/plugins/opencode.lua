@@ -116,7 +116,7 @@ plugin("opencode")
 					"a",
 					quick_chat({
 						prompt = "generate the commit message title only, don't ask confirmation just output #git_diff",
-						model = "anthropic/claude-haiku-4-5",
+						model = "anthropic/claude-sonnet-4-5",
 						agent = "gitcommit",
 					}),
 					"generate title"
@@ -126,7 +126,7 @@ plugin("opencode")
 					"c",
 					quick_chat({
 						prompt = "generate the commit message title only with @context, don't ask confirmation just output #git_diff",
-						model = "anthropic/claude-haiku-4-5",
+						model = "anthropic/claude-sonnet-4-5",
 						agent = "gitcommit",
 					}),
 					"generate title with context"
