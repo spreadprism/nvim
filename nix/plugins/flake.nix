@@ -171,7 +171,7 @@
       flake = false;
     };
     oil-git = {
-      url = "github:malewicz1337/oil-git.nvim";
+      url = "github:spreadprism/oil-git.nvim";
       flake = false;
     };
     render-markdown = {
