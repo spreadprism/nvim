@@ -11,7 +11,6 @@
     curl
     grpcurl
 
-    copilot-language-server
     # db cli
     mysql84
   ];
@@ -64,7 +63,6 @@
     overseer
     cutlass
     dadbod
-    dbab
     multicursor-nvim
     live-command
     grug-far

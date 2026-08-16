@@ -15,10 +15,23 @@ plugin("luasnip")
 		})
 		require("templates").setup()
 
-		-- choiceNode cycling. The <Plug> mappings are LuaSnip's documented
-		-- interface and handle the mode/state juggling themselves.
-		vim.keymap.set({ "i", "s" }, "<M-n>", "<Plug>luasnip-next-choice", { silent = true })
-		vim.keymap.set({ "i", "s" }, "<M-p>", "<Plug>luasnip-prev-choice", { silent = true })
+		-- choiceNode cycling with guards: only cycle if a choice node is active.
+		-- The <Plug> mappings themselves may emit errors outside a choice context.
+		local function safe_choice_nav(direction)
+			return function()
+				local ls = require("luasnip")
+				if not ls.choice_active() then
+					return
+				end
+				if direction == "next" then
+					vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-next-choice", true, false, true), "m", false)
+				else
+					vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-prev-choice", true, false, true), "m", false)
+				end
+			end
+		end
+		vim.keymap.set({ "i", "s" }, "<M-n>", safe_choice_nav("next"), { silent = true, desc = "LuaSnip: next choice" })
+		vim.keymap.set({ "i", "s" }, "<M-p>", safe_choice_nav("prev"), { silent = true, desc = "LuaSnip: previous choice" })
 
 		-- <M-1>..<M-9> jump straight to that choice
 		for idx = 1, 9 do

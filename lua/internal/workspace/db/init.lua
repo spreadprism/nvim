@@ -44,7 +44,8 @@ function WorkspaceSource:register(name, conn)
 		return
 	end
 
-	local connections = require("dbab.config").options.connections
+	-- local connections = require("dbab.config").options.connections
+	local connections = {}
 
 	---@type Dbab.Connection
 	local new_conn = {
@@ -55,7 +56,8 @@ function WorkspaceSource:register(name, conn)
 
 	table.insert(connections, new_conn)
 
-	require("dbab.config").options.connections = connections
+	-- TODO: implement
+	-- require("dbab.config").options.connections = connections
 end
 
 ---@param name string
@@ -69,7 +71,8 @@ function WorkspaceSource:clear(name)
 		end
 	end
 
-	require("dbab.config").options.connections = new
+	-- TODO: implement
+	-- require("dbab.config").options.connections = new
 end
 
 M.source = WorkspaceSource

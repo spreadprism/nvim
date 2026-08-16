@@ -158,10 +158,6 @@
       url = "github:theHamsta/nvim-dap-virtual-text";
       flake = false;
     };
-    copilot = {
-      url = "github:zbirenbaum/copilot.lua";
-      flake = false;
-    };
     opencode = {
       url = "github:sudo-tee/opencode.nvim";
       flake = false;
@@ -196,10 +192,6 @@
     };
     dadbod = {
       url = "github:tpope/vim-dadbod";
-      flake = false;
-    };
-    dbab = {
-      url = "github:zerochae/dbab.nvim";
       flake = false;
     };
     multicursor-nvim = {

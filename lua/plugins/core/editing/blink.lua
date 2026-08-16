@@ -68,8 +68,6 @@ plugin("blink.cmp")
 				function(cmp)
 					if cmp.is_visible() then
 						cmp.select_and_accept()
-					elseif require("copilot.suggestion").is_visible() then
-						require("copilot.suggestion").accept()
 					end
 				end,
 			},
@@ -164,7 +162,7 @@ plugin("blink.cmp")
 				default = default,
 				per_filetype = {
 					oil = { "path", "buffer", "snippets" },
-					sql = vim.tbl_extend("force", default, { "dbab" }),
+					-- sql = vim.tbl_extend("force", default, { "dbab" }),
 				},
 				providers = {
 					lazydev = {
@@ -189,13 +187,6 @@ plugin("blink.cmp")
 							return vim.bo.filetype == "gitcommit"
 						end,
 					},
-					dbab = {
-						name = "dbab",
-						module = "blink_dbab",
-						enabled = function()
-							return vim.tbl_contains({ "sql", "mysql", "plsql", "postgresql" }, vim.bo.filetype)
-						end,
-					},
 				},
 			},
 			keymap = vim.tbl_deep_extend("keep", {
@@ -203,14 +194,6 @@ plugin("blink.cmp")
 				["<M-d>"] = { "show_documentation", "hide_documentation" },
 				-- menu open: first snippet · on a choiceNode: choice picker · else: signature
 				["<M-s>"] = { accept_first_snippet, select_choice, "show_signature", "hide_signature" },
-				["<M-l>"] = {
-					function(cmp)
-						if cmp.is_visible() then
-							cmp.hide()
-						end
-						require("copilot.suggestion").next()
-					end,
-				},
 				-- snippet placeholder jumps
 				-- (choice node cycling is <M-n>/<M-p>, mapped in snippets.lua)
 				["<Tab>"] = { "snippet_forward", "fallback" },
