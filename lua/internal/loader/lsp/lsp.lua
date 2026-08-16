@@ -76,6 +76,20 @@ function Lsp:init_options(opts)
 	return self
 end
 
+---@param fn fun(client: vim.lsp.Client, init_result: lsp.InitializeResult)
+---@return Lsp
+function Lsp:on_init(fn)
+	self._opts.on_init = fn
+	return self
+end
+
+---@param handlers table<string, lsp.Handler>
+---@return Lsp
+function Lsp:handlers(handlers)
+	self._opts.handlers = handlers
+	return self
+end
+
 function Lsp:opts(opts)
 	self._opts = opts
 end
