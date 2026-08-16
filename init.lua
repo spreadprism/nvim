@@ -8,5 +8,3 @@ for _, path in ipairs(vim.api.nvim_get_runtime_file("*/inits/*.lua", true)) do
 		print("Error loading init file: " .. module_path .. " (cause=" .. msg .. ")")
 	end
 end
-
-local test_var = "hello"

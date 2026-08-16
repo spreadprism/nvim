@@ -87,16 +87,79 @@ plugin("blink.cmp")
 			},
 		}
 		local default = {
+			"snippets",
 			"lsp",
 			"path",
-			"snippets",
 			"buffer",
 			"git",
 			"conventional_commits",
 		}
+		-- Snippets are penalised by default (score_offset -1 vs 0 for lsp), so the
+		-- `func` keyword outranks the `func` snippet. Prefer the snippet, but only
+		-- against LSP `Keyword` items: every other LSP item keeps default ranking.
+		-- Returning nil falls through to the next sort.
+		local keyword_kind = vim.lsp.protocol.CompletionItemKind.Keyword
+		local function snippets_over_keywords(a, b)
+			if a.source_id == "snippets" and b.kind == keyword_kind then
+				return true
+			end
+			if b.source_id == "snippets" and a.kind == keyword_kind then
+				return false
+			end
+		end
+
+		-- On a choiceNode, <M-s> opens the vim.ui.select choice picker; otherwise
+		-- it falls through to the signature help below. Returning false continues
+		-- to the next command in the list.
+		local function select_choice()
+			local ok, ls = pcall(require, "luasnip")
+			if not ok or not ls.choice_active() then
+				return false
+			end
+			require("luasnip.extras.select_choice")()
+			return true
+		end
+
+		-- With the menu open, <M-s> takes the first snippet in the list. Prefers
+		-- the snippets provider and falls back to any Snippet-kind item, since
+		-- LSP servers hand those out too. Returning false continues the chain.
+		local function accept_first_snippet(cmp)
+			if not cmp.is_visible() then
+				return false
+			end
+			local blink = require("blink.cmp")
+			if type(blink.get_items) ~= "function" then
+				return false
+			end
+			local got, items = pcall(blink.get_items)
+			if not got or type(items) ~= "table" then
+				return false
+			end
+
+			local snippet_kind = vim.lsp.protocol.CompletionItemKind.Snippet
+			local by_kind
+			for idx, item in ipairs(items) do
+				if item.source_id == "snippets" then
+					cmp.accept({ index = idx })
+					return true
+				end
+				if not by_kind and item.kind == snippet_kind then
+					by_kind = idx
+				end
+			end
+			if by_kind then
+				cmp.accept({ index = by_kind })
+				return true
+			end
+			return false
+		end
+
 		---@type blink.cmp.Config
 		return {
 			snippets = { preset = "luasnip" },
+			fuzzy = {
+				sorts = { snippets_over_keywords, "score", "sort_text" },
+			},
 			sources = {
 				default = default,
 				per_filetype = {
@@ -138,7 +201,8 @@ plugin("blink.cmp")
 			keymap = vim.tbl_deep_extend("keep", {
 				preset = "none",
 				["<M-d>"] = { "show_documentation", "hide_documentation" },
-				["<M-s>"] = { "show_signature", "hide_signature" },
+				-- menu open: first snippet · on a choiceNode: choice picker · else: signature
+				["<M-s>"] = { accept_first_snippet, select_choice, "show_signature", "hide_signature" },
 				["<M-l>"] = {
 					function(cmp)
 						if cmp.is_visible() then
@@ -147,14 +211,20 @@ plugin("blink.cmp")
 						require("copilot.suggestion").next()
 					end,
 				},
-				["<M-n>"] = { "snippet_forward", "fallback" },
-				["<M-p>"] = { "snippet_backward" },
+				-- snippet placeholder jumps
+				-- (choice node cycling is <M-n>/<M-p>, mapped in snippets.lua)
+				["<Tab>"] = { "snippet_forward", "fallback" },
+				["<S-Tab>"] = { "snippet_backward", "fallback" },
 			}, base_keymap),
 			signature = { enabled = true, window = {
 				border = "rounded",
 				show_documentation = true,
 			} },
 			completion = {
+				trigger = {
+					-- keep the menu working while sitting in a snippet's insert node
+					show_in_snippet = true,
+				},
 				list = {
 					selection = { preselect = true, auto_insert = false },
 				},
