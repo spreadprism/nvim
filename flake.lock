@@ -96,22 +96,6 @@
         "type": "github"
       }
     },
-    "copilot": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1786150241,
-        "narHash": "sha256-nrKBq1K43l34S812udQHKIPWoSamCgQLtfYq/AjBu5I=",
-        "owner": "zbirenbaum",
-        "repo": "copilot.lua",
-        "rev": "7e6723aabea044519462958ffcea68d7985c5ed0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "zbirenbaum",
-        "repo": "copilot.lua",
-        "type": "github"
-      }
-    },
     "cutlass": {
       "flake": false,
       "locked": {
@@ -157,6 +141,22 @@
       "original": {
         "owner": "mfussenegger",
         "repo": "nvim-dap-python",
+        "type": "github"
+      }
+    },
+    "dbab": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786919670,
+        "narHash": "sha256-O2B/bHIwpzwaM/uNEv+wawp8+llfjs+71NThTKWOOVw=",
+        "owner": "spreadprism",
+        "repo": "dbab",
+        "rev": "b9a2aa5333016b8fdaa7aea001662b9eac98df3c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "spreadprism",
+        "repo": "dbab",
         "type": "github"
       }
     },
@@ -867,10 +867,10 @@
         "blink-cmp-git": "blink-cmp-git",
         "blink-compat": "blink-compat",
         "conform": "conform",
-        "copilot": "copilot",
         "cutlass": "cutlass",
         "dadbod": "dadbod",
         "dap-python": "dap-python",
+        "dbab": "dbab",
         "exrc": "exrc",
         "fyler": "fyler",
         "gitsigns": "gitsigns",

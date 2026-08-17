@@ -162,7 +162,7 @@ plugin("blink.cmp")
 				default = default,
 				per_filetype = {
 					oil = { "path", "buffer", "snippets" },
-					-- sql = vim.tbl_extend("force", default, { "dbab" }),
+					sql = vim.tbl_extend("force", default, { "dbab" }),
 				},
 				providers = {
 					lazydev = {
@@ -185,6 +185,13 @@ plugin("blink.cmp")
 						module = "blink-cmp-conventional-commits",
 						enabled = function()
 							return vim.bo.filetype == "gitcommit"
+						end,
+					},
+					dbab = {
+						name = "dbab",
+						module = "blink_dbab",
+						enabled = function()
+							return vim.tbl_contains({ "sql", "mysql", "plsql", "postgresql" }, vim.bo.filetype)
 						end,
 					},
 				},

@@ -194,6 +194,11 @@
       url = "github:tpope/vim-dadbod";
       flake = false;
     };
+    # Mirror: upstream zerochae/dbab.nvim was deleted from GitHub.
+    dbab = {
+      url = "github:spreadprism/dbab";
+      flake = false;
+    };
     multicursor-nvim = {
       url = "github:jake-stewart/multicursor.nvim";
       flake = false;

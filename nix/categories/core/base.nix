@@ -54,7 +54,6 @@
     nvim-dap
     nvim-dap-ui
     nvim-dap-virtual-text
-    copilot
     opencode
     oil
     oil-git
@@ -63,6 +62,7 @@
     overseer
     cutlass
     dadbod
+    dbab
     multicursor-nvim
     live-command
     grug-far
