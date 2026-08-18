@@ -5,7 +5,7 @@ local function python_display(name)
 
 		if venv then
 			venv = vim.fs.basename(venv):gsub("^%.", "")
-			name = name .. "(" .. venv .. ")"
+			return name .. "(" .. venv .. ")"
 		end
 
 		return name
