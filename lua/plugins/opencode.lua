@@ -37,10 +37,8 @@ plugin("opencode")
 		},
 	})
 	:keymaps({
-		k:group("opencode", "<localleader>", {
-			k:map("n", "m", k:require("opencode.api").configure_provider(), "select model"),
-			k:map("n", "a", k:require("opencode.api").select_agent(), "select agent"),
-		}):ft("opencode"),
+		k:map("n", "<localleader>m", k:require("opencode.api").configure_provider(), "select model"):ft("opencode"),
+		k:map("n", "<localleader>a", k:require("opencode.api").select_agent(), "select agent"):ft("opencode"),
 		k
 			:group("commit-assistant", "<localleader>a", {
 				k:map(
