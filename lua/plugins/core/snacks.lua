@@ -1,4 +1,4 @@
-local snacks = plugin("snacks")
+plugin("snacks")
 	:opts({
 		image = {
 			enabled = true,
