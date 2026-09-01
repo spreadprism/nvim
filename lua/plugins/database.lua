@@ -29,6 +29,9 @@ plugin("dbab")
 	:ft("sql")
 	:cmd({ "Dbab" })
 	:dep_on(plugin("dadbod"):opts(false))
+	:lazydev({
+		files = { ".nvim.lua" },
+	})
 	:keymaps(k:group("db", "<leader>b", {
 		k:map("n", "b", function()
 			vim.cmd("Dbab")
