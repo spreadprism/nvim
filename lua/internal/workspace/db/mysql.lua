@@ -5,11 +5,13 @@
 ---@field host? string
 ---@field port? number
 ---@field db? string
+---@field hooks? Dbab.HooksConfig Lifecycle hooks for this connection only
 
 ---@param workspace Workspace
 ---@param conn MysqlConnection
 ---@return Dbab.Connection
 return function(workspace, conn)
+	---@type MysqlConnection
 	conn = vim.tbl_deep_extend("force", {
 		host = "127.0.0.1",
 		port = 3306,
@@ -20,5 +22,6 @@ return function(workspace, conn)
 	return {
 		name = conn.name,
 		url = string.format("mysql://%s:%s@%s:%d/%s", conn.username, conn.password, conn.host, conn.port, conn.db),
+		hooks = conn.hooks,
 	}
 end

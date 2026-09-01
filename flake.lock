@@ -147,11 +147,11 @@
     "dbab": {
       "flake": false,
       "locked": {
-        "lastModified": 1788236151,
-        "narHash": "sha256-CpbWk59r7ZYgZy/YFxP46fqt5twYHEfaW28YH/ufvXk=",
+        "lastModified": 1788283412,
+        "narHash": "sha256-PUsTZloqbir6Yo3DL76pGCTLb2ZvhCsu8n17hVIeVaA=",
         "owner": "spreadprism",
         "repo": "dbab",
-        "rev": "8c8b35ae0f58e27a172b4c73a4c764e2d70d7730",
+        "rev": "65872e90eeedafe1a348ba423f59a8764b17f165",
         "type": "github"
       },
       "original": {
