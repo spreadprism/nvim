@@ -46,14 +46,12 @@ function WorkspaceSource:register(name, conn)
 
 	local connections = require("dbab.config").options.connections
 
-	---@type Dbab.Connection
-	local new_conn = {
-		name = conn.name,
-		url = conn.url,
-		workspace = name,
-	}
-
-	table.insert(connections, new_conn)
+	table.insert(
+		connections,
+		vim.tbl_deep_extend("error", {
+			workspace = name,
+		}, conn)
+	)
 
 	require("dbab.config").options.connections = connections
 end
