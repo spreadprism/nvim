@@ -3,3 +3,4 @@ test
 .direnv
 tmp.lua
 tags
+.env.local

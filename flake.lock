@@ -3,11 +3,11 @@
     "atlas": {
       "flake": false,
       "locked": {
-        "lastModified": 1787347444,
-        "narHash": "sha256-acPcOD85GllEoqOOuR/nyz1FwCKZLqDJKiFq02roHQU=",
+        "lastModified": 1787773047,
+        "narHash": "sha256-rc7lx0vDOEJuU5ikMZHOyKlEMXAQSuX+D/wLt6dopuQ=",
         "owner": "emrearmagan",
         "repo": "atlas.nvim",
-        "rev": "1a9b8206203bdce0b99f848b6ebe9ce3ad0ac3d1",
+        "rev": "5aa47cd33400a137bf59df84e088a954e1add3b0",
         "type": "github"
       },
       "original": {
@@ -147,15 +147,16 @@
     "dbab": {
       "flake": false,
       "locked": {
-        "lastModified": 1786919670,
-        "narHash": "sha256-O2B/bHIwpzwaM/uNEv+wawp8+llfjs+71NThTKWOOVw=",
+        "lastModified": 1788236151,
+        "narHash": "sha256-CpbWk59r7ZYgZy/YFxP46fqt5twYHEfaW28YH/ufvXk=",
         "owner": "spreadprism",
         "repo": "dbab",
-        "rev": "b9a2aa5333016b8fdaa7aea001662b9eac98df3c",
+        "rev": "8c8b35ae0f58e27a172b4c73a4c764e2d70d7730",
         "type": "github"
       },
       "original": {
         "owner": "spreadprism",
+        "ref": "new_features",
         "repo": "dbab",
         "type": "github"
       }

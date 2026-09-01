@@ -196,7 +196,7 @@
     };
     # Mirror: upstream zerochae/dbab.nvim was deleted from GitHub.
     dbab = {
-      url = "github:spreadprism/dbab";
+      url = "github:spreadprism/dbab/new_features";
       flake = false;
     };
     multicursor-nvim = {

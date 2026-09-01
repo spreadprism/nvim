@@ -22,7 +22,7 @@ plugin("atlas")
 			base.issues.providers.jira = {
 				base_url = jira_base_url,
 				email = jira_email,
-				api_token = jira_api_token,
+				token = jira_api_token,
 			}
 		end
 		return base

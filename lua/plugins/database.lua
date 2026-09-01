@@ -2,8 +2,8 @@ plugin("dbab")
 	:opts({
 		executor = "dadbod",
 		layout = {
-			{ "sidebar", "editor", "history" },
-			{ "result" },
+			{ "editor", "sidebar" },
+			{ "result", "history" },
 		},
 		history = {
 			on_select = "load",
