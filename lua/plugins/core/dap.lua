@@ -10,8 +10,36 @@ plugin("nvim-dap")
 		vim.fn.sign_define("DapLogPoint", { text = "", texthl = "DiagnosticSignInfo", linehl = "", numhl = "" })
 		vim.fn.sign_define(
 			"DapStopped",
-			{ text = "", texthl = "DapStoppedSign", linehl = "DapStoppedSign", numhl = "" }
+			{ text = "", texthl = "DapStoppedSign", linehl = "DapStoppedSign", numhl = "" }
 		)
+
+		-- Order the `dap.continue()` configuration picker by recency (most recently
+		-- used first) instead of definition order. Session-only, keyed by config name.
+		local ui = require("dap.ui")
+		local pick_if_many = ui.pick_if_many
+		local last_used = nil
+
+		---@diagnostic disable-next-line: duplicate-set-field
+		function ui.pick_if_many(items, prompt, label_fn, cb)
+			if type(items) == "table" and #items > 1 and last_used then
+				local sorted = {}
+				for _, item in ipairs(items) do
+					if label_fn(item) == last_used then
+						table.insert(sorted, 1, item)
+					else
+						table.insert(sorted, item)
+					end
+				end
+				items = sorted
+			end
+
+			return pick_if_many(items, prompt, label_fn, function(choice)
+				if choice ~= nil then
+					last_used = label_fn(choice)
+				end
+				return cb(choice)
+			end)
+		end
 	end)
 	:on_highlights(function(highlights, colors)
 		highlights.DapStoppedSign = { fg = colors.green }

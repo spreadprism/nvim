@@ -4,7 +4,6 @@
   ...
 }: {
   lspsAndRuntimeDeps = with pkgs; [
-    ty
     basedpyright
     uv
     ruff
