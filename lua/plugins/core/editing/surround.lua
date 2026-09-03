@@ -1,4 +1,9 @@
-plugin("nvim-surround"):event("DeferredUIEnter"):keymaps({
-	k:map("n", "sa", "<Plug>(nvim-surround-normal)", "add surrounding pair"),
-	k:map("x", "sa", "<Plug>(nvim-surround-visual)", "surround selection"),
+plugin("mini-surround"):on_require("mini.surround"):event("DeferredUIEnter"):opts({
+	mappings = {
+		add = "sa",
+		delete = "ds",
+		replace = "cs",
+	},
+	n_lines = 50,
+	search_method = "cover_or_next",
 })

@@ -37,7 +37,7 @@
     blink-cmp-git
     blink-cmp-conventional-commits
     tabout
-    nvim-surround
+    mini-surround
     mini-ai
     mini-move
     nvim-treesitter-endwise
@@ -63,7 +63,6 @@
     cutlass
     dadbod
     dbab
-    multicursor-nvim
     live-command
     grug-far
     trouble

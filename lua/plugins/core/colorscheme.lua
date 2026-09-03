@@ -15,7 +15,7 @@ plugin("tokyonight")
 			highlights.WinBar = { bg = colors.none }
 			highlights.WinBarNC = { bg = colors.none }
 
-			highlights.MultiCursorCursor = { fg = colors.black, bg = colors.orange }
+			highlights.MCursor = { fg = colors.black, bg = colors.orange }
 
 			-- string prefix (f, r, b, rb, ...) via queries/python/highlights.scm
 			highlights["@string.prefix"] = { fg = colors.purple, bold = true }

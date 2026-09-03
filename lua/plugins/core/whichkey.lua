@@ -40,6 +40,10 @@ plugin("which-key")
 		k:map("v", "<M-K>", "yP", "Duplicate line up"),
 		k:map("v", "<Tab>", ">gv", "Insert tab"),
 		k:map("v", "<S-Tab>", "<gv", "Remove tab"),
+		-- Multicursor
+		k:map("n", "<M-q>", function()
+			vim.api.nvim_buf_clear_namespace(0, vim.api.nvim_create_namespace("nvim.multicursor"), 0, -1)
+		end, "Clear multicursors"),
 		-- Tabs
 		k:map("n", "<M-Tab>", k:cmd("tab split"), "New tab with current buffer"),
 		k:map("n", "<M-!>", k:cmd("tabn 1", true), "Go to tab 2"),

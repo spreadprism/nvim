@@ -94,8 +94,8 @@
       url = "github:abecodes/tabout.nvim";
       flake = false;
     };
-    nvim-surround = {
-      url = "github:kylechui/nvim-surround";
+    mini-surround = {
+      url = "github:nvim-mini/mini.surround";
       flake = false;
     };
     mini-ai = {
@@ -197,10 +197,6 @@
     # Mirror: upstream zerochae/dbab.nvim was deleted from GitHub.
     dbab = {
       url = "github:spreadprism/dbab/new_features";
-      flake = false;
-    };
-    multicursor-nvim = {
-      url = "github:jake-stewart/multicursor.nvim";
       flake = false;
     };
     live-command = {
