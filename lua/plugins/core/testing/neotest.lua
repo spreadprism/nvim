@@ -11,7 +11,7 @@ plugin("neotest")
 				overseer = require("neotest.consumers.overseer"),
 			},
 			discovery = {
-				enabled = false,
+				concurrent = 1,
 			},
 			summary = {
 				mappings = {
