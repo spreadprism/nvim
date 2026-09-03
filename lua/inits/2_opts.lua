@@ -26,6 +26,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("InsertEnter", {
+	callback = function()
+		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Cmd>noh<CR>", true, false, true), "n", false)
+	end,
+})
+
 -- per workspace shadafile
 vim.opt.exrc = true
 vim.opt.secure = true

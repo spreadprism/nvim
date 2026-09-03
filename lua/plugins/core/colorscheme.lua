@@ -17,7 +17,7 @@ plugin("tokyonight")
 
 			highlights.MCursor = { fg = colors.black, bg = colors.orange }
 
-			-- string prefix (f, r, b, rb, ...) via queries/python/highlights.scm
+			highlights.NoiceVirtualText = { fg = colors.purple, bold = true, bg = colors.bg_highlight }
 			highlights["@string.prefix"] = { fg = colors.purple, bold = true }
 		end,
 		plugins = { all = true },

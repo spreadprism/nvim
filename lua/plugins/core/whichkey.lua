@@ -30,8 +30,11 @@ plugin("which-key")
 		k:map("nvo", "H", "^", "Move cursor to first non-whitespace character"),
 		k:map("n", "<C-w>t", "<C-w>v<C-w>T", "Open tab on current file"),
 		k:map("nvo", "<M-o>", "%", "Move cursor to matching"),
-		k:map("n", "<M-n>", k:require("which-key").show({ keys = "]" }), "next ..."),
-		k:map("n", "<M-p>", k:require("which-key").show({ keys = "[" }), "previous ..."),
+		k:map("n", "<M-/>", function()
+			if vim.v.hlsearch == 1 then
+				vim.cmd("noh")
+			end
+		end, "Clear search highlight if active"),
 		-- Code manipulation
 		k:map("v", "Y", '"+y', "Yank to clipboard"),
 		k:map("n", "<M-J>", "Vyp", "Duplicate line down"),
@@ -44,6 +47,22 @@ plugin("which-key")
 		k:map("n", "<M-q>", function()
 			vim.api.nvim_buf_clear_namespace(0, vim.api.nvim_create_namespace("nvim.multicursor"), 0, -1)
 		end, "Clear multicursors"),
+		k:map("n", "<M-n>", function()
+			local ns = vim.api.nvim_create_namespace("nvim.multicursor")
+			local marks = vim.api.nvim_buf_get_extmarks(0, ns, 0, -1)
+			if #marks ~= 0 then
+				vim.api.nvim_feedkeys("Qn", "n", false) -- place a cursor and jump to the next match
+				return
+			end
+			vim.api.nvim_feedkeys("wbQ", "n", false) -- move to the beginning of the word and place a cursor
+			vim.fn.setreg("/", "\\V" .. vim.fn.expand("<cword>")) -- set search pattern to the current word
+			vim.api.nvim_feedkeys("n", "n", false)
+		end, "Place cursor and search for word under the cursor"),
+		k:map("n", "<M-C-n>", function()
+			vim.api.nvim_feedkeys("wbQ", "n", false) -- move to the beginning of the word and place a cursor
+			vim.fn.setreg("/", "\\V" .. vim.fn.expand("<cword>")) -- set search pattern to the current word
+			vim.api.nvim_feedkeys("n", "n", false)
+		end, "Place cursor and search for word under the cursor"),
 		-- Tabs
 		k:map("n", "<M-Tab>", k:cmd("tab split"), "New tab with current buffer"),
 		k:map("n", "<M-!>", k:cmd("tabn 1", true), "Go to tab 2"),
