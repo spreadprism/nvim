@@ -44,7 +44,7 @@ plugin("which-key")
 		k:map("v", "<Tab>", ">gv", "Insert tab"),
 		k:map("v", "<S-Tab>", "<gv", "Remove tab"),
 		-- Multicursor
-		k:map("n", "<M-q>", function()
+		k:map("n", "<Esc>", function()
 			vim.api.nvim_buf_clear_namespace(0, vim.api.nvim_create_namespace("nvim.multicursor"), 0, -1)
 		end, "Clear multicursors"),
 		k:map("n", "<M-n>", function()
