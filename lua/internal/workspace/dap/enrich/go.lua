@@ -11,23 +11,12 @@ local function enrich_build(workspace, config)
 	local dirname
 	local program = vim.fs.abspath(config.program)
 
-	-- if is dir
-	if vim.fn.isdirectory(program) == 1 then
-		dirname = vim.fs.basename(dirname)
+	local stat = vim.uv.fs_stat(program)
 
-		-- check if there is a main.go or dirname.go inside
-		local main_go = vim.fs.joinpath(program, "main.go")
-		local dirname_go = vim.fs.joinpath(program, dirname .. ".go")
-
-		if vim.fn.filereadable(main_go) == 1 then
-			program = main_go
-		elseif vim.fn.filereadable(dirname_go) == 1 then
-			program = dirname_go
-		else
-			return config
-		end
+	if stat.type == "directory" then
+		dirname = vim.fs.basename(program)
 	else
-		dirname = vim.fs.basename(vim.fs.dirname(program))
+		dirname = vim.fs.dirname(vim.fs.basename(program))
 	end
 
 	local input = program

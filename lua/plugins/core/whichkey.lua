@@ -58,11 +58,6 @@ plugin("which-key")
 			vim.fn.setreg("/", "\\V" .. vim.fn.expand("<cword>")) -- set search pattern to the current word
 			vim.api.nvim_feedkeys("n", "n", false)
 		end, "Place cursor and search for word under the cursor"),
-		k:map("n", "<M-C-n>", function()
-			vim.api.nvim_feedkeys("wbQ", "n", false) -- move to the beginning of the word and place a cursor
-			vim.fn.setreg("/", "\\V" .. vim.fn.expand("<cword>")) -- set search pattern to the current word
-			vim.api.nvim_feedkeys("n", "n", false)
-		end, "Place cursor and search for word under the cursor"),
 		-- Tabs
 		k:map("n", "<M-Tab>", k:cmd("tab split"), "New tab with current buffer"),
 		k:map("n", "<M-!>", k:cmd("tabn 1", true), "Go to tab 2"),
