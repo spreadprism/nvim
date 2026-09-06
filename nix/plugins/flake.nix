@@ -162,10 +162,6 @@
       url = "github:sudo-tee/opencode.nvim";
       flake = false;
     };
-    pi-nvim = {
-      url = "github:carderne/pi-nvim";
-      flake = false;
-    };
     pi = {
       url = "github:alex35mil/pi.nvim";
       flake = false;
