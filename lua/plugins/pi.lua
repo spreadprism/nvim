@@ -1,3 +1,4 @@
+-- TODO: add https://github.com/HakonHarnes/img-clip.nvim
 local ft = {
 	"pi-chat-prompt",
 	"pi-chat-history",
