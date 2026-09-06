@@ -1,4 +1,8 @@
-local ft = { "markdown", "opencode", "opencode_output" }
+local ft = {
+	"markdown",
+	"pi-chat-history",
+	"pi-chat-prompt",
+}
 lsp("marksman"):cmd({ "marksman", "server" }):filetypes(ft)
 linter(ft)
 plugin("render-markdown"):ft(ft):opts({

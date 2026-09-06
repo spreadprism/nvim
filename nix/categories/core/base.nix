@@ -55,6 +55,8 @@
     nvim-dap-ui
     nvim-dap-virtual-text
     opencode
+    pi-nvim
+    pi
     oil
     oil-git
     todo-comments

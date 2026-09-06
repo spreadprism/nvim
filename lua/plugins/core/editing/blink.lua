@@ -163,6 +163,7 @@ plugin("blink.cmp")
 				per_filetype = {
 					oil = { "path", "buffer", "snippets" },
 					sql = vim.tbl_extend("force", default, { "dbab" }),
+					["pi-chat-prompt"] = { "pi" },
 				},
 				providers = {
 					lazydev = {
@@ -194,6 +195,7 @@ plugin("blink.cmp")
 							return vim.tbl_contains({ "sql", "mysql", "plsql", "postgresql" }, vim.bo.filetype)
 						end,
 					},
+					pi = { name = "Pi", module = "pi.completion.blink" },
 				},
 			},
 			keymap = vim.tbl_deep_extend("keep", {
