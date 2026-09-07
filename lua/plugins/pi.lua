@@ -55,7 +55,7 @@ plugin("pi")
 		k:map("n", "<localleader>f", internal.pick_mentions, "mention files"):ft(prompt_ft),
 		k:map("n", "<localleader>s", k:require("pi").resume_session(), "session"):ft(ft),
 		k:map("n", "<localleader>x", k:require("pi").new_session(), "new session"):ft(ft),
-		k:map("n", "<localleader>m", k:require("pi").select_model(), "select model"):ft(ft),
+		k:map("n", "<localleader>m", k:require("pi").select_model_all(), "select model"):ft(ft),
 		k:map("n", "<localleader>t", k:require("pi").toggle_thinking(), "toggle thinking"):ft(ft),
 	})
 	:after(function()
