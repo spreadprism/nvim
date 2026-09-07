@@ -46,6 +46,50 @@ function M.oil()
 	return { path = rel }
 end
 
+--- Pick one or more files with the snacks file picker and insert every
+--- selected file as an `@mention` in the PI prompt buffer. The picker input
+--- always starts in insert mode, even when invoked from normal mode.
+function M.pick()
+	local ok, snacks = pcall(require, "snacks")
+	if not ok then
+		vim.notify("snacks is not available", vim.log.levels.WARN)
+		return
+	end
+
+	local picker = snacks.picker.files({
+		confirm = function(self)
+			local items = self:selected({ fallback = true })
+			self:close()
+
+			local pi = require("pi")
+			local sent = false
+			for _, item in ipairs(items) do
+				local path = snacks.picker.util.path(item)
+				if path then
+					pi.send_mention({ path = relative(path) }, { focus = false })
+					sent = true
+				end
+			end
+
+			if sent then
+				vim.schedule(function()
+					pi.focus_chat_prompt()
+				end)
+			end
+		end,
+		focus = "input",
+	})
+
+	-- opening from normal mode (or from PI's prompt mappings) can leave the
+	-- picker input in normal mode; force insert once the layout is up
+	vim.schedule(function()
+		if picker and picker.input and picker.input.win:valid() then
+			picker.input.win:focus()
+			vim.cmd("startinsert!")
+		end
+	end)
+end
+
 --- Mention for the buffer `buf` points at, or `nil` when it isn't a real file
 --- (PI panels, scratch buffers, terminals, ...).
 ---@param buf integer

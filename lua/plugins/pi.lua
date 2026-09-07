@@ -1,6 +1,7 @@
 -- TODO: add https://github.com/HakonHarnes/img-clip.nvim
 local internal = require("internal.pi")
 local ft = internal.ft.keymap
+local prompt_ft = internal.ft.prompt
 
 internal.ft.register_treesitter()
 
@@ -50,10 +51,12 @@ plugin("pi")
 			end
 			require("pi").send_mention(mention)
 		end, "mention last buffer"):ft(ft),
-		k:map("ni", "<localleader>s", k:require("pi").resume_session(), "session"):ft(ft),
-		k:map("ni", "<localleader>x", k:require("pi").new_session(), "new session"):ft(ft),
-		k:map("ni", "<localleader>m", k:require("pi").select_model(), "select model"):ft(ft),
-		k:map("ni", "<localleader>t", k:require("pi").toggle_thinking(), "toggle thinking"):ft(ft),
+		-- prompt buffer only
+		k:map("n", "<localleader>f", internal.pick_mentions, "mention files"):ft(prompt_ft),
+		k:map("n", "<localleader>s", k:require("pi").resume_session(), "session"):ft(ft),
+		k:map("n", "<localleader>x", k:require("pi").new_session(), "new session"):ft(ft),
+		k:map("n", "<localleader>m", k:require("pi").select_model(), "select model"):ft(ft),
+		k:map("n", "<localleader>t", k:require("pi").toggle_thinking(), "toggle thinking"):ft(ft),
 	})
 	:after(function()
 		internal.register_tool_renderers()

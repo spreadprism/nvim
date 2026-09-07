@@ -1,6 +1,10 @@
 --- Filetypes used by PI's panels.
 local M = {}
 
+--- The prompt (input) buffer filetype.
+---@type string
+M.prompt = "pi-chat-prompt"
+
 --- Filetypes that receive keymaps.
 ---@type string[]
 M.keymap = {

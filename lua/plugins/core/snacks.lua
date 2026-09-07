@@ -17,6 +17,15 @@ plugin("snacks")
 			},
 			win = {
 				input = {
+					-- pi.nvim (`pi/ui/winfix.lua`) resets window options on every
+					-- `BufEnter` into a window carrying its fingerprint
+					-- (`concealcursor=nvic` + no number/relativenumber/cursorline).
+					-- Snacks never sets `concealcursor` on the input window, so a
+					-- picker opened from the PI sidebar inherits `nvic` from the pi
+					-- window, matches the fingerprint and gets `signcolumn` reset to
+					-- the global default (`yes`) -> extra blank column in the input.
+					-- Setting it explicitly breaks the fingerprint.
+					wo = { concealcursor = "nvc" },
 					keys = {
 						["<S-CR>"] = { "tab", mode = { "n", "i" } },
 					},
