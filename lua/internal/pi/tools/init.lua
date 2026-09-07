@@ -4,7 +4,13 @@ local M = {}
 --- `pi.ui.chat.tools` is a file-local upvalue. `get_renderer` is exported though,
 --- so we wrap it and let our own renderers answer first.
 ---@type table<string, pi.ToolRenderer>
-M.renderers = vim.tbl_extend("error", {}, require("internal.pi.tools.kagi"))
+M.renderers = vim.tbl_extend(
+	"error",
+	{},
+	require("internal.pi.tools.bash"),
+	require("internal.pi.tools.kagi"),
+	require("internal.pi.tools.hermes-memory")
+)
 
 --- Wrap `pi.ui.chat.tools.get_renderer` so `M.renderers` takes precedence.
 --- Tool names may be namespaced by the backend (e.g. `mcp__kagi__kagi_extract`),

@@ -9,6 +9,6 @@ plugin("render-markdown"):ft(ft):opts({
 	completions = { blink = { enabled = true } },
 	file_types = ft,
 	code = {
-		border = "thick",
+		border = "hide",
 	},
 })

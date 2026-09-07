@@ -42,6 +42,14 @@ plugin("pi")
 		k:map("ni", "<C-q>", k:cmd("Pi"), "close PI"):ft(ft),
 		k:map("ni", "<C-c>", k:cmd("PiAbort"), "abort"):ft(ft),
 		-- buffer local
+		k:map("ni", "<M-b>", function()
+			local mention = internal.last_buffer_mention()
+			if not mention then
+				vim.notify("no buffer to mention", vim.log.levels.WARN)
+				return
+			end
+			require("pi").send_mention(mention)
+		end, "mention last buffer"):ft(ft),
 		k:map("ni", "<localleader>s", k:require("pi").resume_session(), "session"):ft(ft),
 		k:map("ni", "<localleader>x", k:require("pi").new_session(), "new session"):ft(ft),
 		k:map("ni", "<localleader>m", k:require("pi").select_model(), "select model"):ft(ft),
@@ -49,6 +57,7 @@ plugin("pi")
 	})
 	:after(function()
 		internal.register_tool_renderers()
+		internal.track_last_buffer()
 		internal.close_when_last()
 	end)
 	:on_highlights(function(highlights, colors)

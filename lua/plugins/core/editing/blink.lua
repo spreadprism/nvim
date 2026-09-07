@@ -163,7 +163,7 @@ plugin("blink.cmp")
 				per_filetype = {
 					oil = { "path", "buffer", "snippets" },
 					sql = vim.tbl_extend("force", default, { "dbab" }),
-					["pi-chat-prompt"] = { "pi" },
+					["pi-chat-prompt"] = { "pi", "snippets", "path" },
 				},
 				providers = {
 					lazydev = {
