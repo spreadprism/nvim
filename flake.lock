@@ -535,6 +535,22 @@
         "type": "github"
       }
     },
+    "neotest-plenary": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1726413648,
+        "narHash": "sha256-NQGGq1HiBmu/4OhkvNruUWw+OmzS8MQ8LL9dWwaw2oo=",
+        "owner": "nvim-neotest",
+        "repo": "neotest-plenary",
+        "rev": "3523adcf9ffaad1911960c5813b0136c1b63a2ec",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-neotest",
+        "repo": "neotest-plenary",
+        "type": "github"
+      }
+    },
     "neovim": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -860,22 +876,6 @@
         "type": "github"
       }
     },
-    "pi-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1788366670,
-        "narHash": "sha256-KGUPVXA/a+nTElSxcjngH9Ij/tttDQ48NrYTVg+FSXk=",
-        "owner": "carderne",
-        "repo": "pi-nvim",
-        "rev": "3efbe679fdcaac1d643d465eea56826ce335dc4a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "carderne",
-        "repo": "pi-nvim",
-        "type": "github"
-      }
-    },
     "plugins": {
       "inputs": {
         "atlas": "atlas",
@@ -910,6 +910,7 @@
         "neogit": "neogit",
         "neotest": "neotest",
         "neotest-golang": "neotest-golang",
+        "neotest-plenary": "neotest-plenary",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -929,7 +930,6 @@
         "osc52": "osc52",
         "overseer": "overseer",
         "pi": "pi",
-        "pi-nvim": "pi-nvim",
         "puppeteer": "puppeteer",
         "quicker": "quicker",
         "render-markdown": "render-markdown",

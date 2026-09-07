@@ -9,5 +9,6 @@
   ];
   optionalPlugins = with nvim_pkgs; [
     lazydev
+    neotest-plenary
   ];
 }

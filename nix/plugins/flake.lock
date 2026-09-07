@@ -147,15 +147,16 @@
     "dbab": {
       "flake": false,
       "locked": {
-        "lastModified": 1786919670,
-        "narHash": "sha256-O2B/bHIwpzwaM/uNEv+wawp8+llfjs+71NThTKWOOVw=",
+        "lastModified": 1788283412,
+        "narHash": "sha256-PUsTZloqbir6Yo3DL76pGCTLb2ZvhCsu8n17hVIeVaA=",
         "owner": "spreadprism",
         "repo": "dbab",
-        "rev": "b9a2aa5333016b8fdaa7aea001662b9eac98df3c",
+        "rev": "65872e90eeedafe1a348ba423f59a8764b17f165",
         "type": "github"
       },
       "original": {
         "owner": "spreadprism",
+        "ref": "new_features",
         "repo": "dbab",
         "type": "github"
       }
@@ -433,19 +434,19 @@
         "type": "github"
       }
     },
-    "multicursor-nvim": {
+    "mini-surround": {
       "flake": false,
       "locked": {
-        "lastModified": 1774329557,
-        "narHash": "sha256-JHl8Z7ESrWus2I6Pe+6gmdgCAZOzAKX7kimy71sAoe4=",
-        "owner": "jake-stewart",
-        "repo": "multicursor.nvim",
-        "rev": "704b99f10a72cc05d370cfeb294ff83412a8ab55",
+        "lastModified": 1784209931,
+        "narHash": "sha256-rcaJnt7ty+XGH5zb/f8v84sHLS7HX3Qnpf4NPetxR5k=",
+        "owner": "nvim-mini",
+        "repo": "mini.surround",
+        "rev": "8d5d0c5aa92449368ac251e85451d79d8f69d296",
         "type": "github"
       },
       "original": {
-        "owner": "jake-stewart",
-        "repo": "multicursor.nvim",
+        "owner": "nvim-mini",
+        "repo": "mini.surround",
         "type": "github"
       }
     },
@@ -510,6 +511,22 @@
       "original": {
         "owner": "fredrikaverpil",
         "repo": "neotest-golang",
+        "type": "github"
+      }
+    },
+    "neotest-plenary": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1726413648,
+        "narHash": "sha256-NQGGq1HiBmu/4OhkvNruUWw+OmzS8MQ8LL9dWwaw2oo=",
+        "owner": "nvim-neotest",
+        "repo": "neotest-plenary",
+        "rev": "3523adcf9ffaad1911960c5813b0136c1b63a2ec",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-neotest",
+        "repo": "neotest-plenary",
         "type": "github"
       }
     },
@@ -603,22 +620,6 @@
       "original": {
         "owner": "theHamsta",
         "repo": "nvim-dap-virtual-text",
-        "type": "github"
-      }
-    },
-    "nvim-surround": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1780960868,
-        "narHash": "sha256-1aMDbmzCvOP5da/IUq0+B8GqkwvaMqfXAp9Q+MyIUZ0=",
-        "owner": "kylechui",
-        "repo": "nvim-surround",
-        "rev": "8b47db616ef658b8fc27e61db2896aa2f40134de",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kylechui",
-        "repo": "nvim-surround",
         "type": "github"
       }
     },
@@ -782,6 +783,22 @@
         "type": "github"
       }
     },
+    "pi": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1783512352,
+        "narHash": "sha256-nDb37FWBCmcVHtQlvIW2nkRQW8uoFcbPFHeygfMXKOc=",
+        "owner": "alex35mil",
+        "repo": "pi.nvim",
+        "rev": "0f9f015433404da949c2e8388842c1449e88f793",
+        "type": "github"
+      },
+      "original": {
+        "owner": "alex35mil",
+        "repo": "pi.nvim",
+        "type": "github"
+      }
+    },
     "puppeteer": {
       "flake": false,
       "locked": {
@@ -859,18 +876,18 @@
         "marks": "marks",
         "mini-ai": "mini-ai",
         "mini-move": "mini-move",
-        "multicursor-nvim": "multicursor-nvim",
+        "mini-surround": "mini-surround",
         "neogen": "neogen",
         "neogit": "neogit",
         "neotest": "neotest",
         "neotest-golang": "neotest-golang",
+        "neotest-plenary": "neotest-plenary",
         "nixpkgs": "nixpkgs",
         "noice": "noice",
         "nui": "nui",
         "nvim-dap": "nvim-dap",
         "nvim-dap-ui": "nvim-dap-ui",
         "nvim-dap-virtual-text": "nvim-dap-virtual-text",
-        "nvim-surround": "nvim-surround",
         "nvim-treesitter-endwise": "nvim-treesitter-endwise",
         "nvim-treesitter-textobjects": "nvim-treesitter-textobjects",
         "nvim-web-devicons": "nvim-web-devicons",
@@ -881,6 +898,7 @@
         "origami": "origami",
         "osc52": "osc52",
         "overseer": "overseer",
+        "pi": "pi",
         "puppeteer": "puppeteer",
         "quicker": "quicker",
         "render-markdown": "render-markdown",

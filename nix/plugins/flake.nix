@@ -231,6 +231,10 @@
       url = "github:fredrikaverpil/neotest-golang";
       flake = false;
     };
+    neotest-plenary = {
+      url = "github:nvim-neotest/neotest-plenary";
+      flake = false;
+    };
     neogen = {
       url = "github:danymat/neogen";
       flake = false;

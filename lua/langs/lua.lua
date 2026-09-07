@@ -55,3 +55,4 @@ plugin("lazydev")
 		}
 	end)
 	:lazydev({ words = { "lazydev" } })
+neotest("neotest-plenary")
