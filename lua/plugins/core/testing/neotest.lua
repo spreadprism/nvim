@@ -4,6 +4,7 @@ plugin("neotest")
 	:opts(function()
 		local adapters = require("internal.loader.neotest").adapters()
 		table.insert(adapters, require("rustaceanvim.neotest"))
+		---@type neotest.Config
 		return {
 			adapters = adapters,
 			consumers = {

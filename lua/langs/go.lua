@@ -14,6 +14,11 @@ lsp("gopls"):settings({
 linter("go", "golangcilint")
 formatter("go", "gofumpt")
 neotest("neotest-golang")({
+	go_test_args = {
+		"-v",
+		"-count=1",
+		"-parallel=8",
+	},
 	dap_mode = "manual",
 	dap_manual_config = {
 		type = "go",
