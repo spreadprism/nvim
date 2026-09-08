@@ -17,7 +17,7 @@ neotest("neotest-golang")({
 	go_test_args = {
 		"-v",
 		"-count=1",
-		"-parallel=8",
+		"-parallel=4",
 		"-timeout=0",
 	},
 	dap_mode = "manual",
