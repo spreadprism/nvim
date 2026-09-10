@@ -170,6 +170,7 @@ function Workspace:dap(ft, configs)
 	end
 end
 
+---@overload fun(self: Workspace, type: "mariadb", conn: MariadbConnection|MariadbConnection[])
 ---@overload fun(self: Workspace, type: "mysql", conn: MysqlConnection|MysqlConnection[])
 ---@overload fun(self: Workspace, type: "postgres", conn: PostgresConnection|PostgresConnection[])
 ---@param type string

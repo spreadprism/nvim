@@ -12,7 +12,7 @@
     grpcurl
 
     # db cli
-    mysql84
+    mariadb.client
   ];
   startupPlugins = with vim_pkgs; [
     lze
