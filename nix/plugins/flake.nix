@@ -90,6 +90,10 @@
       url = "github:disrupted/blink-cmp-conventional-commits";
       flake = false;
     };
+    blink-ripgrep = {
+      url = "github:mikavilpas/blink-ripgrep.nvim";
+      flake = false;
+    };
     tabout = {
       url = "github:abecodes/tabout.nvim";
       flake = false;

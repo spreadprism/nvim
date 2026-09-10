@@ -36,6 +36,7 @@
     blink-compat
     blink-cmp-git
     blink-cmp-conventional-commits
+    blink-ripgrep
     tabout
     mini-surround
     mini-ai

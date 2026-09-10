@@ -80,6 +80,22 @@
         "type": "github"
       }
     },
+    "blink-ripgrep": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1788937819,
+        "narHash": "sha256-fsC8ZtXHC/HvXOpaIaHyh77g+yKgxkrQxxurg8HHAM0=",
+        "owner": "mikavilpas",
+        "repo": "blink-ripgrep.nvim",
+        "rev": "bef8b671cb313b23e2190cc64e193f530604eda7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mikavilpas",
+        "repo": "blink-ripgrep.nvim",
+        "type": "github"
+      }
+    },
     "conform": {
       "flake": false,
       "locked": {
@@ -883,6 +899,7 @@
         "blink-cmp-conventional-commits": "blink-cmp-conventional-commits",
         "blink-cmp-git": "blink-cmp-git",
         "blink-compat": "blink-compat",
+        "blink-ripgrep": "blink-ripgrep",
         "conform": "conform",
         "cutlass": "cutlass",
         "dadbod": "dadbod",

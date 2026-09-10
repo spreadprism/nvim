@@ -33,6 +33,7 @@ plugin("blink.cmp")
 		plugin("blink-compat"):on_require("blink.compat"),
 		plugin("blink-cmp-git"):opts(false),
 		plugin("blink-cmp-conventional-commits"):opts(false),
+		plugin("blink-ripgrep"),
 	})
 	:opts(function()
 		local cmp_kinds = {
@@ -89,6 +90,7 @@ plugin("blink.cmp")
 			"lsp",
 			"path",
 			"buffer",
+			"ripgrep",
 			"git",
 			"conventional_commits",
 		}
@@ -163,7 +165,7 @@ plugin("blink.cmp")
 				per_filetype = {
 					oil = { "path", "buffer", "snippets" },
 					sql = vim.tbl_extend("force", default, { "dbab" }),
-					["pi-chat-prompt"] = { "pi", "snippets", "path" },
+					["pi-chat-prompt"] = vim.tbl_extend("force", default, { "pi" }),
 				},
 				providers = {
 					lazydev = {
@@ -196,6 +198,18 @@ plugin("blink.cmp")
 						end,
 					},
 					pi = { name = "Pi", module = "pi.completion.blink" },
+					ripgrep = {
+						module = "blink-ripgrep",
+						name = "Ripgrep",
+						max_items = 3,
+						---@module "blink-ripgrep"
+						---@type blink-ripgrep.Options
+						opts = {
+							backend = {
+								use = "gitgrep-or-ripgrep",
+							},
+						},
+					},
 				},
 			},
 			keymap = vim.tbl_deep_extend("keep", {
