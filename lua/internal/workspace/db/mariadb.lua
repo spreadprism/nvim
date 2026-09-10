@@ -6,7 +6,7 @@
 ---@field port? number
 ---@field db? string
 ---@field hooks? Dbab.HooksConfig Lifecycle hooks for this connection only
----@field disable-ssl? boolean
+---@field ssl? 0|1
 
 ---@param workspace Workspace
 ---@param conn MariadbConnection
@@ -19,7 +19,13 @@ return function(workspace, conn)
 		db = "",
 	}, conn)
 
-	local query = conn["disable-ssl"] and "?ssl=0" or ""
+	local params = {}
+
+	if conn.ssl ~= nil then
+		table.insert(params, "ssl=" .. conn.ssl)
+	end
+
+	local query = #params > 0 and ("?" .. table.concat(params, "&")) or ""
 
 	---@type Dbab.Connection
 	return {
