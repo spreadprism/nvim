@@ -6,6 +6,7 @@
 ---@field port? number
 ---@field db? string
 ---@field hooks? Dbab.HooksConfig Lifecycle hooks for this connection only
+---@field disable-ssl? boolean
 
 ---@param workspace Workspace
 ---@param conn MysqlConnection
@@ -18,10 +19,20 @@ return function(workspace, conn)
 		db = "",
 	}, conn)
 
+	local query = conn["disable-ssl"] and "?ssl-mode=disabled" or ""
+
 	---@type Dbab.Connection
 	return {
 		name = conn.name,
-		url = string.format("mysql://%s:%s@%s:%d/%s", conn.username, conn.password, conn.host, conn.port, conn.db),
+		url = string.format(
+			"mysql://%s:%s@%s:%d/%s%s",
+			conn.username,
+			conn.password,
+			conn.host,
+			conn.port,
+			conn.db,
+			query
+		),
 		hooks = conn.hooks,
 	}
 end
