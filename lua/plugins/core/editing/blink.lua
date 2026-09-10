@@ -89,7 +89,6 @@ plugin("blink.cmp")
 			"snippets",
 			"lsp",
 			"path",
-			"buffer",
 			"ripgrep",
 			"git",
 			"conventional_commits",
