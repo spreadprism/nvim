@@ -123,7 +123,7 @@ end
 
 --- Remember the last non-PI buffer so the prompt can mention it later.
 function M.track()
-	vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+	vim.api.nvim_create_autocmd("BufEnter", {
 		group = vim.api.nvim_create_augroup("PiLastBuffer", { clear = true }),
 		callback = function(args)
 			local mention = mention_of(args.buf)
@@ -134,20 +134,10 @@ function M.track()
 	})
 end
 
---- The mention for the last visited non-PI buffer, falling back to the
---- alternate file when nothing was tracked yet.
+--- The mention for the last visited non-PI buffer, as tracked by `M.track()`.
 ---@return { path: string }|nil
 function M.last()
-	if last then
-		return last
-	end
-
-	local alt = vim.fn.bufnr("#")
-	if alt > 0 then
-		return mention_of(alt)
-	end
-
-	return nil
+	return last
 end
 
 return M
