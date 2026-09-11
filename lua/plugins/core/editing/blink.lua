@@ -33,7 +33,6 @@ plugin("blink.cmp")
 		plugin("blink-compat"):on_require("blink.compat"),
 		plugin("blink-cmp-git"):opts(false),
 		plugin("blink-cmp-conventional-commits"):opts(false),
-		plugin("blink-ripgrep"),
 	})
 	:opts(function()
 		local cmp_kinds = {
@@ -88,8 +87,8 @@ plugin("blink.cmp")
 		local default = {
 			"snippets",
 			"lsp",
+			"buffer",
 			"path",
-			"ripgrep",
 			"git",
 			"conventional_commits",
 		}
