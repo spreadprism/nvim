@@ -83,11 +83,11 @@
     "blink-ripgrep": {
       "flake": false,
       "locked": {
-        "lastModified": 1788937819,
-        "narHash": "sha256-fsC8ZtXHC/HvXOpaIaHyh77g+yKgxkrQxxurg8HHAM0=",
+        "lastModified": 1789081345,
+        "narHash": "sha256-GeZJwaZXnKZ3Ix0ldlxFOxzUfcgQqwlx8a0DYV3oYMA=",
         "owner": "mikavilpas",
         "repo": "blink-ripgrep.nvim",
-        "rev": "bef8b671cb313b23e2190cc64e193f530604eda7",
+        "rev": "eec58ad5fa71ee935b382fc6b5863be6bb9caa03",
         "type": "github"
       },
       "original": {
@@ -109,6 +109,22 @@
       "original": {
         "owner": "stevearc",
         "repo": "conform.nvim",
+        "type": "github"
+      }
+    },
+    "crust": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1789333367,
+        "narHash": "sha256-1iuAncv9dwdEf7XhuQZkQIeX900jvkrwFWK98LHdNvc=",
+        "owner": "spreadprism",
+        "repo": "crust.nvim",
+        "rev": "956d2ed2cf22f2ce4dc34fdaf0d646bb128306e4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "spreadprism",
+        "repo": "crust.nvim",
         "type": "github"
       }
     },
@@ -163,11 +179,11 @@
     "dbab": {
       "flake": false,
       "locked": {
-        "lastModified": 1789072789,
-        "narHash": "sha256-PeiZO+CCwyIbWjyn6YNNTcS6oZutyeG2IFC+wkX+3ZM=",
+        "lastModified": 1788283412,
+        "narHash": "sha256-PUsTZloqbir6Yo3DL76pGCTLb2ZvhCsu8n17hVIeVaA=",
         "owner": "spreadprism",
         "repo": "dbab",
-        "rev": "9180402a8dbf67dafe4231d38f3dfac0f23a025b",
+        "rev": "65872e90eeedafe1a348ba423f59a8764b17f165",
         "type": "github"
       },
       "original": {
@@ -901,6 +917,7 @@
         "blink-compat": "blink-compat",
         "blink-ripgrep": "blink-ripgrep",
         "conform": "conform",
+        "crust": "crust",
         "cutlass": "cutlass",
         "dadbod": "dadbod",
         "dap-python": "dap-python",

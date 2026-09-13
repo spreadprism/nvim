@@ -28,6 +28,7 @@
     which-key
     lspconfig
     fyler
+    crust
     tokyonight
     snacks
     tmux-navigation

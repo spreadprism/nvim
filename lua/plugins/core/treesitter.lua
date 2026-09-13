@@ -118,4 +118,12 @@ plugin("treesitter-context"):event("DeferredUIEnter"):on_plugin(treesitter):opts
 	mode = "topline",
 	max_lines = 3,
 	trim_scope = "inner",
+	on_attach = function(buf)
+		vim.tbl_contains({
+			"pi-chat-history",
+			"pi-chat-prompt",
+			"crust_input",
+			"crust_output",
+		}, vim.bo[buf].filetype)
+	end,
 })

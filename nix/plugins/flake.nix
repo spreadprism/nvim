@@ -29,6 +29,10 @@
       url = "github:spreadprism/fyler.nvim";
       flake = false;
     };
+    crust = {
+      url = "github:spreadprism/crust.nvim";
+      flake = false;
+    };
     nvim-web-devicons = {
       url = "github:nvim-tree/nvim-web-devicons";
       flake = false;
