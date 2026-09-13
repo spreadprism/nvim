@@ -38,6 +38,8 @@ plugin("heirline")
 							"terminal",
 							"OverseerOutput",
 							"gitsigns-blame",
+							"crust_output",
+							"crust_input",
 						},
 					}, args.buf)
 				end,
