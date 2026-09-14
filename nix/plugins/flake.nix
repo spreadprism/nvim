@@ -9,6 +9,10 @@
       url = "github:devxplay/herdr.nvim";
       flake = false;
     };
+    submode = {
+      url = "github:pogyomo/submode.nvim";
+      flake = false;
+    };
     snacks = {
       url = "github:folke/snacks.nvim";
       flake = false;

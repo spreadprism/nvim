@@ -23,3 +23,5 @@ plugin("live-command")
 	})
 
 plugin("puppeteer"):event("DeferredUIEnter"):opts(false)
+
+plugin("submode")

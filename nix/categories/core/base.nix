@@ -24,6 +24,7 @@
   ];
 
   optionalPlugins = with nvim_pkgs; [
+    submode
     atlas
     which-key
     lspconfig

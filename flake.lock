@@ -990,6 +990,7 @@
         "smart-splits": "smart-splits",
         "snacks": "snacks",
         "startuptime": "startuptime",
+        "submode": "submode",
         "tabout": "tabout",
         "tmux-navigation": "tmux-navigation",
         "todo-comments": "todo-comments",
@@ -1163,6 +1164,22 @@
       "original": {
         "owner": "dstein64",
         "repo": "vim-startuptime",
+        "type": "github"
+      }
+    },
+    "submode": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1773320104,
+        "narHash": "sha256-GhtxNm0Wo0zcNEgbKjCBljmuBKGrqFS7rJLPOi0yOvU=",
+        "owner": "pogyomo",
+        "repo": "submode.nvim",
+        "rev": "d3cd2ceed6e2379caba6ec2e75dc50a9a832be63",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pogyomo",
+        "repo": "submode.nvim",
         "type": "github"
       }
     },
