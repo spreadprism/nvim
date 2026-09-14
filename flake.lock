@@ -83,11 +83,11 @@
     "blink-ripgrep": {
       "flake": false,
       "locked": {
-        "lastModified": 1789081345,
-        "narHash": "sha256-GeZJwaZXnKZ3Ix0ldlxFOxzUfcgQqwlx8a0DYV3oYMA=",
+        "lastModified": 1789366283,
+        "narHash": "sha256-eeudFpvSm8kRRxvRZlUPBmCvdu5mVuZtAr/v4DVj9Sc=",
         "owner": "mikavilpas",
         "repo": "blink-ripgrep.nvim",
-        "rev": "eec58ad5fa71ee935b382fc6b5863be6bb9caa03",
+        "rev": "18e3c196a75877b847a4a685035b25a3c2cb6912",
         "type": "github"
       },
       "original": {
@@ -115,11 +115,11 @@
     "crust": {
       "flake": false,
       "locked": {
-        "lastModified": 1789335101,
-        "narHash": "sha256-qPDJO0mvIGeDZuMhzxe/FK7D8+PUGqgDeEnfCWel7Gs=",
+        "lastModified": 1789337574,
+        "narHash": "sha256-ub9yZQYbgjJgfg+D05IBIW6U8Ke7AyrlQCbm5OZJP4Q=",
         "owner": "spreadprism",
         "repo": "crust.nvim",
-        "rev": "66c79ff3917541b83a42223fc03f0aa8b2fe4059",
+        "rev": "eb9d4cf59d4082d19453463e6e15649cab81fdf8",
         "type": "github"
       },
       "original": {
@@ -323,6 +323,22 @@
       "original": {
         "owner": "qvalentin",
         "repo": "helm-ls.nvim",
+        "type": "github"
+      }
+    },
+    "herdr": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1780301416,
+        "narHash": "sha256-NmBVVbh/fqwSfKBCrB589fCbzUyEP8wEP7IxD/T5RcE=",
+        "owner": "devxplay",
+        "repo": "herdr.nvim",
+        "rev": "deed8496356aab90e1cc364dac4f95d898fa6067",
+        "type": "github"
+      },
+      "original": {
+        "owner": "devxplay",
+        "repo": "herdr.nvim",
         "type": "github"
       }
     },
@@ -929,6 +945,7 @@
         "heirline": "heirline",
         "heirline-components": "heirline-components",
         "helm-ls": "helm-ls",
+        "herdr": "herdr",
         "hop": "hop",
         "jdtls": "jdtls",
         "lazydev": "lazydev",
