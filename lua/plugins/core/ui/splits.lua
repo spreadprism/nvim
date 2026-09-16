@@ -1,5 +1,5 @@
 plugin("smart-splits")
-	:dep_on("submode")
+	:dep_on(plugin("submode"):opts(false))
 	:event("DeferredUIEnter")
 	:opts({
 		resize_mode = {
