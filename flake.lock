@@ -115,11 +115,11 @@
     "crust": {
       "flake": false,
       "locked": {
-        "lastModified": 1789858919,
-        "narHash": "sha256-wDPD2FjR2SVMNcknGQifFU883/ZCFBRfiVuxj+sJlzk=",
+        "lastModified": 1789930777,
+        "narHash": "sha256-5YDfU3WxI2jgZaH8aRy0+wPNk9PjsL3aIw9ZksrpKRk=",
         "owner": "spreadprism",
         "repo": "crust.nvim",
-        "rev": "ca492c480f6319941d7c447588297a003443a987",
+        "rev": "328a243f5e74cd336c140a4769e57eebbc896303",
         "type": "github"
       },
       "original": {
@@ -831,15 +831,15 @@
     "onoma": {
       "flake": false,
       "locked": {
-        "lastModified": 1787422052,
-        "narHash": "sha256-HtBgcQTaHucvW+STQhvFJjGhgMoVYA6nAHgYkdUeXts=",
-        "owner": "ryanmab",
+        "lastModified": 1789863743,
+        "narHash": "sha256-DckiDxI5fHDdnWAWSjXYvKvWtJJdtEAieJRT/spBMg4=",
+        "owner": "spreadprism",
         "repo": "onoma.nvim",
-        "rev": "cbee03fa2bfeac25e935b7b3f1d93814334f8657",
+        "rev": "c850b10aef54a206a8894c47f79c7470ee0c74ef",
         "type": "github"
       },
       "original": {
-        "owner": "ryanmab",
+        "owner": "spreadprism",
         "repo": "onoma.nvim",
         "type": "github"
       }

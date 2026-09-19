@@ -296,7 +296,7 @@
       flake = false;
     };
     onoma = {
-      url = "github:ryanmab/onoma.nvim";
+      url = "github:spreadprism/onoma.nvim";
       flake = false;
     };
     puppeteer = {

@@ -163,7 +163,7 @@ plugin("blink.cmp")
 				per_filetype = {
 					oil = { "path", "buffer", "snippets" },
 					sql = vim.list_extend(vim.deepcopy(default), { "dbab" }),
-					["pi-chat-prompt"] = vim.list_extend(vim.deepcopy(default), { "pi" }),
+					crust_input = vim.list_extend(vim.deepcopy(default), { "crust" }),
 				},
 				providers = {
 					lazydev = {
@@ -195,7 +195,7 @@ plugin("blink.cmp")
 							return vim.tbl_contains({ "sql", "mysql", "plsql", "postgresql" }, vim.bo.filetype)
 						end,
 					},
-					pi = { name = "Pi", module = "pi.completion.blink" },
+					crust = { name = "Crust", module = "crust.completion.blink" },
 					ripgrep = {
 						module = "blink-ripgrep",
 						name = "Ripgrep",
