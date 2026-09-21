@@ -13,7 +13,4 @@ plugin("render-markdown"):ft(ft):opts({
 	code = {
 		border = "hide",
 	},
-	anti_conceal = {
-		enabled = false,
-	},
 })
