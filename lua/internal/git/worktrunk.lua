@@ -11,7 +11,36 @@ local M = {}
 ---@field path? string
 ---@field current boolean
 ---@field main boolean
+---@field created boolean worktree already checked out on disk
+---@field remote? string remote name for remote-only branches
 ---@field worktrunk table raw `wt list` item
+
+---@class internal.git.worktrunk.Config: snacks.picker.Config
+---@field branches? boolean include local branches without a worktree (default true)
+---@field remotes? boolean include remote-only branches (default true)
+
+local icons = {
+	created = "",
+	branch = "",
+	remote = "",
+}
+
+--- `wt list --format=json` wraps its items in a schema-2 envelope; older
+--- versions return a bare array (or a single object).
+---@param data any
+---@return table[]
+local function extract_items(data)
+	if type(data) ~= "table" then
+		return {}
+	end
+	if data.schema == 2 then
+		return data.items or {}
+	end
+	if data[1] ~= nil or #data == 0 then
+		return data
+	end
+	return { data }
+end
 
 ---@param item table raw item from `wt list --format=json`
 ---@return internal.git.worktrunk.Item
@@ -28,26 +57,59 @@ local function to_item(item)
 		dir = path ~= nil,
 		current = util.is_current(item),
 		main = util.is_main(item),
+		created = path ~= nil,
+		remote = item.remote,
 		worktrunk = item,
 	}
 end
 
+--- Rank: current worktree, then other worktrees, then local branches without a
+--- worktree, then remote-only branches.
+---@param item internal.git.worktrunk.Item
+---@return integer
+local function rank(item)
+	if item.current then
+		return 0
+	elseif item.created then
+		return item.main and 1 or 2
+	elseif not item.remote then
+		return 3
+	end
+	return 4
+end
+
 --- Async finder: `wt list` is a `vim.system` job, so suspend the picker task
 --- until its callback fires.
----@type snacks.picker.finder
-local function finder(_, ctx)
+---
+--- Unlike `worktrunk.worktree.list()` this passes `--branches`/`--remotes` so
+--- branches without a worktree show up too (same set as `wt switch`).
+---@param opts internal.git.worktrunk.Config
+---@param ctx snacks.picker.finder.ctx
+---@return snacks.picker.finder.result
+local function finder(opts, ctx)
 	return function(cb)
-		local worktree = require("worktrunk.worktree")
+		local cmd = require("worktrunk.cmd")
 
-		local result, done = nil, false
-		worktree.list(function(err, items)
-			result = { err = err, items = items or {} }
-			done = true
+		local args = { "list" }
+		if opts.branches ~= false then
+			args[#args + 1] = "--branches"
+		end
+		if opts.remotes ~= false then
+			args[#args + 1] = "--remotes"
+		end
+
+		---@type { err?: table, items: table[] }?
+		local result
+		cmd.run(args, function(err, data)
+			result = { err = err, items = extract_items(data) }
 			ctx.async:resume()
 		end)
 
-		if not done then
+		if not result then
 			ctx.async:suspend()
+		end
+		if not result then
+			return
 		end
 
 		if result.err then
@@ -55,8 +117,26 @@ local function finder(_, ctx)
 			return
 		end
 
-		for i, item in ipairs(result.items) do
-			local entry = to_item(item)
+		---@type internal.git.worktrunk.Item[]
+		local entries = {}
+		for _, item in ipairs(result.items) do
+			entries[#entries + 1] = to_item(item)
+		end
+
+		-- stable sort: created worktrees first, keeping `wt list` order inside
+		-- each group.
+		for i, entry in ipairs(entries) do
+			entry.idx = i
+		end
+		table.sort(entries, function(a, b)
+			local ra, rb = rank(a), rank(b)
+			if ra ~= rb then
+				return ra < rb
+			end
+			return a.idx < b.idx
+		end)
+
+		for i, entry in ipairs(entries) do
 			cb(entry)
 			if entry.current then
 				ctx.picker.list:set_target(i)
@@ -80,6 +160,13 @@ local function format(item)
 	---@type snacks.picker.Highlight[]
 	local ret = {}
 	ret[#ret + 1] = { a(util.gutter(raw), 2), item.current and "SnacksPickerGitBranchCurrent" or "SnacksPickerComment" }
+	if item.created then
+		ret[#ret + 1] = { a(icons.created, 2), "SnacksPickerGitBranchCurrent" }
+	elseif item.remote then
+		ret[#ret + 1] = { a(icons.remote, 2), "SnacksPickerComment" }
+	else
+		ret[#ret + 1] = { a(icons.branch, 2), "SnacksPickerComment" }
+	end
 	ret[#ret + 1] = { a(item.branch, 30, { truncate = true }), "SnacksPickerGitBranch" }
 	ret[#ret + 1] = { " " }
 	ret[#ret + 1] = { a(util.sha(raw), 8), "SnacksPickerGitCommit" }
@@ -134,7 +221,9 @@ local actions = {
 	--- Remove every selected worktree (or the one under the cursor), with a
 	--- single confirmation for the whole batch.
 	worktrunk_remove = function(picker)
-		local items = picker:selected({ fallback = true })
+		local items = vim.tbl_filter(function(item)
+			return item.created
+		end, picker:selected({ fallback = true }))
 		if #items == 0 then
 			return
 		end
@@ -159,7 +248,7 @@ local actions = {
 }
 
 --- Open the worktrunk picker.
----@param opts? snacks.picker.Config
+---@param opts? internal.git.worktrunk.Config
 function M.pick(opts)
 	local ok = pcall(require, "snacks")
 	if not ok then
@@ -169,6 +258,8 @@ function M.pick(opts)
 	return Snacks.picker.pick(vim.tbl_deep_extend("force", {
 		source = "worktrunk",
 		title = "Worktrees",
+		branches = true,
+		remotes = true,
 		finder = finder,
 		format = format,
 		preview = "none",
