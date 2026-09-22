@@ -11,36 +11,7 @@ local M = {}
 ---@field path? string
 ---@field current boolean
 ---@field main boolean
----@field created boolean worktree already checked out on disk
----@field remote? string remote name for remote-only branches
 ---@field worktrunk table raw `wt list` item
-
----@class internal.git.worktrunk.Config: snacks.picker.Config
----@field branches? boolean include local branches without a worktree (default true)
----@field remotes? boolean include remote-only branches (default true)
-
-local icons = {
-	created = "",
-	branch = "",
-	remote = "",
-}
-
---- `wt list --format=json` wraps its items in a schema-2 envelope; older
---- versions return a bare array (or a single object).
----@param data any
----@return table[]
-local function extract_items(data)
-	if type(data) ~= "table" then
-		return {}
-	end
-	if data.schema == 2 then
-		return data.items or {}
-	end
-	if data[1] ~= nil or #data == 0 then
-		return data
-	end
-	return { data }
-end
 
 ---@param item table raw item from `wt list --format=json`
 ---@return internal.git.worktrunk.Item
@@ -57,25 +28,8 @@ local function to_item(item)
 		dir = path ~= nil,
 		current = util.is_current(item),
 		main = util.is_main(item),
-		created = path ~= nil,
-		remote = item.remote,
 		worktrunk = item,
 	}
-end
-
---- Rank: current worktree, then other worktrees, then local branches without a
---- worktree, then remote-only branches.
----@param item internal.git.worktrunk.Item
----@return integer
-local function rank(item)
-	if item.current then
-		return 0
-	elseif item.created then
-		return item.main and 1 or 2
-	elseif not item.remote then
-		return 3
-	end
-	return 4
 end
 
 --- Async finder: `wt list` is a `vim.system` job, so suspend the picker task
@@ -88,28 +42,17 @@ end
 ---@return snacks.picker.finder.result
 local function finder(opts, ctx)
 	return function(cb)
-		local cmd = require("worktrunk.cmd")
+		local worktree = require("worktrunk.worktree")
 
-		local args = { "list" }
-		if opts.branches ~= false then
-			args[#args + 1] = "--branches"
-		end
-		if opts.remotes ~= false then
-			args[#args + 1] = "--remotes"
-		end
-
-		---@type { err?: table, items: table[] }?
-		local result
-		cmd.run(args, function(err, data)
-			result = { err = err, items = extract_items(data) }
+		local result, done = nil, false
+		worktree.list(function(err, items)
+			result = { err = err, items = items or {} }
+			done = true
 			ctx.async:resume()
 		end)
 
-		if not result then
+		if not done then
 			ctx.async:suspend()
-		end
-		if not result then
-			return
 		end
 
 		if result.err then
@@ -117,26 +60,8 @@ local function finder(opts, ctx)
 			return
 		end
 
-		---@type internal.git.worktrunk.Item[]
-		local entries = {}
-		for _, item in ipairs(result.items) do
-			entries[#entries + 1] = to_item(item)
-		end
-
-		-- stable sort: created worktrees first, keeping `wt list` order inside
-		-- each group.
-		for i, entry in ipairs(entries) do
-			entry.idx = i
-		end
-		table.sort(entries, function(a, b)
-			local ra, rb = rank(a), rank(b)
-			if ra ~= rb then
-				return ra < rb
-			end
-			return a.idx < b.idx
-		end)
-
-		for i, entry in ipairs(entries) do
+		for i, item in ipairs(result.items) do
+			local entry = to_item(item)
 			cb(entry)
 			if entry.current then
 				ctx.picker.list:set_target(i)
@@ -160,16 +85,10 @@ local function format(item)
 	---@type snacks.picker.Highlight[]
 	local ret = {}
 	ret[#ret + 1] = { a(util.gutter(raw), 2), item.current and "SnacksPickerGitBranchCurrent" or "SnacksPickerComment" }
-	if item.created then
-		ret[#ret + 1] = { a(icons.created, 2), "SnacksPickerGitBranchCurrent" }
-	elseif item.remote then
-		ret[#ret + 1] = { a(icons.remote, 2), "SnacksPickerComment" }
-	else
-		ret[#ret + 1] = { a(icons.branch, 2), "SnacksPickerComment" }
-	end
 	ret[#ret + 1] = { a(item.branch, 30, { truncate = true }), "SnacksPickerGitBranch" }
 	ret[#ret + 1] = { " " }
 	ret[#ret + 1] = { a(util.sha(raw), 8), "SnacksPickerGitCommit" }
+	ret[#ret + 1] = { a(item.pr and ("#%d"):format(item.pr) or "", 6), "SnacksPickerGitIssue" }
 	ret[#ret + 1] = { a(util.symbols(raw), 6), "SnacksPickerGitStatus" }
 	ret[#ret + 1] = { a(util.ahead_behind_str(raw), 8), "SnacksPickerComment" }
 	ret[#ret + 1] = { msg, "SnacksPickerGitMsg" }
@@ -177,6 +96,15 @@ local function format(item)
 end
 
 --- Remove `branches` one after the other (`wt remove` is async), then refresh.
+--- Drop the cached `wt list` output so the next find re-runs the command.
+---@param picker snacks.Picker
+local function invalidate(picker)
+	local state = (picker.opts --[[@as internal.git.worktrunk.Config]]).wt_state
+	if state then
+		state.cache = {}
+	end
+end
+
 ---@param branches string[]
 ---@param picker snacks.Picker
 local function remove_all(branches, picker)
@@ -190,6 +118,7 @@ local function remove_all(branches, picker)
 
 		if not branch then
 			if not picker.closed then
+				invalidate(picker)
 				picker:refresh()
 			end
 			return
@@ -245,6 +174,12 @@ local actions = {
 		picker:close()
 		require("worktrunk").create()
 	end,
+
+	--- Re-run `wt list` (pick up worktrees created elsewhere).
+	worktrunk_refresh = function(picker)
+		invalidate(picker)
+		picker:refresh()
+	end,
 }
 
 --- Open the worktrunk picker.
@@ -258,14 +193,22 @@ function M.pick(opts)
 	return Snacks.picker.pick(vim.tbl_deep_extend("force", {
 		source = "worktrunk",
 		title = "Worktrees",
-		branches = true,
-		remotes = true,
 		finder = finder,
 		format = format,
 		preview = "none",
 		live = false,
 		sort = { fields = { "score:desc", "idx" } },
-		layout = { preset = "select" },
+		layout = {
+			preset = "select",
+			layout = {
+				width = 0.8,
+				min_width = 100,
+				max_width = 160,
+				height = 0.7,
+				min_height = 20,
+				max_height = 0.8,
+			},
+		},
 		confirm = "worktrunk_switch",
 		actions = actions,
 		win = {
@@ -273,12 +216,14 @@ function M.pick(opts)
 				keys = {
 					["<C-d>"] = { "worktrunk_remove", mode = { "n", "i" } },
 					["<C-n>"] = { "worktrunk_create", mode = { "n", "i" } },
+					["<C-r>"] = { "worktrunk_refresh", mode = { "n", "i" } },
 				},
 			},
 			list = {
 				keys = {
 					["<C-d>"] = "worktrunk_remove",
 					["<C-n>"] = "worktrunk_create",
+					["<C-r>"] = "worktrunk_refresh",
 				},
 			},
 		},
