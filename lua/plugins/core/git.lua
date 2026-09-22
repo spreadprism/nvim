@@ -132,6 +132,7 @@ plugin("blame")
 	end)
 
 plugin("wt")
+	:event("DeferredUIEnter")
 	:on_require("worktrunk")
 	:cmd("Worktrunk")
 	:opts({
