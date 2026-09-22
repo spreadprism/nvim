@@ -130,3 +130,18 @@ plugin("blame")
 			end,
 		})
 	end)
+
+plugin("wt")
+	:on_require("worktrunk")
+	:cmd("Worktrunk")
+	:opts({
+		update_on_switch = true,
+		confirm_remove = true,
+		notifications = true,
+	})
+	:keymaps({
+		k:group("git", "<leader>g", {
+			k:map("n", "w", k:require("internal.git.worktrunk").pick(), "worktrees"),
+			k:map("n", "W", k:require("worktrunk").create(), "create worktree"),
+		}),
+	})

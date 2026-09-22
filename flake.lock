@@ -83,11 +83,11 @@
     "blink-ripgrep": {
       "flake": false,
       "locked": {
-        "lastModified": 1789366283,
-        "narHash": "sha256-eeudFpvSm8kRRxvRZlUPBmCvdu5mVuZtAr/v4DVj9Sc=",
+        "lastModified": 1789974683,
+        "narHash": "sha256-1y22fjjMyebeUzWTIuJJtSd8OiYNgK9Q60O7OkyvKoY=",
         "owner": "mikavilpas",
         "repo": "blink-ripgrep.nvim",
-        "rev": "18e3c196a75877b847a4a685035b25a3c2cb6912",
+        "rev": "0e27566da4f70e61d0c0f2821bb71ae745e71364",
         "type": "github"
       },
       "original": {
@@ -1003,6 +1003,7 @@
         "venv-selector": "venv-selector",
         "visual-whitespace": "visual-whitespace",
         "which-key": "which-key",
+        "wt": "wt",
         "yaml-companion": "yaml-companion"
       },
       "locked": {
@@ -1372,6 +1373,22 @@
       "original": {
         "owner": "folke",
         "repo": "which-key.nvim",
+        "type": "github"
+      }
+    },
+    "wt": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786431625,
+        "narHash": "sha256-0QOjLnz5w73ABpFprprW3fsRZrmmsPlgZ9XznLRswVU=",
+        "owner": "emeren",
+        "repo": "wt.nvim",
+        "rev": "f5fcdc148ff4e7867354d28be0c9ee211be6f3ba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "emeren",
+        "repo": "wt.nvim",
         "type": "github"
       }
     },

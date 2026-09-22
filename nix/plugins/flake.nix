@@ -65,6 +65,10 @@
       url = "github:FabijanZulj/blame.nvim";
       flake = false;
     };
+    wt = {
+      url = "github:emeren/wt.nvim";
+      flake = false;
+    };
 
     nui = {
       url = "github:MunifTanjim/nui.nvim";
