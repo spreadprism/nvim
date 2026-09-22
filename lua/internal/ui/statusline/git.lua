@@ -1,3 +1,51 @@
+--- Resolve the actual git dir for a work tree root.
+--- Handles worktrees/submodules where `.git` is a file containing
+--- `gitdir: /path/to/repo/worktrees/<name>` (path may be relative).
+---@param root string work tree root
+---@return string|nil git_dir
+local function resolve_git_dir(root)
+	local git_path = vim.fs.joinpath(root, ".git")
+	local stat = vim.uv.fs_stat(git_path)
+	if not stat then
+		return nil
+	end
+
+	if stat.type == "directory" then
+		return git_path
+	end
+
+	local line = vim.fn.readfile(git_path)[1] or ""
+	local git_dir = line:match("^gitdir:%s*(.-)%s*$")
+	if not git_dir or git_dir == "" then
+		return nil
+	end
+
+	if not vim.startswith(git_dir, "/") then
+		git_dir = vim.fs.normalize(vim.fs.joinpath(root, git_dir))
+	end
+
+	return git_dir
+end
+
+--- Read the current branch (or short sha when detached) from a git dir.
+---@param git_dir string
+---@return string|nil
+local function head_of(git_dir)
+	local ref = vim.fn.readfile(vim.fs.joinpath(git_dir, "HEAD"))[1] or ""
+
+	local branch = ref:match("ref: refs/heads/(.+)")
+	if branch then
+		return branch
+	end
+
+	local sha = ref:match("^(%x%x%x%x%x%x%x)%x*$")
+	if sha then
+		return sha
+	end
+
+	return nil
+end
+
 -- PERF: this is called 3 times every update
 local function get_branch(buf)
 	local ft = vim.bo.filetype
@@ -11,10 +59,8 @@ local function get_branch(buf)
 		if path then
 			local root, _ = require("oil-git.git").get_root(path)
 			if root then
-				-- read .git/HEAD
-				local head_path = vim.fs.joinpath(root, ".git", "HEAD")
-				local ref = vim.fn.readfile(head_path)[1] or ""
-				local b = ref:match("ref: refs/heads/(.+)")
+				local git_dir = resolve_git_dir(root)
+				local b = git_dir and head_of(git_dir)
 				if b then
 					branch = b
 				end
