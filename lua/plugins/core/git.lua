@@ -143,9 +143,10 @@ plugin("worktrunk")
 	:event("DeferredUIEnter")
 	:keymaps({
 		k:group("git", "<leader>g", {
-			k:map("n", "w", k:require("worktrunk").pick(), "worktree pick"),
-			k:map("n", "x", k:require("worktrunk").delete(), "delete current worktree"),
-			k:map("n", "m", k:require("worktrunk").merge(), "merge current worktree"),
+			k:map("n", "w", k:require("worktrunk").pick(), "worktree"),
+			k:map("n", "c", k:require("worktrunk").create(), "create worktree"),
+			k:map("n", "x", k:require("worktrunk").delete(), "delete worktree"),
+			k:map("n", "m", k:require("worktrunk").merge(), "merge worktree"),
 		}),
 	})
 	:opts({
