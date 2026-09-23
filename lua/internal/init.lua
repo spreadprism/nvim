@@ -52,6 +52,7 @@ _G.workspace = require("internal.workspace")
 _G.env = vim.env
 
 _G.direnv = require("internal.direnv")
+_G.herdr = require("internal.herdr")
 _G.symbols = require("internal.symbols")
 _G.fs = require("internal.fs")
 
