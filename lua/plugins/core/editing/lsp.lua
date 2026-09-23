@@ -78,25 +78,48 @@ plugin("lspconfig")
 			},
 		})
 		vim.lsp.log.set_level(vim.env.NVIM_LSP_LOG_LEVEL or "OFF")
+
+		-- DirChanged only reports the new cwd, so remember the previous one.
+		local prev_cwd = vim.fs.normalize(vim.fn.getcwd())
+
+		---@param dir string
+		---@param root string?
+		local function is_under(dir, root)
+			if not root then
+				return false
+			end
+			root = vim.fs.normalize(root)
+			return root == dir or vim.startswith(root, dir .. "/")
+		end
+
+		vim.api.nvim_create_autocmd("DirChanged", {
+			group = vim.api.nvim_create_augroup("lsp_dir_changed", { clear = true }),
+			desc = "stop language servers rooted in the previous cwd",
+			callback = function(ev)
+				-- only a global :cd switches workspace
+				if ev.match ~= "global" then
+					return
+				end
+
+				local old = prev_cwd
+				local new = vim.fs.normalize(vim.v.event.cwd or vim.fn.getcwd())
+				prev_cwd = new
+				if old == new then
+					return
+				end
+
+				for _, client in ipairs(vim.lsp.get_clients()) do
+					-- keep clients that also cover the directory we moved into
+					if is_under(old, client.root_dir) and not is_under(new, client.root_dir) then
+						client:stop(true)
+					end
+				end
+			end,
+		})
 	end)
 	:keymaps(k:group("lsp", "<leader>l", {
-		k:map("n", "i", k:cmd("LspInfo"), "Info"),
-		k:map("n", "r", function()
-			local bufnr = vim.fn.bufnr()
-			local clients = vim.lsp.get_clients({ bufnr = bufnr })
-			for _, client in ipairs(clients) do
-				if client.name == "copilot" then
-					goto continue
-				end
-				client:stop(true)
-				vim.defer_fn(function()
-					vim.lsp.start(client.config, {
-						bufnr = bufnr,
-					})
-				end, 1000)
-				::continue::
-			end
-		end, "Restart language server"),
+		k:map("n", "i", k:cmd("checkhealth vim.lsp"), "info"),
+		k:map("n", "r", k:cmd("lsp restart"), "restart"),
 	}))
 	:on_highlights(function(highlights, colors)
 		highlights.DiagnosticUnderlineError = { fg = colors.error, undercurl = true }
