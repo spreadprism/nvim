@@ -28,11 +28,6 @@ plugin("neogit")
 	:cmd("Neogit")
 	:keymaps({
 		k:group("git", "<leader>g", {
-			k:map("n", "b", k:cmd("Neogit branch"), "branch"),
-			k:map("n", "l", k:cmd("Neogit log"), "log"),
-			k:map("n", "p", k:cmd("Neogit pull"), "pull"),
-			k:map("n", "P", k:cmd("Neogit push"), "push"),
-			k:map("n", "c", k:cmd("Neogit commit"), "commit"),
 			k:map("n", "g", function()
 				vim.cmd("tablast")
 				local ft = vim.bo.filetype
