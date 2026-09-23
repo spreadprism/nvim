@@ -21,6 +21,10 @@ plugin("exrc")
 	})
 	:opts({
 		on_vim_enter = false,
+		on_dir_changed = {
+			enabled = true,
+			use_ui_select = false,
+		},
 		min_log_level = vim.log.levels.INFO,
 	})
 	:after(function()
