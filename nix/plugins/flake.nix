@@ -65,8 +65,8 @@
       url = "github:FabijanZulj/blame.nvim";
       flake = false;
     };
-    wt = {
-      url = "github:emeren/wt.nvim";
+    worktrunk = {
+      url = "github:spreadprism/worktrunk.nvim";
       flake = false;
     };
 

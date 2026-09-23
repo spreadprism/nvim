@@ -1003,7 +1003,7 @@
         "venv-selector": "venv-selector",
         "visual-whitespace": "visual-whitespace",
         "which-key": "which-key",
-        "wt": "wt",
+        "worktrunk": "worktrunk",
         "yaml-companion": "yaml-companion"
       },
       "locked": {
@@ -1376,19 +1376,19 @@
         "type": "github"
       }
     },
-    "wt": {
+    "worktrunk": {
       "flake": false,
       "locked": {
-        "lastModified": 1786431625,
-        "narHash": "sha256-0QOjLnz5w73ABpFprprW3fsRZrmmsPlgZ9XznLRswVU=",
-        "owner": "emeren",
-        "repo": "wt.nvim",
-        "rev": "f5fcdc148ff4e7867354d28be0c9ee211be6f3ba",
+        "lastModified": 1790180912,
+        "narHash": "sha256-mO9l1ltxhHv20+WdcNDtG+ynIhLe2EjciMUerVQwpGs=",
+        "owner": "spreadprism",
+        "repo": "worktrunk.nvim",
+        "rev": "a6c814d11e1b9886fb71233562fe6da874f0484b",
         "type": "github"
       },
       "original": {
-        "owner": "emeren",
-        "repo": "wt.nvim",
+        "owner": "spreadprism",
+        "repo": "worktrunk.nvim",
         "type": "github"
       }
     },

@@ -60,25 +60,33 @@ plugin("neogit")
 		}),
 	})
 
-plugin("gitsigns"):cmd("Gitsigns"):event("BufEnter"):opts({
-	signcolumn = true,
-	numhl = true,
-	current_line_blame_opts = {
-		delay = 10,
-	},
-	preview_config = {
-		border = "rounded",
-	},
-	current_line_blame_formatter = "<author>, <author_time:%R>",
-	on_attach = function(bufnr)
-		k:opts({
-			k:map("n", "<M-b>", k:cmd("Gitsigns toggle_current_line_blame"), "Toggle line blame"),
-			-- k:map("n", "<M-B>", k:cmd("Gitsigns blame"), "open blame window"),
-		})
-			:buffer(bufnr)
-			:add()
-	end,
-})
+plugin("gitsigns")
+	:cmd("Gitsigns")
+	:event("BufEnter")
+	:opts({
+		signcolumn = true,
+		numhl = true,
+		current_line_blame_opts = {
+			delay = 10,
+		},
+		preview_config = {
+			border = "rounded",
+		},
+		current_line_blame_formatter = "<author>, <author_time:%R>",
+		on_attach = function(bufnr)
+			k:opts({
+				k:map("n", "<M-b>", k:cmd("Gitsigns toggle_current_line_blame"), "Toggle line blame"),
+				-- k:map("n", "<M-B>", k:cmd("Gitsigns blame"), "open blame window"),
+			})
+				:buffer(bufnr)
+				:add()
+		end,
+	})
+	:after(function()
+		vim.schedule(function()
+			vim.cmd("redrawstatus!")
+		end)
+	end)
 
 plugin("blame")
 	:cmd("BlameToggle")
@@ -131,18 +139,24 @@ plugin("blame")
 		})
 	end)
 
-plugin("wt")
+plugin("worktrunk")
 	:event("DeferredUIEnter")
-	:on_require("worktrunk")
-	:cmd("Worktrunk")
-	:opts({
-		update_on_switch = true,
-		confirm_remove = true,
-		notifications = true,
-	})
 	:keymaps({
 		k:group("git", "<leader>g", {
-			k:map("n", "w", k:require("internal.git.worktrunk").pick(), "worktrees"),
-			k:map("n", "W", k:require("worktrunk").create(), "create worktree"),
+			k:map("n", "w", k:require("worktrunk").pick(), "worktree pick"),
+			k:map("n", "x", k:require("worktrunk").delete(), "delete current worktree"),
+			k:map("n", "m", k:require("worktrunk").merge(), "merge current worktree"),
 		}),
+	})
+	:opts({
+		hooks = {
+			on_switch = function()
+				vim.schedule(function()
+					---@diagnostic disable-next-line: param-type-mismatch
+					pcall(vim.cmd, "Gitsigns refresh")
+					vim.cmd("redrawstatus!")
+					vim.cmd("redrawtabline")
+				end)
+			end,
+		},
 	})

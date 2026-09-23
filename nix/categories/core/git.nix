@@ -13,7 +13,7 @@
     neogit
     gitsigns
     blame
-    wt
+    worktrunk
     pkgs.vimPlugins.codediff-nvim
   ];
 }
