@@ -9,8 +9,9 @@ just test tests/internal               # one directory
 just test_file tests/internal/fs_spec.lua
 just bench                             # only tests/bench
 just langs                             # per-filetype scenarios, real config
-just langs 500                         # ...with 500ms settle instead of 2000ms
-just langs 2000 out/report.txt         # ...writing the summary elsewhere
+just langs go                          # ...only the go scenario
+just langs go,rust 500                 # ...two of them, 500ms settle
+just langs "" 2000 out/report.txt      # ...writing the summary elsewhere
 ```
 
 Specs run in a headless nvim started with `-u tests/minimal_init.lua`, so the
@@ -80,9 +81,15 @@ scenario, and the final spec prints a combined report: per-filetype phase
 timings with the attached LSP clients, then the five slowest traced functions
 per scenario.
 
-The same text is written to `report.txt` (`$NVIM_FT_REPORT`, the recipe's
-second argument). It is written only once the run reaches the reporting spec,
-so a crashed or interrupted run leaves the previous report untouched.
+The same text is written to `report.txt` (`$NVIM_FT_REPORT`). It is written
+only once the run reaches the reporting spec, so a crashed or interrupted run
+leaves the previous report untouched.
+
+The first argument filters the run (`$NVIM_FT_ONLY`): a comma separated list of
+labels or expected filetypes, e.g. `just langs go`, `just langs go,typescript`.
+A filtered run writes `report-<only>.txt` instead of `report.txt`, so
+iterating on one language never clobbers the full baseline. An unknown name
+fails loudly rather than running nothing.
 
 Add a language by appending to the `langs` table — `label`, expected
 `filetype`, `file`, `lines`, the `insert` line, and any `extra` sibling files

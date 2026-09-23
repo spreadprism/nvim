@@ -213,6 +213,33 @@ local langs = {
 	},
 }
 
+--- `$NVIM_FT_ONLY` keeps a subset of the scenarios, by label or by expected
+--- filetype: `just langs go`, `just langs go,rust`. Empty means everything.
+---@param specs Lang.Spec[]
+---@return Lang.Spec[]
+local function selected(specs)
+	local only = os.getenv("NVIM_FT_ONLY") or ""
+	if only == "" then
+		return specs
+	end
+
+	local wanted = {}
+	for _, name in ipairs(vim.split(only, "[,%s]+")) do
+		if name ~= "" then
+			wanted[name:lower()] = true
+		end
+	end
+
+	local kept = vim.tbl_filter(function(spec)
+		return wanted[spec.label:lower()] or wanted[spec.filetype:lower()]
+	end, specs)
+
+	assert(#kept > 0, ("NVIM_FT_ONLY=%q matched none of the scenarios"):format(only))
+	return kept
+end
+
+langs = selected(langs)
+
 -- These specs need the real config (plugins, langs, LSP). `just test` runs the
 -- suite with tests/minimal_init.lua, where none of that exists; run them with
 -- `just langs` instead of failing the unit suite.

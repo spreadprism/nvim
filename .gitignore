@@ -6,3 +6,4 @@ tags
 .env.local
 .agents
 report.txt
+report-*.txt
