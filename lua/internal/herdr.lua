@@ -34,7 +34,7 @@ function M.write_exit_cwd()
 	if not path or path == "" then
 		return
 	end
-	pcall(vim.fn.writefile, { vim.fn.getcwd(-1, -1) }, path)
+	pcall(vim.fn.writefile, { vim.fn.getcwd() }, path)
 end
 
 vim.api.nvim_create_autocmd({ "VimEnter", "DirChanged" }, {
