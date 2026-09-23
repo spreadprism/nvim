@@ -51,6 +51,19 @@ function M.toggle()
 	require("snacks.profiler").toggle()
 end
 
+--- Start profiling now (no startup event). Used by the scenario specs.
+---@param opts? snacks.profiler.Config
+function M.start(opts)
+	patch_loc()
+	require("snacks.profiler").start(opts)
+end
+
+--- Stop profiling. Pass `{ pick = false, highlights = false }` for a silent stop.
+---@param opts? {highlights?:boolean, pick?:snacks.profiler.Pick.spec}
+function M.stop(opts)
+	require("snacks.profiler").stop(opts)
+end
+
 function M.running()
 	return require("snacks.profiler").running()
 end
