@@ -15,6 +15,14 @@ local Direnv = {
 
 local group = vim.api.nvim_create_augroup("Direnv", { clear = true })
 
+--- Files whose contents feed the environment: the .envrc itself and any dotenv
+--- file it may source (`dotenv`/`dotenv_if_exists` in direnv stdlib).
+---@param basename string
+---@return boolean
+local function is_env_file(basename)
+	return basename == ".envrc" or basename == ".env" or vim.startswith(basename, ".env.")
+end
+
 vim.api.nvim_create_autocmd("BufEnter", {
 	group = group,
 	callback = function(args)
@@ -34,10 +42,15 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 		end
 		local path = vim.api.nvim_buf_get_name(args.buf)
 		local basename = vim.fs.basename(path)
-		if basename == ".envrc" then
-			if Direnv.envrc[path] == EnvrcStatus.ALLOWED then
-				Direnv:allow()
-			end
+		-- only these writes can change the environment
+		if not is_env_file(basename) then
+			return
+		end
+
+		-- editing an .envrc invalidates its trust hash, re-allow when it was
+		-- already allowed before the write
+		if basename == ".envrc" and Direnv.envrc[path] == EnvrcStatus.ALLOWED then
+			Direnv:allow()
 		end
 		Direnv:reload()
 	end,
