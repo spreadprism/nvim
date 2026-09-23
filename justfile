@@ -27,8 +27,10 @@ bench:
 
 # per-filetype editing scenarios, profiled, against the REAL config
 # wait: settle time in ms after open and after write (default 2000)
-langs wait="2000" dir="tests/scenarios":
-  NVIM_FT_WAIT_MS={{ wait }} nvim --headless -u tests/full_init.lua \
+# the summary is printed and written to `report` (only once the run completes)
+langs wait="2000" report="report.txt" dir="tests/scenarios":
+  NVIM_FT_WAIT_MS={{ wait }} NVIM_FT_REPORT="{{ absolute_path(report) }}" \
+  nvim --headless -u tests/full_init.lua \
     -c "PlenaryBustedDirectory {{ dir }} {minimal_init = 'tests/full_init.lua', nvim_cmd = 'nvim', timeout = 900000, sequential = true}" \
     -c "qa!"
 

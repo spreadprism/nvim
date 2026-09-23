@@ -1,25 +1,34 @@
-local function get_client()
-	local clients = vim.lsp.get_clients({ bufnr = 0 })
+--- Directory the linter should run from.
+---
+--- The attached language server knows the project root, but it may not have
+--- initialised yet (or there may be none at all), so fall back to the usual
+--- markers instead of waiting for it. Waiting used to mean a `defer_fn(1000)`
+--- that both delayed the diagnostics by a second and ran the whole lint twice.
+---@param buf integer
+---@return string
+local function lint_root(buf)
+	for _, client in ipairs(vim.lsp.get_clients({ bufnr = buf })) do
+		if client.name ~= "copilot" and client.name ~= "ast_grep" and client.root_dir then
+			return client.root_dir
+		end
+	end
 
-	clients = vim.tbl_filter(function(c)
-		return c.name ~= "copilot" and c.name ~= "ast_grep"
-	end, clients)
+	local bufname = vim.api.nvim_buf_get_name(buf)
+	if bufname ~= "" then
+		local root = vim.fs.root(buf, { ".git", ".nvim.lua" })
+		if root then
+			return root
+		end
+	end
 
-	return clients[1] or {}
+	return vim.fn.getcwd()
 end
 
 plugin("lint"):event("DeferredUIEnter"):opts(false):after(function()
 	vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-		callback = function()
-			local client = get_client()
-			if not client.initialized then
-				vim.defer_fn(function()
-					client = get_client()
-					require("lint").try_lint(nil, { cwd = client.root_dir or vim.fn.getcwd() })
-				end, 1000) -- HACK: we set 1 second of wait, but we should wait for init event instead
-			else
-				require("lint").try_lint(nil, { cwd = client.root_dir or vim.fn.getcwd() })
-			end
+		group = vim.api.nvim_create_augroup("lint_on_save", { clear = true }),
+		callback = function(args)
+			require("lint").try_lint(nil, { cwd = lint_root(args.buf) })
 		end,
 	})
 end)

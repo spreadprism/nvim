@@ -10,6 +10,7 @@ just test_file tests/internal/fs_spec.lua
 just bench                             # only tests/bench
 just langs                             # per-filetype scenarios, real config
 just langs 500                         # ...with 500ms settle instead of 2000ms
+just langs 2000 out/report.txt         # ...writing the summary elsewhere
 ```
 
 Specs run in a headless nvim started with `-u tests/minimal_init.lua`, so the
@@ -78,6 +79,10 @@ in `lua/langs/`: open a file → settle 2s → append a line and `:write` → se
 scenario, and the final spec prints a combined report: per-filetype phase
 timings with the attached LSP clients, then the five slowest traced functions
 per scenario.
+
+The same text is written to `report.txt` (`$NVIM_FT_REPORT`, the recipe's
+second argument). It is written only once the run reaches the reporting spec,
+so a crashed or interrupted run leaves the previous report untouched.
 
 Add a language by appending to the `langs` table — `label`, expected
 `filetype`, `file`, `lines`, the `insert` line, and any `extra` sibling files

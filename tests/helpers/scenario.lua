@@ -222,9 +222,10 @@ function M.run(spec)
 end
 
 ---@param result Scenario.Result
-local function report_one(result)
+---@param emit fun(line: string)
+local function report_one(result, emit)
 	local phases = result.phases
-	print(
+	emit(
 		string.format(
 			"  %-14s ft=%-16s open %7.1fms  write %7.1fms  revert %7.1fms  lsp=%s",
 			result.label,
@@ -236,38 +237,48 @@ local function report_one(result)
 		)
 	)
 	if result.error then
-		print(string.format("    ! %s", vim.split(result.error, "\n")[1]))
+		emit(string.format("    ! %s", vim.split(result.error, "\n")[1]))
 	end
 end
 
---- The summary printed once, after every scenario has run.
+--- The summary, printed once after every scenario has run and — when
+--- `$NVIM_FT_REPORT` is set — written there verbatim. The file is only
+--- replaced once the run reaches this point, so a crashed run leaves the
+--- previous report intact.
+---@return string[] lines
 function M.report()
-	print("")
-	print("=== filetype scenarios ===========================================")
-	print(string.format("settle time: %dms after open and after write", M.WAIT_MS))
-	print("")
+	local lines = {}
+	local function emit(line)
+		lines[#lines + 1] = line
+		print(line)
+	end
+
+	emit("")
+	emit("=== filetype scenarios ===========================================")
+	emit(string.format("settle time: %dms after open and after write", M.WAIT_MS))
+	emit("")
 
 	local slowest_open, slowest_write = 0, 0
 	for _, result in ipairs(M.results) do
-		report_one(result)
+		report_one(result, emit)
 		slowest_open = math.max(slowest_open, result.phases.open or 0)
 		slowest_write = math.max(slowest_write, result.phases.write or 0)
 	end
 
-	print("")
-	print("--- slowest traces per scenario (profiler) -----------------------")
+	emit("")
+	emit("--- slowest traces per scenario (profiler) -----------------------")
 	for _, result in ipairs(M.results) do
-		print(string.format("  %s (%d events)", result.label, result.events))
+		emit(string.format("  %s (%d events)", result.label, result.events))
 		if #result.traces == 0 then
-			print("    (no traces captured)")
+			emit("    (no traces captured)")
 		end
 		for _, trace in ipairs(result.traces) do
-			print(string.format("    %8.2fms  x%-5d %s", trace.time, trace.count, trace.name))
+			emit(string.format("    %8.2fms  x%-5d %s", trace.time, trace.count, trace.name))
 		end
 	end
 
-	print("")
-	print(
+	emit("")
+	emit(
 		string.format(
 			"scenarios: %d   slowest open: %.1fms   slowest write: %.1fms",
 			#M.results,
@@ -275,7 +286,18 @@ function M.report()
 			slowest_write
 		)
 	)
-	print("==================================================================")
+	emit("==================================================================")
+
+	local path = os.getenv("NVIM_FT_REPORT")
+	if path and path ~= "" then
+		-- drop the leading blank line: it only separates the report from the
+		-- busted output on the terminal
+		local out = vim.list_slice(lines, 2, #lines)
+		vim.fn.writefile(out, path)
+		print(string.format("report written to %s", path))
+	end
+
+	return lines
 end
 
 return M
