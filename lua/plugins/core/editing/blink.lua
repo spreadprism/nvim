@@ -89,7 +89,6 @@ plugin("blink.cmp")
 			"lsp",
 			"buffer",
 			"path",
-			"git",
 			"conventional_commits",
 		}
 		-- Snippets are penalised by default (score_offset -1 vs 0 for lsp), so the
@@ -164,6 +163,7 @@ plugin("blink.cmp")
 					oil = { "path", "buffer", "snippets" },
 					sql = vim.list_extend(vim.deepcopy(default), { "dbab" }),
 					crust_input = vim.list_extend(vim.deepcopy(default), { "crust" }),
+					gitcommit = vim.list_extend(vim.deepcopy(default), { "git" }),
 				},
 				providers = {
 					lazydev = {
@@ -178,7 +178,7 @@ plugin("blink.cmp")
 						name = "Git",
 						module = "blink-cmp-git",
 						enabled = function()
-							return vim.tbl_contains({ "gitcommit", "markdown" }, vim.bo.filetype)
+							return vim.tbl_contains({ "gitcommit" }, vim.bo.filetype)
 						end,
 					},
 					conventional_commits = {
@@ -196,18 +196,6 @@ plugin("blink.cmp")
 						end,
 					},
 					crust = { name = "Crust", module = "crust.completion.blink" },
-					ripgrep = {
-						module = "blink-ripgrep",
-						name = "Ripgrep",
-						max_items = 3,
-						---@module "blink-ripgrep"
-						---@type blink-ripgrep.Options
-						opts = {
-							backend = {
-								use = "gitgrep-or-ripgrep",
-							},
-						},
-					},
 				},
 			},
 			keymap = vim.tbl_deep_extend("keep", {
