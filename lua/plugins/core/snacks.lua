@@ -206,6 +206,12 @@ plugin("onoma")
 						vim.notify(tostring(item.kind or "unknown"), vim.log.levels.INFO, { title = "Symbol kind" })
 					end
 				end,
+				--- Flips the buffer/workspace scope and re-runs the finder.
+				toggle_workspace = function(picker)
+					picker.opts.workspace = not picker.opts.workspace
+					picker.title = picker.opts.workspace and "Symbols (workspace)" or "Symbols"
+					picker:find({ refresh = true })
+				end,
 			},
 			win = {
 				input = {
@@ -222,5 +228,11 @@ plugin("onoma")
 		})
 	end)
 	:keymaps({
-		k:map("n", "<M-s>", k:require("snacks.picker").symbols({ workspace = true }), "symbols"),
+		k:map("n", "<M-s>", k:require("snacks.picker").symbols({ layout = "right" }), "symbols"),
+		k:map(
+			"n",
+			"<M-S>",
+			k:require("snacks.picker").symbols({ workspace = true, title = "Symbols (workspace)" }),
+			"symbols (workspace)"
+		),
 	})
