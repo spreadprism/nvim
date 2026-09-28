@@ -13,6 +13,24 @@ local codediff = plugin("codediff.nvim"):on_require("codediff"):cmd("CodeDiff"):
 	},
 })
 
+plugin("atlas")
+	:opts(function()
+		---@type AtlasConfig
+		return {
+			ui = {
+				statusline = false,
+				picker = "snacks",
+			},
+			pulls = {
+				git_transport = "ssh",
+				default_merge_method = "squash",
+				---@diagnostic disable-next-line: assign-type-mismatch
+				diff = "CodeDiff",
+			},
+		}
+	end)
+	:event("DeferredUIEnter")
+
 plugin("neogit")
 	:dep_on(codediff)
 	:opts({

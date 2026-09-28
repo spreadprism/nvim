@@ -3,11 +3,11 @@
     "atlas": {
       "flake": false,
       "locked": {
-        "lastModified": 1787347444,
-        "narHash": "sha256-acPcOD85GllEoqOOuR/nyz1FwCKZLqDJKiFq02roHQU=",
+        "lastModified": 1790546108,
+        "narHash": "sha256-atzEf3z4ddYWhVGWxFwuTtsxHILEZ4YTiLxmakBkM5M=",
         "owner": "emrearmagan",
         "repo": "atlas.nvim",
-        "rev": "1a9b8206203bdce0b99f848b6ebe9ce3ad0ac3d1",
+        "rev": "35626c0a610be540ae9c60426ffe528533954dfc",
         "type": "github"
       },
       "original": {
