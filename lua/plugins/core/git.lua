@@ -49,27 +49,8 @@ plugin("neogit")
 		k:group("git", "<leader>g", {
 			k:map("n", "g", function()
 				vim.cmd("tablast")
-				local ft = vim.bo.filetype
-
-				local path
-				if ft == "oil" then
-					path = require("oil").get_current_dir()
-				elseif ft == "fyler" then
-					path = require("fyler.views.finder").instance().files.root_path
-				else
-					path = "%:p:h"
-				end
-
-				local git_dirs = vim.fs.find(".git", { upward = true, path = path })
-				local cwd
-				if git_dirs and git_dirs[1] then
-					cwd = vim.fs.dirname(git_dirs[1])
-				else
-					cwd = vim.fn.getcwd()
-				end
-				require("neogit").open({
-					cwd = cwd,
-				})
+				local path = vim.bo.filetype == "oil" and require("oil").get_current_dir() or vim.fn.expand("%:p:h")
+				require("neogit").open({ cwd = vim.fs.root(path ~= "" and path or vim.fn.getcwd(), ".git") })
 			end, "Neogit"),
 		}),
 	})
