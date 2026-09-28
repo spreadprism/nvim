@@ -1,3 +1,4 @@
+-- diffview-plus: https://github.com/dlyongemallo/diffview-plus.nvim
 local codediff = plugin("codediff.nvim"):on_require("codediff"):cmd("CodeDiff"):opts({
 	explorer = {
 		initial_focus = "modified",
