@@ -3,6 +3,7 @@ lsp("gopls"):settings({
 		-- semanticTokens = true, -- PERF: huge performance hit
 		directoryFilters = {
 			"-/nix/**",
+			"-.devenv/**",
 			string.format("-%s/**", os.getenv("GOPATH")),
 		},
 	},
