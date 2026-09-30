@@ -18,6 +18,8 @@ vim.opt.splitright = true
 vim.o.updatetime = 750
 vim.opt.undofile = true -- INFO: Save undo history
 
+vim.o.swapfile = false
+
 vim.deprecate = function() end
 
 vim.api.nvim_create_autocmd("TextYankPost", {

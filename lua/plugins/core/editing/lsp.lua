@@ -4,12 +4,26 @@ plugin("lspconfig")
 		vim.lsp.config("*", {
 			root_markers = { ".nvim.lua", ".git" },
 		})
+
+		local inlay_group = vim.api.nvim_create_augroup("LspInlayHint", { clear = true })
 		vim.api.nvim_create_autocmd("LspAttach", {
 			callback = function(args)
 				local client = vim.lsp.get_client_by_id(args.data.client_id)
 				if client ~= nil then
 					if client:supports_method("textDocument/inlayHint") then
 						vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+
+						-- an inlay hint needs the whole package type-checked. on a large
+						-- workspace the server cannot finish one between keystrokes, so every
+						-- didChange cancels the in-flight request and the client reports
+						-- "getting file for InlayHint: context canceled". only ask while idle.
+						vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
+							group = inlay_group,
+							buffer = args.buf,
+							callback = function(ev)
+								vim.lsp.inlay_hint.enable(ev.event == "InsertLeave", { bufnr = ev.buf })
+							end,
+						})
 					end
 					k:opts({
 						-- k:map("n", "<leader>fs", k:require("snacks.picker").lsp_symbols(), "lsp symbols"),

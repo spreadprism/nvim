@@ -1,13 +1,9 @@
 lsp("gopls"):settings({
 	gopls = {
-		semanticTokens = true,
+		-- semanticTokens = true, -- PERF: huge performance hit
 		directoryFilters = {
 			"-/nix/**",
 			string.format("-%s/**", os.getenv("GOPATH")),
-		},
-		["ui.inlayhint.hints"] = {
-			constantValues = true,
-			rangeVariableTypes = true,
 		},
 	},
 })
