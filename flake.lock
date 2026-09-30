@@ -3,11 +3,11 @@
     "atlas": {
       "flake": false,
       "locked": {
-        "lastModified": 1790546108,
-        "narHash": "sha256-atzEf3z4ddYWhVGWxFwuTtsxHILEZ4YTiLxmakBkM5M=",
+        "lastModified": 1787347444,
+        "narHash": "sha256-acPcOD85GllEoqOOuR/nyz1FwCKZLqDJKiFq02roHQU=",
         "owner": "emrearmagan",
         "repo": "atlas.nvim",
-        "rev": "35626c0a610be540ae9c60426ffe528533954dfc",
+        "rev": "1a9b8206203bdce0b99f848b6ebe9ce3ad0ac3d1",
         "type": "github"
       },
       "original": {
@@ -115,11 +115,11 @@
     "crust": {
       "flake": false,
       "locked": {
-        "lastModified": 1790614440,
-        "narHash": "sha256-K5dL6KIBrscZ9U/4sDWtPBUlAL7vdOAjCfd1T9T+B1c=",
+        "lastModified": 1789940748,
+        "narHash": "sha256-OxeoOCrcbnPKnobVHF132/NCcKgqdOQNGZ4oeoX8iB8=",
         "owner": "spreadprism",
         "repo": "crust.nvim",
-        "rev": "2155b255aee60bd92b3e4ab818dd53bd3285065b",
+        "rev": "62a22af08ac1b235176b6d03524a67e187702ed2",
         "type": "github"
       },
       "original": {
@@ -190,6 +190,22 @@
         "owner": "spreadprism",
         "ref": "new_features",
         "repo": "dbab",
+        "type": "github"
+      }
+    },
+    "diffview": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1789991967,
+        "narHash": "sha256-gA9brMpvV6I7pHHarRE90oRUeEd1UNIkxaJTJnBgu0I=",
+        "owner": "dlyongemallo",
+        "repo": "diffview-plus.nvim",
+        "rev": "5152bada7d81cd602373e77534aabc631419e8e0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dlyongemallo",
+        "repo": "diffview-plus.nvim",
         "type": "github"
       }
     },
@@ -938,6 +954,7 @@
         "dadbod": "dadbod",
         "dap-python": "dap-python",
         "dbab": "dbab",
+        "diffview": "diffview",
         "exrc": "exrc",
         "fyler": "fyler",
         "gitsigns": "gitsigns",

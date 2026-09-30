@@ -14,6 +14,6 @@
     gitsigns
     blame
     worktrunk
-    pkgs.vimPlugins.codediff-nvim
+    diffview
   ];
 }

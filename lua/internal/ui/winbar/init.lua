@@ -10,6 +10,7 @@ return {
 	end,
 	{ provider = " " },
 	require("internal.ui.winbar.location"),
+	require("internal.ui.winbar.diffview"),
 	{
 		provider = " " .. symbols.modified,
 		hl = { fg = colors.fg },

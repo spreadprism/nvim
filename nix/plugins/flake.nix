@@ -57,6 +57,10 @@
       url = "github:NeogitOrg/neogit";
       flake = false;
     };
+    diffview = {
+      url = "github:dlyongemallo/diffview-plus.nvim";
+      flake = false;
+    };
     gitsigns = {
       url = "github:lewis6991/gitsigns.nvim";
       flake = false;

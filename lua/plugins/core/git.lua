@@ -1,18 +1,122 @@
--- diffview-plus: https://github.com/dlyongemallo/diffview-plus.nvim
-local codediff = plugin("codediff.nvim"):on_require("codediff"):cmd("CodeDiff"):opts({
-	explorer = {
-		initial_focus = "modified",
-	},
-	keymaps = {
-		view = {
-			quit = "<C-q>",
-			prev_file = "<Up>",
-			next_file = "<Down>",
-			prev_hunk = "<Left>",
-			next_hunk = "<Right>",
-		},
-	},
-})
+local diffview = plugin("diffview")
+	:cmd({
+		"DiffviewOpen",
+		"DiffviewToggle",
+		"DiffviewClose",
+		"DiffviewFileHistory",
+		"DiffviewDiffFiles",
+		"DiffviewFocusFiles",
+		"DiffviewToggleFiles",
+		"DiffviewRefresh",
+	})
+	:opts(function()
+		local actions = require("diffview.actions")
+
+		--- unwraps our Keymap specs into diffview's `{ mode, lhs, rhs, opts }` entries
+		---@param keymaps Keymap[]
+		local function entries(keymaps)
+			return vim.tbl_map(function(keymap)
+				local spec = keymap.spec
+				return { spec.mode, spec[1], spec[2], { desc = spec.desc } }
+			end, keymaps)
+		end
+
+		-- maps that apply in every diffview context
+		local shared = {
+			k:map("n", "<C-q>", k:cmd("DiffviewClose"), "Quit"),
+		}
+
+		-- context -> extra maps, merged on top of `shared`
+		local per_context = {
+			view = {
+				k:map("n", "<tab>", actions.select_next_entry, "Next file"),
+				k:map("n", "<s-tab>", actions.select_prev_entry, "Previous file"),
+				k:map("n", "gf", actions.goto_file_edit, "Open file in previous tabpage"),
+				k:map("n", "<leader>e", actions.focus_files, "Focus file panel"),
+				k:map("n", "<leader>b", actions.toggle_files, "Toggle file panel"),
+			},
+			file_panel = {
+				k:map("n", "<cr>", actions.select_entry, "Open diff for entry"),
+				k:map("n", "j", actions.next_entry, "Next entry"),
+				k:map("n", "k", actions.prev_entry, "Previous entry"),
+				k:map("n", "s", actions.toggle_stage_entry, "Stage/unstage entry"),
+				k:map("n", "R", actions.refresh_files, "Refresh"),
+			},
+			file_history_panel = {
+				k:map("n", "<cr>", actions.select_entry, "Open diff for entry"),
+				k:map("n", "j", actions.next_entry, "Next entry"),
+				k:map("n", "k", actions.prev_entry, "Previous entry"),
+				k:map("n", "y", actions.copy_hash, "Copy commit hash"),
+			},
+		}
+
+		---@type table<string, any>
+		local keymaps = { disable_defaults = true }
+		for _, ctx in ipairs({
+			"view",
+			"diff1",
+			"diff1_inline",
+			"diff2",
+			"diff3",
+			"diff4",
+			"file_panel",
+			"file_history_panel",
+			"option_panel",
+			"help_panel",
+			"commit_log_panel",
+		}) do
+			keymaps[ctx] = entries(vim.list_extend(vim.list_slice(shared), per_context[ctx] or {}))
+		end
+
+		---@type DiffviewConfig.user
+		local opts = {
+			enhanced_diff_hl = true,
+			use_icons = true,
+			keymaps = keymaps,
+			view = {
+				-- the only view type that enables the winbar by default
+				merge_tool = { winbar_info = false },
+			},
+			file_panel = {
+				listing_style = "tree",
+				win_config = {
+					position = "right",
+					width = 35,
+				},
+			},
+			hooks = {
+				diff_buf_win_enter = function(bufnr, winid, ctx)
+					pcall(vim.api.nvim_exec_autocmds, "BufReadPost", {
+						buffer = bufnr,
+						group = "treesitter_context_update",
+						modeline = false,
+					})
+				end,
+				view_closed = function()
+					local ok, tsc = pcall(require, "treesitter-context")
+					if ok and tsc.enabled() then
+						tsc.enable()
+					end
+				end,
+			},
+		}
+		return opts
+	end)
+	:keymaps({
+		k:group("git", "<leader>g", {
+			k:map("n", "h", k:cmd("DiffviewFileHistory %"), "open file history for buffer"),
+			k:map("x", "h", function()
+				-- leave visual mode so that the '< and '> marks point at the current selection
+				vim.cmd("normal! " .. vim.keycode("<esc>"))
+				vim.cmd(string.format("%d,%dDiffviewFileHistory", vim.fn.line("'<"), vim.fn.line("'>")))
+			end, "open file history for selection"),
+			k:map("n", "H", function()
+				local path = vim.bo.filetype == "oil" and require("oil").get_current_dir() or vim.fn.expand("%:p:h")
+				local root = vim.fs.root(path ~= "" and path or vim.fn.getcwd(), ".git") or vim.fn.getcwd()
+				vim.cmd("DiffviewFileHistory " .. vim.fn.fnameescape(root))
+			end, "open file history for workspace"),
+		}),
+	})
 
 plugin("atlas")
 	:opts(function()
@@ -26,22 +130,22 @@ plugin("atlas")
 				git_transport = "ssh",
 				default_merge_method = "squash",
 				---@diagnostic disable-next-line: assign-type-mismatch
-				diff = "CodeDiff",
+				diff = "DiffviewOpen",
 			},
 		}
 	end)
 	:event("DeferredUIEnter")
 
 plugin("neogit")
-	:dep_on(codediff)
+	:dep_on(diffview)
 	:opts({
 		auto_refresh = true,
 		disable_hint = true,
 		integrations = {
 			snacks = true,
-			codediff = true,
+			diffview = true,
 		},
-		diff_viewer = "codediff",
+		diff_viewer = "diffview",
 		graph_style = "unicode",
 	})
 	:cmd("Neogit")
@@ -122,7 +226,7 @@ plugin("blame")
 								local hash = get_hash()
 								if hash then
 									require("blame").last_opened_view:close()
-									vim.cmd(":CodeDiff history " .. hash .. "^.." .. hash)
+									vim.cmd(":DiffviewOpen " .. hash .. "^.." .. hash)
 								end
 							end, "open commit"),
 						})
