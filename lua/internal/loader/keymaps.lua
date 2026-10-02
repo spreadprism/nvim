@@ -131,6 +131,20 @@ function K:del(mode, key)
 	vim.keymap.del(mode, key)
 end
 
+--- prefixes a spec and, recursively, the specs of any nested group: a child
+--- group only carries its own key, so its leaves need the prefix too
+---@param spec KeymapSpec
+---@param key string
+local function prefix_spec(spec, key)
+	spec[1] = key .. spec[1]
+
+	for i = 2, #spec do
+		if type(spec[i]) == "table" then
+			prefix_spec(spec[i], key)
+		end
+	end
+end
+
 ---@param name string
 ---@param key string
 ---@param keymaps? Keymap | Keymap[]
@@ -144,7 +158,7 @@ function K:group(name, key, keymaps)
 		key,
 		group = name,
 		unpack(vim.tbl_map(function(keymap)
-			keymap.spec[1] = key .. keymap.spec[1]
+			prefix_spec(keymap.spec, key)
 			return keymap.spec
 		end, keymaps)),
 	})

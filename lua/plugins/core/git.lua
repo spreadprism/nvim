@@ -219,7 +219,7 @@ local diffview = plugin("diffview")
 					focus_diff = true,
 				},
 				default = {
-					layout = "diff2_horizontal",
+					layout = "diff1_inline",
 					focus_diff = true,
 				},
 				file_history = {
@@ -277,7 +277,7 @@ local diffview = plugin("diffview")
 	end)
 	:keymaps({
 		k:group("git", "<leader>g", {
-			k:map("n", "d", k:cmd("DiffviewOpen"), "open working tree changes"),
+			k:map("n", "s", k:cmd("DiffviewOpen"), "current worktree status"),
 			k:map("n", "h", k:cmd("DiffviewFileHistory %"), "open file history for buffer"),
 			k:map("x", "h", function()
 				-- leave visual mode so that the '< and '> marks point at the current selection
@@ -356,12 +356,22 @@ plugin("neogit")
 				["<C-q>"] = "Close",
 				["<C-a>"] = "Abort",
 				["<c-c><c-c>"] = "Submit",
-			},
-			commit_editor_i = {
-				["<c-c><c-c>"] = "Submit",
-				["<C-a>"] = "Abort",
 				["<Up>"] = "PrevMessage",
 				["<Down>"] = "NextMessage",
+			},
+			commit_editor_I = {
+				["<c-c><c-c>"] = "Submit",
+				["<C-a>"] = "Abort",
+			},
+			-- `use_default_keymaps = false` resets `mappings` to a fixed set of
+			-- sections that omits these, and the modules reading them index the
+			-- missing table at load time, so they must be declared explicitly
+			commit_view = {
+				["a"] = "OpenFileInWorktree",
+				["o"] = "OpenCommitLinkInBrowser",
+			},
+			refs_view = {
+				["x"] = "DeleteBranch",
 			},
 			rebase_editor = {
 				["p"] = "Pick",
@@ -404,22 +414,17 @@ plugin("neogit")
 			},
 			popup = {
 				["?"] = "HelpPopup",
-				["<localleader>c"] = "CommitPopup",
-				["<localleader>b"] = "BranchPopup",
-
-				["<localleader>p"] = "PullPopup",
-				["<localleader>P"] = "PushPopup",
-				["<localleader>f"] = "FetchPopup",
-
-				["<localleader>r"] = "RebasePopup",
-				["<localleader>m"] = "MergePopup",
-
-				["<localleader>d"] = "DiffPopup",
-				["<localleader>R"] = "RemotePopup",
-
-				["<localleader>i"] = "IgnorePopup",
+				["c"] = "CommitPopup",
+				["b"] = "BranchPopup",
+				["p"] = "PullPopup",
+				["P"] = "PushPopup",
+				["f"] = "FetchPopup",
+				["r"] = "RebasePopup",
+				["m"] = "MergePopup",
+				["d"] = "DiffPopup",
+				["R"] = "RemotePopup",
+				["<localleader>I"] = "IgnorePopup",
 				["<localleader>X"] = "ResetPopup",
-
 				["<localleader>s"] = "StashPopup",
 				["<localleader>C"] = "CherryPickPopup",
 				["<localleader>t"] = "TagPopup",
@@ -431,11 +436,16 @@ plugin("neogit")
 	:cmd("Neogit")
 	:keymaps(function()
 		--- open a neogit popup from anywhere, without going through the status
-		--- buffer: `neogit.popups.open` returns a curried opener
+		--- buffer: `neogit.popups.open` returns a curried opener.
+		--- its default wrapper calls `create()` with no argument, but most popups
+		--- index `env` unconditionally (`env.commit`, `env.item`, `env.hunk`, ...),
+		--- so pass an empty env: every field they read may legitimately be nil
 		---@param name string module name under `neogit.popups`
 		local function popup(name)
 			return function()
-				require("neogit.popups").open(name)()
+				require("neogit.popups").open(name, function(create)
+					create({})
+				end)()
 			end
 		end
 
