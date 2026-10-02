@@ -2,6 +2,8 @@
 --- (OURS)/(THEIRS)/(BASE) while resolving conflicts, and the compared revs
 --- (branch name, tag, short hash, LOCAL) otherwise.
 
+local M = {}
+
 ---@return Window? window, table? view
 local function current_window()
 	local ok, lib = pcall(require, "diffview.lib")
@@ -86,8 +88,9 @@ local function label_for(window, view)
 		return "INDEX"
 	end
 
+	-- the working tree is what you normally look at: leave it unlabelled
 	if rev.type == RevType.LOCAL then
-		return "LOCAL"
+		return nil
 	end
 
 	if rev.type == RevType.COMMIT then
@@ -96,14 +99,41 @@ local function label_for(window, view)
 		if named then
 			return named
 		end
+
+		-- `track_head` marks the rev diffview resolved from HEAD itself
+		if rev.track_head then
+			return "HEAD"
+		end
+
 		return rev:object_name(7)
 	end
 end
 
-return {
-	condition = function()
-		return current_window() ~= nil
-	end,
+--- true when the current window is one of a diffview's diff windows
+---@return boolean
+function M.in_diff_window()
+	return current_window() ~= nil
+end
+
+--- the real on-disk path of the file shown in the current diff window.
+--- diff buffers are named `diffview://<toplevel>/.git/<hash>/<path>`, which is
+--- useless as a breadcrumb.
+---@return string?
+function M.file_path()
+	local window = current_window()
+	local file = window and window.file
+	return file and file.absolute_path or nil
+end
+
+--- true in the diff windows of a `DiffviewFileHistory` view
+---@return boolean
+function M.in_file_history()
+	local _, view = current_window()
+	return view ~= nil and view.class and view.class:name() == "FileHistoryView"
+end
+
+M.component = {
+	condition = M.in_diff_window,
 	init = function(self)
 		local window, view = current_window()
 		self.label = window and view and label_for(window, view) or nil
@@ -113,3 +143,5 @@ return {
 	end,
 	hl = { fg = colors.purple, italic = true },
 }
+
+return M

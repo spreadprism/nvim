@@ -92,7 +92,12 @@ return {
 		return not vim.tbl_contains({ "blame", "octo" }, vim.bo.filetype)
 	end,
 	init = function(self)
-		if self.ft == "oil" then
+		local diffview_path = require("internal.ui.winbar.diffview").file_path()
+
+		if diffview_path then
+			-- `diffview://.../.git/<hash>/<path>` -> the real working tree path
+			self.path = diffview_path
+		elseif self.ft == "oil" then
 			self.path = require("oil").get_current_dir(self.buf) or ""
 		elseif self.ft == "fyler" then
 			self.path = require("fyler.views.finder").instance().files.root_path
@@ -105,7 +110,13 @@ return {
 
 		local cwd = vim.fn.getcwd(self.win)
 
-		if vim.startswith(self.path, cwd) then
+		local diffview = require("internal.ui.winbar.diffview")
+
+		if diffview_path and not diffview.in_file_history() then
+			-- diff windows only get the file name, the path is in the file panel
+			-- (file history keeps the full breadcrumb: it's always the same file)
+			self.root = self.path
+		elseif vim.startswith(self.path, cwd) then
 			self.root = cwd
 		elseif vim.startswith(self.path, vim.env.HOME) then
 			self.root = vim.env.HOME

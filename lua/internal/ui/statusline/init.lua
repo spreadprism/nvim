@@ -32,6 +32,7 @@ local statusline = {
 	require("internal.ui.statusline.dap"),
 	{ provider = " " },
 	{ provider = "%=" },
+	require("internal.ui.statusline.diffcount"),
 	require("internal.ui.statusline.lsp"),
 	require("internal.ui.statusline.diagnostics"),
 	require("internal.ui.statusline.tab"),
