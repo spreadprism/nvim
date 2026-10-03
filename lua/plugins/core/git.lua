@@ -338,6 +338,7 @@ plugin("atlas")
 	end)
 	:event("DeferredUIEnter")
 
+-- TODO: fix the logs keybindings
 plugin("neogit")
 	:dep_on(diffview)
 	:opts({
