@@ -91,13 +91,27 @@ plugin("blink.cmp")
 					end
 				end,
 			},
+			-- With ghost text up these walk crust's suggestions instead of the
+			-- menu: the two never share the screen, so only one can be meant.
 			["<M-j>"] = {
+				function()
+					local crust = quickcomplete()
+					return crust ~= nil and crust.next_completion()
+				end,
 				hide_ghost,
 				"show",
 				"select_next",
 				"fallback",
 			},
-			["<M-k>"] = { hide_ghost, "show", "select_prev" },
+			["<M-k>"] = {
+				function()
+					local crust = quickcomplete()
+					return crust ~= nil and crust.prev_completion()
+				end,
+				hide_ghost,
+				"show",
+				"select_prev",
+			},
 			["<M-x>"] = { hide_ghost, "cancel" },
 			["<M-h>"] = {
 				function(cmp)
