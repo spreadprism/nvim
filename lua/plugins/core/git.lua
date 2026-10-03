@@ -407,7 +407,28 @@ plugin("neogit")
 				["U"] = "UnstageStaged",
 				["t"] = "Untrack",
 				["<c-r>"] = "RefreshBuffer",
-				["<cr>"] = "VSplitOpen",
+				-- a function value makes this a neogit *user mapping*, which replaces
+				-- the built-in `VSplitOpen`: files keep the vsplit behaviour, but the
+				-- recent/unmerged/unpulled commit sections open the commit view
+				["<cr>"] = function()
+					local status = require("neogit.buffers.status").instance()
+					if not status then
+						return
+					end
+
+					local ui = status.buffer.ui
+
+					local item = ui:get_item_under_cursor()
+					if item and item.absolute_path then
+						return require("neogit.buffers.status.actions").n_vertical_split_open(status)()
+					end
+
+					-- `oid` is only set on commit components
+					local oid = ui:get_commit_under_cursor()
+					if oid then
+						require("internal.git").commit(oid, { kind = "tab" })
+					end
+				end,
 				["<s-cr>"] = "TabOpen",
 				["<Down>"] = "NextSection",
 				["<Up>"] = "PreviousSection",
@@ -553,9 +574,7 @@ plugin("blame")
 								local hash = get_hash()
 								if hash then
 									require("blame").last_opened_view:close()
-									local NeogitCommitView = require("neogit.buffers.commit_view")
-									local view = NeogitCommitView.new(hash)
-									view:open("tab")
+									require("internal.git").commit(hash, { kind = "tab" })
 								end
 							end, "open commit"),
 							k:map("n", "d", function()
