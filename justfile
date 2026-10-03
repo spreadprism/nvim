@@ -4,9 +4,6 @@ set quiet := true
 default:
   just --list
 
-hello:
-  echo hello
-
 # run the whole suite (plenary busted, isolated from the user config)
 # nvim_cmd: children must be spawned through the nixCats wrapper, otherwise
 # they start without the nix packpath (no plenary, no lze)

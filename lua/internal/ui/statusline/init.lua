@@ -27,7 +27,7 @@ local statusline = {
 	require("internal.ui.statusline.git"),
 	-- require("internal.ui.statusline.copilot"),
 	{ provider = " " },
-	require("internal.ui.statusline.quickprompt"),
+	require("internal.ui.statusline.crust"),
 	{ provider = " " },
 	require("internal.ui.statusline.overseer"),
 	{ provider = " " },

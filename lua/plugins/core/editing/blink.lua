@@ -63,24 +63,69 @@ plugin("blink.cmp")
 			TypeParameter = "",
 			Copilot = "",
 		}
+		-- crust's ghost-text line completion, absent until crust is loaded.
+		---@return table?
+		local function quickcomplete()
+			local ok, module = pcall(require, "crust.quickcomplete")
+			return ok and module or nil
+		end
+
+		-- The two never share the screen: whichever is asked for takes it.
+		local function hide_ghost()
+			local crust = quickcomplete()
+			if crust then
+				crust.hide_completion()
+			end
+		end
+
 		local base_keymap = {
 			["<M-a>"] = {
+				-- The ghost text wins when it is up: it is what is on screen.
+				function()
+					local crust = quickcomplete()
+					return crust ~= nil and crust.accept_completion()
+				end,
 				function(cmp)
 					if cmp.is_visible() then
 						cmp.select_and_accept()
 					end
 				end,
 			},
-			["<M-j>"] = { "show", "select_next", "fallback" },
-			["<M-k>"] = { "show", "select_prev" },
-			["<M-x>"] = { "cancel" },
+			["<M-j>"] = {
+				hide_ghost,
+				"show",
+				"select_next",
+				"fallback",
+			},
+			["<M-k>"] = { hide_ghost, "show", "select_prev" },
+			["<M-x>"] = { hide_ghost, "cancel" },
 			["<M-h>"] = {
 				function(cmp)
+					hide_ghost()
 					if cmp.is_visible() then
 						cmp.hide()
 					else
 						cmp.show()
 					end
+				end,
+			},
+			-- Ask crust for the rest of the line. The menu goes away first: the
+			-- answer is drawn where the menu sits.
+			["<M-l>"] = {
+				function(cmp)
+					if cmp.is_visible() then
+						cmp.hide()
+					end
+
+					local crust = quickcomplete()
+					if not crust then
+						return false
+					end
+
+					-- Nothing cached yet: the request is on its way and draws
+					-- itself when it lands, so the key is handled either way.
+					crust.show_completion()
+					return true
 				end,
 			},
 		}
@@ -277,7 +322,23 @@ plugin("blink.cmp")
 							end
 						end,
 					},
+					-- There is no buffer line to complete on the cmdline.
+					["<M-l>"] = { "fallback" },
 				}),
 			},
 		}
+	end)
+	:after(function()
+		-- The menu can also come up on its own (`auto_show`), and two ghost
+		-- texts on one line read as nonsense: crust's goes away when it does.
+		vim.api.nvim_create_autocmd("User", {
+			group = vim.api.nvim_create_augroup("blink_crust_ghost", { clear = true }),
+			pattern = "BlinkCmpMenuOpen",
+			callback = function()
+				local ok, quickcomplete = pcall(require, "crust.quickcomplete")
+				if ok then
+					quickcomplete.hide_completion()
+				end
+			end,
+		})
 	end)
