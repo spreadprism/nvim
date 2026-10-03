@@ -13,7 +13,9 @@ plugin("crust")
 		require("internal.crust").register_tools()
 	end)
 	:keymaps({
-		k:map("nx", "<M-p>", k:require("crust").smart(), "crust"),
+		k:map("nx", "<M-c>", k:require("crust").smart(), "crust"),
+		k:map("nx", "<M-p>", k:require("crust").quickprompt(), "quickprompt"),
+		k:map("in", "<M-b>", k:require("crust").send_last_buffer(), "mention last buffer"):ft(ft),
 		k:map("n", "<localleader>m", k:require("crust").model(), "model"):ft(ft),
 		k:map("n", "<localleader>s", k:require("crust").sessions(), "session"):ft(ft),
 		k:map("n", "<localleader>l", k:require("crust").session_last(), "last session"):ft(ft),
