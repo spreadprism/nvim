@@ -219,11 +219,11 @@ local diffview = plugin("diffview")
 					focus_diff = true,
 				},
 				default = {
-					layout = "diff1_inline",
+					layout = "diff2_horizontal",
 					focus_diff = true,
 				},
 				file_history = {
-					layout = "diff1_inline",
+					layout = "diff2_horizontal",
 					focus_diff = true,
 				},
 			},
