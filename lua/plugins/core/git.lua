@@ -328,6 +328,16 @@ plugin("atlas")
 				statusline = false,
 				picker = "snacks",
 			},
+			providers = {
+				github = {
+					hostname = vim.env.GH_HOST or "github.com",
+				},
+				jira = {
+					base_url = vim.env.JIRA_BASE_URL,
+					email = vim.env.JIRA_EMAIL,
+					token = vim.env.JIRA_API_TOKEN,
+				},
+			},
 			pulls = {
 				git_transport = "ssh",
 				default_merge_method = "squash",
