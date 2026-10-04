@@ -13,7 +13,6 @@ lsp("gopls"):settings({
 	},
 })
 formatter("go", "gofumpt")
-
 linter("go", "golangcilint")
 --
 -- nvim-lint ships `golangcilint` as a *function* spec, and `try_lint` calls it

@@ -115,11 +115,11 @@
     "crust": {
       "flake": false,
       "locked": {
-        "lastModified": 1791133228,
-        "narHash": "sha256-M0ljvsvHV0wPE2N3boR4gIDcExR31CWdV+YiSzMIVM8=",
+        "lastModified": 1791135100,
+        "narHash": "sha256-IhU975ighlchF047oCd0vbNrtRl9Uc2FHG2wW4OSlJM=",
         "owner": "spreadprism",
         "repo": "crust.nvim",
-        "rev": "2fb7ff4c03b95e55fa4844bf2c067297ad84a472",
+        "rev": "fab32461a85bce5d893e712d402eab1509ac3b9e",
         "type": "github"
       },
       "original": {

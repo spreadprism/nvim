@@ -486,11 +486,6 @@ plugin("neogit")
 					local path = vim.bo.filetype == "oil" and require("oil").get_current_dir() or vim.fn.expand("%:p:h")
 					require("neogit").open({ cwd = vim.fs.root(path ~= "" and path or vim.fn.getcwd(), ".git") })
 				end, "Neogit"),
-				k:map("n", "!", function()
-					-- the status buffer is optional: it is only used to refresh after
-					-- the command, so passing `nil` works from any buffer
-					require("neogit.buffers.status.actions").n_command(require("neogit.buffers.status").instance())()
-				end, "run command"),
 				-- same letters as the `popup` mappings inside the status buffer
 				k:group("popups", "<localleader>", {
 					k:map("n", "i", init_repo, "init repo"),
