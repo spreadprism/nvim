@@ -344,9 +344,131 @@ plugin("atlas")
 				---@diagnostic disable-next-line: assign-type-mismatch
 				diff = "DiffviewOpen",
 			},
+			issues = {
+				---@type AtlasJiraIssuesConfig
+				jira = {
+					views = {
+						{
+							name = "In Progress",
+							key = "1",
+							layout = "plain",
+							-- `Rank` is the board's own ordering field, so the list
+							-- matches the column top to bottom
+							jql = table.concat({
+								"assignee = currentUser()",
+								'AND status = "In Progress"',
+								"ORDER BY Rank ASC",
+							}, " "),
+						},
+						{
+							name = "Todo",
+							key = "2",
+							layout = "plain",
+							-- `Ready` (11608) sorts before `Backlog` (11611) because jql
+							-- orders statuses by their id, which is also the order they
+							-- were created in
+							jql = table.concat({
+								"assignee = currentUser()",
+								"AND status in (Ready, Backlog)",
+								"ORDER BY status ASC, Rank ASC",
+							}, " "),
+						},
+						{
+							name = "Done",
+							key = "3",
+							layout = "plain",
+							-- the Done *category* also covers `Rejected`; `resolved` is
+							-- empty for issues closed without a resolution, hence the
+							-- `updated` fallback
+							jql = table.concat({
+								"assignee = currentUser()",
+								"AND statusCategory = Done",
+								"AND statusCategory != Rejected",
+								"ORDER BY resolved DESC, updated DESC",
+							}, " "),
+						},
+						{
+							name = "Platform",
+							key = "4",
+							layout = "compact",
+							jql = table.concat({
+								'project = "Platform Engineering"',
+								"ORDER BY resolution DESC, status ASC, Rank ASC",
+							}, " "),
+						},
+					},
+					-- the long tail: reachable from the `J` picker instead of
+					-- spending a view key on each
+					bookmarks = {
+						items = {
+							["Unassigned"] = table.concat({
+								'project = "Platform Engineering"',
+								"AND assignee IS EMPTY",
+								"AND statusCategory != Done",
+								"ORDER BY created DESC",
+							}, " "),
+							["Triage"] = table.concat({
+								'project = "Platform Engineering"',
+								"AND status in (IDEAS, Backlog)",
+								"ORDER BY created DESC",
+							}, " "),
+							["In QA"] = table.concat({
+								'project = "Platform Engineering"',
+								"AND status = QA",
+								"ORDER BY Rank ASC",
+							}, " "),
+							-- jira has no `mentionedBy`, `text ~` is the closest thing
+							-- and also matches the summary and description
+							["Mentioned"] = table.concat({
+								"text ~ currentUser()",
+								"AND statusCategory != Done",
+								"ORDER BY updated DESC",
+							}, " "),
+						},
+					},
+				},
+			},
+			keymaps = {
+				ui = {
+					next_item = { "j", "<Down>" },
+					previous_item = { "k", "<Up>" },
+					toggle_panel = "-",
+					next_panel_tab = "<Right>",
+					previous_panel_tab = "<Left>",
+					next_page = "<M-S-l>",
+					previous_page = "<M-S-h>",
+					open_actions = "<M-a>",
+					search = "<M-f>",
+				},
+				issues = {
+					transition_issue = "gs",
+					change_assignee = "ga",
+					change_reporter = "gr",
+					edit_issue = "e",
+					edit_search = "<M-j>",
+					create_issue = "c",
+					toggle_description_mode = "<M-m>",
+				},
+			},
 		}
 	end)
 	:event("DeferredUIEnter")
+	:keymaps({
+		k:group("git", "<leader>g", {
+			k:map("n", "i", function()
+				if vim.env.JIRA_BASE_URL then
+					vim.cmd("Atlas issues jira")
+				else
+					vim.cmd("Atlas issues github")
+				end
+			end, "issues"),
+			k:map("n", "p", k:cmd("Atlas pipelines ."), "pipelines"),
+			k:map("n", "r", k:cmd("Atlas review"), "review PR"),
+			k:map("n", "P", k:cmd("Atlas create pr"), "create PR"),
+			k:map("n", "I", k:cmd("Atlas create issue"), "create issue"),
+			k:map("n", "b", k:cmd("Atlas browse ."), "browse repo"),
+		}),
+	})
 
 -- TODO: fix the logs keybindings
 plugin("neogit")
