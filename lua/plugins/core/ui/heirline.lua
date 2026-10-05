@@ -38,6 +38,7 @@ plugin("heirline")
 							"terminal",
 							"OverseerOutput",
 							"gitsigns-blame",
+							"NeogitConsole",
 							"^Diffview",
 							"crust_output",
 							"crust_input",
