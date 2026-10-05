@@ -726,7 +726,9 @@ plugin("worktrunk")
 	:keymaps({
 		k:group("git", "<leader>g", {
 			k:map("n", "w", k:require("worktrunk").pick(), "worktree"),
-			k:map("n", "c", k:require("worktrunk").create(nil, "main"), "create worktree (main)"),
+			k:map("n", "c", function()
+				k:require("worktrunk").create(nil, require("worktrunk").base())
+			end, "create worktree (base)"),
 			k:map("n", "C", k:require("worktrunk").create(), "create worktree"),
 			k:map("n", "x", k:require("worktrunk").delete(), "delete worktree"),
 		}),
