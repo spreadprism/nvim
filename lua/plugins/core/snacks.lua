@@ -73,8 +73,10 @@ plugin("snacks")
 		k:map("n", "<M-f>", k:require("snacks.picker").lines(), "find in buffer"),
 		k:map("n", "<M-m>", k:require("snacks.picker").marks(), "find marks"),
 		k:group("find", "<leader>f", {
-			k:map("n", "h", k:require("snacks.picker").highlights(), "highlights"),
-			k:map("n", "l", k:require("snacks.picker").resume(), "reopen last search"),
+			k:map("n", "h", k:require("snacks.picker").help(), "help"),
+			k:map("n", "H", k:require("snacks.picker").highlights(), "highlights"),
+			k:map("n", "l", k:require("snacks.picker").resume(), "last search"),
+			k:map("n", "b", k:require("snacks.picker").buffers(), "buffers"),
 		}),
 		k:group("dev", "<leader>=", {
 			k:map("n", "p", k:require("internal.profiler").toggle(), "toggle profile"),

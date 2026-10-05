@@ -43,6 +43,8 @@ local function trust_workspace_file(dir)
 	end
 end
 
+-- TODO: add https://github.com/natecraddock/workspaces.nvim
+
 plugin("exrc")
 	:event("DeferredUIEnter")
 	:before(function()
