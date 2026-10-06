@@ -350,6 +350,7 @@ local diffview = plugin("diffview")
 		end
 	end)
 
+-- TODO: better keybindings
 plugin("atlas")
 	:opts(function()
 		---@type AtlasConfig
@@ -500,7 +501,6 @@ plugin("atlas")
 		}),
 	})
 
--- TODO: fix the logs keybindings
 plugin("neogit")
 	:dep_on(diffview)
 	:opts({
@@ -518,12 +518,12 @@ plugin("neogit")
 			commit_editor = {
 				["<C-q>"] = "Close",
 				["<C-a>"] = "Abort",
-				["<c-c><c-c>"] = "Submit",
+				["<C-s>"] = "Submit",
 				["<Up>"] = "PrevMessage",
 				["<Down>"] = "NextMessage",
 			},
 			commit_editor_I = {
-				["<c-c><c-c>"] = "Submit",
+				["<C-s>"] = "Submit",
 				["<C-a>"] = "Abort",
 			},
 			-- `use_default_keymaps = false` resets `mappings` to a fixed set of
@@ -557,18 +557,21 @@ plugin("neogit")
 				["<C-a>"] = "Abort",
 			},
 			status = {
+				["!"] = "Command",
+				["^"] = "CommandHistory",
 				["j"] = "MoveDown",
 				["k"] = "MoveUp",
 				["<C-q>"] = "Close",
-				["<localleader>i"] = "InitRepo",
-				["!"] = "Command",
+				["I"] = "InitRepo",
 				["<tab>"] = "Toggle",
 				["x"] = "Discard",
 				["s"] = "Stage",
+				["<M-s>"] = "StageUnstaged",
 				["S"] = "StageAll",
 				["u"] = "Unstage",
 				["U"] = "UnstageStaged",
 				["t"] = "Untrack",
+				["K"] = "PeekFile",
 				["<c-r>"] = "RefreshBuffer",
 				-- a function value makes this a neogit *user mapping*, which replaces
 				-- the built-in `VSplitOpen`: files keep the vsplit behaviour, but the
@@ -599,7 +602,9 @@ plugin("neogit")
 			popup = {
 				["?"] = "HelpPopup",
 				["c"] = "CommitPopup",
-				["b"] = "BranchPopup",
+				["gb"] = "BranchPopup",
+				["gB"] = "BisectPopup",
+				["gw"] = "WorktreePopup",
 				["p"] = "PullPopup",
 				["P"] = "PushPopup",
 				["f"] = "FetchPopup",
@@ -607,13 +612,13 @@ plugin("neogit")
 				["m"] = "MergePopup",
 				["d"] = "DiffPopup",
 				["R"] = "RemotePopup",
-				["<localleader>I"] = "IgnorePopup",
-				["<localleader>X"] = "ResetPopup",
-				["<localleader>s"] = "StashPopup",
-				["<localleader>C"] = "CherryPickPopup",
-				["<localleader>t"] = "TagPopup",
-				["<localleader>l"] = "LogPopup",
-				["<localleader>x"] = "RevertPopup",
+				["i"] = "IgnorePopup",
+				["x"] = "RevertPopup",
+				["X"] = "ResetPopup",
+				["T"] = "TagPopup",
+				["gl"] = "LogPopup",
+				["gs"] = "StashPopup",
+				["gc"] = "CherryPickPopup",
 			},
 		},
 	})
@@ -650,9 +655,9 @@ plugin("neogit")
 				end, "Neogit"),
 				-- same letters as the `popup` mappings inside the status buffer
 				k:group("popups", "<localleader>", {
-					k:map("n", "i", init_repo, "init repo"),
+					k:map("n", "I", init_repo, "init repo"),
 					k:map("n", "c", popup("commit"), "commit"),
-					k:map("n", "b", popup("branch"), "branch"),
+					k:map("n", "gb", popup("branch"), "branch"),
 					k:map("n", "p", popup("pull"), "pull"),
 					k:map("n", "P", popup("push"), "push"),
 					k:map("n", "f", popup("fetch"), "fetch"),
@@ -660,15 +665,15 @@ plugin("neogit")
 					k:map("n", "m", popup("merge"), "merge"),
 					k:map("n", "d", popup("diff"), "diff"),
 					k:map("n", "R", popup("remote"), "remote"),
-					k:map("n", "g", popup("ignore"), "gitignore"),
+					k:map("n", "i", popup("ignore"), "gitignore"),
 					k:map("n", "X", popup("reset"), "reset"),
-					k:map("n", "s", popup("stash"), "stash"),
-					k:map("n", "C", popup("cherry_pick"), "cherry pick"),
-					k:map("n", "t", popup("tag"), "tag"),
-					k:map("n", "l", popup("log"), "log"),
+					k:map("n", "gs", popup("stash"), "stash"),
+					k:map("n", "gc", popup("cherry_pick"), "cherry pick"),
+					k:map("n", "T", popup("tag"), "tag"),
+					k:map("n", "gl", popup("log"), "log"),
 					k:map("n", "x", popup("revert"), "revert"),
-					k:map("n", "B", popup("bisect"), "bisect"),
-					k:map("n", "w", popup("worktree"), "worktree"),
+					k:map("n", "gB", popup("bisect"), "bisect"),
+					k:map("n", "gw", popup("worktree"), "worktree"),
 				}),
 			}),
 		}
@@ -755,11 +760,17 @@ plugin("worktrunk")
 	:event("DeferredUIEnter")
 	:keymaps({
 		k:group("git", "<leader>g", {
-			k:map("n", "w", k:require("worktrunk").pick(), "worktree"),
-			k:map("n", "c", function()
+			k:map("n", "w", k:require("worktrunk").pick(), "select worktree"),
+			k:map("n", "W", function()
+				local wt = require("worktrunk")
+				wt.switch(wt.base().branch)
+			end, "worktree (BASE)"),
+			k:map("n", "c", k:require("worktrunk").create(), "create worktree"),
+			k:map("n", "C", function()
 				k:require("worktrunk").create(nil, require("worktrunk").base())
-			end, "create worktree (base)"),
-			k:map("n", "C", k:require("worktrunk").create(), "create worktree"),
+			end, "create worktree (BASE)"),
+			k:map("n", "m", k:require("worktrunk").merge({ no_remove = true }), "merge worktree"),
+			k:map("n", "M", k:require("worktrunk").merge(), "merge worktree"),
 			k:map("n", "x", k:require("worktrunk").delete(), "delete worktree"),
 		}),
 	})
