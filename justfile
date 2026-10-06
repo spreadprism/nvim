@@ -48,4 +48,5 @@ update *target="":
 
 # refresh the plugin inputs declared in nix/plugins/flake.nix
 update_plugins:
+  NIX_CONFIG="extra-access-tokens = github.com=$(gh auth token)" nix flake update --flake ./nix/plugins
   just update plugins
