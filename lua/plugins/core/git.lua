@@ -278,6 +278,36 @@ local diffview = plugin("diffview")
 	:keymaps({
 		k:group("git", "<leader>g", {
 			k:map("n", "s", k:cmd("DiffviewOpen"), "current worktree status"),
+			k:map("n", "d", function()
+				local worktrunk = require("worktrunk")
+
+				-- the left side of the range: the branch of the worktree nvim sits
+				-- in, or the detached HEAD when there is none
+				local current = worktrunk.current()
+				local ours = current and current.branch or "HEAD"
+
+				-- worktrees only: `branches`/`remotes` would also list refs that
+				-- aren't checked out anywhere
+				worktrunk.pick({
+					title = "Diff against",
+					branches = true,
+					remotes = true,
+				}, function(worktree)
+					local theirs = worktree.branch or (worktree.head and worktree.head.sha)
+					if not theirs then
+						return vim.notify("worktree has no branch to diff against", vim.log.levels.WARN)
+					end
+
+					if theirs == ours then
+						-- diffing a ref against itself yields an empty view; show the
+						-- working tree instead
+						return vim.cmd("DiffviewOpen")
+					end
+
+					-- branch names may contain `%`, `#` and spaces, all expanded by `:cmd`
+					vim.cmd("DiffviewOpen " .. vim.fn.fnameescape(ours .. ".." .. theirs))
+				end)
+			end, "diff against worktree"),
 			k:map("n", "h", k:cmd("DiffviewFileHistory %"), "open file history for buffer"),
 			k:map("x", "h", function()
 				-- leave visual mode so that the '< and '> marks point at the current selection
