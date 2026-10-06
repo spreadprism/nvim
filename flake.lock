@@ -1396,11 +1396,11 @@
     "worktrunk": {
       "flake": false,
       "locked": {
-        "lastModified": 1791316188,
-        "narHash": "sha256-xxtiMmsiqkgGrT/qxGZ8G827MihPixoEGKE+qki7fWk=",
+        "lastModified": 1791324511,
+        "narHash": "sha256-eVz06+TPXS5z1oXdx3fV5tEzB0rd5H20AhM2mhMPUYI=",
         "owner": "spreadprism",
         "repo": "worktrunk.nvim",
-        "rev": "c29d366316ef438475d41c543f6e93cf608ea02d",
+        "rev": "6d8769b8505436ba40bee37263b476bc29894634",
         "type": "github"
       },
       "original": {
