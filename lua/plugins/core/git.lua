@@ -767,7 +767,7 @@ plugin("worktrunk")
 			end, "worktree (BASE)"),
 			k:map("n", "c", k:require("worktrunk").create(), "create worktree"),
 			k:map("n", "C", function()
-				k:require("worktrunk").create(nil, require("worktrunk").base())
+				require("worktrunk").create(nil, require("worktrunk").base().branch)
 			end, "create worktree (BASE)"),
 			k:map("n", "m", k:require("worktrunk").merge({ no_remove = true }), "merge worktree"),
 			k:map("n", "M", k:require("worktrunk").merge(), "merge worktree"),
