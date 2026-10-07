@@ -182,10 +182,6 @@
       url = "github:theHamsta/nvim-dap-virtual-text";
       flake = false;
     };
-    opencode = {
-      url = "github:sudo-tee/opencode.nvim";
-      flake = false;
-    };
     pi = {
       url = "github:alex35mil/pi.nvim";
       flake = false;
