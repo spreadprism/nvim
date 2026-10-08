@@ -115,11 +115,11 @@
     "crust": {
       "flake": false,
       "locked": {
-        "lastModified": 1791306714,
-        "narHash": "sha256-vYWypa/CyopjVveugbc3tdfcR2bDss7eadvEtsv8Mac=",
+        "lastModified": 1791425106,
+        "narHash": "sha256-psBTRe52S6cYViebO2lY0JpGYUWi+ei2+YJ6thnIQwA=",
         "owner": "spreadprism",
         "repo": "crust.nvim",
-        "rev": "65428d06454bf6cc8e1d751236e6ead7380ab992",
+        "rev": "bc5e4ad82a0c8ae3ec22dc646cbfa605bf7f38e4",
         "type": "github"
       },
       "original": {
@@ -860,22 +860,6 @@
         "type": "github"
       }
     },
-    "opencode": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1791380519,
-        "narHash": "sha256-dzC89fX/UMDJ6ZgNJ+IQdPIgPval0I3IQdDaopmJ8Hs=",
-        "owner": "sudo-tee",
-        "repo": "opencode.nvim",
-        "rev": "d084b27a09cb08d709152ae3776d6cc344605acd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "sudo-tee",
-        "repo": "opencode.nvim",
-        "type": "github"
-      }
-    },
     "origami": {
       "flake": false,
       "locked": {
@@ -993,7 +977,6 @@
         "oil": "oil",
         "oil-git": "oil-git",
         "onoma": "onoma",
-        "opencode": "opencode",
         "origami": "origami",
         "osc52": "osc52",
         "overseer": "overseer",
