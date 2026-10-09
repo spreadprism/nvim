@@ -564,7 +564,7 @@ plugin("neogit")
 				["<C-q>"] = "Close",
 				["I"] = "InitRepo",
 				["<tab>"] = "Toggle",
-				["x"] = "Discard",
+				["D"] = "Discard",
 				["s"] = "Stage",
 				["<M-s>"] = "StageUnstaged",
 				["S"] = "StageAll",
