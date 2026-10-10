@@ -1379,11 +1379,11 @@
     "worktrunk": {
       "flake": false,
       "locked": {
-        "lastModified": 1791324511,
-        "narHash": "sha256-eVz06+TPXS5z1oXdx3fV5tEzB0rd5H20AhM2mhMPUYI=",
+        "lastModified": 1791664692,
+        "narHash": "sha256-KB9Ww+NIMFW7/iFe2lYeDxfUEcKorx/0zszYZ11UOZw=",
         "owner": "spreadprism",
         "repo": "worktrunk.nvim",
-        "rev": "6d8769b8505436ba40bee37263b476bc29894634",
+        "rev": "f0da7df1278e7f3cca7052cf3061fc518baa085a",
         "type": "github"
       },
       "original": {
