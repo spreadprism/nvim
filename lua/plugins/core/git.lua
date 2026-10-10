@@ -552,7 +552,9 @@ plugin("atlas")
 						add = "a",
 						reply = "c",
 						edit = "e",
-						react = "<localleader>e",
+						-- `<localleader>e` edits the *issue*, so reacting drops to the
+						-- `g` tier
+						react = "ge",
 					},
 					delete = "D",
 					-- state
@@ -624,6 +626,7 @@ plugin("atlas")
 						{ key = "s", desc = "Transition issue", callback = action("transition") },
 						{ key = "<localleader>a", desc = "Change assignee", callback = action("assign") },
 						{ key = "<localleader>r", desc = "Change reporter", callback = action("reporter") },
+						{ key = "<localleader>e", desc = "Edit issue", callback = action("edit_issue") },
 						{ key = "<localleader>p", desc = "Change priority", callback = change_priority },
 					},
 					-- superseded by the `custom` entries above, which also reach the
@@ -633,8 +636,8 @@ plugin("atlas")
 					change_reporter = false,
 					-- `c` is also `ui.comments.reply`: both "write something new"
 					create_issue = "c",
-					-- `e` edits a *comment*, `E` the issue itself
-					edit_issue = "E",
+					-- superseded too: `<localleader>e` above reaches the panel
+					edit_issue = false,
 					-- drops straight into insert mode on the jql line
 					edit_search = "i",
 					toggle_description_mode = "<localleader>m",
@@ -718,6 +721,49 @@ plugin("atlas")
 				},
 			},
 		}
+	end)
+	:on_highlights(function(highlights, colors)
+		-- `atlas/ui/shared/highlights.lua` hardcodes catppuccin hexes and applies
+		-- them with `default = true`, re-running on `ColorScheme`; anything set
+		-- here therefore wins permanently.
+		-- the footer carries an explicit `bg` on every group, so each one has to
+		-- be restated against the statusline background
+		local bg = (highlights.StatusLine or {}).bg
+
+		---@param fg string
+		---@param bold? boolean
+		local function footer(fg, bold)
+			return { fg = fg, bg = bg, bold = bold }
+		end
+
+		local atlas = {
+			-- the statusline atlas draws in its own buffers
+			AtlasFooterBackground = { bg = bg },
+			AtlasFooterText = footer(colors.comment),
+			AtlasFooterActive = footer(colors.fg, true),
+			AtlasFooterInfo = footer(colors.info, true),
+			AtlasFooterNote = footer(colors.purple, true),
+			AtlasFooterWarning = footer(colors.warning, true),
+			AtlasFooterError = footer(colors.error, true),
+			AtlasFooterSuccess = footer(colors.git.add, true),
+			-- list and detail chrome, hardcoded upstream as well
+			AtlasColumnHeader = { fg = colors.comment, bold = true },
+			AtlasSectionHeader = { fg = colors.comment, bold = true, underline = true },
+			AtlasTextMuted = { fg = colors.comment },
+			AtlasTextMutedStrikethrough = { fg = colors.comment, strikethrough = true },
+			AtlasTextNote = { fg = colors.purple, bold = true },
+			AtlasTextWarning = { fg = colors.warning, bold = true },
+			AtlasLogInfo = { fg = colors.info },
+			AtlasLogCommand = { fg = colors.blue },
+			AtlasLogGroup = { fg = colors.fg, bg = colors.bg_highlight, bold = true },
+			-- chips invert, so they need a readable foreground against the accent
+			AtlasChipActive = { fg = colors.bg, bg = colors.blue, bold = true },
+			AtlasRelatedChip = { fg = colors.fg, bg = colors.bg_highlight, bold = true },
+		}
+
+		for group, hl in pairs(atlas) do
+			highlights[group] = hl
+		end
 	end)
 	:event("DeferredUIEnter")
 	:keymaps({
