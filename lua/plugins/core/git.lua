@@ -479,20 +479,6 @@ plugin("atlas")
 								"ORDER BY resolution DESC, status ASC, Rank ASC",
 							}, " "),
 						},
-						{
-							-- anything with my name on it, whichever role
-							name = "Mention",
-							key = "3",
-							layout = "compact",
-							-- jira has no `mentionedBy`; `text ~` is the closest thing and
-							-- also matches the summary, description and comments
-							jql = table.concat({
-								"(assignee = currentUser()",
-								"OR reporter = currentUser()",
-								"OR text ~ currentUser())",
-								"ORDER BY updated DESC",
-							}, " "),
-						},
 					},
 					-- the long tail: reachable from the `J` picker instead of
 					-- spending a view key on each
