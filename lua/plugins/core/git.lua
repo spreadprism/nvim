@@ -350,13 +350,14 @@ local diffview = plugin("diffview")
 		end
 	end)
 
--- TODO: better keybindings
 plugin("atlas")
 	:opts(function()
 		---@type AtlasConfig
 		return {
 			ui = {
-				statusline = false,
+				-- key hints, loading progress and notifications all render here;
+				-- atlas forces `laststatus = 3` while it is enabled
+				statusline = true,
 				picker = "snacks",
 			},
 			providers = {
@@ -372,8 +373,11 @@ plugin("atlas")
 			pulls = {
 				git_transport = "ssh",
 				default_merge_method = "squash",
-				---@diagnostic disable-next-line: assign-type-mismatch
-				diff = "DiffviewOpen",
+				diff = {
+					-- any command taking explicit `<base>...<head>` revisions;
+					-- the atlas overlays know about diffview
+					open_cmd = "DiffviewOpen",
+				},
 			},
 			issues = {
 				---@type AtlasJiraIssuesConfig
@@ -459,26 +463,205 @@ plugin("atlas")
 					},
 				},
 			},
+			-- atlas merges this over its defaults, so every action is spelled out
+			-- to keep the whole surface in one place.
+			--
+			-- the house style, same as neogit:
+			--   * a bare letter for anything done constantly (never one that is a
+			--     motion: `w`, `b`, `h`, `l`, `H`, `L`, `n`, `N`, ...)
+			--   * `<localleader>` + letter for the verbs that act, submit or edit
+			--   * `g` + letter only when the first two are exhausted
+			--
+			-- `:checkhealth atlas` reports keys bound twice *per scope* (`ui`,
+			-- `ui`+`pulls`, `ui`+`issues`, `picker`, notifications on their own).
+			-- the few keys shared below sit in atlas' own allow-list, except `-`,
+			-- which is deliberately "toggle the side panel" everywhere.
+			---@type AtlasKeymapsConfig
 			keymaps = {
+				-- every atlas buffer: the list, the detail tabs, the panels
 				ui = {
+					-- motion
 					next_item = { "j", "<Down>" },
 					previous_item = { "k", "<Up>" },
-					toggle_panel = "-",
+					first_item = "gg",
+					last_item = "G",
 					next_panel_tab = "<Right>",
 					previous_panel_tab = "<Left>",
-					next_page = "<M-S-l>",
-					previous_page = "<M-S-h>",
-					open_actions = "<M-a>",
-					search = "<M-f>",
+					-- `]p`/`[p` by default; paging is rare enough for the `g` tier
+					next_page = "gn",
+					previous_page = "gp",
+					-- open / close
+					select = "<CR>",
+					submit = "<C-s>",
+					close = "<C-q>",
+					help = "<localleader>?",
+					toggle_panel = "-",
+					toggle_fold = "za",
+					toggle_all_folds = "zA",
+					-- the action menu is the catch-all for everything not bound here
+					open_actions = "A",
+					show_details = "K",
+					search = "f",
+					-- same letter as neogit's `commit_view` browser mapping
+					open_in_browser = "o",
+					-- linked issues/PRs: `l` is a motion, so `g` tier
+					open_references = "gl",
+					-- comments
+					comments = {
+						add = "a",
+						reply = "c",
+						edit = "e",
+						react = "<localleader>e",
+					},
+					delete = "D",
+					-- state
+					refresh = "r",
+					refresh_view = "R",
+					toggle_star = "s",
+					toggle_subscription = "S",
+					copy_id = "y",
+					copy_url = "Y",
+					-- the notification panel is its own scope: `r`/`d` here never
+					-- meet `ui.refresh`/`pulls.open_diff`
+					notifications = {
+						open = "N",
+						mark_read = "r",
+						mark_done = "d",
+					},
+				},
+				-- only used by the builtin picker; `ui.picker = "snacks"` bypasses it
+				picker = {
+					next_item = { "<Down>", "<C-n>", "<C-j>" },
+					previous_item = { "<Up>", "<C-p>", "<C-k>" },
+					select = { "<CR>", "<C-s>" },
+					toggle = "<Tab>",
+					close = { "<C-q>", "<Esc>" },
 				},
 				issues = {
-					transition_issue = "gs",
-					change_assignee = "ga",
-					change_reporter = "gr",
-					edit_issue = "e",
-					edit_search = "<M-j>",
+					-- `ui.select` only runs bookmarks in the issue list, and the
+					-- general `ui.toggle_panel` map is registered *before* it, so
+					-- adding `<CR>` there would be clobbered. custom maps are the
+					-- last ones registered on the dashboard, so this one wins.
+					custom = {
+						{
+							key = "<CR>",
+							desc = "Open issue details",
+							callback = function()
+								local node = require("atlas.ui.navigation").current_item()
+
+								-- bookmark and starred rows keep the `ui.select` behaviour
+								if type(node) == "table" and (node.kind == "bookmark" or node.kind == "starred") then
+									return require("atlas.issues.ui.dashboard.controller").select_bookmark(node)
+								end
+
+								local dashboard = require("atlas.issues.ui.dashboard")
+								if require("atlas.issues.ui.detail").is_open() then
+									-- `toggle_detail` would close it; re-target it instead,
+									-- `select` keeps the dashboard's `on_update` wiring
+									dashboard.select(node)
+								else
+									dashboard.toggle_detail()
+								end
+
+								-- the panel opens next to the dashboard without taking the
+								-- cursor; `-` keeps it that way, `<CR>` jumps into it.
+								-- the window id only lives on the detail state
+								vim.schedule(function()
+									local win = require("atlas.issues.ui.detail.state").win
+									if win and vim.api.nvim_win_is_valid(win) then
+										vim.api.nvim_set_current_win(win)
+									end
+								end)
+							end,
+						},
+					},
+					transition_issue = "t",
+					-- `c` is also `ui.comments.reply`: both "write something new"
 					create_issue = "c",
-					toggle_description_mode = "<M-m>",
+					-- `e` edits a *comment*, `E` the issue itself
+					edit_issue = "E",
+					-- drops straight into insert mode on the jql line
+					edit_search = "i",
+					change_assignee = "<localleader>a",
+					change_reporter = "<localleader>r",
+					toggle_description_mode = "<localleader>m",
+				},
+				pulls = {
+					open_diff = "d",
+					-- `t` is also `review.diff.toggle_layout`, never on screen together
+					toggle_repo_issue_state = "t",
+					-- `T` is also `review.explorer.toggle_grouping`
+					edit_title = "T",
+					edit_search = "i",
+					edit_description = "<localleader>d",
+					open_repository = "<localleader>o",
+					-- the atlas cheatsheet while inside diffview, where `<localleader>?`
+					-- already belongs to diffview's own help
+					external_help = "<localleader>h",
+					-- `c` and `d` are taken, and checkout is a once-per-PR action
+					checkout = "gc",
+					-- state filters, grouped like neogit's popups
+					filters = {
+						open = "<localleader>fo",
+						merged = "<localleader>fm",
+						declined = "<localleader>fd",
+					},
+					pipelines = {
+						-- same keys as the file explorer's file-to-file motion
+						next_job = "<Tab>",
+						previous_job = "<S-Tab>",
+						show_history = "gh",
+						toggle_raw_logs = "gL",
+						toggle_auto_refresh = "gr",
+					},
+					review = {
+						open_item = "<CR>",
+						show_details = "K",
+						-- the verdict: everything that posts to the provider
+						approve = "<localleader>a",
+						request_changes = "<localleader>r",
+						submit_review = "<localleader>v",
+						add_task = "<localleader>t",
+						comment_templates = "<localleader>c",
+						find_file = "<localleader>ff",
+						explorer = {
+							-- `-` toggles the side panel everywhere in atlas and diffview
+							toggle_explorer = "-",
+							find_file = "<localleader>ff",
+							next_file = "<Tab>",
+							previous_file = "<S-Tab>",
+							next_unreviewed_file = "gu",
+							previous_unreviewed_file = "gU",
+							toggle_grouping = "T",
+							-- mark the file as reviewed
+							toggle_file_reviewed = "m",
+							toggle_commits = "gC",
+						},
+						diff = {
+							-- write: lowercase adds, uppercase submits
+							add_comment = "c",
+							submit_comment = "C",
+							add_suggestion = "<localleader>s",
+							submit_suggestion = "<localleader>S",
+							-- local note, never posted to the provider
+							add_note = "<localleader>n",
+							toggle_resolved = "x",
+							-- motion between annotations, same bracket pairs as the
+							-- `]x`/`[x` conflict walk in diffview
+							next_hunk = "]h",
+							previous_hunk = "[h",
+							next_comment = "]c",
+							previous_comment = "[c",
+							next_note = "]n",
+							previous_note = "[n",
+							-- layout toggles
+							toggle_layout = "t",
+							toggle_compact = "gc",
+							toggle_comments = "gh",
+							toggle_review_panel = "gr",
+							toggle_detail_panel = "gd",
+						},
+					},
 				},
 			},
 		}
