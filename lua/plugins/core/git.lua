@@ -352,6 +352,81 @@ local diffview = plugin("diffview")
 
 plugin("atlas")
 	:opts(function()
+		--- run one of atlas' own issue actions with the context the keymap was
+		--- invoked with; works from the list *and* the detail panel, since both
+		--- feed `keymaps.issues.custom` their own `(context, done)`
+		---@param id AtlasIssueActionId|string
+		local function action(id)
+			return function(ctx, done)
+				require("atlas.issues.actions").run(id, ctx, done)
+			end
+		end
+
+		--- atlas has no priority action: the field is fetched and rendered but
+		--- never written (`edit_issue` only sends summary/description/type/
+		--- assignee), so drive the jira REST api directly through its client,
+		--- which already carries the configured auth
+		---@param ctx AtlasIssueActionContext
+		---@param done fun(result: table|nil, err: string|nil)
+		local function change_priority(ctx, done)
+			local issue = ctx and ctx.issue
+			if not issue or not issue.key then
+				return done(nil, "No issue selected")
+			end
+
+			local key = issue.key
+			local client = require("atlas.providers.jira.client")
+			local notify = require("atlas.core.notify")
+
+			-- `editmeta` returns the values this issue's screen actually allows,
+			-- unlike the instance-wide `/priority` list
+			client.request("GET", string.format("/issue/%s/editmeta", key), nil, function(meta, err)
+				if err then
+					return done(nil, err)
+				end
+
+				local field = ((meta or {}).fields or {}).priority
+				local options = field and field.allowedValues or {}
+				if #options == 0 then
+					return done(nil, string.format("%s has no editable priority", key))
+				end
+
+				require("atlas.ui.picker").select({
+					title = string.format("Priority for %s", key),
+					items = options,
+					format_item = function(item)
+						return tostring(item.name or item.id)
+					end,
+					on_select = function(choice)
+						if not choice then
+							-- cancelled: no result, no error
+							return done(nil, nil)
+						end
+
+						notify.loading(string.format("Updating %s...", key))
+						require("atlas.issues.providers.jira.api.issues").update_issue(
+							key,
+							{ priority = { id = choice.id } },
+							function(ok, update_err)
+								if not ok then
+									local message = update_err or "Failed to set priority"
+									notify.error(message)
+									return done(nil, message)
+								end
+
+								notify.success(
+									string.format("%s → %s", key, choice.name or choice.id),
+									{ timeout = 1200 }
+								)
+								-- `issue_key` makes the dashboard/panel reload that row
+								done({ issue_key = key }, nil)
+							end
+						)
+					end,
+				})
+			end, { action = "Fetch priority options", issue_key = key })
+		end
+
 		---@type AtlasConfig
 		return {
 			ui = {
@@ -384,51 +459,38 @@ plugin("atlas")
 				jira = {
 					views = {
 						{
-							name = "In Progress",
+							-- everything currently in focus: started, queued
+							name = "Active",
 							key = "1",
 							layout = "plain",
-							-- `Rank` is the board's own ordering field, so the list
-							-- matches the column top to bottom
 							jql = table.concat({
 								"assignee = currentUser()",
-								'AND status = "In Progress"',
-								"ORDER BY Rank ASC",
+								'AND status in ("In Progress", Ready)',
+								"ORDER BY statusCategory DESC, status DESC, updated DESC, key ASC",
 							}, " "),
 						},
 						{
-							name = "Todo",
+							-- the whole board, not just my rows
+							name = "Team",
 							key = "2",
-							layout = "plain",
-							-- `Ready` (11608) sorts before `Backlog` (11611) because jql
-							-- orders statuses by their id, which is also the order they
-							-- were created in
-							jql = table.concat({
-								"assignee = currentUser()",
-								"AND status in (Ready, Backlog)",
-								"ORDER BY status ASC, Rank ASC",
-							}, " "),
-						},
-						{
-							name = "Done",
-							key = "3",
-							layout = "plain",
-							-- the Done *category* also covers `Rejected`; `resolved` is
-							-- empty for issues closed without a resolution, hence the
-							-- `updated` fallback
-							jql = table.concat({
-								"assignee = currentUser()",
-								"AND statusCategory = Done",
-								"AND statusCategory != Rejected",
-								"ORDER BY resolved DESC, updated DESC",
-							}, " "),
-						},
-						{
-							name = "Platform",
-							key = "4",
 							layout = "compact",
 							jql = table.concat({
 								'project = "Platform Engineering"',
 								"ORDER BY resolution DESC, status ASC, Rank ASC",
+							}, " "),
+						},
+						{
+							-- anything with my name on it, whichever role
+							name = "Mention",
+							key = "3",
+							layout = "compact",
+							-- jira has no `mentionedBy`; `text ~` is the closest thing and
+							-- also matches the summary, description and comments
+							jql = table.concat({
+								"(assignee = currentUser()",
+								"OR reporter = currentUser()",
+								"OR text ~ currentUser())",
+								"ORDER BY updated DESC",
 							}, " "),
 						},
 					},
@@ -436,28 +498,21 @@ plugin("atlas")
 					-- spending a view key on each
 					bookmarks = {
 						items = {
-							["Unassigned"] = table.concat({
-								'project = "Platform Engineering"',
-								"AND assignee IS EMPTY",
-								"AND statusCategory != Done",
-								"ORDER BY created DESC",
-							}, " "),
 							["Triage"] = table.concat({
 								'project = "Platform Engineering"',
 								"AND status in (IDEAS, Backlog)",
 								"ORDER BY created DESC",
 							}, " "),
+							["Done"] = table.concat({
+								"assignee = currentUser()",
+								"AND statusCategory = Done",
+								"AND statusCategory != Rejected",
+								"ORDER BY resolved DESC, updated DESC",
+							}, " "),
 							["In QA"] = table.concat({
 								'project = "Platform Engineering"',
 								"AND status = QA",
 								"ORDER BY Rank ASC",
-							}, " "),
-							-- jira has no `mentionedBy`, `text ~` is the closest thing
-							-- and also matches the summary and description
-							["Mentioned"] = table.concat({
-								"text ~ currentUser()",
-								"AND statusCategory != Done",
-								"ORDER BY updated DESC",
 							}, " "),
 						},
 					},
@@ -517,7 +572,9 @@ plugin("atlas")
 					-- state
 					refresh = "r",
 					refresh_view = "R",
-					toggle_star = "s",
+					-- `s` belongs to the status transition, so starring keeps the
+					-- glyph atlas uses in the list
+					toggle_star = "*",
 					toggle_subscription = "S",
 					copy_id = "y",
 					copy_url = "Y",
@@ -574,16 +631,26 @@ plugin("atlas")
 								end)
 							end,
 						},
+						-- the builtin `transition_issue`/`change_assignee`/
+						-- `change_reporter` maps only exist in the list; the detail
+						-- panel registers `ui.*` plus these custom entries, so routing
+						-- them through `custom` is what makes them work in both
+						{ key = "s", desc = "Transition issue", callback = action("transition") },
+						{ key = "<localleader>a", desc = "Change assignee", callback = action("assign") },
+						{ key = "<localleader>r", desc = "Change reporter", callback = action("reporter") },
+						{ key = "<localleader>p", desc = "Change priority", callback = change_priority },
 					},
-					transition_issue = "t",
+					-- superseded by the `custom` entries above, which also reach the
+					-- detail panel
+					transition_issue = false,
+					change_assignee = false,
+					change_reporter = false,
 					-- `c` is also `ui.comments.reply`: both "write something new"
 					create_issue = "c",
 					-- `e` edits a *comment*, `E` the issue itself
 					edit_issue = "E",
 					-- drops straight into insert mode on the jql line
 					edit_search = "i",
-					change_assignee = "<localleader>a",
-					change_reporter = "<localleader>r",
 					toggle_description_mode = "<localleader>m",
 				},
 				pulls = {
