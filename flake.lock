@@ -1172,11 +1172,11 @@
     "symbols": {
       "flake": false,
       "locked": {
-        "lastModified": 1791757687,
-        "narHash": "sha256-13n+0tDt6EJXWCzC7aBl6QjsDQVNtf7z/ivyoVd1WCQ=",
+        "lastModified": 1791758365,
+        "narHash": "sha256-FlWt4XYfjp7ts2JVEGu8xgDh4jCGL1Pq9cD1O0Am0uw=",
         "owner": "spreadprism",
         "repo": "symbols.nvim",
-        "rev": "8ad0235d0d5b4c92729f867a67d9cae5ac4a91f6",
+        "rev": "56ebeae1c89942bb16feaa58a5a5edba340196b1",
         "type": "github"
       },
       "original": {
