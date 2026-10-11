@@ -16,15 +16,7 @@ plugin("worktrunk")
 			k:map("n", "x", k:require("worktrunk").delete(), "delete worktree"),
 		}),
 	})
-	:opts({
-		hooks = {
-			on_switch = function()
-				vim.schedule(function()
-					---@diagnostic disable-next-line: param-type-mismatch
-					pcall(vim.cmd, "Gitsigns refresh")
-					vim.cmd("redrawstatus!")
-					vim.cmd("redrawtabline")
-				end)
-			end,
-		},
-	})
+	-- no hooks: the `cd` worktrunk performs fires DirChanged, and
+	-- `internal.workspace.switch` takes it from there (workspace registration,
+	-- exrc/dap/lsp/direnv reload, buffer migration, UI refresh)
+	:opts({})

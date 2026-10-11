@@ -1,5 +1,76 @@
 local M = {}
 
+--- Keys of `dap.providers.configs` registered by workspaces, so they can be
+--- dropped when the workspace goes away.
+---@type table<string, true>
+local dap_providers = {}
+
+--- Drop every workspace-provided dap configuration (and terminate a running
+--- session, since its config is about to disappear). Built-in providers and
+--- `dap.configurations` set by `internal.loader.dap` are left alone.
+function M.flush_dap()
+	local ok, dap = pcall(require, "dap")
+	if not ok then
+		dap_providers = {}
+		return
+	end
+
+	if dap.session() then
+		pcall(dap.terminate)
+	end
+
+	for key in pairs(dap_providers) do
+		dap.providers.configs[key] = nil
+	end
+	dap_providers = {}
+end
+
+--- Stop running LSP clients and re-attach the buffers, so clients are rooted
+--- in the new tree and pick up the settings of the exrc that was just loaded
+--- for it.
+---@param names? string[] restrict to these client names (default: all)
+function M.restart_lsp(names)
+	local clients = vim.lsp.get_clients()
+	if names then
+		local wanted = {}
+		for _, name in ipairs(names) do
+			wanted[name] = true
+		end
+		clients = vim.tbl_filter(function(client)
+			return wanted[client.name]
+		end, clients)
+	end
+
+	if vim.tbl_isempty(clients) then
+		return
+	end
+
+	for _, client in ipairs(clients) do
+		client:stop(true)
+	end
+
+	-- Wait until the clients actually exited before re-attaching, otherwise
+	-- `vim.lsp.enable` may skip buffers because a client is still shutting
+	-- down. Poll instead of a fixed delay; give up after ~2s and fire anyway.
+	local attempts = 40
+	local function reattach()
+		if attempts > 0 then
+			for _, client in ipairs(clients) do
+				if not client:is_stopped() then
+					attempts = attempts - 1
+					vim.defer_fn(reattach, 50)
+					return
+				end
+			end
+		end
+		-- re-run only the FileType autocmds `vim.lsp.enable` registered (the
+		-- `nvim.lsp.enable` group), not every FileType hook (ftplugins,
+		-- treesitter, ...). This is what core itself does in lsp.enable().
+		pcall(vim.cmd.doautoall, "nvim.lsp.enable FileType")
+	end
+	vim.defer_fn(reattach, 10)
+end
+
 ---@class exrc.Config
 ---@field exrc_name string
 
@@ -124,9 +195,73 @@ function Workspace:source_up()
 	self.ctx:source_up({ quiet = true })
 end
 
----@param handlers table<string, exrc.lsp.OnNewConfig>
+---@alias workspace.LspHandler vim.lsp.Config|fun(config: vim.lsp.Config, dir: string): vim.lsp.Config?
+
+--- Per-workspace LSP settings, applied on top of the global `vim.lsp.config`
+--- entry and reverted when the workspace is unloaded.
+---
+--- Handlers are either a config table (deep-merged) or a function mutating the
+--- config in place (it may also return a replacement table).
+---
+--- ```lua
+--- workspace:lsp({
+---   gopls = { settings = { gopls = { buildFlags = { "-tags=integration" } } } },
+---   lua_ls = function(cfg)
+---     cfg.settings.Lua.workspace.library = { ... }
+---   end,
+--- })
+--- ```
+---
+--- Note: `vim.lsp.config` is global, so only one workspace at a time can own a
+--- given client. That is the exrc model anyway: entries are reverted on unload,
+--- i.e. on every `DirChanged` reload.
+---@param handlers table<string, workspace.LspHandler>
 function Workspace:lsp(handlers)
-	self.ctx:lsp_setup(handlers)
+	local names = {}
+
+	-- `vim.lsp.config[name]` resolves runtime `lsp/` files on access, so the
+	-- raw user entry is what must be put back on unload; handlers still build
+	-- on top of the resolved config so they see the full picture.
+	local raw_configs = rawget(vim.lsp.config, "_configs")
+
+	for name, handler in pairs(handlers) do
+		-- snapshot what was configured before this workspace touched it
+		local previous ---@type vim.lsp.Config|nil
+		if raw_configs then
+			previous = raw_configs[name] ~= nil and vim.deepcopy(raw_configs[name]) or nil
+		else
+			previous = vim.deepcopy(vim.lsp.config[name] or {})
+		end
+		local config = vim.deepcopy(vim.lsp.config[name] or {})
+
+		if type(handler) == "function" then
+			config = handler(config, self.workspaceDir) or config
+		else
+			config = vim.tbl_deep_extend("force", config, handler)
+		end
+
+		vim.lsp.config[name] = config
+		table.insert(names, name)
+
+		self:on_unload(function()
+			vim.lsp.config[name] = previous or {}
+		end)
+	end
+
+	if vim.tbl_isempty(names) then
+		return
+	end
+
+	-- a client may already be running with the previous settings. During a
+	-- workspace switch the switch routine restarts everything once at the end,
+	-- so only bounce clients here for standalone reloads (`:ExrcReloadAll`,
+	-- editing the workspace file).
+	if require("internal.workspace.switch").is_switching() then
+		return
+	end
+	vim.schedule(function()
+		M.restart_lsp(names)
+	end)
 end
 
 ---@param name string
@@ -150,6 +285,14 @@ function Workspace:dap(ft, configs)
 
 	dap.providers.configs[self.workspaceDir] = function(_)
 		return self.dap_configs
+	end
+
+	if not dap_providers[self.workspaceDir] then
+		dap_providers[self.workspaceDir] = true
+		self:on_unload(function()
+			dap.providers.configs[self.workspaceDir] = nil
+			dap_providers[self.workspaceDir] = nil
+		end)
 	end
 
 	if not vim.islist(configs) then

@@ -29,6 +29,7 @@ lsp("lua_ls"):root_markers({
 			globals = vim.list_extend({
 				"nixCats",
 				"internal",
+				"Snacks",
 			}, vim.tbl_keys(internal)),
 			disable = { "missing-fields", "different-requires" },
 		},

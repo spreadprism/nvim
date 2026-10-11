@@ -20,6 +20,7 @@ vim.opt.undofile = true -- INFO: Save undo history
 
 vim.o.swapfile = false
 
+---@diagnostic disable-next-line: duplicate-set-field
 vim.deprecate = function() end
 
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -34,10 +35,12 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 	end,
 })
 
--- per workspace shadafile
+-- exrc workspace files
+vim.g.workspace_file_name = ".nvim.lua"
 vim.opt.exrc = true
 vim.opt.secure = true
 
+-- per workspace shadafile
 local shada_dir = vim.fs.joinpath(vim.fn.stdpath("data") --[[@as string]], "myshada")
 
 ---@param cwd string

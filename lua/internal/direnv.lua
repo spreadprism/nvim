@@ -83,32 +83,78 @@ function Direnv:deny()
 	vim.system({ "direnv", "deny" }, { cwd = dir }):wait()
 end
 
-function Direnv:reload()
+--- Re-export the environment of `dir` (defaults to the current buffer's
+--- directory) into the nvim process.
+---
+--- The export is asynchronous: pass `on_done` to run work that must see the
+--- new environment (it is always invoked, with `false` when nothing was
+--- applied: reload already in flight, direnv missing, export failed).
+---@param dir? string
+---@param on_done? fun(applied: boolean)
+function Direnv:reload(dir, on_done)
+	local progress ---@type internal.Progress|nil
+
+	local function done(applied)
+		if progress then
+			progress:finish({ message = applied and "done" or "failed" })
+			progress = nil
+		end
+		if on_done then
+			vim.schedule(function()
+				on_done(applied)
+			end)
+		end
+	end
+
 	if self.refresh then
+		done(false)
 		return
 	end
 	self.refresh = true
-	local path = vim.api.nvim_buf_get_name(0)
-	local dir = vim.fs.dirname(path)
+	dir = dir or vim.fs.dirname(vim.api.nvim_buf_get_name(0))
+	if dir == "" then
+		dir = vim.fn.getcwd()
+	end
 
-	vim.system({ "direnv", "export", "json" }, { cwd = dir }, function(out)
+	-- nix-direnv evals can take a while: show an LSP-init style spinner
+	progress = require("internal.ui.progress").start({
+		client = "direnv",
+		title = "export",
+		message = vim.fn.fnamemodify(dir, ":~"),
+	})
+
+	local spawned = pcall(vim.system, { "direnv", "export", "json" }, { cwd = dir }, function(out)
 		self.refresh = false
 		if out.code ~= 0 then
+			done(false)
 			return
 		end
 		local stdout = out.stdout
 
 		local ok, export = pcall(vim.json.decode, stdout)
 		if not ok then
+			done(false)
 			return
 		end
 
 		vim.schedule(function()
 			for k, v in pairs(export) do
-				vim.fn.setenv(k, v)
+				-- direnv reports removed variables as null
+				if v == vim.NIL then
+					vim.fn.setenv(k, vim.v.null)
+				else
+					vim.fn.setenv(k, v)
+				end
 			end
+			done(true)
 		end)
 	end)
+
+	if not spawned then
+		-- direnv is not installed / not executable
+		self.refresh = false
+		done(false)
+	end
 end
 
 ---@param path string

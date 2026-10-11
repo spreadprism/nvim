@@ -62,6 +62,7 @@
     oil-git
     todo-comments
     exrc
+    workspaces
     overseer
     cutlass
     dadbod

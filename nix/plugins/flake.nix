@@ -206,6 +206,10 @@
       url = "github:jedrzejboczar/exrc.nvim";
       flake = false;
     };
+    workspaces = {
+      url = "github:natecraddock/workspaces.nvim";
+      flake = false;
+    };
     overseer = {
       url = "github:stevearc/overseer.nvim";
       flake = false;
