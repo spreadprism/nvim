@@ -1,7 +1,7 @@
 --- Workspace registry helpers on top of workspaces.nvim.
 ---
 --- Workspaces are discovered, not hand-registered: every `~/workspace/<name>`
---- directory that contains a workspace file (`.nvim.lua`) is a workspace.
+--- directory that contains a workspace file (`.nvim.lua`) or (`.git`) is a workspace.
 --- `sync()` reconciles the plugin's registry with what is on disk, and
 --- `register()` adds one-off directories (e.g. git worktrees living outside
 --- the root).
@@ -15,11 +15,20 @@ function M.clean(path)
 	return (vim.fs.normalize(path):gsub("/+$", ""))
 end
 
---- Directories under `root` holding a workspace file, keyed by their name.
+--- Whether `path` is a workspace: it holds a workspace file (`.nvim.lua`) or
+--- a `.git` (directory for a repo, file for a worktree/submodule).
+---@param path string
+---@return boolean
+local function is_workspace(path)
+	local fname = vim.g.workspace_file_name
+	return vim.uv.fs_stat(vim.fs.joinpath(path, fname)) ~= nil or vim.uv.fs_stat(vim.fs.joinpath(path, ".git")) ~= nil
+end
+
+--- Directories under `root` holding a workspace file or a `.git`, keyed by
+--- their name.
 ---@return table<string, string>
 function M.discover()
 	local found = {}
-	local fname = vim.g.workspace_file_name
 
 	local ok, iter = pcall(vim.fs.dir, M.root)
 	if not ok then
@@ -29,7 +38,7 @@ function M.discover()
 	for name, type in iter do
 		if type == "directory" or type == "link" then
 			local path = vim.fs.joinpath(M.root, name)
-			if vim.uv.fs_stat(vim.fs.joinpath(path, fname)) then
+			if is_workspace(path) then
 				found[name] = M.clean(path)
 			end
 		end
@@ -102,7 +111,7 @@ function M.register(path, name)
 end
 
 --- Register every discovered workspace and drop the ones under `root` whose
---- workspace file (or directory) is gone. Entries outside `root` (worktrees
+--- workspace markers (`.nvim.lua`/`.git`) or directory are gone. Entries outside `root` (worktrees
 --- registered on switch) are left alone unless their directory vanished.
 ---@param opts? { quiet?: boolean }
 function M.sync(opts)
