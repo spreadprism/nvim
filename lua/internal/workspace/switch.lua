@@ -114,10 +114,7 @@ end
 --- then `prev_cwd` is up to date, so it bails on `old_cwd == new_cwd`.
 ---@param cwd string
 local function activate_workspace(cwd)
-	local name = registry.register(cwd)
-	if name then
-		pcall(require("workspaces").open, name)
-	end
+	registry.activate(cwd)
 end
 
 --- Tasks keep the cwd they were built with, so they are useless (and

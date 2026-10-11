@@ -110,6 +110,22 @@ function M.register(path, name)
 	return name
 end
 
+--- Register and activate the workspace of `path` (defaults to cwd): mark it
+--- current / bump it in the MRU list, and fire `User WorkspaceEnter` so
+--- workspace-scoped plugins (e.g. onoma) can lazy-load on it.
+---@param path? string
+---@return string|nil name
+function M.activate(path)
+	local name = M.register(path)
+	if not name then
+		return nil
+	end
+
+	pcall(require("workspaces").open, name)
+	vim.api.nvim_exec_autocmds("User", { pattern = "WorkspaceEnter", modeline = false })
+	return name
+end
+
 --- Register every discovered workspace and drop the ones under `root` whose
 --- workspace markers (`.nvim.lua`/`.git`) or directory are gone. Entries outside `root` (worktrees
 --- registered on switch) are left alone unless their directory vanished.

@@ -99,8 +99,8 @@ plugin("workspaces")
 
 		-- `auto_open` relies on VimEnter, which already fired by the time this
 		-- plugin loads: activate the workspace of the startup cwd ourselves
-		local name = registry().name_of()
-		if name then
-			pcall(require("workspaces").open, name)
+		-- (only when it already is one: startup never registers new dirs)
+		if registry().name_of() then
+			registry().activate()
 		end
 	end)

@@ -156,7 +156,15 @@ local function origin_buffer_file(ctx)
 end
 
 plugin("onoma")
-	:event("DeferredUIEnter")
+	-- onoma indexes the whole tree under the cwd: setting up while sitting in
+	-- a non-workspace dir (e.g. ~/workspace itself, the root of every project)
+	-- locks the editor up. `internal.workspace.registry.activate` fires this
+	-- event whenever a workspace becomes active (startup or cd), so onoma only
+	-- ever starts inside an actual workspace.
+	:event({
+		event = "User",
+		pattern = "WorkspaceEnter",
+	})
 	:opts({
 		picker = { "snacks" },
 	})
