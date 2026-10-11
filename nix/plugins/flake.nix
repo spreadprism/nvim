@@ -41,6 +41,10 @@
       url = "github:spreadprism/crust.nvim";
       flake = false;
     };
+    symbols = {
+      url = "github:spreadprism/symbols.nvim";
+      flake = false;
+    };
     nvim-web-devicons = {
       url = "github:nvim-tree/nvim-web-devicons";
       flake = false;
@@ -301,10 +305,6 @@
     };
     typescript-tools = {
       url = "github:pmizio/typescript-tools.nvim";
-      flake = false;
-    };
-    onoma = {
-      url = "github:spreadprism/onoma.nvim";
       flake = false;
     };
     puppeteer = {

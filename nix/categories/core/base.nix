@@ -30,6 +30,7 @@
     lspconfig
     fyler
     crust
+    symbols
     tokyonight
     snacks
     tmux-navigation
@@ -78,7 +79,6 @@
     visual-whitespace
     startuptime
     puppeteer
-    onoma
     herdr
     vim_pkgs.blink-cmp
     vim_pkgs.blink-pairs

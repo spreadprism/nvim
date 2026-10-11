@@ -112,7 +112,7 @@ end
 
 --- Register and activate the workspace of `path` (defaults to cwd): mark it
 --- current / bump it in the MRU list, and fire `User WorkspaceEnter` so
---- workspace-scoped plugins (e.g. onoma) can lazy-load on it.
+--- workspace-scoped plugins can lazy-load on it.
 ---@param path? string
 ---@return string|nil name
 function M.activate(path)

@@ -844,22 +844,6 @@
         "type": "github"
       }
     },
-    "onoma": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1789863743,
-        "narHash": "sha256-DckiDxI5fHDdnWAWSjXYvKvWtJJdtEAieJRT/spBMg4=",
-        "owner": "spreadprism",
-        "repo": "onoma.nvim",
-        "rev": "c850b10aef54a206a8894c47f79c7470ee0c74ef",
-        "type": "github"
-      },
-      "original": {
-        "owner": "spreadprism",
-        "repo": "onoma.nvim",
-        "type": "github"
-      }
-    },
     "origami": {
       "flake": false,
       "locked": {
@@ -976,7 +960,6 @@
         "nvim-web-devicons": "nvim-web-devicons",
         "oil": "oil",
         "oil-git": "oil-git",
-        "onoma": "onoma",
         "origami": "origami",
         "osc52": "osc52",
         "overseer": "overseer",
@@ -991,6 +974,7 @@
         "snacks": "snacks",
         "startuptime": "startuptime",
         "submode": "submode",
+        "symbols": "symbols",
         "tabout": "tabout",
         "tmux-navigation": "tmux-navigation",
         "todo-comments": "todo-comments",
@@ -1182,6 +1166,22 @@
       "original": {
         "owner": "pogyomo",
         "repo": "submode.nvim",
+        "type": "github"
+      }
+    },
+    "symbols": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1791752757,
+        "narHash": "sha256-M5WBIdoyi//5N7K9DCrUysCfJMWMA6Qy3SG72enZADs=",
+        "owner": "spreadprism",
+        "repo": "symbols.nvim",
+        "rev": "cb8d0efe205e13c9150ef35d9b5ef3c49a7935a6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "spreadprism",
+        "repo": "symbols.nvim",
         "type": "github"
       }
     },
