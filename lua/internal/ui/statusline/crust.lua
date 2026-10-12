@@ -6,28 +6,48 @@
 --- icon blank in a window that has no cache yet), the component is evaluated
 --- on every draw and the events simply force a redraw.
 local util = require("internal.ui.statusline.util")
+local event = require("internal.events")
 
-vim.api.nvim_create_autocmd("User", {
-	group = vim.api.nvim_create_augroup("internal.statusline.crust", { clear = true }),
-	pattern = { "CrustQuickPrompt", "CrustQuickComplete" },
-	desc = "Refresh the statusline crust indicator",
-	callback = util.redraw,
-})
+local group = vim.api.nvim_create_augroup("internal.statusline.crust", { clear = true })
+
+--- Nothing is asked of crust before lze has loaded it: until then the icon
+--- stays idle and `require("crust.*")` is never called.
+local loaded = false
+
+event.on_plugin("crust", function()
+	loaded = true
+
+	vim.api.nvim_create_autocmd("User", {
+		group = group,
+		pattern = { "CrustQuickPrompt", "CrustQuickComplete" },
+		desc = "Refresh the statusline crust indicator",
+		callback = util.redraw,
+	})
+
+	util.redraw()
+end, group)
 
 --- Live state of a crust module, idle when it is not loaded yet.
 ---@param name string
----@return { state: string }
+---@return string
 local function status(name)
+	if not loaded then
+		return "idle"
+	end
 	local ok, module = pcall(require, "crust." .. name)
-	return ok and module.status() or { state = "idle" }
+	if not ok then
+		return "idle"
+	end
+	local state = module.status()
+	return state and state.state or "idle"
 end
 
 return {
 	{
 		init = function(self)
 			self.states = {
-				status("quickprompt").state,
-				status("quickcomplete").state,
+				status("quickprompt"),
+				status("quickcomplete"),
 			}
 		end,
 		provider = "󰚩",
