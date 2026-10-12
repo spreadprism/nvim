@@ -1,0 +1,17 @@
+{pkgs, ...}: {
+  packages = [pkgs.git];
+
+  env = {
+    FOOBAR = "foobar4";
+  };
+
+  dotenv = {
+    enable = true;
+    filename = [".env" ".env.local"];
+  };
+
+  scripts.nvim_dev.exec = ''
+    git add -A
+    nix run .#nvim_dev "$@"
+  '';
+}
