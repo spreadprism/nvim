@@ -63,6 +63,16 @@ plugin("snacks")
 						preset = "telescope",
 					},
 				},
+				symbols = {
+					layout = {
+						preset = "right",
+					},
+				},
+				symbols_workspace = {
+					layout = {
+						preset = "ivy_split",
+					},
+				},
 			},
 		},
 	})
