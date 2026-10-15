@@ -12,7 +12,7 @@ plugin("neotest")
 				overseer = require("neotest.consumers.overseer"),
 			},
 			discovery = {
-				concurrent = 1,
+				enabled = false,
 			},
 			summary = {
 				mappings = {
