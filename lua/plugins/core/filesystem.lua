@@ -1,3 +1,4 @@
+plugin("fyler"):event("DeferredUIEnter")
 local oil = plugin("oil")
 	:opts({
 		use_default_keymaps = false,

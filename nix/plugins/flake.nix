@@ -34,7 +34,7 @@
       flake = false;
     };
     fyler = {
-      url = "github:spreadprism/fyler.nvim";
+      url = "github:FylerOrg/fyler.nvim";
       flake = false;
     };
     crust = {

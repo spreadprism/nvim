@@ -99,8 +99,8 @@ return {
 			self.path = diffview_path
 		elseif self.ft == "oil" then
 			self.path = require("oil").get_current_dir(self.buf) or ""
-		elseif self.ft == "fyler" then
-			self.path = require("fyler.views.finder").instance().files.root_path
+		elseif self.ft == "fyler_finder" then
+			self.path = require("fyler").getcwd() or ""
 		else
 			self.path = vim.api.nvim_buf_get_name(self.buf)
 		end

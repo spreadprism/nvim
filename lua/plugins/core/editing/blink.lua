@@ -7,7 +7,7 @@ plugin("blink.indent")
 		blocked = {
 			filetypes = {
 				include_defaults = true,
-				"fyler",
+				"fyler_finder",
 			},
 		},
 		mappings = {

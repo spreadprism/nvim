@@ -249,15 +249,15 @@
     "fyler": {
       "flake": false,
       "locked": {
-        "lastModified": 1776368749,
-        "narHash": "sha256-MOL61g6GRx04eXCIq9teLdtXQzlbIc7Wsp9Dle9AAek=",
-        "owner": "spreadprism",
+        "lastModified": 1790127297,
+        "narHash": "sha256-zSqo9RTEvbJwicBHfly3zyy+z4EOk7gYXQmaYnVj368=",
+        "owner": "FylerOrg",
         "repo": "fyler.nvim",
-        "rev": "0d07c5229ae64781736e38d481c3bb38479724a8",
+        "rev": "e1626ff3815a7ebd15698fd6c6d1188a079993d6",
         "type": "github"
       },
       "original": {
-        "owner": "spreadprism",
+        "owner": "FylerOrg",
         "repo": "fyler.nvim",
         "type": "github"
       }
@@ -1172,11 +1172,11 @@
     "symbols": {
       "flake": false,
       "locked": {
-        "lastModified": 1791816531,
-        "narHash": "sha256-u941B2RvOkSHI++nIRHXpBcaCAHpC5qQmWm589oWwlQ=",
+        "lastModified": 1792091094,
+        "narHash": "sha256-zY7W2ENmcvkyMLBSm+dIXQZ6XqwB1BA/elIhhrfW4LY=",
         "owner": "spreadprism",
         "repo": "symbols.nvim",
-        "rev": "4078c2d5957faeea1c95eb80e9e9db78e36ecb4a",
+        "rev": "92737ffa37dd84f7d0cf17b1b95be2a717ff6f9f",
         "type": "github"
       },
       "original": {
