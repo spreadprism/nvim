@@ -4,11 +4,11 @@
   ...
 }: {
   lspsAndRuntimeDeps = with pkgs; [
-    typescript
+    vtsls
+    typescript # tsc cli (v7 / tsgo, no tsserver.js)
     prettierd
     eslint_d
   ];
   optionalPlugins = with nvim_pkgs; [
-    typescript-tools
   ];
 }

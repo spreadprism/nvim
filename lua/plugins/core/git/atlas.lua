@@ -78,9 +78,6 @@ plugin("atlas")
 		---@type AtlasConfig
 		return {
 			ui = {
-				-- key hints, loading progress and notifications all render here;
-				-- atlas forces `laststatus = 3` while it is enabled
-				statusline = true,
 				picker = "snacks",
 			},
 			providers = {

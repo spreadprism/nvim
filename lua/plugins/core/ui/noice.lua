@@ -42,22 +42,29 @@ plugin("noice")
 			},
 		},
 		routes = vim.list_extend(
-			vim.tbl_map(function(msg)
-				return {
-					filter = {
-						event = "msg_show",
-						find = msg,
-					},
-					opts = { skip = true },
+			(function()
+				local skipped = { -- filter out these messages
+					"No information available",
+					"Empty hover response",
+					"written",
+					"No diagnostics found",
+					"No results for",
+					"No textobject",
+					"Hop",
 				}
-			end, { -- filter out these messages
-				"No information available",
-				"written",
-				"No diagnostics found",
-				"No results for",
-				"No textobject",
-				"Hop",
-			}),
+				local routes = {}
+				for _, msg in ipairs(skipped) do
+					-- these arrive either as `:echo`-style messages or through
+					-- `vim.notify` (lsp hover does the latter), so skip both.
+					for _, event in ipairs({ "msg_show", "notify" }) do
+						table.insert(routes, {
+							filter = { event = event, find = msg },
+							opts = { skip = true },
+						})
+					end
+				end
+				return routes
+			end)(),
 			{
 				{
 					filter = {

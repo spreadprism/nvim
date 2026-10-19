@@ -303,10 +303,6 @@
       url = "github:qvalentin/helm-ls.nvim";
       flake = false;
     };
-    typescript-tools = {
-      url = "github:pmizio/typescript-tools.nvim";
-      flake = false;
-    };
     puppeteer = {
       url = "github:chrisgrieser/nvim-puppeteer";
       flake = false;
