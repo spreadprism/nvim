@@ -237,7 +237,7 @@ plugin("atlas")
 							key = "<CR>",
 							desc = "Open issue details",
 							callback = function()
-								local node = require("atlas.ui.navigation").current_item()
+								local node = require("atlas.issues.ui.dashboard.navigation").current_item()
 
 								-- bookmark and starred rows keep the `ui.select` behaviour
 								if type(node) == "table" and (node.kind == "bookmark" or node.kind == "starred") then
